@@ -1,0 +1,24 @@
+Singletons were discarded from GUI, deemed unnecessary for this content upon actually implementing the GUI code.
+	- current set up means its easy to ensure only 1 instance
+	- system is not large or complex enough
+
+	was going to use JSlider for use values, but it doesn't not make it easy to handle decimal values.
+	
+	alpha and beta need to be limited to 0-1
+	
+	added MVC using Observer/observable
+	
+	original frame dimensions were 1300 x 900 this has been reduced to 1300 x 700 in order to run on a more standard screens size
+		- result of this means the game area is now 40x30 rather than 40x40
+		
+------------------------
+Had to re evaluated the problem, changed to TSP representation:
+
+code adpated from: https://code.google.com/p/antcolonyopt/ by Thomas Jungblut
+
+distance matrix holds the distance from a city n to another city x
+	- this is a 2d array where the first index is the city you are at
+	- the second index is the city you want the distance to
+		- e.g. distanceMatrix[4][15] will contain the distance from node 4 to node 15
+
+inverted distance matrix is similar to the above but each index has been inverted (1/index) in order for use in the probability function
