@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
@@ -33,6 +34,7 @@ public class DisplayCanvas extends JPanel{
 
 		ArrayList<City> cities = (ArrayList)model.getWorld().getCities();
 		ArrayList<Ant> agents = (ArrayList)model.getWorld().getAnts();
+		LinkedList<Integer> bestRoute;
 
 		for(City c: cities){
 			//g2.fillOval((p.x - 10)  * 20, p.y * 20, 20, 20);
@@ -70,6 +72,35 @@ public class DisplayCanvas extends JPanel{
 				}
 			}
 		}
+
+		/*
+		 * Only draw the best route if there is one.
+		 * First you need to get each element in the bestRoute Linked list
+		 * 	For each of these you need to match its value to that of a city
+		 * 		you need to then get the next index and draw the route from the previous to the next
+		 *  This is really messy and needs improvement
+		 */
+
+		if(model.getBestAnt() != null){
+			bestRoute = model.getBestAnt().getRoute();
+			if(bestRoute != null){
+				for(int i = 0; i < bestRoute.size(); i++){
+					for(City c: cities){
+						if(bestRoute.get(i) == c.getIndex()){
+							if(i + 1 < bestRoute.size()){
+								for(City c2: cities){
+									if(bestRoute.get(i + 1) == c2.getIndex()){
+										g2.setColor(Color.RED);
+										g.drawLine(c.getX() * 20, c.getY()*20, c2.getX() * 20, c2.getY() * 20);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 

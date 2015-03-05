@@ -1,24 +1,23 @@
 package che16.dcs.aber.ac.uk.model;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import che16.dcs.aber.ac.uk.utils.MathsHelper;
 
 public class World {
 
 	private AntColonyOptimisation aco;
-	private int width, height;
+	private int numberOfAnts;
 	private List<City> cities;
 	private double[][] pheromone, distanceMatrix, invertedMatrix;
 	private List<Ant> ants;
 
 
-	public World(AntColonyOptimisation aco, int width, int height, int numberOfAnts){
+	public World(AntColonyOptimisation aco, int numberOfAnts){
 		this.aco = aco;
-		this.width = width;
-		this.height = height;
+		this.numberOfAnts = numberOfAnts;
 		cities = new ArrayList<City>();
 		//TODO: AUTOMATE THIS INDEXING AND ADDING
 		cities.add(new City(20,20,0));
@@ -28,19 +27,26 @@ public class World {
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
+		initAnts();
 		//this must come after everything has been initialised
+
+
+	}
+
+	private int getRandomIndex() {
+		Random r = new Random();
+		//cities.size() is the upper bound which is excluded in the range of returned values
+		return r.nextInt(cities.size());
+
+	}
+
+	private void initAnts(){
 		ants = new ArrayList<Ant>(numberOfAnts);
-		ants.add(new Ant(this, 0));
-
+		for(int i = 0; i < numberOfAnts; i++){
+			ants.add(new Ant(this, getRandomIndex()));
+		}
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
 
 	public void addCity(City city){
 		cities.add(city);
@@ -123,7 +129,7 @@ public class World {
 	public void updatePheromone(int x, int y, double newPheromone) {
 		double phero = calculatePheromones(pheromone[x][y], newPheromone);
 		//if phero is not negative then update the current concentration
-		//if phero is negative then just set it as 0, you can't have negative phero
+		//if phero is negative then just set it as 0, you can't have negative phero on an edge
 		if (phero >= 0.0d) {
 			pheromone[x][y] = phero;
 		} else {
@@ -157,6 +163,10 @@ public class World {
 
 	public List<Ant> getAnts() {
 		return ants;
+	}
+
+	public double getQ() {
+		return aco.getQ();
 	}
 
 }

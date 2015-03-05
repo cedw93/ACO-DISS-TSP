@@ -2,6 +2,7 @@ package che16.dcs.aber.ac.uk.model;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 
 import javax.swing.SwingWorker;
@@ -10,8 +11,9 @@ import javax.swing.Timer;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private double alpha, beta, q, decayRate, initialPheromone;
+	private double alpha, beta, q, decayRate, initialPheromone, bestDistance;
 	private int noOfAgents;
+	private Ant bestAnt;
 
 	public AntColonyOptimisation() {
 		alpha = 1.0d;
@@ -20,8 +22,10 @@ public class AntColonyOptimisation extends Observable{
 		q = 1.0d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
+		bestAnt = null;
 		noOfAgents = 20;
-		world = new World(this, 40, 30, noOfAgents);
+		bestDistance = Double.POSITIVE_INFINITY;
+		world = new World(this, noOfAgents);
 
 	}
 
@@ -80,8 +84,28 @@ public class AntColonyOptimisation extends Observable{
 	}
 
 
+
+
+	public World getWorld() {
+		return world;
+	}
+
+	public double getBestDistance() {
+		return bestDistance;
+	}
+
+	public Ant getBestAnt(){
+		return bestAnt;
+	}
+
+	public void setBestAnt(Ant best){
+		this.bestAnt = best;
+	}
+
+
 	private class Worker extends SwingWorker<Void, Void>{
 		private AntColonyOptimisation aco;
+		private int antsWorking;
 
 		public Worker(AntColonyOptimisation aco){
 			this.aco = aco;
@@ -89,26 +113,33 @@ public class AntColonyOptimisation extends Observable{
 		@Override
 		protected Void doInBackground() throws Exception {
 
-			ArrayList<Ant> ants = (ArrayList)world.getAnts();			
-			for(Ant ant: ants){
-				ant.move();
+			ArrayList<Ant> ants = (ArrayList<Ant>)world.getAnts();	
+			antsWorking = aco.getNoOfAgents();
+			while(antsWorking > 0){
+				for(Ant ant: ants){
+					if(!ant.getFinished()){
+						ant.move();
+
+						if(aco.getBestAnt() == null || ant.getTotalDistance() < aco.getBestAnt().getTotalDistance()){
+							//	System.out.println("aco.getBestAnt().getTotalDistance() == " + aco.getBestAnt().getTotalDistance());
+							//System.out.println("ant.getTotalDistance() == " + ant.getTotalDistance());
+							aco.setBestAnt(ant);
+						}
+					}else{
+						antsWorking--;
+					}
+				}
 				setChanged();
 				notifyObservers(aco);
 				clearChanged();
-				Thread.sleep(10);
+				Thread.sleep(100);
 			}
-
+			
+			System.out.println("Best distance: " + aco.bestAnt.getTotalDistance());
+			System.out.println(aco.bestAnt.getRoute());
 			return null;
-
 		}
 
-
 	}
-
-
-	public World getWorld() {
-		return world;
-	}
-
 
 }
