@@ -32,19 +32,22 @@ public class DisplayCanvas extends JPanel{
 		Graphics2D g2;
 		g2 = (Graphics2D) g;
 
-		ArrayList<City> cities = (ArrayList)model.getWorld().getCities();
-		ArrayList<Ant> agents = (ArrayList)model.getWorld().getAnts();
+		ArrayList<City> cities = (ArrayList<City>)model.getWorld().getCities();
+		ArrayList<Ant> agents = (ArrayList<Ant>)model.getWorld().getAnts();
 		LinkedList<Integer> bestRoute;
 
 		for(City c: cities){
 			//g2.fillOval((p.x - 10)  * 20, p.y * 20, 20, 20);
 			g2.fillOval((c.getX() * 20) - 10, (c.getY() * 20) - 10, 20, 20);
+			g2.drawString(Integer.toString(c.getIndex()), c.getX() * 21, c.getY()*21);
 
 		}
 
+		int alpha = 0;
 		for(int i = 0; i < cities.size()-1; i++){
 			for(int j = 0; j < cities.size(); j++){
-				g2.setColor(Color.BLACK);
+				//alpha = (int)(model.getWorld().getPheromone()[i][j]);
+				g2.setColor(new Color(0,0,0,255));
 				g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
 
 			}
@@ -62,6 +65,7 @@ public class DisplayCanvas extends JPanel{
 		 * This could probably be improved as the complexity is quite large as it stands.
 		 */
 
+		//TODO: MAYBE MAKE CITY DIAMETER CHANGE DEPENDING ON THE NUMBER OF ANTS AT THE CITY
 		for(Ant ant: agents){
 			if(!ant.getFinished()){
 				for(City c: cities){
@@ -81,8 +85,8 @@ public class DisplayCanvas extends JPanel{
 		 *  This is really messy and needs improvement
 		 */
 
-		if(model.getBestAnt() != null){
-			bestRoute = model.getBestAnt().getRoute();
+		if(model.getBestDistance() > -1){
+			bestRoute = model.getBestRoute();
 			if(bestRoute != null){
 				for(int i = 0; i < bestRoute.size(); i++){
 					for(City c: cities){

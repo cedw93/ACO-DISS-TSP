@@ -22,3 +22,8 @@ distance matrix holds the distance from a city n to another city x
 		- e.g. distanceMatrix[4][15] will contain the distance from node 4 to node 15
 
 inverted distance matrix is similar to the above but each index has been inverted (1/index) in order for use in the probability function
+
+same with pheromones
+
+The code used for the algorithm is a combination of modification and reuse of the algorithm provided by Thomas Jungblut in order to model the algorithm as well as completely my own code for the GUI elements.
+

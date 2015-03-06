@@ -3,6 +3,8 @@ package che16.dcs.aber.ac.uk.model;
 import java.util.LinkedList;
 import java.util.Random;
 
+import cern.colt.Arrays;
+
 public class Ant{
 
 	/*
@@ -14,15 +16,18 @@ public class Ant{
 	private World world;
 	private boolean finished;
 	private LinkedList<Integer> route;
-	private int current, next;
+	private int current, next, start;
 	//track which cities have been visited using simple true or false
 	private boolean[] visited;
 	//the number of cities which have not been visited on this tour
 	private int unvisited;
 
+	private final Random random = new Random(System.nanoTime());
+
 	public Ant(World world, int startLocation){
 		this.world = world;
-		this.current = startLocation;
+		this.start = startLocation;
+		this.current = start;
 		this.finished = false;
 		//this will store the path the current ant has taken through all n cities
 		route = new LinkedList<Integer>();
@@ -32,7 +37,7 @@ public class Ant{
 		//we have visited one city thus set the total number of cities unvisited to (n - 1) where n is the number of cities
 		unvisited = visited.length - 1;
 		//System.out.println(this.current);
-		addToRoute(current);
+
 		//	move();
 
 	}
@@ -50,91 +55,110 @@ public class Ant{
 		return result;
 	}
 
-	private int getNextCity(){
+	/*
+	 * Below is a movement function provided by Thomas Junglbut as part of his TSP ACO implementation
+	 * Blog dicussing the code can be found here: http://codingwiththomas.blogspot.co.uk/2011/08/ant-colony-optimization-for-tsp.html
+	 * and a github repository can be found here: http://code.google.com/p/antcolonyopt/
+	 * code is used with rights and ownership with respect to the original owner
+	 */
+
+	// TODO really needs improvement
+	private final int getNextProbableNode(int y) {
 		//This is an adapted version of a similar method provided by Thomas Jungblut found here: https://code.google.com/p/antcolonyopt/
 		//create a location to store the probability for all next locations
 		//this can then be easily accessed to return the next index for the ant's move
-		double[] probability = new double[visited.length];
+		//only do this if there is in fact locations to move to
+		if (unvisited > 0) {
+			int danglingUnvisited = -1;
+			final double[] weights = new double[visited.length];
 
-		//we need to calculate the sum of all possible solutions for use in the probability function
-		double totalSum = 0.0d;
-		double sum = 0.0d;
-		double probabilitySum = 0.0d;
-
-		next = -1;
-
-		for(int i = 0; i < visited.length; i++){
-			//extract this to its own function rather than cluttering the loop with the probability equation (excluding the division)
-			totalSum += calculateIndividualProbability(current, i);
-		}
-
-		//once we have the value for totalSum (which the sum off all solutions evaluation)
-		for(int i = 0; i < visited.length; i++){
-			//if we haven't visited index i (visited[i] == false)
-			if(!visited[i]){
-				probability[i] = calculateTotalProbability(i, current, totalSum);
-				//sum will be used in the weighted probability calculations
-				sum += probability[i];
-				//store the index in case there is a problem with the sum, if sum is zero this index will be returned
-				next = i;
+			double columnSum = 0.0d;
+			for (int i = 0; i < visited.length; i++) {
+				columnSum += calculateIndividualProbability(y, i);
 			}
-		}
 
-		//if sum is 0 there return, as this will be used in a division it cannot be zero
-		if(sum == 0.0d){
-			return next;
-		}
 
-		/* We need to give each index of the probability weighting based on the result of calculateToalProbability
-		 *  this result is then divided by the total sum of all probabilities (usually 1)
-		 *  The result of this division is then put in the correct index in the matrix in order to get the probability weighting
-		 */
-		for(int i = 0; i < visited.length; i++){
-			probabilitySum += (probability[i] / sum);
-			probability[i] = probabilitySum;
 
-		}
-
-		//nextDouble returns a value between 0 and 1, so this can be used to effectively select a 'random' index based on the weighted probability
-		//provided virtually as is by Thomas Jungblut: https://code.google.com/p/antcolonyopt/
-		//this is what makes the ant walk 'randomly'
-		double r = new Random().nextDouble();
-		for (int i = 0; i < visited.length; i++) {
-			if (!visited[i]) {
-				if (r <= probability[i]) {
-					next = i;
+			//once we have the value for sum (which the sum off all solutions evaluation)
+			double sum = 0.0d;
+			for (int x = 0; x < visited.length; x++) {
+				if (!visited[x]) {
+					weights[x] = calculateTotalProbability(x, y, columnSum);
+					sum += weights[x];
+					danglingUnvisited = x;
 				}
 			}
-		}
 
-		return next;
-	}
 
-	public boolean move(){
-		//if there are still some nodes unvisited then the ant is not finished
-		if(unvisited > 0){
-			//check to see if there are no problems with getting next city index.
-			getNextCity();
-			if(next > -1){
-				totalDistanceWalked += world.getDistanceMatrix()[current][next];
-				double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
-				world.updatePheromone(current, next, pheromoneDeposit);
+			//if sum is 0 then return, as this will be used in a division it cannot be zero
+			if (sum == 0.0d)
+				return danglingUnvisited;
 
-				this.current = next;
-				//vist a new location so decrease the amount of cities left to visit
-				visited[current] = true;
-				addToRoute(current);
-				unvisited--;
 
+			/*  We need to give each index of the probability weighting based on the result of calculateToalProbability
+			 *  this result is then divided by the total sum of all probabilities (usually 1)
+			 *  The result of this division is then put in the correct index in the matrix in order to get the probability weighting
+			 *
+			 */
+			double pSum = 0.0d;
+			for (int i = 0; i < visited.length; i++) {
+				pSum += weights[i] / sum;
+				weights[i] = pSum;
 			}
-		}else{
-			//if there are no more unvisited indexes then the ant must be finished
-			this.finished = true;
-		}
 
-		//return if the ant has finished or not, this can be used to terminate an ant
-		return finished;
+
+			//nextDouble returns a value between 0 and 1, so this can be used to effectively select a 'random' index based on the weighted probability
+			//provided virtually as is by Thomas Jungblut: https://code.google.com/p/antcolonyopt/
+			//this is what makes the ant walk 'randomly'
+			final double r = random.nextDouble();
+			for (int i = 0; i < visited.length; i++) {
+				if (!visited[i]) {
+					if (r <= weights[i]) {
+
+						return i;
+					}
+				}
+			}
+
+		}
+		return -1;
 	}
+
+
+	public void move(){
+
+		int lastNode = start;
+		int next = start;
+		while ((next = getNextProbableNode(lastNode)) != -1) {
+			addToRoute(lastNode);
+			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
+			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
+			world.updatePheromone(lastNode, next, pheromoneDeposit);
+			visited[next] = true;
+			lastNode = next;
+			current = next;
+			unvisited--;
+			world.updateModel();
+		}
+		finished = true;
+		addToRoute(lastNode);
+
+		//if there are still some nodes unvisited then the ant is not finished
+		//check to see if there are no problems with getting next city index.
+		/*while(getNextProbableNode(current) > -1){
+			addToRoute(current);
+			totalDistanceWalked += world.getDistanceMatrix()[current][next];
+			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
+			world.updatePheromone(current, next, pheromoneDeposit);
+			visited[next] = true;
+			this.current = next;
+			//vist a new location so decrease the amount of cities left to visit		
+			unvisited--;
+		}*/
+
+	}
+
+
 
 	public int getCurrentIndex() {
 		return current;
@@ -158,6 +182,21 @@ public class Ant{
 		return route;
 	}
 
+	public void reset(int startLocation){
+		this.start = startLocation;
+		this.current = start;
+		this.finished = false;
+		route = new LinkedList<Integer>();
+		visited = new boolean[world.getCities().size()];
+		visited[startLocation] = true;
+		unvisited = visited.length - 1;
+
+	}
+
+	@Override
+	public String toString(){
+		return "Ant: \n start: " + start + "\ncurrent: " + current + "\nfinished: " + finished + "\nroute: " + route + "\nvisited: " + Arrays.toString(visited) + "\nunvisited: " + unvisited;
+	}
 
 
 }

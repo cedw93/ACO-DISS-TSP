@@ -3,10 +3,13 @@ package che16.dcs.aber.ac.uk.model;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Observable;
 
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
+
+import cern.jet.random.Uniform;
 
 public class AntColonyOptimisation extends Observable{
 
@@ -14,17 +17,19 @@ public class AntColonyOptimisation extends Observable{
 	private double alpha, beta, q, decayRate, initialPheromone, bestDistance;
 	private int noOfAgents;
 	private Ant bestAnt;
+	private LinkedList<Integer> bestRoute;
 
 	public AntColonyOptimisation() {
-		alpha = 1.0d;
-		beta = 2.0d;
+		alpha = -0.2d;
+		beta = 9.60d;
 		//q in constant, often 1, so use one for now
-		q = 1.0d;
+		q = 0.0001d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
 		bestAnt = null;
 		noOfAgents = 20;
-		bestDistance = Double.POSITIVE_INFINITY;
+		bestDistance = -1;
+		bestRoute = new LinkedList<Integer>();
 		world = new World(this, noOfAgents);
 
 	}
@@ -94,14 +99,6 @@ public class AntColonyOptimisation extends Observable{
 		return bestDistance;
 	}
 
-	public Ant getBestAnt(){
-		return bestAnt;
-	}
-
-	public void setBestAnt(Ant best){
-		this.bestAnt = best;
-	}
-
 
 	private class Worker extends SwingWorker<Void, Void>{
 		private AntColonyOptimisation aco;
@@ -112,34 +109,71 @@ public class AntColonyOptimisation extends Observable{
 		}
 		@Override
 		protected Void doInBackground() throws Exception {
-
-			ArrayList<Ant> ants = (ArrayList<Ant>)world.getAnts();	
-			antsWorking = aco.getNoOfAgents();
-			while(antsWorking > 0){
-				for(Ant ant: ants){
-					if(!ant.getFinished()){
-						ant.move();
-
-						if(aco.getBestAnt() == null || ant.getTotalDistance() < aco.getBestAnt().getTotalDistance()){
-							//	System.out.println("aco.getBestAnt().getTotalDistance() == " + aco.getBestAnt().getTotalDistance());
-							//System.out.println("ant.getTotalDistance() == " + ant.getTotalDistance());
-							aco.setBestAnt(ant);
-						}
-					}else{
-						antsWorking--;
-					}
+			ArrayList<Ant> ants = (ArrayList<Ant>)world.getAnts();
+			int i = 0;
+			boolean needReset = false;
+			while(i < 2){
+				if(needReset){
+					System.out.println("RESTTING!!!!! 10 secs to go!");
+					Thread.sleep(10000);
+					world.resetAnts();
+					System.out.println("OFF WE GO!");
+					needReset = false;
 				}
-				setChanged();
-				notifyObservers(aco);
-				clearChanged();
-				Thread.sleep(100);
+				antsWorking = aco.getNoOfAgents();
+				while(antsWorking > 0){
+					for(Ant ant: ants){
+						if(!ant.getFinished()){
+							ant.move();			
+							if(aco.getBestDistance() == -1.0d || ant.getTotalDistance() < aco.bestDistance){
+								aco.setBestDistance(ant.getTotalDistance());
+								aco.setBestRoute(ant.getRoute());
+							}
+						}else{
+							System.out.println("Ant died!");
+							antsWorking--;
+						}
+					}
+					setChanged();
+					notifyObservers(aco);
+					clearChanged();
+					//Thread.sleep(1000);
+					System.out.println("Best distance: " + aco.bestDistance);
+					System.out.println("Best route" + aco.bestRoute);
+					needReset = true;
+				}
+				i++;
 			}
-			
-			System.out.println("Best distance: " + aco.bestAnt.getTotalDistance());
-			System.out.println(aco.bestAnt.getRoute());
+
 			return null;
 		}
 
+	}
+
+
+	public void notifyCanvas() {
+		setChanged();
+		notifyObservers(this);
+		clearChanged();
+		try{
+			Thread.sleep(100);
+		}catch(Exception e){
+
+		}
+	}
+
+	public void setBestRoute(LinkedList<Integer> route) {
+		this.bestRoute = route;
+
+	}
+
+	public void setBestDistance(double totalDistance) {
+		this.bestDistance = totalDistance;
+
+	}
+
+	public LinkedList<Integer> getBestRoute() {
+		return bestRoute;
 	}
 
 }

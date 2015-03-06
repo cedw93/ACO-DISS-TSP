@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cern.jet.random.Uniform;
 import che16.dcs.aber.ac.uk.utils.MathsHelper;
 
 public class World {
@@ -13,7 +14,7 @@ public class World {
 	private List<City> cities;
 	private double[][] pheromone, distanceMatrix, invertedMatrix;
 	private List<Ant> ants;
-
+	private Uniform uniform;
 
 	public World(AntColonyOptimisation aco, int numberOfAnts){
 		this.aco = aco;
@@ -24,9 +25,12 @@ public class World {
 		cities.add(new City(10,12,1));
 		cities.add(new City(25,2,2));
 		cities.add(new City(3,22,3));
+		cities.add(new City(17,9,4));
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
+		// min, max, seed (-1 because the upper bound is inclusive)
+		uniform = new Uniform(0, cities.size() - 1, (int) System.currentTimeMillis());
 		initAnts();
 		//this must come after everything has been initialised
 
@@ -34,9 +38,7 @@ public class World {
 	}
 
 	private int getRandomIndex() {
-		Random r = new Random();
-		//cities.size() is the upper bound which is excluded in the range of returned values
-		return r.nextInt(cities.size());
+		return uniform.nextInt();
 
 	}
 
@@ -45,6 +47,7 @@ public class World {
 		for(int i = 0; i < numberOfAnts; i++){
 			ants.add(new Ant(this, getRandomIndex()));
 		}
+
 	}
 
 
@@ -71,7 +74,7 @@ public class World {
 		for(int i = 0; i < distanceMatrix.length; i++){
 			for(int j = 0; j < distanceMatrix[0].length; j++){
 				distanceMatrix[i][j] = MathsHelper.calculateEuclidianDistance(cities.get(i).getX(), cities.get(i).getY(), cities.get(j).getX(), cities.get(j).getY());
-				//System.out.println("[i][j] == [" + i + "][" + j + "]");
+
 				//System.out.println("Euclidean == " + distanceMatrix[i][j]);
 
 			}
@@ -167,6 +170,17 @@ public class World {
 
 	public double getQ() {
 		return aco.getQ();
+	}
+
+	public void updateModel() {
+		aco.notifyCanvas();
+
+	}
+	public void resetAnts(){
+		for(Ant ant: ants){
+			ant.reset(getRandomIndex());
+		}
+		aco.notifyCanvas();
 	}
 
 }
