@@ -16,21 +16,21 @@ public class AntColonyOptimisation extends Observable{
 	private World world;
 	private double alpha, beta, q, decayRate, initialPheromone, bestDistance;
 	private int noOfAgents;
-	private Ant bestAnt;
+	private boolean finished;
 	private LinkedList<Integer> bestRoute;
 
 	public AntColonyOptimisation() {
-		alpha = -0.2d;
-		beta = 9.60d;
+		alpha =0.2d;
+		beta = 2.0d;
 		//q in constant, often 1, so use one for now
-		q = 0.0001d;
+		q = 1.0d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
-		bestAnt = null;
-		noOfAgents = 20;
+		noOfAgents = 2;
 		bestDistance = -1;
 		bestRoute = new LinkedList<Integer>();
 		world = new World(this, noOfAgents);
+		finished = false;
 
 	}
 
@@ -99,6 +99,10 @@ public class AntColonyOptimisation extends Observable{
 		return bestDistance;
 	}
 
+	public boolean getFinished(){
+		return finished;
+	}
+
 
 	private class Worker extends SwingWorker<Void, Void>{
 		private AntColonyOptimisation aco;
@@ -112,7 +116,8 @@ public class AntColonyOptimisation extends Observable{
 			ArrayList<Ant> ants = (ArrayList<Ant>)world.getAnts();
 			int i = 0;
 			boolean needReset = false;
-			while(i < 2){
+			while(i < 1){
+				//if one iteration is done, then reset the ants
 				if(needReset){
 					System.out.println("RESTTING!!!!! 10 secs to go!");
 					Thread.sleep(10000);
@@ -125,26 +130,33 @@ public class AntColonyOptimisation extends Observable{
 					for(Ant ant: ants){
 						if(!ant.getFinished()){
 							ant.move();			
+						}else{
+							//if an ant is finished, decrease the counter and check if this ant is best
+							//System.out.println("Ant died!");
+							antsWorking--;
 							if(aco.getBestDistance() == -1.0d || ant.getTotalDistance() < aco.bestDistance){
 								aco.setBestDistance(ant.getTotalDistance());
 								aco.setBestRoute(ant.getRoute());
 							}
-						}else{
-							System.out.println("Ant died!");
-							antsWorking--;
 						}
+						world.decayPhero();
 					}
 					setChanged();
 					notifyObservers(aco);
 					clearChanged();
 					//Thread.sleep(1000);
-					System.out.println("Best distance: " + aco.bestDistance);
-					System.out.println("Best route" + aco.bestRoute);
-					needReset = true;
+					if(antsWorking == 0){
+						System.out.println("Best distance: " + aco.bestDistance);
+						System.out.println("Best route" + aco.bestRoute);
+
+						needReset = true;
+					}
 				}
 				i++;
 			}
-
+			aco.finished = true;
+			//world.printPheroMatrix();
+			aco.notifyCanvas();
 			return null;
 		}
 

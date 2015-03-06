@@ -43,16 +43,18 @@ public class DisplayCanvas extends JPanel{
 
 		}
 
-		int alpha = 0;
-		for(int i = 0; i < cities.size()-1; i++){
-			for(int j = 0; j < cities.size(); j++){
-				//alpha = (int)(model.getWorld().getPheromone()[i][j]);
-				g2.setColor(new Color(0,0,0,255));
-				g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
+		
+		if(!model.getFinished()){
+			int alpha = 0;
+			for(int i = 0; i < cities.size()-1; i++){
+				for(int j = 0; j < cities.size(); j++){
+					//alpha = (int)(model.getWorld().getPheromone()[i][j]);
+					g2.setColor(new Color(0,0,0,255));
+					g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
 
+				}
 			}
 		}
-
 		/*
 		 * Because of the way an Ant stores is current location, and the way the next one is select there is no safe or quick way
 		 * to get the [x][y] index of the Ant.

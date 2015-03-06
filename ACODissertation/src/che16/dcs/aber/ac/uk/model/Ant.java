@@ -27,7 +27,7 @@ public class Ant{
 	public Ant(World world, int startLocation){
 		this.world = world;
 		this.start = startLocation;
-		this.current = start;
+		this.current = startLocation;
 		this.finished = false;
 		//this will store the path the current ant has taken through all n cities
 		route = new LinkedList<Integer>();
@@ -45,13 +45,13 @@ public class Ant{
 	//probability function
 	private double calculateTotalProbability(int x, int y, double totalSum){
 
-		double result = ((Math.pow(world.getPheromone()[x][y], world.getAlpha())) * (Math.pow(world.getInvertedMatrix()[x][y], world.getBeta()))) ;
+		double result = ((Math.pow(world.getPheromone()[x][y].getPheromoneValue(), world.getAlpha())) * (Math.pow(world.getInvertedMatrix()[x][y], world.getBeta()))) ;
 		return result / totalSum;
 	}
 
 	private double calculateIndividualProbability(int x, int y){
 		//could just return the equation rather than having the placeholder variable 'result'
-		double result = ((Math.pow(world.getPheromone()[x][y], world.getAlpha())) * (Math.pow(world.getInvertedMatrix()[x][y], world.getBeta()))) ;
+		double result = ((Math.pow(world.getPheromone()[x][y].getPheromoneValue(), world.getAlpha())) * (Math.pow(world.getInvertedMatrix()[x][y], world.getBeta()))) ;
 		return result;
 	}
 
@@ -127,35 +127,26 @@ public class Ant{
 
 	public void move(){
 
-		int lastNode = start;
-		int next = start;
-		while ((next = getNextProbableNode(lastNode)) != -1) {
+
+		int lastNode = current;
+		int next = getNextProbableNode(lastNode);
+		//while ((next = getNextProbableNode(lastNode)) != -1) {
+		if(next != -1){
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
-			world.updatePheromone(lastNode, next, pheromoneDeposit);
+			//add to the new pheromone amount being deposited on this location
+			world.getPheromone()[lastNode][next].addToNewPhero(pheromoneDeposit);
+			//world.updatePheromone(lastNode, next, pheromoneDeposit);
 			visited[next] = true;
 			lastNode = next;
 			current = next;
 			unvisited--;
 			world.updateModel();
+		}else{
+			finished = true;
+			addToRoute(lastNode);
 		}
-		finished = true;
-		addToRoute(lastNode);
-
-		//if there are still some nodes unvisited then the ant is not finished
-		//check to see if there are no problems with getting next city index.
-		/*while(getNextProbableNode(current) > -1){
-			addToRoute(current);
-			totalDistanceWalked += world.getDistanceMatrix()[current][next];
-			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
-			world.updatePheromone(current, next, pheromoneDeposit);
-			visited[next] = true;
-			this.current = next;
-			//vist a new location so decrease the amount of cities left to visit		
-			unvisited--;
-		}*/
-
 	}
 
 

@@ -12,7 +12,8 @@ public class World {
 	private AntColonyOptimisation aco;
 	private int numberOfAnts;
 	private List<City> cities;
-	private double[][] pheromone, distanceMatrix, invertedMatrix;
+	private double[][] distanceMatrix, invertedMatrix;
+	private Pheromone[][] pheromone;
 	private List<Ant> ants;
 	private Uniform uniform;
 
@@ -25,7 +26,6 @@ public class World {
 		cities.add(new City(10,12,1));
 		cities.add(new City(25,2,2));
 		cities.add(new City(3,22,3));
-		cities.add(new City(17,9,4));
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
@@ -59,7 +59,7 @@ public class World {
 		return cities;
 	}
 
-	public double[][] getPheromone(){
+	public Pheromone[][] getPheromone(){
 
 		return pheromone;
 
@@ -112,10 +112,10 @@ public class World {
 
 	public void initPheromones(){
 		//same dimensions as the distance matrix as we want to model the paths between each city.
-		pheromone = new double[distanceMatrix.length][distanceMatrix[0].length];
+		pheromone = new Pheromone[distanceMatrix.length][distanceMatrix[0].length];
 		for(int i = 0; i < pheromone.length; i++){
 			for(int j = 0; j < pheromone[0].length; j++){
-				pheromone[i][j] = aco.getInitialPheromone();
+				pheromone[i][j] = new Pheromone(aco.getInitialPheromone());
 			}
 		}
 		//DEBUG PRINTING
@@ -130,13 +130,13 @@ public class World {
 	}
 
 	public void updatePheromone(int x, int y, double newPheromone) {
-		double phero = calculatePheromones(pheromone[x][y], newPheromone);
+		double phero = calculatePheromones(pheromone[x][y].getPheromoneValue(), newPheromone);
 		//if phero is not negative then update the current concentration
 		//if phero is negative then just set it as 0, you can't have negative phero on an edge
 		if (phero >= 0.0d) {
-			pheromone[x][y] = phero;
+			pheromone[x][y].setPheromoneValue(phero);
 		} else {
-			pheromone[x][y] = 0;
+			pheromone[x][y].setPheromoneValue(0.0d);
 		}
 
 	}
@@ -181,6 +181,26 @@ public class World {
 			ant.reset(getRandomIndex());
 		}
 		aco.notifyCanvas();
+	}
+
+	public void printPheroMatrix() {
+		System.out.println("Phero Matrix is: ");
+		for(int i = 0; i < pheromone.length; i++){
+			for(int j = 0; j < pheromone[0].length; j++){
+				System.out.print(pheromone[i][j].getPheromoneValue() + " | ");
+			}
+			System.out.println();
+		}
+	}
+
+	public void decayPhero() {
+		for(int i = 0; i < pheromone.length; i++){
+			for(int j = 0; j < pheromone[0].length; j++){
+				updatePheromone(i, j, pheromone[i][j].getNewPhero());
+				//reset the new phero values
+				pheromone[i][j].resetNewPhero();
+			}
+		}
 	}
 
 }

@@ -27,3 +27,4 @@ same with pheromones
 
 The code used for the algorithm is a combination of modification and reuse of the algorithm provided by Thomas Jungblut in order to model the algorithm as well as completely my own code for the GUI elements.
 
+potentially using linear  interpolation to render ants so they move on the lines rather than teleporting to a city
