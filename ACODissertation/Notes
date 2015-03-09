@@ -28,3 +28,9 @@ same with pheromones
 The code used for the algorithm is a combination of modification and reuse of the algorithm provided by Thomas Jungblut in order to model the algorithm as well as completely my own code for the GUI elements.
 
 potentially using linear  interpolation to render ants so they move on the lines rather than teleporting to a city
+
+COLT JAR IS ADDED TO PORJECT TO MAKE USE OF THE UNIFORM DISTRUBUTION FUNCTION:
+
+COLT API: http://dst.lbl.gov/ACSSoftware/colt/api/index.html
+
+COLT : Colt provides a set of Open Source Libraries for High Performance Scientific and Technical Computing in Java.

@@ -1,15 +1,10 @@
 package che16.dcs.aber.ac.uk.model;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Observable;
 
 import javax.swing.SwingWorker;
-import javax.swing.Timer;
-
-import cern.jet.random.Uniform;
 
 public class AntColonyOptimisation extends Observable{
 
@@ -26,7 +21,7 @@ public class AntColonyOptimisation extends Observable{
 		q = 1.0d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
-		noOfAgents = 2;
+		noOfAgents = 200;
 		bestDistance = -1;
 		bestRoute = new LinkedList<Integer>();
 		world = new World(this, noOfAgents);

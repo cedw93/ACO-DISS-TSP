@@ -43,18 +43,58 @@ public class DisplayCanvas extends JPanel{
 
 		}
 
-		
-		if(!model.getFinished()){
-			int alpha = 0;
-			for(int i = 0; i < cities.size()-1; i++){
-				for(int j = 0; j < cities.size(); j++){
-					//alpha = (int)(model.getWorld().getPheromone()[i][j]);
-					g2.setColor(new Color(0,0,0,255));
-					g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
-
+		//set these as defaults so its easy to compare, they are inverted to what you'd expect
+		//maxEdgePhero is negative infinity so when you compare if a value is larger than the current max, there will always be one match
+		//the same applied with the min pheromone, there exsits always one value less than positive infinity.
+		double maxEdgePhero = Double.NEGATIVE_INFINITY;
+		double minEdgePhero = Double.POSITIVE_INFINITY;
+		double differenceMinMax = 0.0d;
+		//get the max edge pheromone and the minimum edge pheromone
+		for(int i = 0; i < model.getWorld().getPheromone().length; i++){
+			for(int j = 0; j < model.getWorld().getPheromone().length; j++){
+				//if i and j are equal then continue the loop we dont want to check the value if i and j match
+				if(i != j){
+					if(maxEdgePhero < model.getWorld().getPheromone()[i][j].getPheromoneValue()){
+						maxEdgePhero = model.getWorld().getPheromone()[i][j].getPheromoneValue();
+					}
+					if(minEdgePhero > model.getWorld().getPheromone()[i][j].getPheromoneValue()){
+						minEdgePhero = model.getWorld().getPheromone()[i][j].getPheromoneValue();
+					}
 				}
 			}
 		}
+		differenceMinMax = (maxEdgePhero - minEdgePhero);
+
+		if(model.getFinished()){
+			//	System.out.println("maxEdgePhero * 1000 == " + maxEdgePhero * 1000);
+			//System.out.println("minEdgePhero * 1000 == " + minEdgePhero * 1000);
+			//System.out.println("differenceMinMax *1000 == " + differenceMinMax * 1000);
+
+		}
+
+
+		//if(!model.getFinished()){
+		int alpha = 0;
+		for(int i = 0; i < cities.size()-1; i++){
+			for(int j = 0; j < cities.size(); j++){
+				/*
+				 * This pheromone display is not perfect and needs refining, but it somewhat demonstrates the ideas.
+				 * Pheromone values are really small, so multiplying by 10000 helps reduce this however there has
+				 * to be a better way to represent this, it works for now though.
+				 * 
+				 *TODO: REVISIT THIS
+				 */
+				double pheroIJ = model.getWorld().getPheromone()[i][j].getPheromoneValue();
+				alpha = (int)(pheroIJ * 10000);
+				if(alpha > 255){
+					alpha = 255;
+				}
+				g2.setColor(new Color(0,0,0,alpha));
+				g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
+
+			}
+		}
+		//	}
 		/*
 		 * Because of the way an Ant stores is current location, and the way the next one is select there is no safe or quick way
 		 * to get the [x][y] index of the Ant.
