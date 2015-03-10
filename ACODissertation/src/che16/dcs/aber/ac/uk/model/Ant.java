@@ -14,11 +14,12 @@ public class Ant{
 
 	private double totalDistanceWalked;
 	private World world;
-	private boolean finished;
+	private boolean finished, isMoving;
 	private LinkedList<Integer> route;
 	private int current, next, start;
 	//track which cities have been visited using simple true or false
 	private boolean[] visited;
+	private int[] movementTracker;
 	//the number of cities which have not been visited on this tour
 	private int unvisited;
 
@@ -29,6 +30,8 @@ public class Ant{
 		this.start = startLocation;
 		this.current = startLocation;
 		this.finished = false;
+		this.isMoving = false;
+		movementTracker = new int[2];
 		//this will store the path the current ant has taken through all n cities
 		route = new LinkedList<Integer>();
 		visited = new boolean[world.getCities().size()];
@@ -132,6 +135,8 @@ public class Ant{
 		int next = getNextProbableNode(lastNode);
 		//while ((next = getNextProbableNode(lastNode)) != -1) {
 		if(next != -1){
+			movementTracker[0] = lastNode;
+			movementTracker[1] = next;
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
@@ -147,6 +152,9 @@ public class Ant{
 			finished = true;
 			addToRoute(lastNode);
 		}
+		//System.out.println("ROUTE: " + route);
+		//System.out.println("MOVEMENT TRACKER: " + Arrays.toString(movementTracker));
+
 	}
 
 
@@ -180,13 +188,27 @@ public class Ant{
 		route = new LinkedList<Integer>();
 		visited = new boolean[world.getCities().size()];
 		visited[startLocation] = true;
+		movementTracker = new int[2];
 		unvisited = visited.length - 1;
 
+	}
+
+	public int[] getMovementTracker(){
+		return movementTracker;
+	}
+
+	public boolean isMoving(){
+		return isMoving;
 	}
 
 	@Override
 	public String toString(){
 		return "Ant: \n start: " + start + "\ncurrent: " + current + "\nfinished: " + finished + "\nroute: " + route + "\nvisited: " + Arrays.toString(visited) + "\nunvisited: " + unvisited;
+	}
+
+	public void setMoving(boolean status) {
+		this.isMoving = status;
+
 	}
 
 

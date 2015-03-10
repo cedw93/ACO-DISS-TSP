@@ -21,7 +21,7 @@ public class AntColonyOptimisation extends Observable{
 		q = 1.0d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
-		noOfAgents = 200;
+		noOfAgents = 20;
 		bestDistance = -1;
 		bestRoute = new LinkedList<Integer>();
 		world = new World(this, noOfAgents);
@@ -139,10 +139,10 @@ public class AntColonyOptimisation extends Observable{
 					setChanged();
 					notifyObservers(aco);
 					clearChanged();
-					//Thread.sleep(1000);
+					Thread.sleep(500);
 					if(antsWorking == 0){
 						System.out.println("Best distance: " + aco.bestDistance);
-						System.out.println("Best route" + aco.bestRoute);
+						System.out.println("Best route: " + aco.bestRoute);
 
 						needReset = true;
 					}
