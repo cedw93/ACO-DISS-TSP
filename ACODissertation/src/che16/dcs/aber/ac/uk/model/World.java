@@ -1,6 +1,7 @@
 package che16.dcs.aber.ac.uk.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,22 +11,23 @@ import che16.dcs.aber.ac.uk.utils.MathsHelper;
 public class World {
 
 	private AntColonyOptimisation aco;
-	private int numberOfAnts;
+	private int numberOfAnts, numberOfCities;
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
 	private List<Ant> ants;
 	private Uniform uniform;
+	private double bestDistance;
+	private LinkedList<Integer> bestRoute;
 
-	public World(AntColonyOptimisation aco, int numberOfAnts){
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities){
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
-		cities = new ArrayList<City>();
-		//TODO: AUTOMATE THIS INDEXING AND ADDING
-		cities.add(new City(20,20,0));
-		cities.add(new City(10,12,1));
-		cities.add(new City(25,2,2));
-		cities.add(new City(3,22,3));
+		this.numberOfCities = noOfCities;
+		this.bestDistance = -1;
+		this.bestRoute = null;
+		//initCities MUST come first as matrix sizes are based off the number of cities
+		initCities();
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
@@ -48,6 +50,23 @@ public class World {
 			ants.add(new Ant(this, getRandomIndex()));
 		}
 
+	}
+
+	private void initCities(){
+		//we do not set the number of cities as the max for the cities list as clicking will allow the addition of new cities
+		cities = new ArrayList<City>();
+		Random r = new Random();
+		for(int i = 0; i < numberOfCities; i++){
+			// the (+1) is to stop cities having the index '0' which would cause them to hald render out of view
+			int x = r.nextInt(aco.getBoundaryX()) + 1;
+			int y = r.nextInt(aco.getBoundaryY()) + 1;
+			cities.add(new City(x,y,i));
+		}
+		//Some hard coded values that i know work
+		//cities.add(new City(20,20,0));
+		//cities.add(new City(10,12,1));
+		//cities.add(new City(25,2,2));
+		//cities.add(new City(3,22,3));
 	}
 
 
@@ -201,6 +220,22 @@ public class World {
 				pheromone[i][j].resetNewPhero();
 			}
 		}
+	}
+
+	public void setBestDistance(double best){
+		this.bestDistance = best;
+	}
+
+	public double getBestDistance(){
+		return bestDistance;
+	}
+
+	public LinkedList<Integer> getBestRoute() {
+		return bestRoute;
+	}
+
+	public void setBestRoute(LinkedList<Integer> best) {
+		this.bestRoute = best;
 	}
 
 }

@@ -9,22 +9,28 @@ import javax.swing.SwingWorker;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private double alpha, beta, q, decayRate, initialPheromone, bestDistance;
-	private int noOfAgents;
+	private int boundaryX, boundaryY, width, height;
+	private double alpha, beta, q, decayRate, initialPheromone;
+	private int noOfAgents, noOfCities;
 	private boolean finished;
-	private LinkedList<Integer> bestRoute;
+	private Worker worker;
 
 	public AntColonyOptimisation() {
-		alpha =0.2d;
+		alpha = 0.5d;
 		beta = 2.0d;
+		width = 40;
+		height = 30;
+		//these boundaries are used when deciding a cities random location.
+		//the canvas is 40x30 in dimension, however the boundaries are 1 less than this to stop cities being half rendered out of view
+		boundaryX = 39;
+		boundaryY = 29;
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
-		noOfAgents = 20;
-		bestDistance = -1;
-		bestRoute = new LinkedList<Integer>();
-		world = new World(this, noOfAgents);
+		noOfAgents = 1;
+		noOfCities = 4;
+		world = new World(this, noOfAgents, noOfCities);
 		finished = false;
 
 	}
@@ -50,7 +56,8 @@ public class AntColonyOptimisation extends Observable{
 
 	public void start() {
 
-		new Worker(this).execute();
+		worker = new Worker(this);
+		worker.execute();
 	}
 
 
@@ -83,78 +90,12 @@ public class AntColonyOptimisation extends Observable{
 		return noOfAgents;
 	}
 
-
-
-
 	public World getWorld() {
 		return world;
 	}
 
-	public double getBestDistance() {
-		return bestDistance;
-	}
-
 	public boolean getFinished(){
 		return finished;
-	}
-
-
-	private class Worker extends SwingWorker<Void, Void>{
-		private AntColonyOptimisation aco;
-		private int antsWorking;
-
-		public Worker(AntColonyOptimisation aco){
-			this.aco = aco;
-		}
-		@Override
-		protected Void doInBackground() throws Exception {
-			ArrayList<Ant> ants = (ArrayList<Ant>)world.getAnts();
-			int i = 0;
-			boolean needReset = false;
-			while(i < 1){
-				//if one iteration is done, then reset the ants
-				if(needReset){
-					System.out.println("RESTTING!!!!! 10 secs to go!");
-					Thread.sleep(10000);
-					world.resetAnts();
-					System.out.println("OFF WE GO!");
-					needReset = false;
-				}
-				antsWorking = aco.getNoOfAgents();
-				while(antsWorking > 0){
-					for(Ant ant: ants){
-						if(!ant.getFinished()){
-							ant.move();			
-						}else{
-							//if an ant is finished, decrease the counter and check if this ant is best
-							//System.out.println("Ant died!");
-							antsWorking--;
-							if(aco.getBestDistance() == -1.0d || ant.getTotalDistance() < aco.bestDistance){
-								aco.setBestDistance(ant.getTotalDistance());
-								aco.setBestRoute(ant.getRoute());
-							}
-						}
-						world.decayPhero();
-					}
-					setChanged();
-					notifyObservers(aco);
-					clearChanged();
-					Thread.sleep(500);
-					if(antsWorking == 0){
-						System.out.println("Best distance: " + aco.bestDistance);
-						System.out.println("Best route: " + aco.bestRoute);
-
-						needReset = true;
-					}
-				}
-				i++;
-			}
-			aco.finished = true;
-			//world.printPheroMatrix();
-			aco.notifyCanvas();
-			return null;
-		}
-
 	}
 
 
@@ -163,24 +104,32 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		}catch(Exception e){
 
 		}
 	}
 
-	public void setBestRoute(LinkedList<Integer> route) {
-		this.bestRoute = route;
 
+	public int getBoundaryX() {
+		return boundaryX;
 	}
 
-	public void setBestDistance(double totalDistance) {
-		this.bestDistance = totalDistance;
-
+	public int getBoundaryY() {
+		return boundaryY;
 	}
 
-	public LinkedList<Integer> getBestRoute() {
-		return bestRoute;
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHieght() {
+		return height;
+	}
+
+	public void setFinished(boolean b) {
+		this.finished = b;
+
 	}
 
 }

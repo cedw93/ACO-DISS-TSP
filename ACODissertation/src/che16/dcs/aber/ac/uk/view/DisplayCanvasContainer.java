@@ -12,6 +12,7 @@ public class DisplayCanvasContainer extends JPanel{
 
 	private DisplayCanvas canvas;
 	private GridBagConstraints gbc;
+	
 
 	public DisplayCanvasContainer() {
 
@@ -50,7 +51,5 @@ public class DisplayCanvasContainer extends JPanel{
 	public DisplayCanvas getCanvas(){
 		return canvas;
 	}
-
-
-
+	
 }

@@ -39,9 +39,6 @@ public class Ant{
 		visited[startLocation] = true;
 		//we have visited one city thus set the total number of cities unvisited to (n - 1) where n is the number of cities
 		unvisited = visited.length - 1;
-		//System.out.println(this.current);
-
-		//	move();
 
 	}
 
@@ -131,29 +128,39 @@ public class Ant{
 	public void move(){
 
 
-		int lastNode = current;
-		int next = getNextProbableNode(lastNode);
+		int lastNode = start;
+		int next = start;
 		//while ((next = getNextProbableNode(lastNode)) != -1) {
-		if(next != -1){
+		while ((next = getNextProbableNode(lastNode)) != -1){
 			movementTracker[0] = lastNode;
 			movementTracker[1] = next;
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
 			//add to the new pheromone amount being deposited on this location
-			world.getPheromone()[lastNode][next].addToNewPhero(pheromoneDeposit);
+			world.getPheromone()[lastNode][next].addToNewPhero((pheromoneDeposit));
+			//world.updatePheromone(lastNode, next, pheromoneDeposit);
 			//world.updatePheromone(lastNode, next, pheromoneDeposit);
 			visited[next] = true;
 			lastNode = next;
 			current = next;
 			unvisited--;
+			//tell the view where the ant has moved to
 			world.updateModel();
-		}else{
-			finished = true;
-			addToRoute(lastNode);
 		}
-		//System.out.println("ROUTE: " + route);
-		//System.out.println("MOVEMENT TRACKER: " + Arrays.toString(movementTracker));
+		finished = true;
+		addToRoute(lastNode);
+		/*
+		 * See if the ant is the current best, if world.getBestDistance() == -1 then this ant is the first to finish
+		 * and is therefore the best be default, all other operations after the first to finish should be evaluated against the
+		 * right hand condition. This calculated if this ant has travelled less distance than the current best, if it has then this is the best ant.
+		 */
+		if((world.getBestDistance() == -1.0d) || (this.totalDistanceWalked < world.getBestDistance())){
+			world.setBestDistance(totalDistanceWalked);
+			world.setBestRoute(route);
+		}
+		world.decayPhero();
+
 
 	}
 

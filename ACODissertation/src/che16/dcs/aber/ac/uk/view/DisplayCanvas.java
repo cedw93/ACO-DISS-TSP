@@ -1,5 +1,6 @@
 package che16.dcs.aber.ac.uk.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,7 +11,6 @@ import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
-import cern.colt.Arrays;
 import che16.dcs.aber.ac.uk.model.Ant;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.model.City;
@@ -52,13 +52,14 @@ public class DisplayCanvas extends JPanel{
 				for(int j = 0; j < cities.size(); j++){
 					/*
 					 * This pheromone display is not perfect and needs refining, but it somewhat demonstrates the ideas.
-					 * Pheromone values are really small, so multiplying by 10000 helps reduce this however there has
+					 * Pheromone values are really small, so multiplying by 2000 helps reduce this however there has
 					 * to be a better way to represent this, it works for now though.
 					 * 
 					 *TODO: REVISIT THIS
 					 */
 					double pheroIJ = model.getWorld().getPheromone()[i][j].getPheromoneValue();
-					alpha = (int)(pheroIJ * 10000);
+					//toy with this 2000 value
+					alpha = (int)(pheroIJ * 2000);
 					if(alpha > 255){
 						alpha = 255;
 					}
@@ -98,14 +99,18 @@ public class DisplayCanvas extends JPanel{
 							destination = c;
 						}
 						if(start != null && destination != null){
-							g2.setColor(Color.BLUE);
-							//draw the any 1/2 the way along its path, denoted by the 0.5 mu value
-							float y = (float) (MathsHelper.linearInterpolateY(start.getY(), destination.getY(), 0.5));
-							float x = (float) (MathsHelper.linearInterpolateY(start.getX(), destination.getX(), 0.5));
-							Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
-							g2.fill(movement);
-							g2.draw(movement);
+							g2.setColor(Color.LIGHT_GRAY);
+							for(int i = 1; i < 5; i++){
+								//cast to a double to stop integer behaviours rounding down to 0
+								double result = ((double)i)/5;
+								//draw an ellipse2D every 1/5 the way along the line
+								float y = (float) (MathsHelper.linearInterpolateY(start.getY(), destination.getY(), result));
+								float x = (float) (MathsHelper.linearInterpolateY(start.getX(), destination.getX(), result));
+								Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
+								g2.fill(movement);
+								g2.draw(movement);
 
+							}
 						}
 					}
 
@@ -124,8 +129,8 @@ public class DisplayCanvas extends JPanel{
 		 *  This is really messy and needs improvement
 		 */
 
-		if(model.getBestDistance() > -1){
-			bestRoute = model.getBestRoute();
+		if(model.getWorld().getBestDistance() > -1){
+			bestRoute = model.getWorld().getBestRoute();
 			if(bestRoute != null){
 				for(int i = 0; i < bestRoute.size(); i++){
 					for(City c: cities){
@@ -134,7 +139,10 @@ public class DisplayCanvas extends JPanel{
 								for(City c2: cities){
 									if(bestRoute.get(i + 1) == c2.getIndex()){
 										g2.setColor(Color.RED);
-										g.drawLine(c.getX() * 20, c.getY()*20, c2.getX() * 20, c2.getY() * 20);
+										//make the best line slightly thicker than the rest so it stands out more
+										g2.setStroke(new BasicStroke(2));
+										g2.drawLine(c.getX() * 20, c.getY()*20, c2.getX() * 20, c2.getY() * 20);
+
 									}
 								}
 							}

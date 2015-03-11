@@ -19,7 +19,7 @@ import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 public class ControlPanel extends JPanel{
 
 
-	private final Dimension LABELDIMENSION = new Dimension(250,25);
+	private final Dimension LABELDIMENSION = new Dimension(280,25);
 	private final Dimension TEXTFIELDDIMENSION = new Dimension(100,25);
 	private final Dimension BUTTONDIMENSION = new Dimension(150,40);
 
@@ -29,8 +29,8 @@ public class ControlPanel extends JPanel{
 	private final String ALPHALABELTEXT = "Alpha";
 	private final String DECAYLABELTEXT = "Decay rate";
 	private final String AGENTLABELTEXT = "Number of Agents";
-	private final String GOALLABELTEXT = "Number of Targets";
-	private final String INITPHEROLABELTEXT = "Initial edge Pheromone:  ";
+	private final String GOALLABELTEXT = "Number of Cities";
+	private final String INITPHEROLABELTEXT = "Initial Pheromone:  ";
 
 	private final String BETAFORMAT = "";
 	private final String ALPHAFORMAT = "";
