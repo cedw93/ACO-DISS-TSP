@@ -39,12 +39,12 @@ public class World {
 
 	}
 
-	private int getRandomIndex() {
+	public int getRandomIndex() {
 		return uniform.nextInt();
 
 	}
 
-	private void initAnts(){
+	public void initAnts(){
 		ants = new ArrayList<Ant>(numberOfAnts);
 		for(int i = 0; i < numberOfAnts; i++){
 			ants.add(new Ant(this, getRandomIndex()));
@@ -56,17 +56,23 @@ public class World {
 		//we do not set the number of cities as the max for the cities list as clicking will allow the addition of new cities
 		cities = new ArrayList<City>();
 		Random r = new Random();
-		for(int i = 0; i < numberOfCities; i++){
+		//for(int i = 0; i < numberOfCities; i++){
 			// the (+1) is to stop cities having the index '0' which would cause them to hald render out of view
-			int x = r.nextInt(aco.getBoundaryX()) + 1;
-			int y = r.nextInt(aco.getBoundaryY()) + 1;
-			cities.add(new City(x,y,i));
-		}
+			//int x = r.nextInt(aco.getBoundaryX()) + 1;
+			//int y = r.nextInt(aco.getBoundaryY()) + 1;
+			//cities.add(new City(x,y,i));
+		//}
 		//Some hard coded values that i know work
-		//cities.add(new City(20,20,0));
-		//cities.add(new City(10,12,1));
-		//cities.add(new City(25,2,2));
-		//cities.add(new City(3,22,3));
+		cities.add(new City(20,20,0));
+		cities.add(new City(10,12,1));
+		cities.add(new City(25,2,2));
+		cities.add(new City(3,22,3));
+		cities.add(new City(11,19,4));
+		cities.add(new City(7,16,5));
+		cities.add(new City(1,3,6));
+		cities.add(new City(19,18,7));
+		cities.add(new City(20,6,8));
+		cities.add(new City(9,29,9));
 	}
 
 

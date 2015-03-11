@@ -36,3 +36,7 @@ COLT API: http://dst.lbl.gov/ACSSoftware/colt/api/index.html
 COLT : Colt provides a set of Open Source Libraries for High Performance Scientific and Technical Computing in Java.
 
 added a way to draw ants moving however it is not perfectlty clear what is happening during this time, ants that are moving are shown in light gray, ants at a city are shown in Green.
+	- the above statement depends on the speed of the algorithm which will be set by the user
+	- thread speed to be added later
+
+added a way to include the number of iterations you want

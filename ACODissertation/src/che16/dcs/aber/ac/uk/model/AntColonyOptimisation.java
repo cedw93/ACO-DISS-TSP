@@ -9,7 +9,7 @@ import javax.swing.SwingWorker;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private int boundaryX, boundaryY, width, height;
+	private int boundaryX, boundaryY, width, height, iterations;
 	private double alpha, beta, q, decayRate, initialPheromone;
 	private int noOfAgents, noOfCities;
 	private boolean finished;
@@ -29,7 +29,8 @@ public class AntColonyOptimisation extends Observable{
 		decayRate = 0.2d;
 		initialPheromone = 0.8d;
 		noOfAgents = 1;
-		noOfCities = 4;
+		noOfCities = 10;
+		iterations = 1;
 		world = new World(this, noOfAgents, noOfCities);
 		finished = false;
 
@@ -56,7 +57,7 @@ public class AntColonyOptimisation extends Observable{
 
 	public void start() {
 
-		worker = new Worker(this);
+		worker = new Worker(this, iterations);
 		worker.execute();
 	}
 
@@ -104,7 +105,7 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(1000);
+			Thread.sleep(10);
 		}catch(Exception e){
 
 		}
