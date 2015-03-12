@@ -45,6 +45,8 @@ public class Worker extends SwingWorker<Void, Void>{
 		System.out.println("Best route: " + aco.getWorld().getBestRoute());
 
 		aco.setFinished(true);
+		//once we have finished, set the fact that the next world wont be from a file unless reloaded
+		aco.setLoaded(false);
 		aco.notifyCanvas();
 		return null;
 	}

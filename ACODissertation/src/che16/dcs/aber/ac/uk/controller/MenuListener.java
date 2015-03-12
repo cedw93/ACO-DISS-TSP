@@ -24,6 +24,7 @@ public class  MenuListener implements ActionListener {
 
 		else if(source.equalsIgnoreCase("load")){
 			System.out.println("LOAD");
+			model.load();
 
 		}
 
