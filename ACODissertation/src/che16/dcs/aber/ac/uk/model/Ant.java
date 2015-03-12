@@ -188,18 +188,6 @@ public class Ant{
 		return route;
 	}
 
-	public void reset(int startLocation){
-		this.start = startLocation;
-		this.current = start;
-		this.finished = false;
-		route = new LinkedList<Integer>();
-		visited = new boolean[world.getCities().size()];
-		visited[startLocation] = true;
-		movementTracker = new int[2];
-		unvisited = visited.length - 1;
-
-	}
-
 	public int[] getMovementTracker(){
 		return movementTracker;
 	}

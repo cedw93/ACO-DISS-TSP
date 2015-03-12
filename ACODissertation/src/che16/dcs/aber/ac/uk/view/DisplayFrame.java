@@ -127,7 +127,7 @@ public class DisplayFrame extends JFrame{
 	public DisplayCanvasContainer getCanvasContainer() {
 		return canvasContainer;
 	}
-	
+
 	public ControlContainer getControlContainer(){
 		return controlContainer;
 	}

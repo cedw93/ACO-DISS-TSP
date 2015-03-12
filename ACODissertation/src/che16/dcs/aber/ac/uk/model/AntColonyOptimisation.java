@@ -2,6 +2,7 @@ package che16.dcs.aber.ac.uk.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Observable;
 import java.util.Scanner;
@@ -17,8 +18,8 @@ public class AntColonyOptimisation extends Observable{
 
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
-		alpha = 0.5d;
-		beta = 2.0d;
+		//alpha = 0.5d;
+		//beta = 2.0d;
 		width = 40;
 		height = 30;
 		//these boundaries are used when deciding a cities random location.
@@ -27,12 +28,11 @@ public class AntColonyOptimisation extends Observable{
 		boundaryY = 29;
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
-		decayRate = 0.2d;
-		initialPheromone = 0.8d;
-		noOfAgents = 1;
-		noOfCities = 10;
-		iterations = 1;
-		//world = new World(this, noOfAgents, noOfCities);
+		//decayRate = 0.2d;
+		//initialPheromone = 0.8d;
+		//noOfAgents = 1;
+		//noOfCities = 10;
+		//iterations = 1;
 		loaded = false;
 		finished = false;
 
@@ -47,7 +47,6 @@ public class AntColonyOptimisation extends Observable{
 		this.noOfAgents = agents;
 		this.noOfCities = cities;
 		this.iterations = iterations;
-		world = new World(this, noOfAgents, noOfCities);
 		finished = false;
 
 	}
@@ -74,13 +73,15 @@ public class AntColonyOptimisation extends Observable{
 		//TODO: make sure this is only possible if not already running
 		this.finished = false;
 		//if the world isn't loaded from a file
-		if(!loaded){
-			world = new World(this, noOfAgents, noOfCities);
-			setValues(0.2, 2.0, 0.2, 0.8, 100, 15, 1); 
-		}
-		else{
+		if(loaded){
 			//reset the value if it is loaded so the next instance works fine
 			loaded = false;
+			if(world == null){
+				System.out.println("World is null, problem with file reading");
+				return;
+			}
+		}else{
+			world = new World(this, noOfAgents, noOfCities);
 		}
 
 		worker = new Worker(this, iterations);
@@ -131,7 +132,7 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(10);
+			Thread.sleep(100);
 		}catch(Exception e){
 
 		}
@@ -159,39 +160,121 @@ public class AntColonyOptimisation extends Observable{
 	}
 
 	public void load(){
-		String line;
-		double alpha, beta, decayRate, initPhero;
-		int agents, cities, interations;
-		try {  
-			File config  = new File (new File("testfile.tsp").getAbsolutePath());
-			Scanner s = new Scanner(config);
-			
-			alpha = Double.parseDouble(s.nextLine());
-			beta = Double.parseDouble(s.nextLine());
-			decayRate = Double.parseDouble(s.nextLine());
-			initPhero = Double.parseDouble(s.nextLine());
-			
-			System.out.println("alpha: " + alpha + " beta: " + beta + " decay: " + decayRate + " initPhero: " + initPhero);
+		this.world = loadWorldFromFile("testfile.tsp");
+		notifyCanvas();
 
-		} 
-		//catch the exception
-		catch(FileNotFoundException e) {
-			e.printStackTrace(); 
-			return;
-		}catch(InputMismatchException e){
-			e.printStackTrace();
-			return;
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-		}
-
-		//update the view;
-		this.loaded = true;
 	}
 
 	public void setLoaded(boolean b) {
 		this.loaded = b;
 
+	}
+
+	public World loadWorldFromFile(String fileName) {
+		this.loaded = true;
+		double alpha, beta, decayRate, initPhero;
+		int agents, cities, iterations, x , y;
+		ArrayList<City> tempCities = new ArrayList<City>();
+		String[] coords = new String[2];
+		try {  
+			File config  = new File (new File(fileName).getAbsolutePath());
+			Scanner s = new Scanner(config);
+
+			alpha = Double.parseDouble(s.nextLine());
+			beta = Double.parseDouble(s.nextLine());
+			decayRate = Double.parseDouble(s.nextLine());
+			initPhero = Double.parseDouble(s.nextLine());
+			agents = Integer.parseInt(s.nextLine());
+			if(s.nextLine().contains("cities")){
+				cities = Integer.parseInt(s.nextLine());
+				for(int i = 0; i < cities; i++){
+					coords = s.nextLine().split(" ");
+					x = Integer.parseInt(coords[0]);
+					y = Integer.parseInt(coords[1]);
+					if(x > boundaryX || x == 0){
+						System.out.println("LOADING ERROR X IS TOO LARGE OR IS 0. X == " + x);
+						s.close();
+						return null;
+					}
+					if(y > boundaryY || y == 0){
+						System.out.println("LOADING ERROR Y IS TOO LARGE OR IS 0. Y == " + y);
+						s.close();
+						return null;
+					}
+					tempCities.add(new City(x, y, i));	
+				}
+			}
+			iterations = Integer.parseInt(s.nextLine());
+			//System.out.println("alpha: " + alpha + " beta: " + beta + " decay: " + decayRate + " initPhero: " + initPhero);
+			//System.out.println("agents: " + agents + " number cities: " + tempCities.size() + " iterations: " + iterations);
+
+			//loading is only complete if it gets to here and the above checks pass
+			if(s.nextLine().contains("EOF")){
+				s.close();
+				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations);
+				return new World(this, agents, tempCities.size(), tempCities);
+			}
+			s.close();
+		} 
+		//catch the exception
+		catch(FileNotFoundException e) {
+			e.printStackTrace(); 
+			return null;
+		}catch(InputMismatchException e){
+			e.printStackTrace();
+			return null;
+		}catch(NumberFormatException e){
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public int getIterations() {
+		return iterations;
+	}
+
+	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations) {
+		if(alpha > 5.0d){
+			System.out.println("ALPHA IS TOO HIGH");
+			return false;
+		}
+
+		if(beta > 5.0d){
+			System.out.println("BETA IS TOO HIGH");
+			return false;
+		}
+
+		if(decayRate > 1.0d || decayRate < 0.0d){
+			System.out.println("DECAY RATE MUST BE BETWEEN 0 AND 1");
+			return false;
+		}
+
+		if(initialPhero > 1.0d || initialPhero < 0.0d){
+			System.out.println("DECAY RATE MUST BE BETWEEN 0 AND 1");
+			return false;
+		}
+
+		if(agents > 100 || initialPhero < 0){
+			System.out.println("Agents must be between 0 AND 100");
+			return false;
+		}
+
+		if(cities > 30 || cities < 3){
+			System.out.println("cities must be between 3 and 30");
+			return false;
+		}
+
+		if(iterations < 1){
+			System.out.println("You must have at least 1 iteration");
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean getLoaded(){
+		return loaded;
 	}
 
 }

@@ -223,6 +223,30 @@ public class ControlPanel extends JPanel{
 		return iterationField;
 
 	}
+	
+	public JTextField getBetaField() {
+		return betaField;
+	}
+
+	public JTextField getAlphaField() {
+		return alphaField;
+	}
+
+	public JTextField getAgentField() {
+		return agentField;
+	}
+
+	public JTextField getDecayField() {
+		return decayField;
+	}
+
+	public JTextField getGoalNodesField() {
+		return goalNodesField;
+	}
+
+	public JTextField getInitPheroField() {
+		return initPheroField;
+	}
 
 
 }
