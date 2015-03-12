@@ -142,9 +142,9 @@ public class ControlPanel extends JPanel{
 		this.add(iterationLabel, gbc);
 		gbc.gridy++;
 		this.add(iterationField, gbc);
-		
+
 		gbc.gridy++;
-		
+
 		this.add(alphaLabel, gbc);
 		gbc.gridy++;
 		this.add(alphaField, gbc);
@@ -218,24 +218,10 @@ public class ControlPanel extends JPanel{
 
 	}
 
-	/*
-	 * take and adapted from the Oracle Java documentation
-	 * used to create formats for use within the JFormattedTextFields for use input
-	 * http://docs.oracle.com/javase/tutorial/uiswing/components/formattedtextfield.html#format
-	 * 
-	 */
 
-	protected MaskFormatter createFormat(String format) {
-		MaskFormatter result = null;
-		try {
-			result = new MaskFormatter(format);
-		} catch (java.text.ParseException exc) {
-			//as this is not used as runtime the user should never see this
-			//debugging purposes only
-			System.err.println("formatter is bad: " + exc.getMessage());
-			System.exit(-1);
-		}
-		return result;
+	public JTextField getIterationField() {
+		return iterationField;
+
 	}
 
 

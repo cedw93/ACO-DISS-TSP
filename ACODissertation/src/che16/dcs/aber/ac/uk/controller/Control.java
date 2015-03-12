@@ -19,7 +19,7 @@ public class Control implements Observer{
 
 		model.addObserver(this);
 		view.getCanvasContainer().getCanvas().setModel(model);
-		panelListener = new ControlPanelListener(model);
+		panelListener = new ControlPanelListener(model, view);
 
 		//doing it this way as it is the least 'messy' way to do so
 		view.setControlPanelListener(panelListener);

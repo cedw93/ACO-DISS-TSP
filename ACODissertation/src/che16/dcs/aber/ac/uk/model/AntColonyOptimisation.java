@@ -15,6 +15,7 @@ public class AntColonyOptimisation extends Observable{
 	private boolean finished;
 	private Worker worker;
 
+	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
 		alpha = 0.5d;
 		beta = 2.0d;
@@ -36,10 +37,23 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	//algorithm with user defined values
+	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations) {
+		this.alpha = alpha;
+		this.beta = beta;
+		this.decayRate = decayRate;
+		this.initialPheromone = initalPhero;
+		this.noOfAgents = agents;
+		this.noOfCities = cities;
+		this.iterations = iterations;
+		world = new World(this, noOfAgents, noOfCities);
+		finished = false;
+
+	}
+
 	public void reset(){
 
 		this.setChanged();
-
 		this.notifyObservers(this);
 		this.clearChanged();
 
@@ -56,7 +70,7 @@ public class AntColonyOptimisation extends Observable{
 
 
 	public void start() {
-
+		setValues(0.2, 2.0, 0.2, 0.8, 10, 15, 1); 
 		worker = new Worker(this, iterations);
 		worker.execute();
 	}

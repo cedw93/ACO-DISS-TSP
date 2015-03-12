@@ -50,8 +50,6 @@ public class DisplayFrame extends JFrame{
 		addComponents();
 		this.pack();
 
-		render();
-
 	} 
 
 	public void addComponents(){
@@ -128,6 +126,10 @@ public class DisplayFrame extends JFrame{
 
 	public DisplayCanvasContainer getCanvasContainer() {
 		return canvasContainer;
+	}
+	
+	public ControlContainer getControlContainer(){
+		return controlContainer;
 	}
 
 }
