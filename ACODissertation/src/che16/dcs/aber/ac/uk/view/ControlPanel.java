@@ -30,22 +30,16 @@ public class ControlPanel extends JPanel{
 	private final String DECAYLABELTEXT = "Decay rate";
 	private final String AGENTLABELTEXT = "Number of Agents";
 	private final String GOALLABELTEXT = "Number of Cities";
-	private final String INITPHEROLABELTEXT = "Initial Pheromone:  ";
-
-	private final String BETAFORMAT = "";
-	private final String ALPHAFORMAT = "";
-	private final String AGENTFORMAT = "";
-	private final String GOALFORMAT = "";
-	private final String DECAYFORMAT = "";
-	private final String PHEROFORMAT = "";
+	private final String INITPHEROLABELTEXT = "Initial Pheromone";
+	private final String ITERATIONLABELTEXT = "Iterations";
 
 	private ControlPanelListener listener;
 
 	private ControlContainer parent;
 	private GridBagConstraints gbc;
 	private JButton startButton, stopButton, resetButton;
-	private JLabel betaLabel, alphaLabel, agentLabel, decayLabel, pheroLabel, goalNodesLabel, initPheroLabel;
-	private JFormattedTextField  betaField, alphaField, agentField, decayField, goalNodesField, initPheroField;
+	private JLabel betaLabel, alphaLabel, agentLabel, decayLabel, pheroLabel, goalNodesLabel, initPheroLabel, iterationLabel;
+	private JTextField  betaField, alphaField, agentField, decayField, goalNodesField, initPheroField, iterationField;
 
 	public ControlPanel(ControlContainer parent) {
 
@@ -108,34 +102,49 @@ public class ControlPanel extends JPanel{
 		initPheroLabel.setHorizontalAlignment(JTextField.CENTER);
 		initPheroLabel.setFont(LABELFONT);
 
-		//fields, formatted for correct use
+		iterationLabel = new JLabel(ITERATIONLABELTEXT);
+		iterationLabel.setPreferredSize(LABELDIMENSION);
+		iterationLabel.setHorizontalAlignment(JTextField.CENTER);
+		iterationLabel.setFont(LABELFONT);
 
-		alphaField = new JFormattedTextField(createFormat(ALPHAFORMAT));
+		//fields
+
+		alphaField = new JTextField();
 		alphaField.setPreferredSize(TEXTFIELDDIMENSION);
 		alphaField.setHorizontalAlignment(JTextField.CENTER);
 
-		betaField = new JFormattedTextField(createFormat(BETAFORMAT));
+		betaField = new JTextField();
 		betaField.setPreferredSize(TEXTFIELDDIMENSION);
 		betaField.setHorizontalAlignment(JTextField.CENTER);
 
-		agentField = new JFormattedTextField(createFormat(AGENTFORMAT));
+		agentField = new JTextField();
 		agentField.setPreferredSize(TEXTFIELDDIMENSION);
 		agentField.setHorizontalAlignment(JTextField.CENTER);
 
-		decayField = new JFormattedTextField(createFormat(DECAYFORMAT));
+		decayField = new JTextField();
 		decayField.setPreferredSize(TEXTFIELDDIMENSION);
 		decayField.setHorizontalAlignment(JTextField.CENTER);
 
-		goalNodesField = new JFormattedTextField(createFormat(GOALFORMAT));
+		goalNodesField = new JTextField();
 		goalNodesField.setPreferredSize(TEXTFIELDDIMENSION);
 		goalNodesField.setHorizontalAlignment(JTextField.CENTER);
 
-		initPheroField = new JFormattedTextField(createFormat(PHEROFORMAT));
+		initPheroField = new JTextField();
 		initPheroField.setPreferredSize(TEXTFIELDDIMENSION);
 		initPheroField.setHorizontalAlignment(JTextField.CENTER);
 
+		iterationField = new JTextField();
+		iterationField.setPreferredSize(TEXTFIELDDIMENSION);
+		iterationField.setHorizontalAlignment(JTextField.CENTER);
+
 		//positioning used is adapted from: http://jnb.ociweb.com/jnb/jnbMar2005.html
 
+		this.add(iterationLabel, gbc);
+		gbc.gridy++;
+		this.add(iterationField, gbc);
+		
+		gbc.gridy++;
+		
 		this.add(alphaLabel, gbc);
 		gbc.gridy++;
 		this.add(alphaField, gbc);
@@ -194,44 +203,20 @@ public class ControlPanel extends JPanel{
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension((parent.getPreferredSize().width) - 100, (parent.getPreferredSize().height - 100));
+		return new Dimension((parent.getPreferredSize().width) - 100, (parent.getPreferredSize().height ));
 
 	}
 
 	public void setButtonListener(ControlPanelListener listener){
 
 		this.listener = listener;
-		
+
 		resetButton.addActionListener(listener);
 		startButton.addActionListener(listener);
 		stopButton.addActionListener(listener);
 
-		
+
 	}
-
-
-	/*
-	 * Method taken from stack over flow: 
-	 * http://stackoverflow.com/questions/18332267/gridbaglayout-2-jpanels-one-less-width-than-other
-	 * date: 18/02/2015, user: niceE cOw
-	 * 
-	 * Trouble with grid bag positioning this resolves it.
-	 * 
-	 */
-
-	private void addComp(JComponent container, JComponent comp,int gridx, int gridy, int gridwidth, int gridheight,
-			int fill, double weightx, double weighty) {
-		gbc.gridx = gridx;
-		gbc.gridy = gridy;
-		gbc.gridwidth = gridwidth;
-		gbc.gridheight = gridheight;
-		gbc.fill = fill;
-		gbc.weightx = weightx;
-		gbc.weighty = weighty;
-
-		container.add(comp, gbc);
-	}
-
 
 	/*
 	 * take and adapted from the Oracle Java documentation

@@ -105,12 +105,11 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(10);
+			Thread.sleep(100);
 		}catch(Exception e){
 
 		}
 	}
-
 
 	public int getBoundaryX() {
 		return boundaryX;

@@ -56,13 +56,13 @@ public class World {
 		//we do not set the number of cities as the max for the cities list as clicking will allow the addition of new cities
 		cities = new ArrayList<City>();
 		Random r = new Random();
-		//for(int i = 0; i < numberOfCities; i++){
+		for(int i = 0; i < numberOfCities; i++){
 			// the (+1) is to stop cities having the index '0' which would cause them to hald render out of view
-			//int x = r.nextInt(aco.getBoundaryX()) + 1;
-			//int y = r.nextInt(aco.getBoundaryY()) + 1;
-			//cities.add(new City(x,y,i));
-		//}
-		//Some hard coded values that i know work
+			int x = r.nextInt(aco.getBoundaryX()) + 1;
+			int y = r.nextInt(aco.getBoundaryY()) + 1;
+			cities.add(new City(x,y,i));
+		}
+		/*Some hard coded values that i know work
 		cities.add(new City(20,20,0));
 		cities.add(new City(10,12,1));
 		cities.add(new City(25,2,2));
@@ -73,7 +73,9 @@ public class World {
 		cities.add(new City(19,18,7));
 		cities.add(new City(20,6,8));
 		cities.add(new City(9,29,9));
+		 */
 	}
+
 
 
 	public void addCity(City city){

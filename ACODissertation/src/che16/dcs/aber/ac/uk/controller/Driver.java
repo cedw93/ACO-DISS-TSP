@@ -11,9 +11,9 @@ public class Driver {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-
 				AntColonyOptimisation model = new AntColonyOptimisation();
-				DisplayFrame view = new DisplayFrame(model);
+				MenuListener menuListener = new MenuListener(model);
+				DisplayFrame view = new DisplayFrame(model, menuListener);
 				new Control(model, view);
 			}
 		});

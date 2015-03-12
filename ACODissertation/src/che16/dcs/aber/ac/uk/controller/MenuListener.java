@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 
-public class ControlPanelListener implements ActionListener {
+public class  MenuListener implements ActionListener {
 
 
 	private AntColonyOptimisation model;
 
-	public ControlPanelListener(AntColonyOptimisation model){
+	public MenuListener(AntColonyOptimisation model){
 		this.model = model;
 
 	}
@@ -18,15 +18,16 @@ public class ControlPanelListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String source = e.getActionCommand();
-		if(source.equalsIgnoreCase("start")){
-			model.start();
+		if(source.equalsIgnoreCase("save")){
+			System.out.println("SAVE");
 		}
-		else if(source.equalsIgnoreCase("reset values")){
-			model.reset();
+
+		else if(source.equalsIgnoreCase("load")){
+			System.out.println("LOAD");
+
 		}
-		else if(source.equalsIgnoreCase("stop")){
-			model.stop();
-		}
+
 	}
 
 }
+

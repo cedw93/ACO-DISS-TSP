@@ -1,16 +1,21 @@
 package che16.dcs.aber.ac.uk.view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
+import che16.dcs.aber.ac.uk.controller.MenuListener;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 
 public class DisplayFrame extends JFrame{
@@ -25,7 +30,10 @@ public class DisplayFrame extends JFrame{
 
 	private GridBagConstraints gbc;
 
-	public DisplayFrame(AntColonyOptimisation model) {
+	private JMenuBar menuBar;
+	private JMenuItem save, load;
+
+	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
 		super(title);
 		//simple inheritance. 
@@ -33,13 +41,13 @@ public class DisplayFrame extends JFrame{
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addMenu(menuListener);
 		setVisible(true);
 
 		canvasContainer = new DisplayCanvasContainer();
 		controlContainer = new ControlContainer();
 
 		addComponents();
-
 		this.pack();
 
 		render();
@@ -64,6 +72,25 @@ public class DisplayFrame extends JFrame{
 
 		canvasContainer.getCanvas().render();
 
+	}
+
+	public void addMenu(MenuListener menuListener){
+		menuBar = new JMenuBar();
+		JMenu file = new JMenu("File");
+		file.setFont(new Font("serif", Font.BOLD, 20));
+
+		save = new JMenuItem("Save");
+		save.addActionListener(menuListener);
+		save.setFont(new Font("serif", Font.BOLD, 16));
+		file.add(save);
+
+		load = new JMenuItem("Load");
+		load.addActionListener(menuListener);
+		load.setFont(new Font("serif", Font.BOLD, 16));
+		file.add(load);  
+
+		menuBar.add(file);
+		this.setJMenuBar(menuBar);
 	}
 
 	/*
@@ -94,6 +121,7 @@ public class DisplayFrame extends JFrame{
 	 * and it is still very maintainable
 	 */
 	public void setControlPanelListener(ControlPanelListener panelListener) {
+
 		controlContainer.getControlPanel().setButtonListener(panelListener);
 
 	}
@@ -101,6 +129,5 @@ public class DisplayFrame extends JFrame{
 	public DisplayCanvasContainer getCanvasContainer() {
 		return canvasContainer;
 	}
-
 
 }
