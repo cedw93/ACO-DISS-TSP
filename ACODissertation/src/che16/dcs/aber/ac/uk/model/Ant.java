@@ -1,9 +1,8 @@
 package che16.dcs.aber.ac.uk.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
-
-import cern.colt.Arrays;
 
 public class Ant{
 

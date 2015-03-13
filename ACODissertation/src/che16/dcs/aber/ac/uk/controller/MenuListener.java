@@ -2,11 +2,10 @@ package che16.dcs.aber.ac.uk.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileView;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
@@ -31,7 +30,8 @@ public class  MenuListener implements ActionListener {
 		String source = e.getActionCommand();
 		if(source.equalsIgnoreCase("save")){
 			if(model.getWorld() == null){
-				System.out.println("Nothing to save!");
+				JOptionPane.showMessageDialog(null, "There is nothing to save. Try loading a file or creating your own world!",
+						"Nothing to save!",	JOptionPane.WARNING_MESSAGE);
 				return;
 			}
 			//don't save if the algorithm is running
@@ -40,29 +40,50 @@ public class  MenuListener implements ActionListener {
 				if(fileName != ""){
 					model.save(fileName);
 				}else{
-					System.out.println("No file selected!");
+					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
+							"No file selected",	JOptionPane.ERROR_MESSAGE);
 				}
 			}else{
-				System.out.println("Algorithm is running, please wait or stop the execution before saving");
+				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot save untill this is stopped or finishes naturally.",
+						"Saving error",	JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
 		else if(source.equalsIgnoreCase("load")){
-			String fileName = chooseLoadFile();
-			if(fileName != ""){
-				model.load(fileName);
+			if(!model.getRunning()){
+				String fileName = chooseLoadFile();
+				if(fileName != ""){
+					model.load(fileName);
 
-				//set the text field values to the same as what was loaded in
-				view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
-				view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
-				view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
-				view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
-				view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
-				view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
-				view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+					//set the text field values to the same as what was loaded in
+					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
+					view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
+					view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
+					view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
+					view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
+					view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
+					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+				}else{
+					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
+							"No file selected",	JOptionPane.ERROR_MESSAGE);
+				}
 			}else{
-				System.out.println("No file selected");
+				JOptionPane.showMessageDialog(null, "You cannot load a problem whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
 			}
+		}
+
+		else if(source.equalsIgnoreCase("Slowest - 1000ms")){
+			model.setSpeed(1000L);
+		}
+		else if(source.equalsIgnoreCase("Medium - 500ms")){
+			model.setSpeed(500L);
+		}
+		else if(source.equalsIgnoreCase("Fast - 100ms")){
+			model.setSpeed(100L);
+		}
+		else if(source.equalsIgnoreCase("Fastest - 10ms")){
+			model.setSpeed(10L);
 		}
 
 	}

@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import cern.jet.random.Uniform;
 import che16.dcs.aber.ac.uk.utils.MathsHelper;
 
 public class World {
@@ -16,7 +15,6 @@ public class World {
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
 	private List<Ant> ants;
-	private Uniform uniform;
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
@@ -48,10 +46,9 @@ public class World {
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
-		// min, max, seed (-1 because the upper bound is inclusive)
-		uniform = new Uniform(0, cities.size() - 1, (int) System.currentTimeMillis());
-		initAnts();
 		//this must come after everything has been initialised
+		initAnts();
+
 	}
 
 	private void initCitiesFromList(ArrayList<City> tempCities) {
@@ -60,16 +57,13 @@ public class World {
 
 	}
 
-	public int getRandomIndex() {
-		// min, max, seed (-1 because the upper bound is inclusive)
-		uniform = new Uniform(0, cities.size() - 1, (int) System.currentTimeMillis());
-		return uniform.nextInt();
-	}
-
 	public void initAnts(){
+		Random r = new Random();
+
 		ants = new ArrayList<Ant>(numberOfAnts);
 		for(int i = 0; i < numberOfAnts; i++){
-			ants.add(new Ant(this, getRandomIndex()));
+			ants.add(new Ant(this, r.nextInt(cities.size())));
+
 		}
 
 	}

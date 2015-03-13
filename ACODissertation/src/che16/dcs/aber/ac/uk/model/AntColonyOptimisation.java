@@ -11,6 +11,8 @@ import java.util.InputMismatchException;
 import java.util.Observable;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
@@ -19,6 +21,7 @@ public class AntColonyOptimisation extends Observable{
 	private int noOfAgents, noOfCities, agentsWorking, currentIter;
 	private boolean finished, loaded, running;
 	private Worker worker;
+	private long speed;
 
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
@@ -33,6 +36,7 @@ public class AntColonyOptimisation extends Observable{
 		loaded = false;
 		finished = false;
 		running = false;
+		speed = 500L;
 
 	}
 
@@ -67,7 +71,8 @@ public class AntColonyOptimisation extends Observable{
 			//reset the value if it is loaded so the next instance works fine
 			loaded = false;
 			if(world == null){
-				System.out.println("World is null, problem with file reading");
+				JOptionPane.showMessageDialog(null, "There is no world, please load a file or make a new world",
+						"No world created",	JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 		}else{
@@ -122,7 +127,7 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(10);
+			Thread.sleep(speed);
 		}catch(Exception e){
 
 		}
@@ -225,38 +230,45 @@ public class AntColonyOptimisation extends Observable{
 	}
 
 	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations) {
-		if(alpha > 5.0d){
-			System.out.println("ALPHA IS TOO HIGH");
+		if(alpha > 5.0d || alpha < -5.0d){
+			JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
-		if(beta > 5.0d){
-			System.out.println("BETA IS TOO HIGH");
+		if(beta > 5.0d || beta < -5.0d){
+			JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and -5.0\nYou entered: " + beta,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if(decayRate > 1.0d || decayRate < 0.0d){
-			System.out.println("DECAY RATE MUST BE BETWEEN 0 AND 1");
+			JOptionPane.showMessageDialog(null, "Illegal decayRate value. DecayRate must be between 0 and 1\nYou entered: " + decayRate,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if(initialPhero > 1.0d || initialPhero < 0.0d){
-			System.out.println("DECAY RATE MUST BE BETWEEN 0 AND 1");
+			JOptionPane.showMessageDialog(null, "Illegal initialPheromone value. InitialPheromone must be between 0 and 1\nYou entered: " + initialPhero,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
-		if(agents > 50 || initialPhero < 0){
-			System.out.println("Agents must be between 0 AND 50");
+		if(agents > 50 || agents < 1){
+			JOptionPane.showMessageDialog(null, "Illegal number of agents. Number of agents must be between 1 and 50\nYou entered: " + agents,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if(cities > 25 || cities < 3){
-			System.out.println("cities must be between 3 and 25");
+			JOptionPane.showMessageDialog(null, "Illegal number of cities. Number of cities must be between 3 and 25\nYou entered: " + cities,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if(iterations < 1){
-			System.out.println("You must have at least 1 iteration");
+			JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -276,7 +288,9 @@ public class AntColonyOptimisation extends Observable{
 	}
 
 	public void save(String fileName){
-
+		/*
+		 * Dont really need to check the results of the parsing here, if the algorithm gets this far the values are fine
+		 */
 		try {
 			ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();
 			BufferedWriter out = new BufferedWriter(new FileWriter(new File(System.getProperty("user.home"), fileName)));
@@ -303,7 +317,8 @@ public class AntColonyOptimisation extends Observable{
 			out.write("EOF");
 			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "A error occured during file writing, please try again",
+					"File writing error",	JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -331,6 +346,11 @@ public class AntColonyOptimisation extends Observable{
 
 	public int getCurrentIteration(){
 		return currentIter;
+	}
+
+	public void setSpeed(long speed) {
+		this.speed = speed;
+
 	}
 
 }

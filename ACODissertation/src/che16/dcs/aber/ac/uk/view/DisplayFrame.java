@@ -31,7 +31,7 @@ public class DisplayFrame extends JFrame{
 	private GridBagConstraints gbc;
 
 	private JMenuBar menuBar;
-	private JMenuItem save, load;
+	private JMenuItem save, load, slowest, medium, fast, fastest;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -76,6 +76,8 @@ public class DisplayFrame extends JFrame{
 		menuBar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		file.setFont(new Font("serif", Font.BOLD, 20));
+		JMenu speed = new JMenu("Speed");
+		speed.setFont(new Font("serif", Font.BOLD, 20));
 
 		save = new JMenuItem("Save");
 		save.addActionListener(menuListener);
@@ -87,7 +89,28 @@ public class DisplayFrame extends JFrame{
 		load.setFont(new Font("serif", Font.BOLD, 16));
 		file.add(load);  
 
+		slowest = new JMenuItem("Slowest - 1000ms");
+		slowest.addActionListener(menuListener);
+		slowest.setFont(new Font("serif", Font.BOLD, 16));
+		speed.add(slowest);
+
+		medium = new JMenuItem("Medium - 500ms");
+		medium.addActionListener(menuListener);
+		medium.setFont(new Font("serif", Font.BOLD, 16));
+		speed.add(medium);
+
+		fast = new JMenuItem("Fast - 100ms");
+		fast.addActionListener(menuListener);
+		fast.setFont(new Font("serif", Font.BOLD, 16));
+		speed.add(fast);
+
+		fastest = new JMenuItem("Fastest - 10ms");
+		fastest.addActionListener(menuListener);
+		fastest.setFont(new Font("serif", Font.BOLD, 16));
+		speed.add(fastest);
+
 		menuBar.add(file);
+		menuBar.add(speed);
 		this.setJMenuBar(menuBar);
 	}
 
