@@ -3,8 +3,10 @@ package che16.dcs.aber.ac.uk.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
-import che16.dcs.aber.ac.uk.view.ControlPanel;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
 
 public class  MenuListener implements ActionListener {
@@ -26,22 +28,67 @@ public class  MenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String source = e.getActionCommand();
 		if(source.equalsIgnoreCase("save")){
-			System.out.println("SAVE");
+			if(model.getWorld() == null){
+				System.out.println("Nothing to save!");
+				return;
+			}
+			//don't save if the algorithm is running
+			if(!model.getRunning()){
+				String fileName = chooseSaveFile();
+				if(fileName != ""){
+					model.save(fileName);
+				}else{
+					System.out.println("No file selected!");
+				}
+			}else{
+				System.out.println("Algorithm is running, please wait or stop the execution before saving");
+			}
 		}
 
 		else if(source.equalsIgnoreCase("load")){
-			model.load();
-			//set the text field values to the same as what was loaded in
-			view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
-			view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
-			view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
-			view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
-			view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
-			view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
-			view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+			String fileName = chooseLoadFile();
+			if(fileName != ""){
+				model.load(fileName);
 
+				//set the text field values to the same as what was loaded in
+				view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
+				view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
+				view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
+				view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
+				view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
+				view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
+				view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+			}else{
+				System.out.println("No file selected");
+			}
 		}
 
+	}
+
+	public String chooseLoadFile(){
+		String result = "";
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			result =  chooser.getSelectedFile().getName();
+		}
+
+		return result;
+	}
+
+	public String chooseSaveFile(){
+		String result = "";
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showSaveDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			result =  chooser.getSelectedFile().getName();
+		}
+
+		return result;
 	}
 
 }

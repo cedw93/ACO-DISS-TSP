@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -34,7 +35,6 @@ public class DisplayCanvas extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2;
 		g2 = (Graphics2D) g;
-
 		if(model.getWorld() != null){
 			ArrayList<City> cities = (ArrayList<City>)model.getWorld().getCities();
 			ArrayList<Ant> agents = (ArrayList<Ant>)model.getWorld().getAnts();
@@ -84,42 +84,46 @@ public class DisplayCanvas extends JPanel{
 			City start = null;
 			City destination = null;
 			//TODO: MAYBE MAKE CITY DIAMETER CHANGE DEPENDING ON THE NUMBER OF ANTS AT THE CITY
-			for(Ant ant: agents){
-				if(!ant.getFinished()){
-					for(City c: cities){
-						if(ant.getCurrentIndex() == c.getIndex()){
-							g2.setColor(Color.GREEN);
-							g2.fillOval(c.getX() * 20, c.getY() * 20, 10, 10);
+			try{
+				for(Ant ant: agents){
+					if(!ant.getFinished()){
+						for(City c: cities){
+							if(ant.getCurrentIndex() == c.getIndex()){
+								g2.setColor(Color.GREEN);
+								g2.fillOval(c.getX() * 20, c.getY() * 20, 10, 10);
 
-						}
-						if(ant.getMovementTracker()[0] != ant.getMovementTracker()[1]){
-							if(c.getIndex() == ant.getMovementTracker()[0]){
-								start = c;
 							}
-							if(c.getIndex() == ant.getMovementTracker()[1]){
-								destination = c;
-							}
-							if(start != null && destination != null){
-								g2.setColor(Color.LIGHT_GRAY);
-								for(int i = 1; i < 5; i++){
-									//cast to a double to stop integer behaviours rounding down to 0
-									double result = ((double)i)/5;
-									//draw an ellipse2D every 1/5 the way along the line
-									float y = (float) (MathsHelper.linearInterpolateY(start.getY(), destination.getY(), result));
-									float x = (float) (MathsHelper.linearInterpolateY(start.getX(), destination.getX(), result));
-									Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
-									g2.fill(movement);
-									g2.draw(movement);
+							if(ant.getMovementTracker()[0] != ant.getMovementTracker()[1]){
+								if(c.getIndex() == ant.getMovementTracker()[0]){
+									start = c;
+								}
+								if(c.getIndex() == ant.getMovementTracker()[1]){
+									destination = c;
+								}
+								if(start != null && destination != null){
+									g2.setColor(Color.LIGHT_GRAY);
+									for(int i = 1; i < 5; i++){
+										//cast to a double to stop integer behaviours rounding down to 0
+										double result = ((double)i)/5;
+										//draw an ellipse2D every 1/5 the way along the line
+										float y = (float) (MathsHelper.linearInterpolateY(start.getY(), destination.getY(), result));
+										float x = (float) (MathsHelper.linearInterpolateY(start.getX(), destination.getX(), result));
+										Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
+										g2.fill(movement);
+										g2.draw(movement);
 
+									}
 								}
 							}
-						}
 
+						}
 					}
+					//reset the values
+					start = null;
+					destination = null;
 				}
-				//reset the values
-				start = null;
-				destination = null;
+			}catch(ConcurrentModificationException e){
+				//sometimes java complains if the thread speed is too fast
 			}
 
 			/*
@@ -152,6 +156,10 @@ public class DisplayCanvas extends JPanel{
 					}
 				}
 			}
+
+			parent.setContentTop(" Best Route: " + model.getWorld().getBestRoute() + " Best Distance: " + model.getWorld().getBestDistance());
+			parent.setContentBottom("iteration: " + (model.getCurrentIteration() + 1) + " Agents finished: " + model.getAgentsFinished()+ " Running: " + model.getRunning());
+			parent.repaint();
 
 		}
 

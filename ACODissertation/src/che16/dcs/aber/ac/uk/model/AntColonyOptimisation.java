@@ -1,7 +1,10 @@
 package che16.dcs.aber.ac.uk.model;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Observable;
@@ -12,14 +15,12 @@ public class AntColonyOptimisation extends Observable{
 	private World world;
 	private int boundaryX, boundaryY, width, height, iterations;
 	private double alpha, beta, q, decayRate, initialPheromone;
-	private int noOfAgents, noOfCities;
-	private boolean finished, loaded;
+	private int noOfAgents, noOfCities, agentsWorking, currentIter;
+	private boolean finished, loaded, running;
 	private Worker worker;
-
+	
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
-		//alpha = 0.5d;
-		//beta = 2.0d;
 		width = 40;
 		height = 30;
 		//these boundaries are used when deciding a cities random location.
@@ -28,13 +29,9 @@ public class AntColonyOptimisation extends Observable{
 		boundaryY = 29;
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
-		//decayRate = 0.2d;
-		//initialPheromone = 0.8d;
-		//noOfAgents = 1;
-		//noOfCities = 10;
-		//iterations = 1;
 		loaded = false;
 		finished = false;
+		running = false;
 
 	}
 
@@ -45,29 +42,21 @@ public class AntColonyOptimisation extends Observable{
 		this.decayRate = decayRate;
 		this.initialPheromone = initalPhero;
 		this.noOfAgents = agents;
+		this.agentsWorking = noOfAgents;
 		this.noOfCities = cities;
 		this.iterations = iterations;
 		finished = false;
 
 	}
 
-	public void reset(){
-
-		this.setChanged();
-		this.notifyObservers(this);
-		this.clearChanged();
-
-	}
-
 	public void stop(){
 
+		running = false;
 		this.setChanged();
 		this.notifyObservers(this);
 		this.clearChanged();
 
 	}
-
-
 
 	public void start() {
 		//TODO: make sure this is only possible if not already running
@@ -83,7 +72,7 @@ public class AntColonyOptimisation extends Observable{
 		}else{
 			world = new World(this, noOfAgents, noOfCities);
 		}
-
+		running = true;
 		worker = new Worker(this, iterations);
 		worker.execute();
 	}
@@ -132,7 +121,7 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(100);
+			Thread.sleep(10);
 		}catch(Exception e){
 
 		}
@@ -159,10 +148,13 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
-	public void load(){
-		this.world = loadWorldFromFile("testfile.tsp");
-		notifyCanvas();
-
+	public void load(String fileName){
+		if(!running){
+			this.world = loadWorldFromFile(fileName);
+			notifyCanvas();
+		}else{
+			System.out.println("Algorithm is running, please wait to stop the execution before loading");
+		}
 	}
 
 	public void setLoaded(boolean b) {
@@ -205,9 +197,7 @@ public class AntColonyOptimisation extends Observable{
 				}
 			}
 			iterations = Integer.parseInt(s.nextLine());
-			//System.out.println("alpha: " + alpha + " beta: " + beta + " decay: " + decayRate + " initPhero: " + initPhero);
-			//System.out.println("agents: " + agents + " number cities: " + tempCities.size() + " iterations: " + iterations);
-
+		
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
@@ -255,13 +245,13 @@ public class AntColonyOptimisation extends Observable{
 			return false;
 		}
 
-		if(agents > 100 || initialPhero < 0){
-			System.out.println("Agents must be between 0 AND 100");
+		if(agents > 50 || initialPhero < 0){
+			System.out.println("Agents must be between 0 AND 50");
 			return false;
 		}
 
-		if(cities > 30 || cities < 3){
-			System.out.println("cities must be between 3 and 30");
+		if(cities > 25 || cities < 3){
+			System.out.println("cities must be between 3 and 25");
 			return false;
 		}
 
@@ -275,6 +265,72 @@ public class AntColonyOptimisation extends Observable{
 
 	public boolean getLoaded(){
 		return loaded;
+	}
+
+	public boolean getRunning(){
+		return running;
+	}
+
+	public void setRunning(boolean running){
+		this.running = running;
+	}
+
+	public void save(String fileName){
+
+		ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
+			out.write(Double.toString(this.alpha));
+			out.newLine();
+			out.write(Double.toString(this.beta));
+			out.newLine();
+			out.write(Double.toString(this.decayRate));
+			out.newLine();
+			out.write(Double.toString(this.initialPheromone));
+			out.newLine();
+			out.write(Integer.toString(this.noOfAgents));
+			out.newLine();
+			out.write("cities");
+			out.newLine();
+			out.write(Integer.toString(tempCities.size()));
+			out.newLine();
+			for(City city: tempCities){
+				out.write(Integer.toString(city.getX()) + " " + Integer.toString(city.getY()));
+				out.newLine();
+			}
+			out.write(Integer.toString(this.iterations));
+			out.newLine();
+			out.write("EOF");
+			out.close();
+		} catch (IOException e) {
+
+		}
+
+	}
+
+	public int getAgentsWorking(){
+		return agentsWorking;
+	}
+
+	public int getAgentsFinished(){
+		return (this.noOfAgents - agentsWorking);
+	}
+
+	public void reduceWorking() {
+		if(agentsWorking == 0){
+			agentsWorking = noOfAgents;
+		}
+		this.agentsWorking--;
+
+	}
+
+	public void setCurrentIteration(int i) {
+		this.currentIter = i;
+		
+	}
+	
+	public int getCurrentIteration(){
+		return currentIter;
 	}
 
 }

@@ -132,6 +132,10 @@ public class Ant{
 		int next = start;
 		//while ((next = getNextProbableNode(lastNode)) != -1) {
 		while ((next = getNextProbableNode(lastNode)) != -1){
+			//stop if the user said so!
+			if(!world.getRunning()){
+				return;
+			}
 			movementTracker[0] = lastNode;
 			movementTracker[1] = next;
 			addToRoute(lastNode);
@@ -139,8 +143,6 @@ public class Ant{
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
 			//add to the new pheromone amount being deposited on this location
 			world.getPheromone()[lastNode][next].addToNewPhero((pheromoneDeposit));
-			//world.updatePheromone(lastNode, next, pheromoneDeposit);
-			//world.updatePheromone(lastNode, next, pheromoneDeposit);
 			visited[next] = true;
 			lastNode = next;
 			current = next;

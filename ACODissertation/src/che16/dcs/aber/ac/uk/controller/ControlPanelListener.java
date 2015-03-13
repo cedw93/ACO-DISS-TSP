@@ -51,7 +51,13 @@ public class ControlPanelListener implements ActionListener {
 			}
 		}
 		else if(source.equalsIgnoreCase("reset values")){
-			model.reset();
+			view.getControlContainer().getControlPanel().getAlphaField().setText("0.1");
+			view.getControlContainer().getControlPanel().getBetaField().setText("0.1");
+			view.getControlContainer().getControlPanel().getIterationField().setText("1");
+			view.getControlContainer().getControlPanel().getAgentField().setText("1");
+			view.getControlContainer().getControlPanel().getGoalNodesField().setText("3");
+			view.getControlContainer().getControlPanel().getInitPheroField().setText("0.1");
+			view.getControlContainer().getControlPanel().getDecayField().setText("0.1");
 		}
 
 		else if(source.equalsIgnoreCase("stop")){

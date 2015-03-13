@@ -266,8 +266,6 @@ public class World {
 	}
 
 	public void addToCities(int diff) {
-		System.out.println("Diff: " + diff);
-		System.out.println("cities size init: " + cities.size());
 		Random r = new Random();
 		for(int i = 0; i < diff; i++){
 			int x = r.nextInt(aco.getBoundaryX()) + 1;
@@ -286,13 +284,9 @@ public class World {
 	}
 
 	public void removeCities(int diff) {
-		System.out.println("Diff: " + diff);
-		System.out.println("cities size init: " + cities.size());
 		for(int i = 0; i < diff; i++){
-			System.out.println("i " + i);
 			//to ensure indexes is correct, it will current number of cities + new index (e.g. 5 + i)
 			cities.remove(cities.size()-1);
-			System.out.println("cities.size() after removal: " + cities.size());
 		}
 		//because of the change we need to re-init the matrices
 		initDistanceMatrix();
@@ -309,5 +303,10 @@ public class World {
 		initAnts();
 
 	}
+
+	public boolean getRunning() {
+		return aco.getRunning();
+	}
+
 
 }
