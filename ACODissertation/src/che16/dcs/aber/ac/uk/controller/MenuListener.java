@@ -2,9 +2,11 @@ package che16.dcs.aber.ac.uk.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileView;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
@@ -66,9 +68,12 @@ public class  MenuListener implements ActionListener {
 	}
 
 	public String chooseLoadFile(){
+		/*
+		 * Locking method adapted from: http://stackoverflow.com/a/8926260/4142444 user 'dogbane'
+		 */
 		String result = "";
-		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
+		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -79,9 +84,12 @@ public class  MenuListener implements ActionListener {
 	}
 
 	public String chooseSaveFile(){
+		/*
+		 * Locking method adapted from: http://stackoverflow.com/a/8926260/4142444 user 'dogbane'
+		 */
 		String result = "";
-		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
+		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showSaveDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {

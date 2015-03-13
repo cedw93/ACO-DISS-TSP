@@ -2,6 +2,7 @@ package che16.dcs.aber.ac.uk.model;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class AntColonyOptimisation extends Observable{
 	private int noOfAgents, noOfCities, agentsWorking, currentIter;
 	private boolean finished, loaded, running;
 	private Worker worker;
-	
+
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
 		width = 40;
@@ -169,8 +170,9 @@ public class AntColonyOptimisation extends Observable{
 		ArrayList<City> tempCities = new ArrayList<City>();
 		String[] coords = new String[2];
 		try {  
-			File config  = new File (new File(fileName).getAbsolutePath());
-			Scanner s = new Scanner(config);
+
+			FileInputStream stream = new FileInputStream(System.getProperty("user.home") + "/"+fileName);
+			Scanner s = new Scanner(stream);
 
 			alpha = Double.parseDouble(s.nextLine());
 			beta = Double.parseDouble(s.nextLine());
@@ -197,7 +199,7 @@ public class AntColonyOptimisation extends Observable{
 				}
 			}
 			iterations = Integer.parseInt(s.nextLine());
-		
+
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
@@ -205,15 +207,13 @@ public class AntColonyOptimisation extends Observable{
 				return new World(this, agents, tempCities.size(), tempCities);
 			}
 			s.close();
-		} 
-		//catch the exception
-		catch(FileNotFoundException e) {
-			e.printStackTrace(); 
-			return null;
 		}catch(InputMismatchException e){
 			e.printStackTrace();
 			return null;
 		}catch(NumberFormatException e){
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -277,9 +277,9 @@ public class AntColonyOptimisation extends Observable{
 
 	public void save(String fileName){
 
-		ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
+			ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();
+			BufferedWriter out = new BufferedWriter(new FileWriter(new File(System.getProperty("user.home"), fileName)));
 			out.write(Double.toString(this.alpha));
 			out.newLine();
 			out.write(Double.toString(this.beta));
@@ -303,7 +303,7 @@ public class AntColonyOptimisation extends Observable{
 			out.write("EOF");
 			out.close();
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		}
 
 	}
@@ -326,9 +326,9 @@ public class AntColonyOptimisation extends Observable{
 
 	public void setCurrentIteration(int i) {
 		this.currentIter = i;
-		
+
 	}
-	
+
 	public int getCurrentIteration(){
 		return currentIter;
 	}
