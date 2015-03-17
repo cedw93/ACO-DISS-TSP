@@ -2,10 +2,12 @@ package che16.dcs.aber.ac.uk.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileView;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
@@ -94,8 +96,15 @@ public class  MenuListener implements ActionListener {
 		 */
 		String result = "";
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
-		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
+		final File lock = new File(System.getProperty("user.home"));
+		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
+		chooser.setFileView(new FileView() {
+		    @Override
+		    public Boolean isTraversable(File file) {
+		         return lock.equals(file);
+		    }
+		});
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			result =  chooser.getSelectedFile().getName();
@@ -110,8 +119,15 @@ public class  MenuListener implements ActionListener {
 		 */
 		String result = "";
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TSP and TXT file", "tsp", "txt");
-		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
+		final File lock = new File(System.getProperty("user.home"));
+		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
+		chooser.setFileView(new FileView() {
+		    @Override
+		    public Boolean isTraversable(File file) {
+		         return lock.equals(file);
+		    }
+		});
 		int returnVal = chooser.showSaveDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			result =  chooser.getSelectedFile().getName();
