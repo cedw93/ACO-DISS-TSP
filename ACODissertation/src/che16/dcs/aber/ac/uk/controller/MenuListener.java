@@ -73,7 +73,8 @@ public class  MenuListener implements ActionListener {
 				JOptionPane.showMessageDialog(null, "You cannot load a problem whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
 						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
 			}
-		}
+
+		}	
 
 		else if(source.equalsIgnoreCase("Slowest - 1000ms")){
 			model.setSpeed(1000L);
@@ -88,6 +89,16 @@ public class  MenuListener implements ActionListener {
 			model.setSpeed(10L);
 		}
 
+		else if(source.equalsIgnoreCase("city detail")){
+			view.getCityDetailView().setVisible(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("equations")){
+			System.out.println("EQ");
+
+		}
+
 	}
 
 	public String chooseLoadFile(){
@@ -100,10 +111,10 @@ public class  MenuListener implements ActionListener {
 		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
 		chooser.setFileView(new FileView() {
-		    @Override
-		    public Boolean isTraversable(File file) {
-		         return lock.equals(file);
-		    }
+			@Override
+			public Boolean isTraversable(File file) {
+				return lock.equals(file);
+			}
 		});
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -123,10 +134,10 @@ public class  MenuListener implements ActionListener {
 		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
 		chooser.setFileView(new FileView() {
-		    @Override
-		    public Boolean isTraversable(File file) {
-		         return lock.equals(file);
-		    }
+			@Override
+			public Boolean isTraversable(File file) {
+				return lock.equals(file);
+			}
 		});
 		int returnVal = chooser.showSaveDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {

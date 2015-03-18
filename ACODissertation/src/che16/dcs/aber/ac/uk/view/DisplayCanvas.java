@@ -69,7 +69,11 @@ public class DisplayCanvas extends JPanel{
 
 					}
 				}
+			}else{
+				//reset to zero when we are done!
+				parent.getFrame().getCityDetailView().updateValues(model.getWorld().getCities());
 			}
+
 			/*
 			 * Because of the way an Ant stores is current location, and the way the next one is select there is no safe or quick way
 			 * to get the [x][y] index of the Ant.
@@ -93,6 +97,7 @@ public class DisplayCanvas extends JPanel{
 								g2.fillOval(c.getX() * 20, c.getY() * 20, 10, 10);
 
 							}
+							parent.getFrame().getCityDetailView().updateValues(model.getWorld().getCities());
 							if(ant.getMovementTracker()[0] != ant.getMovementTracker()[1]){
 								if(c.getIndex() == ant.getMovementTracker()[0]){
 									start = c;
@@ -117,6 +122,7 @@ public class DisplayCanvas extends JPanel{
 							}
 
 						}
+
 					}
 					//reset the values
 					start = null;

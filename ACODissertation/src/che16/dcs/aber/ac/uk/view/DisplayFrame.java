@@ -25,13 +25,19 @@ public class DisplayFrame extends JFrame{
 	private final static int WIDTH = 1300;
 	private final static int HEIGHT = 700;
 
+	private final Font MENUFONT = new Font("serif", Font.BOLD, 20);
+	private final Font MENUITEMFONT = new Font("serif", Font.BOLD, 16);
+
 	private DisplayCanvasContainer canvasContainer;	
 	private ControlContainer controlContainer;
+
+	private CityDetailView cityDetailView;
 
 	private GridBagConstraints gbc;
 
 	private JMenuBar menuBar;
-	private JMenuItem save, load, slowest, medium, fast, fastest;
+	private JMenu file, speed, detail;
+	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -46,6 +52,7 @@ public class DisplayFrame extends JFrame{
 
 		canvasContainer = new DisplayCanvasContainer();
 		controlContainer = new ControlContainer();
+		cityDetailView = new CityDetailView();
 
 		addComponents();
 		this.pack();
@@ -74,43 +81,60 @@ public class DisplayFrame extends JFrame{
 
 	public void addMenu(MenuListener menuListener){
 		menuBar = new JMenuBar();
-		JMenu file = new JMenu("File");
-		file.setFont(new Font("serif", Font.BOLD, 20));
-		JMenu speed = new JMenu("Speed");
-		speed.setFont(new Font("serif", Font.BOLD, 20));
 
+		file = new JMenu("File");
+		file.setFont(MENUFONT);
+
+		speed = new JMenu("Speed");
+		speed.setFont(MENUFONT);
+
+		detail = new JMenu("Details");
+		detail.setFont(MENUFONT);
+
+		//ITEMS
 		save = new JMenuItem("Save");
 		save.addActionListener(menuListener);
-		save.setFont(new Font("serif", Font.BOLD, 16));
+		save.setFont(MENUITEMFONT);
 		file.add(save);
 
 		load = new JMenuItem("Load");
 		load.addActionListener(menuListener);
-		load.setFont(new Font("serif", Font.BOLD, 16));
+		load.setFont(MENUITEMFONT);
 		file.add(load);  
 
 		slowest = new JMenuItem("Slowest - 1000ms");
 		slowest.addActionListener(menuListener);
-		slowest.setFont(new Font("serif", Font.BOLD, 16));
+		slowest.setFont(MENUITEMFONT);
 		speed.add(slowest);
 
 		medium = new JMenuItem("Medium - 500ms");
 		medium.addActionListener(menuListener);
-		medium.setFont(new Font("serif", Font.BOLD, 16));
+		medium.setFont(MENUITEMFONT);
 		speed.add(medium);
 
 		fast = new JMenuItem("Fast - 100ms");
 		fast.addActionListener(menuListener);
-		fast.setFont(new Font("serif", Font.BOLD, 16));
+		fast.setFont(MENUITEMFONT);
 		speed.add(fast);
 
 		fastest = new JMenuItem("Fastest - 10ms");
 		fastest.addActionListener(menuListener);
-		fastest.setFont(new Font("serif", Font.BOLD, 16));
+		fastest.setFont(MENUITEMFONT);
 		speed.add(fastest);
+
+		cityDetail = new JMenuItem("City Detail"); 
+		cityDetail.addActionListener(menuListener);
+		cityDetail.setFont(MENUITEMFONT);
+		detail.add(cityDetail);
+
+		equationDetail = new JMenuItem("Equations");
+		equationDetail.addActionListener(menuListener);
+		equationDetail.setFont(MENUITEMFONT);
+		detail.add(equationDetail);
 
 		menuBar.add(file);
 		menuBar.add(speed);
+		menuBar.add(detail);
 		this.setJMenuBar(menuBar);
 	}
 
@@ -155,4 +179,8 @@ public class DisplayFrame extends JFrame{
 		return controlContainer;
 	}
 
+	public CityDetailView getCityDetailView(){
+		return cityDetailView;
+	}
+	
 }

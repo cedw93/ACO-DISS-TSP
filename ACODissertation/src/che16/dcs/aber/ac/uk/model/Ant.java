@@ -137,6 +137,7 @@ public class Ant{
 			}
 			movementTracker[0] = lastNode;
 			movementTracker[1] = next;
+			world.adjustAntsAtCity(movementTracker[0], movementTracker[1]);
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);

@@ -59,11 +59,16 @@ public class World {
 
 	public void initAnts(){
 		Random r = new Random();
-
 		ants = new ArrayList<Ant>(numberOfAnts);
 		for(int i = 0; i < numberOfAnts; i++){
-			ants.add(new Ant(this, r.nextInt(cities.size())));
-
+			int index = r.nextInt(cities.size());
+			for(City c: cities){
+				if(index == c.getIndex()){
+					c.adjustAntsHere(1);
+					break;
+				}
+			}
+			ants.add(new Ant(this, index));
 		}
 
 	}
@@ -85,21 +90,7 @@ public class World {
 			}
 			cities.add(new City(x,y,i));
 		}
-		/*Some hard coded values that i know work
-		cities.add(new City(20,20,0));
-		cities.add(new City(10,12,1));
-		cities.add(new City(25,2,2));
-		cities.add(new City(3,22,3));
-		cities.add(new City(11,19,4));
-		cities.add(new City(7,16,5));
-		cities.add(new City(1,3,6));
-		cities.add(new City(19,18,7));
-		cities.add(new City(20,6,8));
-		cities.add(new City(9,29,9));
-		 */
 	}
-
-
 
 	public void addCity(City city){
 		cities.add(city);
@@ -300,6 +291,26 @@ public class World {
 
 	public boolean getRunning() {
 		return aco.getRunning();
+	}
+
+	public void adjustAntsAtCity(int startIndex, int finishedIndex){
+		boolean start = false;
+		boolean end = false;
+		for(City c: cities){
+			if(c.getIndex() == startIndex){
+				c.adjustAntsHere(-1);
+				start = true;
+			}
+			if(c.getIndex() == finishedIndex){
+				c.adjustAntsHere(1);
+				end = true;
+			}
+
+			if(start && end){
+				//saves times and resources, if above results are met then exit we are done here
+				return;
+			}
+		}
 	}
 
 
