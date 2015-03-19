@@ -7,25 +7,36 @@ public class MyTableModel extends AbstractTableModel{
 
 	private final String[] COLUMNNAMES = {"City Index", "No. of Agents"}; 
 
+<<<<<<< HEAD
 	//26 because the max number of cities is 25, the +1 for the 'total' row
 	public final int ROWS = 26;
+=======
+	public final int ROWS = 25;
+>>>>>>> origin/master
 	public final int COLS = 2;
 
 	public Object[][] data = new Object[ROWS][COLS];
 
 	public MyTableModel(){
 
+<<<<<<< HEAD
 		//-1 because the final row will be a total
 		for(int i = 0; i < (ROWS-1); i++){
+=======
+		for(int i = 0; i < ROWS; i++){
+>>>>>>> origin/master
 			for(int j = 0; j < COLS; j++){
 				//initially there will be no real data
 				data[i][j] = "N/A";
 
 			}
 		}
+<<<<<<< HEAD
 
 		data[ROWS-1][0] = "Total";
 		data[ROWS-1][1] = "N/A";
+=======
+>>>>>>> origin/master
 	}
 
 	public int getColumnCount() {
