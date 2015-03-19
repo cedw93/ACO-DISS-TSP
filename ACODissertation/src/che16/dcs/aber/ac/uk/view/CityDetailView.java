@@ -27,11 +27,7 @@ public class CityDetailView extends JFrame{
 		addTable();
 		pack();
 		setLocationRelativeTo(null);
-<<<<<<< HEAD
 		setSize(new Dimension(200,470));
-=======
-		setSize(new Dimension(200,455));
->>>>>>> origin/master
 		setResizable(false);
 		setVisible(false);
 
@@ -63,7 +59,6 @@ public class CityDetailView extends JFrame{
 	}
 
 	public void updateValues(List<City> cities){
-<<<<<<< HEAD
 		int total = 0;
 		for(City c: cities){
 			table.setValueAt(c.getIndex(), c.getIndex(), 0);
@@ -71,12 +66,6 @@ public class CityDetailView extends JFrame{
 			total += c.getAntsHere();
 		}
 		table.setValueAt(total, (table.getRowCount() - 1), 1);
-=======
-		for(City c: cities){
-			table.setValueAt(c.getIndex(), c.getIndex(), 0);
-			table.setValueAt(c.getAntsHere(), c.getIndex(), 1);
-		}
->>>>>>> origin/master
 	}
 
 }
