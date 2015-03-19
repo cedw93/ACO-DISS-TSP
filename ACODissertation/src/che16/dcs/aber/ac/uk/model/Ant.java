@@ -1,9 +1,8 @@
 package che16.dcs.aber.ac.uk.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
-
-import cern.colt.Arrays;
 
 public class Ant{
 
@@ -132,15 +131,18 @@ public class Ant{
 		int next = start;
 		//while ((next = getNextProbableNode(lastNode)) != -1) {
 		while ((next = getNextProbableNode(lastNode)) != -1){
+			//stop if the user said so!
+			if(!world.getRunning()){
+				return;
+			}
 			movementTracker[0] = lastNode;
 			movementTracker[1] = next;
+			world.adjustAntsAtCity(movementTracker[0], movementTracker[1]);
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
 			//add to the new pheromone amount being deposited on this location
 			world.getPheromone()[lastNode][next].addToNewPhero((pheromoneDeposit));
-			//world.updatePheromone(lastNode, next, pheromoneDeposit);
-			//world.updatePheromone(lastNode, next, pheromoneDeposit);
 			visited[next] = true;
 			lastNode = next;
 			current = next;
@@ -149,6 +151,9 @@ public class Ant{
 			world.updateModel();
 		}
 		finished = true;
+		//when an ant is done 'remove it from the cities count
+		//as we only need to know its last know location pass -1 as the destination index
+		world.adjustAntsAtCity(lastNode, -1);
 		addToRoute(lastNode);
 		/*
 		 * See if the ant is the current best, if world.getBestDistance() == -1 then this ant is the first to finish
@@ -186,18 +191,6 @@ public class Ant{
 
 	public LinkedList<Integer> getRoute() {
 		return route;
-	}
-
-	public void reset(int startLocation){
-		this.start = startLocation;
-		this.current = start;
-		this.finished = false;
-		route = new LinkedList<Integer>();
-		visited = new boolean[world.getCities().size()];
-		visited[startLocation] = true;
-		movementTracker = new int[2];
-		unvisited = visited.length - 1;
-
 	}
 
 	public int[] getMovementTracker(){

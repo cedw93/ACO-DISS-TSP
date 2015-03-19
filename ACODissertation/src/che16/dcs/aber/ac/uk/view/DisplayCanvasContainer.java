@@ -12,10 +12,13 @@ public class DisplayCanvasContainer extends JPanel{
 
 	private DisplayCanvas canvas;
 	private GridBagConstraints gbc;
-	
+	private String contentTop, contentBottom;
+	private DisplayFrame frame;
+
 
 	public DisplayCanvasContainer() {
-
+		this.contentTop = "Best Route:[N/A] Best Distance: N/A";
+		this.contentBottom = "Agents Working: N/A Agents finished: N/A Status: Stopped";
 		setBackground(new Color(0xC2C0CC));
 		setVisible(true);
 		this.setLayout(new GridBagLayout());
@@ -25,8 +28,6 @@ public class DisplayCanvasContainer extends JPanel{
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 
 		addCanvas();
@@ -51,5 +52,51 @@ public class DisplayCanvasContainer extends JPanel{
 	public DisplayCanvas getCanvas(){
 		return canvas;
 	}
+
+	@Override
+	protected void paintComponent(Graphics g){
+		super.paintComponent(g);
+		//there is better ways to do this!
+
+		//border around the top result box
+		g.setColor(Color.BLACK);
+		g.drawRect(49, 1, 801, 39);
+		g.setColor(Color.white);
+		g.fillRect(50, 2, 800, 38);
+
+		//border around the canvas
+		g.setColor(Color.BLACK);
+		g.drawRect(49, 49, 801, 601);
+
+		//border around the bottom result box
+		g.setColor(Color.BLACK);
+		g.drawRect(49, 659, 801, 39);
+		g.setColor(Color.white);
+		g.fillRect(50, 660, 800, 38);
+
+		g.setColor(Color.BLACK);
+
+		g.drawString(contentTop, 80, 25);
+		g.drawString(contentBottom, 250, 680);
+	}
+
+	public void setContentTop(String content){
+		this.contentTop = content;
+	}
+
+	public void setContentBottom(String content){
+		this.contentBottom = content;
+	}
+
+
+
+	public void setDisplayFrame(DisplayFrame frame) {
+		this.frame = frame;
+
+	}
 	
+	public DisplayFrame getFrame(){
+		return frame;
+	}
+
 }

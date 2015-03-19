@@ -1,24 +1,30 @@
 package che16.dcs.aber.ac.uk.model;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Observable;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
 	private int boundaryX, boundaryY, width, height, iterations;
 	private double alpha, beta, q, decayRate, initialPheromone;
-	private int noOfAgents, noOfCities;
-	private boolean finished, loaded;
+	private int noOfAgents, noOfCities, agentsWorking, currentIter;
+	private boolean finished, loaded, running;
 	private Worker worker;
+	private long speed;
 
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
-		alpha = 0.5d;
-		beta = 2.0d;
 		width = 40;
 		height = 30;
 		//these boundaries are used when deciding a cities random location.
@@ -27,14 +33,10 @@ public class AntColonyOptimisation extends Observable{
 		boundaryY = 29;
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
-		decayRate = 0.2d;
-		initialPheromone = 0.8d;
-		noOfAgents = 1;
-		noOfCities = 10;
-		iterations = 1;
-		//world = new World(this, noOfAgents, noOfCities);
 		loaded = false;
 		finished = false;
+		running = false;
+		speed = 500L;
 
 	}
 
@@ -45,44 +47,38 @@ public class AntColonyOptimisation extends Observable{
 		this.decayRate = decayRate;
 		this.initialPheromone = initalPhero;
 		this.noOfAgents = agents;
+		this.agentsWorking = noOfAgents;
 		this.noOfCities = cities;
 		this.iterations = iterations;
-		world = new World(this, noOfAgents, noOfCities);
 		finished = false;
-
-	}
-
-	public void reset(){
-
-		this.setChanged();
-		this.notifyObservers(this);
-		this.clearChanged();
 
 	}
 
 	public void stop(){
 
+		running = false;
 		this.setChanged();
 		this.notifyObservers(this);
 		this.clearChanged();
 
 	}
 
-
-
 	public void start() {
 		//TODO: make sure this is only possible if not already running
 		this.finished = false;
 		//if the world isn't loaded from a file
-		if(!loaded){
-			world = new World(this, noOfAgents, noOfCities);
-			setValues(0.2, 2.0, 0.2, 0.8, 100, 15, 1); 
-		}
-		else{
+		if(loaded){
 			//reset the value if it is loaded so the next instance works fine
 			loaded = false;
+			if(world == null){
+				JOptionPane.showMessageDialog(null, "There is no world, please load a file or make a new world",
+						"No world created",	JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}else{
+			world = new World(this, noOfAgents, noOfCities);
 		}
-
+		running = true;
 		worker = new Worker(this, iterations);
 		worker.execute();
 	}
@@ -131,7 +127,7 @@ public class AntColonyOptimisation extends Observable{
 		notifyObservers(this);
 		clearChanged();
 		try{
-			Thread.sleep(10);
+			Thread.sleep(speed);
 		}catch(Exception e){
 
 		}
@@ -158,39 +154,202 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
-	public void load(){
-		String line;
-		double alpha, beta, decayRate, initPhero;
-		int agents, cities, interations;
-		try {  
-			File config  = new File (new File("testfile.tsp").getAbsolutePath());
-			Scanner s = new Scanner(config);
-			
-			alpha = Double.parseDouble(s.nextLine());
-			beta = Double.parseDouble(s.nextLine());
-			decayRate = Double.parseDouble(s.nextLine());
-			initPhero = Double.parseDouble(s.nextLine());
-			
-			System.out.println("alpha: " + alpha + " beta: " + beta + " decay: " + decayRate + " initPhero: " + initPhero);
-
-		} 
-		//catch the exception
-		catch(FileNotFoundException e) {
-			e.printStackTrace(); 
-			return;
-		}catch(InputMismatchException e){
-			e.printStackTrace();
-			return;
-		}catch(NumberFormatException e){
-			e.printStackTrace();
+	public void load(String fileName){
+		if(!running){
+			this.world = loadWorldFromFile(fileName);
+			notifyCanvas();
+		}else{
+			System.out.println("Algorithm is running, please wait to stop the execution before loading");
 		}
-
-		//update the view;
-		this.loaded = true;
 	}
 
 	public void setLoaded(boolean b) {
 		this.loaded = b;
+
+	}
+
+	public World loadWorldFromFile(String fileName) {
+		this.loaded = true;
+		double alpha, beta, decayRate, initPhero;
+		int agents, cities, iterations, x , y;
+		ArrayList<City> tempCities = new ArrayList<City>();
+		String[] coords = new String[2];
+		try {  
+
+			FileInputStream stream = new FileInputStream(System.getProperty("user.home") + "/"+fileName);
+			Scanner s = new Scanner(stream);
+
+			alpha = Double.parseDouble(s.nextLine());
+			beta = Double.parseDouble(s.nextLine());
+			decayRate = Double.parseDouble(s.nextLine());
+			initPhero = Double.parseDouble(s.nextLine());
+			agents = Integer.parseInt(s.nextLine());
+			if(s.nextLine().contains("cities")){
+				cities = Integer.parseInt(s.nextLine());
+				for(int i = 0; i < cities; i++){
+					coords = s.nextLine().split(" ");
+					x = Integer.parseInt(coords[0]);
+					y = Integer.parseInt(coords[1]);
+					if(x > boundaryX || x == 0){
+						System.out.println("LOADING ERROR X IS TOO LARGE OR IS 0. X == " + x);
+						s.close();
+						return null;
+					}
+					if(y > boundaryY || y == 0){
+						System.out.println("LOADING ERROR Y IS TOO LARGE OR IS 0. Y == " + y);
+						s.close();
+						return null;
+					}
+					tempCities.add(new City(x, y, i));	
+				}
+			}
+			iterations = Integer.parseInt(s.nextLine());
+
+			//loading is only complete if it gets to here and the above checks pass
+			if(s.nextLine().contains("EOF")){
+				s.close();
+				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations);
+				return new World(this, agents, tempCities.size(), tempCities);
+			}
+			s.close();
+		}catch(InputMismatchException e){
+			e.printStackTrace();
+			return null;
+		}catch(NumberFormatException e){
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public int getIterations() {
+		return iterations;
+	}
+
+	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations) {
+		if(alpha > 5.0d || alpha < -5.0d){
+			JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(beta > 5.0d || beta < -5.0d){
+			JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and -5.0\nYou entered: " + beta,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(decayRate > 1.0d || decayRate < 0.0d){
+			JOptionPane.showMessageDialog(null, "Illegal decayRate value. DecayRate must be between 0 and 1\nYou entered: " + decayRate,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(initialPhero > 1.0d || initialPhero < 0.0d){
+			JOptionPane.showMessageDialog(null, "Illegal initialPheromone value. InitialPheromone must be between 0 and 1\nYou entered: " + initialPhero,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(agents > 50 || agents < 1){
+			JOptionPane.showMessageDialog(null, "Illegal number of agents. Number of agents must be between 1 and 50\nYou entered: " + agents,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(cities > 25 || cities < 3){
+			JOptionPane.showMessageDialog(null, "Illegal number of cities. Number of cities must be between 3 and 25\nYou entered: " + cities,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(iterations < 1){
+			JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean getLoaded(){
+		return loaded;
+	}
+
+	public boolean getRunning(){
+		return running;
+	}
+
+	public void setRunning(boolean running){
+		this.running = running;
+	}
+
+	public void save(String fileName){
+		/*
+		 * Dont really need to check the results of the parsing here, if the algorithm gets this far the values are fine
+		 */
+		try {
+			ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();
+			BufferedWriter out = new BufferedWriter(new FileWriter(new File(System.getProperty("user.home"), fileName)));
+			out.write(Double.toString(this.alpha));
+			out.newLine();
+			out.write(Double.toString(this.beta));
+			out.newLine();
+			out.write(Double.toString(this.decayRate));
+			out.newLine();
+			out.write(Double.toString(this.initialPheromone));
+			out.newLine();
+			out.write(Integer.toString(this.noOfAgents));
+			out.newLine();
+			out.write("cities");
+			out.newLine();
+			out.write(Integer.toString(tempCities.size()));
+			out.newLine();
+			for(City city: tempCities){
+				out.write(Integer.toString(city.getX()) + " " + Integer.toString(city.getY()));
+				out.newLine();
+			}
+			out.write(Integer.toString(this.iterations));
+			out.newLine();
+			out.write("EOF");
+			out.close();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "A error occured during file writing, please try again",
+					"File writing error",	JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+
+	public int getAgentsWorking(){
+		return agentsWorking;
+	}
+
+	public int getAgentsFinished(){
+		return (this.noOfAgents - agentsWorking);
+	}
+
+	public void reduceWorking() {
+		if(agentsWorking == 0){
+			agentsWorking = noOfAgents;
+		}
+		this.agentsWorking--;
+
+	}
+
+	public void setCurrentIteration(int i) {
+		this.currentIter = i;
+
+	}
+
+	public int getCurrentIteration(){
+		return currentIter;
+	}
+
+	public void setSpeed(long speed) {
+		this.speed = speed;
 
 	}
 

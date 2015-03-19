@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import cern.jet.random.Uniform;
 import che16.dcs.aber.ac.uk.utils.MathsHelper;
 
 public class World {
@@ -16,7 +15,6 @@ public class World {
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
 	private List<Ant> ants;
-	private Uniform uniform;
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
@@ -31,23 +29,46 @@ public class World {
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
-		// min, max, seed (-1 because the upper bound is inclusive)
-		uniform = new Uniform(0, cities.size() - 1, (int) System.currentTimeMillis());
 		initAnts();
 		//this must come after everything has been initialised
 
 
 	}
 
-	public int getRandomIndex() {
-		return uniform.nextInt();
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities) {
+		this.aco = aco;
+		this.numberOfAnts = numberOfAnts;
+		this.numberOfCities = noOfCities;
+		this.bestDistance = -1;
+		this.bestRoute = null;
+		//initCities MUST come first as matrix sizes are based off the number of cities
+		initCitiesFromList(tempCities);
+		initDistanceMatrix();
+		initInvertedMatrix();
+		initPheromones();
+		//this must come after everything has been initialised
+		initAnts();
+
+	}
+
+	private void initCitiesFromList(ArrayList<City> tempCities) {
+		cities = new ArrayList<City>();
+		cities.addAll(tempCities);
 
 	}
 
 	public void initAnts(){
+		Random r = new Random();
 		ants = new ArrayList<Ant>(numberOfAnts);
 		for(int i = 0; i < numberOfAnts; i++){
-			ants.add(new Ant(this, getRandomIndex()));
+			int index = r.nextInt(cities.size());
+			for(City c: cities){
+				if(index == c.getIndex()){
+					c.adjustAntsHere(1);
+					break;
+				}
+			}
+			ants.add(new Ant(this, index));
 		}
 
 	}
@@ -60,23 +81,16 @@ public class World {
 			// the (+1) is to stop cities having the index '0' which would cause them to hald render out of view
 			int x = r.nextInt(aco.getBoundaryX()) + 1;
 			int y = r.nextInt(aco.getBoundaryY()) + 1;
+			//make sure 2 cities can't spawn on top of each other
+			for(City city: cities){
+				if(x == city.getX() && y == city.getY()){
+					x = r.nextInt(aco.getBoundaryX()) + 1;
+					y = r.nextInt(aco.getBoundaryY()) + 1;
+				}
+			}
 			cities.add(new City(x,y,i));
 		}
-		/*Some hard coded values that i know work
-		cities.add(new City(20,20,0));
-		cities.add(new City(10,12,1));
-		cities.add(new City(25,2,2));
-		cities.add(new City(3,22,3));
-		cities.add(new City(11,19,4));
-		cities.add(new City(7,16,5));
-		cities.add(new City(1,3,6));
-		cities.add(new City(19,18,7));
-		cities.add(new City(20,6,8));
-		cities.add(new City(9,29,9));
-		 */
 	}
-
-
 
 	public void addCity(City city){
 		cities.add(city);
@@ -101,9 +115,6 @@ public class World {
 		for(int i = 0; i < distanceMatrix.length; i++){
 			for(int j = 0; j < distanceMatrix[0].length; j++){
 				distanceMatrix[i][j] = MathsHelper.calculateEuclidianDistance(cities.get(i).getX(), cities.get(i).getY(), cities.get(j).getX(), cities.get(j).getY());
-
-				//System.out.println("Euclidean == " + distanceMatrix[i][j]);
-
 			}
 		}
 	}
@@ -116,7 +127,6 @@ public class World {
 		for(int i = 0; i < distanceMatrix.length; i++){
 			for(int j = 0; j < distanceMatrix[0].length; j++){
 				invertedMatrix[i][j] = invertValue(distanceMatrix[i][j]);
-				//System.out.println("InvertedMatrix[" + i + "][" + j + "] == " + invertedMatrix[i][j]);
 			}
 		}
 
@@ -203,12 +213,6 @@ public class World {
 		aco.notifyCanvas();
 
 	}
-	public void resetAnts(){
-		for(Ant ant: ants){
-			ant.reset(getRandomIndex());
-		}
-		aco.notifyCanvas();
-	}
 
 	public void printPheroMatrix() {
 		System.out.println("Phero Matrix is: ");
@@ -245,5 +249,69 @@ public class World {
 	public void setBestRoute(LinkedList<Integer> best) {
 		this.bestRoute = best;
 	}
+
+	public void addToCities(int diff) {
+		Random r = new Random();
+		for(int i = 0; i < diff; i++){
+			int x = r.nextInt(aco.getBoundaryX()) + 1;
+			int y = r.nextInt(aco.getBoundaryY()) + 1;
+			//to ensure indexes is correct, it will current number of cities + new index (e.g. 5 + i)
+			cities.add(new City(x,y,(numberOfCities) + i));
+		}
+		//because of the change we need to re-init the matrices
+		initDistanceMatrix();
+		initInvertedMatrix();
+		initPheromones();
+		initAnts();
+
+		aco.notifyCanvas();
+
+	}
+
+	public void removeCities(int diff) {
+		for(int i = 0; i < diff; i++){
+			//to ensure indexes is correct, it will current number of cities + new index (e.g. 5 + i)
+			cities.remove(cities.size()-1);
+		}
+		//because of the change we need to re-init the matrices
+		initDistanceMatrix();
+		initInvertedMatrix();
+		initPheromones();
+		initAnts();
+
+		aco.notifyCanvas();
+
+	}
+
+	public void updateAnts(int ants) {
+		this.numberOfAnts = ants;
+		initAnts();
+
+	}
+
+	public boolean getRunning() {
+		return aco.getRunning();
+	}
+
+	public void adjustAntsAtCity(int startIndex, int finishedIndex){
+		boolean start = false;
+		boolean end = false;
+		for(City c: cities){
+			if(c.getIndex() == startIndex){
+				c.adjustAntsHere(-1);
+				start = true;
+			}
+			if(c.getIndex() == finishedIndex){
+				c.adjustAntsHere(1);
+				end = true;
+			}
+
+			if(start && end){
+				//saves times and resources, if above results are met then exit we are done here
+				return;
+			}
+		}
+	}
+
 
 }
