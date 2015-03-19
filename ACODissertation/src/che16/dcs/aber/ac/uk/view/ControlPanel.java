@@ -112,31 +112,37 @@ public class ControlPanel extends JPanel{
 		alphaField = new JTextField();
 		alphaField.setPreferredSize(TEXTFIELDDIMENSION);
 		alphaField.setHorizontalAlignment(JTextField.CENTER);
+		alphaField.setText("2.5");
 
 		betaField = new JTextField();
 		betaField.setPreferredSize(TEXTFIELDDIMENSION);
 		betaField.setHorizontalAlignment(JTextField.CENTER);
+		betaField.setText("2.5");
 
 		agentField = new JTextField();
 		agentField.setPreferredSize(TEXTFIELDDIMENSION);
 		agentField.setHorizontalAlignment(JTextField.CENTER);
+		agentField.setText("15");
 
 		decayField = new JTextField();
 		decayField.setPreferredSize(TEXTFIELDDIMENSION);
 		decayField.setHorizontalAlignment(JTextField.CENTER);
+		decayField.setText("0.2");
 
 		goalNodesField = new JTextField();
 		goalNodesField.setPreferredSize(TEXTFIELDDIMENSION);
 		goalNodesField.setHorizontalAlignment(JTextField.CENTER);
+		goalNodesField.setText("10");
 
 		initPheroField = new JTextField();
 		initPheroField.setPreferredSize(TEXTFIELDDIMENSION);
 		initPheroField.setHorizontalAlignment(JTextField.CENTER);
+		initPheroField.setText("0.5");
 
 		iterationField = new JTextField();
 		iterationField.setPreferredSize(TEXTFIELDDIMENSION);
 		iterationField.setHorizontalAlignment(JTextField.CENTER);
-
+		iterationField.setText("1");
 		//positioning used is adapted from: http://jnb.ociweb.com/jnb/jnbMar2005.html
 
 		this.add(iterationLabel, gbc);
@@ -223,7 +229,7 @@ public class ControlPanel extends JPanel{
 		return iterationField;
 
 	}
-	
+
 	public JTextField getBetaField() {
 		return betaField;
 	}

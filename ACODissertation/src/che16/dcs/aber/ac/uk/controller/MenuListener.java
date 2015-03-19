@@ -95,7 +95,7 @@ public class  MenuListener implements ActionListener {
 		}
 
 		else if(source.equalsIgnoreCase("equations")){
-			System.out.println("EQ");
+			view.getEquationFrame().setVisible(true);
 
 		}
 

@@ -5,14 +5,13 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 import che16.dcs.aber.ac.uk.controller.MenuListener;
@@ -28,6 +27,8 @@ public class DisplayFrame extends JFrame{
 	private final Font MENUFONT = new Font("serif", Font.BOLD, 20);
 	private final Font MENUITEMFONT = new Font("serif", Font.BOLD, 16);
 
+	private JFrame equationFrame;
+	
 	private DisplayCanvasContainer canvasContainer;	
 	private ControlContainer controlContainer;
 
@@ -56,6 +57,8 @@ public class DisplayFrame extends JFrame{
 
 		addComponents();
 		this.pack();
+		//used to display info about the equations used to the user, initially visible
+		equationFrame = new EquationFrame();
 
 	} 
 
@@ -74,9 +77,7 @@ public class DisplayFrame extends JFrame{
 	}
 
 	public void render(){
-
 		canvasContainer.getCanvas().render();
-
 	}
 
 	public void addMenu(MenuListener menuListener){
@@ -182,5 +183,9 @@ public class DisplayFrame extends JFrame{
 	public CityDetailView getCityDetailView(){
 		return cityDetailView;
 	}
-	
+
+	public JFrame getEquationFrame(){
+		return equationFrame;
+	}
+
 }
