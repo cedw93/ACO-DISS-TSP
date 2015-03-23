@@ -9,6 +9,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -34,6 +35,8 @@ public class DisplayCanvas extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2;
+		List<Integer> temp;
+
 		g2 = (Graphics2D) g;
 		if(model.getWorld() != null){
 			ArrayList<City> cities = (ArrayList<City>)model.getWorld().getCities();
@@ -41,7 +44,6 @@ public class DisplayCanvas extends JPanel{
 			LinkedList<Integer> bestRoute;
 
 			for(City c: cities){
-				//g2.fillOval((p.x - 10)  * 20, p.y * 20, 20, 20);
 				g2.fillOval((c.getX() * 20) - 10, (c.getY() * 20) - 10, 20, 20);
 				g2.drawString(Integer.toString(c.getIndex()), c.getX() * 21, c.getY()*21);
 
@@ -66,12 +68,37 @@ public class DisplayCanvas extends JPanel{
 						}
 						g2.setColor(new Color(0,0,0,alpha));
 						g2.drawLine(cities.get(i).getX() * 20, cities.get(i).getY() * 20, cities.get(j).getX() * 20, cities.get(j).getY() * 20);
-
 					}
-				}
+				}			
 			}else{
 				//reset to zero when we are done!
 				parent.getFrame().getCityDetailView().updateValues(model.getWorld().getCities());
+			}
+
+			//these markers will be present in the end just to aid understanding
+			City destination = null;
+			for(City c: model.getWorld().getCities()){
+				temp = c.getUphilRoutes();
+				for(int i = 0; i < temp.size(); i++){
+					for(City c2: model.getWorld().getCities()){
+						if(c2.getIndex() == temp.get(i)){
+							destination = c2;
+							//we are done
+							break;
+						}
+						double pheroIJ = model.getWorld().getPheromone()[c.getIndex()][temp.get(i)].getPheromoneValue();
+						//toy with this 2000 value
+						int alpha = (int)(pheroIJ * 2000);
+						if(alpha > 255){
+							alpha = 255;
+						}
+						//greenish 83,32,212
+						if(destination != null){
+							g2.setColor(new Color(0,220,0,alpha));
+							g2.drawLine(c.getX() * 20, c.getY() * 20, destination.getX() * 20, destination.getY() * 20);
+						}
+					}
+				}
 			}
 
 			/*
@@ -86,7 +113,7 @@ public class DisplayCanvas extends JPanel{
 			 * This could probably be improved as the complexity is quite large as it stands.
 			 */
 			City start = null;
-			City destination = null;
+			destination = null;
 			//TODO: MAYBE MAKE CITY DIAMETER CHANGE DEPENDING ON THE NUMBER OF ANTS AT THE CITY
 			try{
 				for(Ant ant: agents){

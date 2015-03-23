@@ -1,6 +1,7 @@
 package che16.dcs.aber.ac.uk.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import che16.dcs.aber.ac.uk.utils.MathsHelper;
 public class World {
 
 	private AntColonyOptimisation aco;
-	private int numberOfAnts, numberOfCities;
+	private int numberOfAnts, numberOfCities, numberOfUphill;
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
@@ -30,6 +31,7 @@ public class World {
 		initInvertedMatrix();
 		initPheromones();
 		initAnts();
+		initUphill();
 		//this must come after everything has been initialised
 
 
@@ -48,6 +50,7 @@ public class World {
 		initPheromones();
 		//this must come after everything has been initialised
 		initAnts();
+		initUphill();
 
 	}
 
@@ -88,8 +91,9 @@ public class World {
 					y = r.nextInt(aco.getBoundaryY()) + 1;
 				}
 			}
-			cities.add(new City(x,y,i));
+			cities.add(new City(x,y,i));	
 		}
+
 	}
 
 	public void addCity(City city){
@@ -313,5 +317,21 @@ public class World {
 		}
 	}
 
+	private void initUphill(){
+		numberOfUphill = 5;
+		Random r = new Random();
+		while(numberOfUphill > -1){
+			int index = r.nextInt(cities.size());
+			City temp = cities.get(index);
+
+			index = r.nextInt(cities.size());
+			if(!(temp.getUphilRoutes().contains(index)) && (index != temp.getIndex())){
+				temp.addToUphil(index);
+				numberOfUphill--;
+				distanceMatrix[temp.getIndex()][index] = (distanceMatrix[temp.getIndex()][index] * 2);
+				invertedMatrix[temp.getIndex()][index] = 1/distanceMatrix[temp.getIndex()][index];
+			}
+		}
+	}
 
 }
