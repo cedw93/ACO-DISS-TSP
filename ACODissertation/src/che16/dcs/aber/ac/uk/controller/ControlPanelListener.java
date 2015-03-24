@@ -33,10 +33,10 @@ public class ControlPanelListener implements ActionListener {
 				int agents = Integer.parseInt(view.getControlContainer().getControlPanel().getAgentField().getText());
 				int cities = Integer.parseInt(view.getControlContainer().getControlPanel().getGoalNodesField().getText());
 				int iterations = Integer.parseInt(view.getControlContainer().getControlPanel().getIterationField().getText());
-
+				int uphillPaths = Integer.parseInt(view.getControlContainer().getControlPanel().getUphillField().getText());
 				//update the model
-				if(model.validate(alpha, beta, decayRate, initialPhero, agents, cities, iterations)){
-					model.setValues(alpha, beta, decayRate, initialPhero, agents, cities, iterations);
+				if(model.validate(alpha, beta, decayRate, initialPhero, agents, cities, iterations, uphillPaths)){
+					model.setValues(alpha, beta, decayRate, initialPhero, agents, cities, iterations, uphillPaths);
 					//check to see the loaded file has had its number of cities or ants modified
 					if(model.getLoaded()){
 
@@ -53,7 +53,7 @@ public class ControlPanelListener implements ActionListener {
 					model.start();
 				}
 			}catch(NumberFormatException ex){
-				JOptionPane.showMessageDialog(null, "One or more value(s) you have specified are of incorrect format.\nPlease adhere to the following formats:\niterations: whole number\nalpha: decimal\nbeta: decimal"
+				JOptionPane.showMessageDialog(null, "One or more value(s) you have specified are of incorrect format.\nPlease adhere to the following formats:\nuphill paths: whole number\niterations: whole number\nalpha: decimal\nbeta: decimal"
 						+ "\ndecay rate: decimal\nnumber of agents: whole number\nnumber of cities: whole number\ninitial pheromone: decimal",
 						"Unparsable Values",	JOptionPane.ERROR_MESSAGE);
 			}
@@ -66,6 +66,7 @@ public class ControlPanelListener implements ActionListener {
 			view.getControlContainer().getControlPanel().getGoalNodesField().setText("10");
 			view.getControlContainer().getControlPanel().getInitPheroField().setText("0.5");
 			view.getControlContainer().getControlPanel().getDecayField().setText("0.2");
+			view.getControlContainer().getControlPanel().getUphillField().setText("5");
 		}
 
 		else if(source.equalsIgnoreCase("stop")){

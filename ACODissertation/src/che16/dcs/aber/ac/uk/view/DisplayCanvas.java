@@ -100,6 +100,8 @@ public class DisplayCanvas extends JPanel{
 					}
 				}
 			}
+			
+			parent.getFrame().getUphillFrame().setUphillData();
 
 			/*
 			 * Because of the way an Ant stores is current location, and the way the next one is select there is no safe or quick way

@@ -18,7 +18,7 @@ public class AntColonyOptimisation extends Observable{
 	private World world;
 	private int boundaryX, boundaryY, width, height, iterations;
 	private double alpha, beta, q, decayRate, initialPheromone;
-	private int noOfAgents, noOfCities, agentsWorking, currentIter;
+	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths;
 	private boolean finished, loaded, running;
 	private Worker worker;
 	private long speed;
@@ -36,12 +36,13 @@ public class AntColonyOptimisation extends Observable{
 		loaded = false;
 		finished = false;
 		running = false;
+		uphillPaths = 0;
 		speed = 500L;
 
 	}
 
 	//algorithm with user defined values
-	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations) {
+	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations, int uphillPaths) {
 		this.alpha = alpha;
 		this.beta = beta;
 		this.decayRate = decayRate;
@@ -50,6 +51,7 @@ public class AntColonyOptimisation extends Observable{
 		this.agentsWorking = noOfAgents;
 		this.noOfCities = cities;
 		this.iterations = iterations;
+		this.uphillPaths = uphillPaths;
 		finished = false;
 
 	}
@@ -76,7 +78,7 @@ public class AntColonyOptimisation extends Observable{
 				return;
 			}
 		}else{
-			world = new World(this, noOfAgents, noOfCities);
+			world = new World(this, noOfAgents, noOfCities, uphillPaths);
 		}
 		running = true;
 		worker = new Worker(this, iterations);
@@ -171,7 +173,7 @@ public class AntColonyOptimisation extends Observable{
 	public World loadWorldFromFile(String fileName) {
 		this.loaded = true;
 		double alpha, beta, decayRate, initPhero;
-		int agents, cities, iterations, x , y;
+		int agents, cities, iterations, x , y, uphill;
 		ArrayList<City> tempCities = new ArrayList<City>();
 		String[] coords = new String[2];
 		try {  
@@ -203,13 +205,14 @@ public class AntColonyOptimisation extends Observable{
 					tempCities.add(new City(x, y, i));	
 				}
 			}
+			uphill = Integer.parseInt(s.nextLine());
 			iterations = Integer.parseInt(s.nextLine());
 
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
-				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations);
-				return new World(this, agents, tempCities.size(), tempCities);
+				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
+				return new World(this, agents, tempCities.size(), tempCities, uphill);
 			}
 			s.close();
 		}catch(InputMismatchException e){
@@ -229,7 +232,7 @@ public class AntColonyOptimisation extends Observable{
 		return iterations;
 	}
 
-	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations) {
+	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations, int uphill) {
 		if(alpha > 5.0d || alpha < -5.0d){
 			JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
 					"Illegal value",	JOptionPane.ERROR_MESSAGE);
@@ -268,6 +271,12 @@ public class AntColonyOptimisation extends Observable{
 
 		if(iterations < 1){
 			JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(uphill > 15 || uphill < 0){
+			JOptionPane.showMessageDialog(null, "Illegal Uphill Paths value. Uphill Paths must be between 0 and 15\nYou entered: " + uphill,
 					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -312,6 +321,8 @@ public class AntColonyOptimisation extends Observable{
 				out.write(Integer.toString(city.getX()) + " " + Integer.toString(city.getY()));
 				out.newLine();
 			}
+			out.write(Integer.toString(this.uphillPaths));
+			out.newLine();
 			out.write(Integer.toString(this.iterations));
 			out.newLine();
 			out.write("EOF");
@@ -351,6 +362,10 @@ public class AntColonyOptimisation extends Observable{
 	public void setSpeed(long speed) {
 		this.speed = speed;
 
+	}
+
+	public int getUphillPaths() {
+		return uphillPaths;
 	}
 
 }

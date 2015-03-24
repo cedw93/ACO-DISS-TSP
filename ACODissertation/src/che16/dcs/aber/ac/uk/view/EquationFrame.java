@@ -33,6 +33,7 @@ public class EquationFrame extends JFrame{
 		setLayout(cardLayout);
 		initPanels();
 		cardLayout.show(this.getContentPane(), "probability");
+		setResizable(false);
 		setVisible(true);
 
 	}

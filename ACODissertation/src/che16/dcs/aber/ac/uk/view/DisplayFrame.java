@@ -1,7 +1,9 @@
 package che16.dcs.aber.ac.uk.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,7 +30,7 @@ public class DisplayFrame extends JFrame{
 	private final Font MENUITEMFONT = new Font("serif", Font.BOLD, 16);
 
 	private JFrame equationFrame;
-	
+
 	private DisplayCanvasContainer canvasContainer;	
 	private ControlContainer controlContainer;
 
@@ -36,9 +38,11 @@ public class DisplayFrame extends JFrame{
 
 	private GridBagConstraints gbc;
 
+	private UphillViewer uphillViewer;
+
 	private JMenuBar menuBar;
 	private JMenu file, speed, detail;
-	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail;
+	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -59,8 +63,13 @@ public class DisplayFrame extends JFrame{
 		this.pack();
 		//used to display info about the equations used to the user, initially visible
 		equationFrame = new EquationFrame();
+		initUphillFrame(model);
 
 	} 
+
+	public void initUphillFrame(AntColonyOptimisation model){
+		uphillViewer = new UphillViewer(model);
+	}
 
 	public void addComponents(){
 
@@ -73,6 +82,7 @@ public class DisplayFrame extends JFrame{
 
 		addComp(this, canvasContainer, 0, 0, 1, 1, GridBagConstraints.BOTH, 0.7, 1);
 		addComp(this, controlContainer, 1, 0, 1, 1, GridBagConstraints.BOTH, 0.3, 1);
+
 
 	}
 
@@ -133,6 +143,11 @@ public class DisplayFrame extends JFrame{
 		equationDetail.setFont(MENUITEMFONT);
 		detail.add(equationDetail);
 
+		uphill = new JMenuItem("Uphill Routes");
+		uphill.addActionListener(menuListener);
+		uphill.setFont(MENUITEMFONT);
+		detail.add(uphill);
+
 		menuBar.add(file);
 		menuBar.add(speed);
 		menuBar.add(detail);
@@ -187,5 +202,10 @@ public class DisplayFrame extends JFrame{
 	public JFrame getEquationFrame(){
 		return equationFrame;
 	}
+
+	public UphillViewer getUphillFrame(){
+		return uphillViewer;
+	}
+
 
 }

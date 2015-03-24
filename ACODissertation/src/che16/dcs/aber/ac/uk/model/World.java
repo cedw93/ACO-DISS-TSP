@@ -19,12 +19,13 @@ public class World {
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities){
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, int numberOfUphill){
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
+		this.numberOfUphill = numberOfUphill;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCities();
 		initDistanceMatrix();
@@ -37,12 +38,13 @@ public class World {
 
 	}
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities) {
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities, int numberOfUphill) {
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
+		this.numberOfUphill = numberOfUphill;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCitiesFromList(tempCities);
 		initDistanceMatrix();
@@ -318,9 +320,8 @@ public class World {
 	}
 
 	private void initUphill(){
-		numberOfUphill = 5;
 		Random r = new Random();
-		while(numberOfUphill > -1){
+		while(numberOfUphill > 0){
 			int index = r.nextInt(cities.size());
 			City temp = cities.get(index);
 

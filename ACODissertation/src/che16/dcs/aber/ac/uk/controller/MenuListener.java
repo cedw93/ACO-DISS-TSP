@@ -58,13 +58,14 @@ public class  MenuListener implements ActionListener {
 					model.load(fileName);
 
 					//set the text field values to the same as what was loaded in
-					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
-					view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
-					view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
-					view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
-					view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
-					view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
-					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));
+					view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));
+					view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));
+					view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));
+					view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));
+					view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));
+					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));
+					view.getControlContainer().getControlPanel().getUphillField().setText(Integer.toString(model.getUphillPaths()));
 				}else{
 					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
 							"No file selected",	JOptionPane.ERROR_MESSAGE);
@@ -96,6 +97,11 @@ public class  MenuListener implements ActionListener {
 
 		else if(source.equalsIgnoreCase("equations")){
 			view.getEquationFrame().setVisible(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("uphill routes")){
+			view.getUphillFrame().setVisible(true);
 
 		}
 
