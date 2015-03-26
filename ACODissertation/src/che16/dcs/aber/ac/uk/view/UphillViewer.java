@@ -51,11 +51,15 @@ public class UphillViewer extends JFrame{
 			int index = 100;
 
 			if(model.getWorld() != null){
-				for(City c: model.getWorld().getCities()){
-					for(int i = 0; i < c.getUphilRoutes().size(); i++){
-						g.drawString("Index: " + c.getIndex() + " to index: " + c.getUphilRoutes().get(i)+ " is 'uphill' and costs more to travel" , 40, index);
-						index += 20;
+				if(model.getUphillAtive()){
+					for(City c: model.getWorld().getCities()){
+						for(int i = 0; i < c.getUphilRoutes().size(); i++){
+							g.drawString("Index: " + c.getIndex() + " to index: " + c.getUphilRoutes().get(i)+ " is 'uphill' and costs more to travel" , 40, index);
+							index += 20;
+						}
 					}
+				}else{
+					g.drawString("Uphill routes are disabled, please enable them.", 50, 100);
 				}
 			}else{
 				g.drawString("No cities currently present, please create some.", 50, 100);

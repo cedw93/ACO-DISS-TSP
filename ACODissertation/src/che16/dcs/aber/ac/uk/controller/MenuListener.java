@@ -105,6 +105,27 @@ public class  MenuListener implements ActionListener {
 
 		}
 
+		else if(source.equalsIgnoreCase("Disable Uphill Routes")){
+			model.uphillActive(false);
+			view.getControlContainer().getControlPanel().getUphillField().setEnabled(false);
+
+		}
+
+		else if(source.equalsIgnoreCase("enable Uphill Routes")){
+			model.uphillActive(true);
+			view.getControlContainer().getControlPanel().getUphillField().setEnabled(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("basic system")){
+			model.setMethod(0);
+		}
+
+		else if(source.equalsIgnoreCase("elitist ant system")){
+			model.setMethod(1);
+		}
+
+
 	}
 
 	public String chooseLoadFile(){

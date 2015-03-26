@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private int boundaryX, boundaryY, width, height, iterations;
+	private int boundaryX, boundaryY, width, height, iterations, method;
 	private double alpha, beta, q, decayRate, initialPheromone;
 	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths;
-	private boolean finished, loaded, running;
+	private boolean finished, loaded, running, uphillActive;
 	private Worker worker;
 	private long speed;
 
@@ -78,7 +78,7 @@ public class AntColonyOptimisation extends Observable{
 				return;
 			}
 		}else{
-			world = new World(this, noOfAgents, noOfCities, uphillPaths);
+			world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
 		}
 		running = true;
 		worker = new Worker(this, iterations);
@@ -173,14 +173,14 @@ public class AntColonyOptimisation extends Observable{
 	public World loadWorldFromFile(String fileName) {
 		this.loaded = true;
 		double alpha, beta, decayRate, initPhero;
-		int agents, cities, iterations, x , y, uphill;
+		int agents, cities, iterations, x , y, uphill, methodLine;
 		ArrayList<City> tempCities = new ArrayList<City>();
 		String[] coords = new String[2];
 		try {  
 
 			FileInputStream stream = new FileInputStream(System.getProperty("user.home") + "/"+fileName);
 			Scanner s = new Scanner(stream);
-
+			methodLine = Integer.parseInt(s.nextLine());
 			alpha = Double.parseDouble(s.nextLine());
 			beta = Double.parseDouble(s.nextLine());
 			decayRate = Double.parseDouble(s.nextLine());
@@ -211,8 +211,9 @@ public class AntColonyOptimisation extends Observable{
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
+				this.method = methodLine;
 				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
-				return new World(this, agents, tempCities.size(), tempCities, uphill);
+				return new World(this, agents, tempCities.size(), tempCities, uphill, method);
 			}
 			s.close();
 		}catch(InputMismatchException e){
@@ -366,6 +367,23 @@ public class AntColonyOptimisation extends Observable{
 
 	public int getUphillPaths() {
 		return uphillPaths;
+	}
+
+	public void setMethod(int i) {
+		this.method = i;
+
+	}
+
+	public int getMethod(){
+		return method;
+	}
+
+	public void uphillActive(boolean status) {
+		this.uphillActive = status;
+	}
+
+	public boolean getUphillAtive(){
+		return uphillActive;
 	}
 
 }

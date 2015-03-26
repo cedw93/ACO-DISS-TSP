@@ -164,8 +164,10 @@ public class Ant{
 			world.setBestDistance(totalDistanceWalked);
 			world.setBestRoute(route);
 		}
+		if(world.getMethod() == 1){
+			world.depositBest();
+		}
 		world.decayPhero();
-
 
 	}
 

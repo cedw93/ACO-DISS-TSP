@@ -11,7 +11,7 @@ import che16.dcs.aber.ac.uk.utils.MathsHelper;
 public class World {
 
 	private AntColonyOptimisation aco;
-	private int numberOfAnts, numberOfCities, numberOfUphill;
+	private int numberOfAnts, numberOfCities, numberOfUphill, method;
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
@@ -19,12 +19,13 @@ public class World {
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, int numberOfUphill){
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, int numberOfUphill, int method){
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
+		this.method = method;
 		this.numberOfUphill = numberOfUphill;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCities();
@@ -38,13 +39,14 @@ public class World {
 
 	}
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities, int numberOfUphill) {
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities, int numberOfUphill, int method) {
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
 		this.numberOfUphill = numberOfUphill;
+		this.method = method;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCitiesFromList(tempCities);
 		initDistanceMatrix();
@@ -320,6 +322,9 @@ public class World {
 	}
 
 	private void initUphill(){
+		if(!(aco.getUphillAtive())){
+			return;
+		}
 		Random r = new Random();
 		while(numberOfUphill > 0){
 			int index = r.nextInt(cities.size());
@@ -333,6 +338,21 @@ public class World {
 				invertedMatrix[temp.getIndex()][index] = 1/distanceMatrix[temp.getIndex()][index];
 			}
 		}
+	}
+
+	public int getMethod(){
+		return method;
+	}
+
+	public void depositBest() {
+		//research suggests 1/4 * number of cities, or number of cities is the best e value
+		double e = (1/4) * numberOfCities;
+		for(int i = 0; i < bestRoute.size(); i++){
+			if(i + 1 < bestRoute.size()){
+				pheromone[i][i+1].addToNewPhero(pheromone[i][i+1].getNewPhero() + e);
+			}
+		}
+
 	}
 
 }

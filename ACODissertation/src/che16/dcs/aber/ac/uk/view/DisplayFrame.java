@@ -41,8 +41,8 @@ public class DisplayFrame extends JFrame{
 	private UphillViewer uphillViewer;
 
 	private JMenuBar menuBar;
-	private JMenu file, speed, detail;
-	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill;
+	private JMenu file, speed, detail, method;
+	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill, uphillDis, basic, elitist, uphillEnb;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -102,6 +102,9 @@ public class DisplayFrame extends JFrame{
 		detail = new JMenu("Details");
 		detail.setFont(MENUFONT);
 
+		method = new JMenu("Method");
+		method.setFont(MENUFONT);
+
 		//ITEMS
 		save = new JMenuItem("Save");
 		save.addActionListener(menuListener);
@@ -148,9 +151,31 @@ public class DisplayFrame extends JFrame{
 		uphill.setFont(MENUITEMFONT);
 		detail.add(uphill);
 
+		uphillDis = new JMenuItem("Disable Uphill Routes");
+		uphillDis.addActionListener(menuListener);
+		uphillDis.setFont(MENUITEMFONT);
+		detail.add(uphillDis);
+
+		uphillEnb = new JMenuItem("Enable Uphill Routes");
+		uphillEnb.addActionListener(menuListener);
+		uphillEnb.setFont(MENUITEMFONT);
+		detail.add(uphillEnb);
+
+		basic = new JMenuItem("Basic System");
+		basic.addActionListener(menuListener);
+		basic.setFont(MENUITEMFONT);
+		method.add(basic);
+
+		elitist = new JMenuItem("Elitist Ant System");
+		elitist.addActionListener(menuListener);
+		elitist.setFont(MENUITEMFONT);
+		method.add(elitist);
+
 		menuBar.add(file);
 		menuBar.add(speed);
 		menuBar.add(detail);
+		menuBar.add(method);
+
 		this.setJMenuBar(menuBar);
 	}
 

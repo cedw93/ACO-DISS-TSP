@@ -98,7 +98,7 @@ public class EquationFrame extends JFrame{
 			super();
 
 			try{
-				pheroImage = ImageIO.read(getClass().getResource("/images/placeholder.png"));
+				pheroImage = ImageIO.read(getClass().getResource("/images/phero.png"));
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -118,7 +118,7 @@ public class EquationFrame extends JFrame{
 
 			add(pheroButton);
 		}
-		
+
 		@Override
 		protected void paintComponent(Graphics g){
 			super.paintComponent(g);
