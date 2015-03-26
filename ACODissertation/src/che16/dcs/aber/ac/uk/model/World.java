@@ -1,46 +1,53 @@
 package che16.dcs.aber.ac.uk.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import che16.dcs.aber.ac.uk.utils.MathsHelper;
 
 public class World {
 
 	private AntColonyOptimisation aco;
-	private int numberOfAnts, numberOfCities;
+	private int numberOfAnts, numberOfCities, numberOfUphill, method, eliteAntsCount;
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
-	private List<Ant> ants;
+	private List<Ant> ants, eliteAnts;
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities){
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, int numberOfUphill, int method){
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
+		this.method = method;
+		this.numberOfUphill = numberOfUphill;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCities();
 		initDistanceMatrix();
 		initInvertedMatrix();
 		initPheromones();
 		initAnts();
-		//this must come after everything has been initialised
+		initUphill();
 
 
 	}
 
-	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities) {
+	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities, int numberOfUphill, int method) {
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
 		this.numberOfCities = noOfCities;
 		this.bestDistance = -1;
 		this.bestRoute = null;
+		this.numberOfUphill = numberOfUphill;
+		this.method = method;
 		//initCities MUST come first as matrix sizes are based off the number of cities
 		initCitiesFromList(tempCities);
 		initDistanceMatrix();
@@ -48,6 +55,7 @@ public class World {
 		initPheromones();
 		//this must come after everything has been initialised
 		initAnts();
+		initUphill();
 
 	}
 
@@ -59,11 +67,16 @@ public class World {
 
 	public void initAnts(){
 		Random r = new Random();
-
 		ants = new ArrayList<Ant>(numberOfAnts);
 		for(int i = 0; i < numberOfAnts; i++){
-			ants.add(new Ant(this, r.nextInt(cities.size())));
-
+			int index = r.nextInt(cities.size());
+			for(City c: cities){
+				if(index == c.getIndex()){
+					c.adjustAntsHere(1);
+					break;
+				}
+			}
+			ants.add(new Ant(this, index));
 		}
 
 	}
@@ -83,23 +96,25 @@ public class World {
 					y = r.nextInt(aco.getBoundaryY()) + 1;
 				}
 			}
-			cities.add(new City(x,y,i));
+			cities.add(new City(x,y,i));	
 		}
-		/*Some hard coded values that i know work
-		cities.add(new City(20,20,0));
-		cities.add(new City(10,12,1));
-		cities.add(new City(25,2,2));
-		cities.add(new City(3,22,3));
-		cities.add(new City(11,19,4));
-		cities.add(new City(7,16,5));
-		cities.add(new City(1,3,6));
-		cities.add(new City(19,18,7));
-		cities.add(new City(20,6,8));
-		cities.add(new City(9,29,9));
-		 */
+
 	}
 
+	public void initEliteAnts(int count){
 
+		eliteAnts = new ArrayList<Ant>(count);
+		this.eliteAntsCount = count;
+		Random r = new Random();
+		for(int i = 0; i < eliteAntsCount; i++){
+			int index = r.nextInt(ants.size());
+			while(ants.get(index).getIsElite()){
+				index = r.nextInt(ants.size());
+			}
+			ants.get(index).setElite(true);
+			eliteAnts.add(ants.get(index));
+		}
+	}
 
 	public void addCity(City city){
 		cities.add(city);
@@ -300,6 +315,68 @@ public class World {
 
 	public boolean getRunning() {
 		return aco.getRunning();
+	}
+
+	public void adjustAntsAtCity(int startIndex, int finishedIndex){
+		boolean start = false;
+		boolean end = false;
+		for(City c: cities){
+			if(c.getIndex() == startIndex){
+				c.adjustAntsHere(-1);
+				start = true;
+			}
+			if(c.getIndex() == finishedIndex){
+				c.adjustAntsHere(1);
+				end = true;
+			}
+
+			if(start && end){
+				//saves times and resources, if above results are met then exit we are done here
+				return;
+			}
+		}
+	}
+
+	private void initUphill(){
+		if(!(aco.getUphillAtive())){
+			return;
+		}
+		Random r = new Random();
+		while(numberOfUphill > 0){
+			int index = r.nextInt(cities.size());
+			City temp = cities.get(index);
+
+			index = r.nextInt(cities.size());
+			if(!(temp.getUphilRoutes().contains(index)) && (index != temp.getIndex())){
+				temp.addToUphil(index);
+				numberOfUphill--;
+				distanceMatrix[temp.getIndex()][index] = (distanceMatrix[temp.getIndex()][index] * 2);
+				invertedMatrix[temp.getIndex()][index] = 1/distanceMatrix[temp.getIndex()][index];
+			}
+		}
+	}
+
+	public int getMethod(){
+		return method;
+	}
+
+	public void depositBest() {
+		//research suggests 1/4 * number of cities, or number of cities is the best e value
+		double e = (1/4) * numberOfCities;
+		for(int i = 0; i < bestRoute.size(); i++){
+			if(i + 1 < bestRoute.size()){
+				pheromone[i][i+1].addToNewPhero(pheromone[i][i+1].getNewPhero() + e);
+			}
+		}
+
+	}
+
+	public int getEliteCount() {
+		return eliteAnts.size();
+	}
+
+	public List<Ant> getEliteAnts() {
+		return eliteAnts;
 	}
 
 

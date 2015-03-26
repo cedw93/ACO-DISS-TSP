@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private int boundaryX, boundaryY, width, height, iterations;
+	private int boundaryX, boundaryY, width, height, iterations, method, eliteAnts;
 	private double alpha, beta, q, decayRate, initialPheromone;
-	private int noOfAgents, noOfCities, agentsWorking, currentIter;
-	private boolean finished, loaded, running;
+	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths;
+	private boolean finished, loaded, running, uphillActive;
 	private Worker worker;
 	private long speed;
 
@@ -34,14 +34,16 @@ public class AntColonyOptimisation extends Observable{
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
 		loaded = false;
+		eliteAnts = 0;
 		finished = false;
 		running = false;
+		uphillPaths = 0;
 		speed = 500L;
 
 	}
 
 	//algorithm with user defined values
-	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations) {
+	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations, int uphillPaths) {
 		this.alpha = alpha;
 		this.beta = beta;
 		this.decayRate = decayRate;
@@ -50,6 +52,7 @@ public class AntColonyOptimisation extends Observable{
 		this.agentsWorking = noOfAgents;
 		this.noOfCities = cities;
 		this.iterations = iterations;
+		this.uphillPaths = uphillPaths;
 		finished = false;
 
 	}
@@ -76,8 +79,18 @@ public class AntColonyOptimisation extends Observable{
 				return;
 			}
 		}else{
-			world = new World(this, noOfAgents, noOfCities);
+			if(method == 1){
+				world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
+				if(checkEliteValueIsValid(eliteAnts)){
+					world.initEliteAnts(eliteAnts);
+				}else{
+					return;
+				}
+			}else{
+				world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
+			}
 		}
+
 		running = true;
 		worker = new Worker(this, iterations);
 		worker.execute();
@@ -157,6 +170,13 @@ public class AntColonyOptimisation extends Observable{
 	public void load(String fileName){
 		if(!running){
 			this.world = loadWorldFromFile(fileName);
+			if(method == 1){
+				if(checkEliteValueIsValid(eliteAnts)){
+					world.initEliteAnts(eliteAnts);
+				}else{
+					return;
+				}
+			}
 			notifyCanvas();
 		}else{
 			System.out.println("Algorithm is running, please wait to stop the execution before loading");
@@ -171,14 +191,13 @@ public class AntColonyOptimisation extends Observable{
 	public World loadWorldFromFile(String fileName) {
 		this.loaded = true;
 		double alpha, beta, decayRate, initPhero;
-		int agents, cities, iterations, x , y;
+		int agents, cities, iterations, x , y, uphill;
 		ArrayList<City> tempCities = new ArrayList<City>();
 		String[] coords = new String[2];
 		try {  
 
 			FileInputStream stream = new FileInputStream(System.getProperty("user.home") + "/"+fileName);
 			Scanner s = new Scanner(stream);
-
 			alpha = Double.parseDouble(s.nextLine());
 			beta = Double.parseDouble(s.nextLine());
 			decayRate = Double.parseDouble(s.nextLine());
@@ -203,13 +222,18 @@ public class AntColonyOptimisation extends Observable{
 					tempCities.add(new City(x, y, i));	
 				}
 			}
+			uphill = Integer.parseInt(s.nextLine());
 			iterations = Integer.parseInt(s.nextLine());
 
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
-				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations);
-				return new World(this, agents, tempCities.size(), tempCities);
+				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
+				/*
+				 * I only want the user to load words from the file, thus method 0.
+				 * they can swap the method once the world has been loaded
+				 */
+				return new World(this, agents, tempCities.size(), tempCities, uphill, 0);
 			}
 			s.close();
 		}catch(InputMismatchException e){
@@ -229,7 +253,7 @@ public class AntColonyOptimisation extends Observable{
 		return iterations;
 	}
 
-	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations) {
+	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations, int uphill) {
 		if(alpha > 5.0d || alpha < -5.0d){
 			JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
 					"Illegal value",	JOptionPane.ERROR_MESSAGE);
@@ -268,6 +292,12 @@ public class AntColonyOptimisation extends Observable{
 
 		if(iterations < 1){
 			JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
+					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if(uphill > 15 || uphill < 0){
+			JOptionPane.showMessageDialog(null, "Illegal Uphill Paths value. Uphill Paths must be between 0 and 15\nYou entered: " + uphill,
 					"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -312,6 +342,8 @@ public class AntColonyOptimisation extends Observable{
 				out.write(Integer.toString(city.getX()) + " " + Integer.toString(city.getY()));
 				out.newLine();
 			}
+			out.write(Integer.toString(this.uphillPaths));
+			out.newLine();
 			out.write(Integer.toString(this.iterations));
 			out.newLine();
 			out.write("EOF");
@@ -351,6 +383,46 @@ public class AntColonyOptimisation extends Observable{
 	public void setSpeed(long speed) {
 		this.speed = speed;
 
+	}
+
+	public int getUphillPaths() {
+		return uphillPaths;
+	}
+
+	public void setMethod(int i) {
+		this.method = i;
+
+	}
+
+	public int getMethod(){
+		return method;
+	}
+
+	public void uphillActive(boolean status) {
+		this.uphillActive = status;
+	}
+
+	public boolean getUphillAtive(){
+		return uphillActive;
+	}
+
+	public void setEliteAnts(int i) {
+		this.eliteAnts = i;
+
+	}
+
+	public boolean checkEliteValueIsValid(int value){
+		if(value > noOfAgents){
+			JOptionPane.showMessageDialog(null, "You cannot have more elite agents than there are agents",
+					"Too many elite agents",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if(value < 0){
+			JOptionPane.showMessageDialog(null, "You cannot less than 0 elite agents",
+					"Too few elite agents",	JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
 	}
 
 }

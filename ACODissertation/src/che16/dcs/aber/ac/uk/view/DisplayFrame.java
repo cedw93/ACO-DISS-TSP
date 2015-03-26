@@ -1,18 +1,19 @@
 package che16.dcs.aber.ac.uk.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 import che16.dcs.aber.ac.uk.controller.MenuListener;
@@ -25,13 +26,23 @@ public class DisplayFrame extends JFrame{
 	private final static int WIDTH = 1300;
 	private final static int HEIGHT = 700;
 
+	private final Font MENUFONT = new Font("serif", Font.BOLD, 20);
+	private final Font MENUITEMFONT = new Font("serif", Font.BOLD, 16);
+
+	private JFrame equationFrame;
+
 	private DisplayCanvasContainer canvasContainer;	
 	private ControlContainer controlContainer;
 
+	private CityDetailView cityDetailView;
+
 	private GridBagConstraints gbc;
 
+	private UphillViewer uphillViewer;
+
 	private JMenuBar menuBar;
-	private JMenuItem save, load, slowest, medium, fast, fastest;
+	private JMenu file, speed, detail, method;
+	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill, uphillDis, basic, elitist, uphillEnb;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -46,11 +57,19 @@ public class DisplayFrame extends JFrame{
 
 		canvasContainer = new DisplayCanvasContainer();
 		controlContainer = new ControlContainer();
+		cityDetailView = new CityDetailView();
 
 		addComponents();
 		this.pack();
+		//used to display info about the equations used to the user, initially visible
+		equationFrame = new EquationFrame();
+		initUphillFrame(model);
 
 	} 
+
+	public void initUphillFrame(AntColonyOptimisation model){
+		uphillViewer = new UphillViewer(model);
+	}
 
 	public void addComponents(){
 
@@ -64,53 +83,99 @@ public class DisplayFrame extends JFrame{
 		addComp(this, canvasContainer, 0, 0, 1, 1, GridBagConstraints.BOTH, 0.7, 1);
 		addComp(this, controlContainer, 1, 0, 1, 1, GridBagConstraints.BOTH, 0.3, 1);
 
+
 	}
 
 	public void render(){
-
 		canvasContainer.getCanvas().render();
-
 	}
 
 	public void addMenu(MenuListener menuListener){
 		menuBar = new JMenuBar();
-		JMenu file = new JMenu("File");
-		file.setFont(new Font("serif", Font.BOLD, 20));
-		JMenu speed = new JMenu("Speed");
-		speed.setFont(new Font("serif", Font.BOLD, 20));
 
+		file = new JMenu("File");
+		file.setFont(MENUFONT);
+
+		speed = new JMenu("Speed");
+		speed.setFont(MENUFONT);
+
+		detail = new JMenu("Details");
+		detail.setFont(MENUFONT);
+
+		method = new JMenu("Method");
+		method.setFont(MENUFONT);
+
+		//ITEMS
 		save = new JMenuItem("Save");
 		save.addActionListener(menuListener);
-		save.setFont(new Font("serif", Font.BOLD, 16));
+		save.setFont(MENUITEMFONT);
 		file.add(save);
 
 		load = new JMenuItem("Load");
 		load.addActionListener(menuListener);
-		load.setFont(new Font("serif", Font.BOLD, 16));
+		load.setFont(MENUITEMFONT);
 		file.add(load);  
 
 		slowest = new JMenuItem("Slowest - 1000ms");
 		slowest.addActionListener(menuListener);
-		slowest.setFont(new Font("serif", Font.BOLD, 16));
+		slowest.setFont(MENUITEMFONT);
 		speed.add(slowest);
 
 		medium = new JMenuItem("Medium - 500ms");
 		medium.addActionListener(menuListener);
-		medium.setFont(new Font("serif", Font.BOLD, 16));
+		medium.setFont(MENUITEMFONT);
 		speed.add(medium);
 
 		fast = new JMenuItem("Fast - 100ms");
 		fast.addActionListener(menuListener);
-		fast.setFont(new Font("serif", Font.BOLD, 16));
+		fast.setFont(MENUITEMFONT);
 		speed.add(fast);
 
 		fastest = new JMenuItem("Fastest - 10ms");
 		fastest.addActionListener(menuListener);
-		fastest.setFont(new Font("serif", Font.BOLD, 16));
+		fastest.setFont(MENUITEMFONT);
 		speed.add(fastest);
+
+		cityDetail = new JMenuItem("City Detail"); 
+		cityDetail.addActionListener(menuListener);
+		cityDetail.setFont(MENUITEMFONT);
+		detail.add(cityDetail);
+
+		equationDetail = new JMenuItem("Equations");
+		equationDetail.addActionListener(menuListener);
+		equationDetail.setFont(MENUITEMFONT);
+		detail.add(equationDetail);
+
+		uphill = new JMenuItem("Uphill Routes");
+		uphill.addActionListener(menuListener);
+		uphill.setFont(MENUITEMFONT);
+		detail.add(uphill);
+
+		uphillDis = new JMenuItem("Disable Uphill Routes");
+		uphillDis.addActionListener(menuListener);
+		uphillDis.setFont(MENUITEMFONT);
+		detail.add(uphillDis);
+
+		uphillEnb = new JMenuItem("Enable Uphill Routes");
+		uphillEnb.addActionListener(menuListener);
+		uphillEnb.setFont(MENUITEMFONT);
+		detail.add(uphillEnb);
+
+		basic = new JMenuItem("Basic System");
+		basic.addActionListener(menuListener);
+		basic.setFont(MENUITEMFONT);
+		method.add(basic);
+
+		elitist = new JMenuItem("Elitist Ant System");
+		elitist.addActionListener(menuListener);
+		elitist.setFont(MENUITEMFONT);
+		method.add(elitist);
 
 		menuBar.add(file);
 		menuBar.add(speed);
+		menuBar.add(detail);
+		menuBar.add(method);
+
 		this.setJMenuBar(menuBar);
 	}
 
@@ -154,5 +219,18 @@ public class DisplayFrame extends JFrame{
 	public ControlContainer getControlContainer(){
 		return controlContainer;
 	}
+
+	public CityDetailView getCityDetailView(){
+		return cityDetailView;
+	}
+
+	public JFrame getEquationFrame(){
+		return equationFrame;
+	}
+
+	public UphillViewer getUphillFrame(){
+		return uphillViewer;
+	}
+
 
 }

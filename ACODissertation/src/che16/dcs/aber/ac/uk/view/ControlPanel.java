@@ -12,6 +12,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.MaskFormatter;
 
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
@@ -32,14 +33,15 @@ public class ControlPanel extends JPanel{
 	private final String GOALLABELTEXT = "Number of Cities";
 	private final String INITPHEROLABELTEXT = "Initial Pheromone";
 	private final String ITERATIONLABELTEXT = "Iterations";
+	private final String UPHILLLABELTEXT = "Uphill Paths";
 
 	private ControlPanelListener listener;
 
 	private ControlContainer parent;
 	private GridBagConstraints gbc;
 	private JButton startButton, stopButton, resetButton;
-	private JLabel betaLabel, alphaLabel, agentLabel, decayLabel, pheroLabel, goalNodesLabel, initPheroLabel, iterationLabel;
-	private JTextField  betaField, alphaField, agentField, decayField, goalNodesField, initPheroField, iterationField;
+	private JLabel betaLabel, alphaLabel, agentLabel, decayLabel, pheroLabel, goalNodesLabel, initPheroLabel, iterationLabel, uphillLabel;
+	private JTextField  betaField, alphaField, agentField, decayField, goalNodesField, initPheroField, iterationField, uphillField;
 
 	public ControlPanel(ControlContainer parent) {
 
@@ -102,6 +104,11 @@ public class ControlPanel extends JPanel{
 		initPheroLabel.setHorizontalAlignment(JTextField.CENTER);
 		initPheroLabel.setFont(LABELFONT);
 
+		uphillLabel = new JLabel(UPHILLLABELTEXT);
+		uphillLabel.setPreferredSize(LABELDIMENSION);
+		uphillLabel.setHorizontalAlignment(JTextField.CENTER);
+		uphillLabel.setFont(LABELFONT);
+
 		iterationLabel = new JLabel(ITERATIONLABELTEXT);
 		iterationLabel.setPreferredSize(LABELDIMENSION);
 		iterationLabel.setHorizontalAlignment(JTextField.CENTER);
@@ -112,32 +119,50 @@ public class ControlPanel extends JPanel{
 		alphaField = new JTextField();
 		alphaField.setPreferredSize(TEXTFIELDDIMENSION);
 		alphaField.setHorizontalAlignment(JTextField.CENTER);
+		alphaField.setText("2.5");
 
 		betaField = new JTextField();
 		betaField.setPreferredSize(TEXTFIELDDIMENSION);
 		betaField.setHorizontalAlignment(JTextField.CENTER);
+		betaField.setText("2.5");
 
 		agentField = new JTextField();
 		agentField.setPreferredSize(TEXTFIELDDIMENSION);
 		agentField.setHorizontalAlignment(JTextField.CENTER);
+		agentField.setText("15");
 
 		decayField = new JTextField();
 		decayField.setPreferredSize(TEXTFIELDDIMENSION);
 		decayField.setHorizontalAlignment(JTextField.CENTER);
+		decayField.setText("0.2");
 
 		goalNodesField = new JTextField();
 		goalNodesField.setPreferredSize(TEXTFIELDDIMENSION);
 		goalNodesField.setHorizontalAlignment(JTextField.CENTER);
+		goalNodesField.setText("10");
 
 		initPheroField = new JTextField();
 		initPheroField.setPreferredSize(TEXTFIELDDIMENSION);
 		initPheroField.setHorizontalAlignment(JTextField.CENTER);
+		initPheroField.setText("0.5");
+
+		uphillField = new JTextField();
+		uphillField.setPreferredSize(TEXTFIELDDIMENSION);
+		uphillField.setHorizontalAlignment(JTextField.CENTER);
+		uphillField.setText("5");
 
 		iterationField = new JTextField();
 		iterationField.setPreferredSize(TEXTFIELDDIMENSION);
 		iterationField.setHorizontalAlignment(JTextField.CENTER);
-
+		iterationField.setText("1");
 		//positioning used is adapted from: http://jnb.ociweb.com/jnb/jnbMar2005.html
+
+
+		this.add(uphillLabel, gbc);
+		gbc.gridy++;
+		this.add(uphillField, gbc);
+
+		gbc.gridy++;
 
 		this.add(iterationLabel, gbc);
 		gbc.gridy++;
@@ -223,7 +248,7 @@ public class ControlPanel extends JPanel{
 		return iterationField;
 
 	}
-	
+
 	public JTextField getBetaField() {
 		return betaField;
 	}
@@ -246,6 +271,10 @@ public class ControlPanel extends JPanel{
 
 	public JTextField getInitPheroField() {
 		return initPheroField;
+	}
+
+	public JTextField getUphillField() {
+		return uphillField;
 	}
 
 

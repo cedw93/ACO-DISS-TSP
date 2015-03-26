@@ -25,9 +25,13 @@ public class Worker extends SwingWorker<Void, Void>{
 				antsWorking = aco.getNoOfAgents();
 				if(reset){
 					//for the next iteration re-init the ants and go again
+					for(City c: aco.getWorld().getCities()){
+						c.resetAntCount();
+					}
 					aco.getWorld().initAnts();
 					ants = (ArrayList<Ant>)aco.getWorld().getAnts();
 					reset = false;
+
 				}
 				while(antsWorking > 0){
 					for(Ant ant: ants){
@@ -51,6 +55,9 @@ public class Worker extends SwingWorker<Void, Void>{
 		aco.notifyCanvas();
 		Thread.sleep(500);
 		aco.setFinished(true);
+		for(City c: aco.getWorld().getCities()){
+			c.resetAntCount();
+		}
 		//once we have finished, set the fact that the next world wont be from a file unless reloaded
 		aco.setLoaded(false);
 		aco.setRunning(false);

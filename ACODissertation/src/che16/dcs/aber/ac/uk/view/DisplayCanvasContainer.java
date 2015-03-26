@@ -13,6 +13,7 @@ public class DisplayCanvasContainer extends JPanel{
 	private DisplayCanvas canvas;
 	private GridBagConstraints gbc;
 	private String contentTop, contentBottom;
+	private DisplayFrame frame;
 
 
 	public DisplayCanvasContainer() {
@@ -62,7 +63,7 @@ public class DisplayCanvasContainer extends JPanel{
 		g.drawRect(49, 1, 801, 39);
 		g.setColor(Color.white);
 		g.fillRect(50, 2, 800, 38);
-		
+
 		//border around the canvas
 		g.setColor(Color.BLACK);
 		g.drawRect(49, 49, 801, 601);
@@ -74,7 +75,7 @@ public class DisplayCanvasContainer extends JPanel{
 		g.fillRect(50, 660, 800, 38);
 
 		g.setColor(Color.BLACK);
-		
+
 		g.drawString(contentTop, 80, 25);
 		g.drawString(contentBottom, 250, 680);
 	}
@@ -82,9 +83,20 @@ public class DisplayCanvasContainer extends JPanel{
 	public void setContentTop(String content){
 		this.contentTop = content;
 	}
-	
+
 	public void setContentBottom(String content){
 		this.contentBottom = content;
+	}
+
+
+
+	public void setDisplayFrame(DisplayFrame frame) {
+		this.frame = frame;
+
+	}
+	
+	public DisplayFrame getFrame(){
+		return frame;
 	}
 
 }

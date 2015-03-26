@@ -14,6 +14,7 @@ public class Driver {
 				AntColonyOptimisation model = new AntColonyOptimisation();
 				MenuListener menuListener = new MenuListener(model);
 				DisplayFrame view = new DisplayFrame(model, menuListener);
+				view.getCanvasContainer().setDisplayFrame(view);
 				menuListener.setView(view);
 				new Control(model, view);
 			}

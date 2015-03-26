@@ -13,7 +13,7 @@ public class Ant{
 
 	private double totalDistanceWalked;
 	private World world;
-	private boolean finished, isMoving;
+	private boolean finished, isMoving, isElite;
 	private LinkedList<Integer> route;
 	private int current, next, start;
 	//track which cities have been visited using simple true or false
@@ -38,6 +38,7 @@ public class Ant{
 		visited[startLocation] = true;
 		//we have visited one city thus set the total number of cities unvisited to (n - 1) where n is the number of cities
 		unvisited = visited.length - 1;
+		isElite = false;
 
 	}
 
@@ -137,6 +138,7 @@ public class Ant{
 			}
 			movementTracker[0] = lastNode;
 			movementTracker[1] = next;
+			world.adjustAntsAtCity(movementTracker[0], movementTracker[1]);
 			addToRoute(lastNode);
 			totalDistanceWalked += world.getDistanceMatrix()[lastNode][next];
 			double pheromoneDeposit = (world.getQ() / totalDistanceWalked);
@@ -150,6 +152,9 @@ public class Ant{
 			world.updateModel();
 		}
 		finished = true;
+		//when an ant is done 'remove it from the cities count
+		//as we only need to know its last know location pass -1 as the destination index
+		world.adjustAntsAtCity(lastNode, -1);
 		addToRoute(lastNode);
 		/*
 		 * See if the ant is the current best, if world.getBestDistance() == -1 then this ant is the first to finish
@@ -160,12 +165,11 @@ public class Ant{
 			world.setBestDistance(totalDistanceWalked);
 			world.setBestRoute(route);
 		}
+		if(world.getMethod() == 1){
+			world.depositBest();
+		}
 		world.decayPhero();
-
-
 	}
-
-
 
 	public int getCurrentIndex() {
 		return current;
@@ -205,6 +209,14 @@ public class Ant{
 	public void setMoving(boolean status) {
 		this.isMoving = status;
 
+	}
+
+	public void setElite(boolean status){
+		this.isElite = status;
+	}
+
+	public boolean getIsElite(){
+		return isElite;
 	}
 
 

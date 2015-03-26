@@ -58,13 +58,14 @@ public class  MenuListener implements ActionListener {
 					model.load(fileName);
 
 					//set the text field values to the same as what was loaded in
-					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));;
-					view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));;
-					view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));;
-					view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));;
-					view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));;
-					view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));;
-					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));;
+					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));
+					view.getControlContainer().getControlPanel().getAgentField().setText(Integer.toString(model.getNoOfAgents()));
+					view.getControlContainer().getControlPanel().getAlphaField().setText(Double.toString(model.getAlpha()));
+					view.getControlContainer().getControlPanel().getBetaField().setText(Double.toString(model.getIterations()));
+					view.getControlContainer().getControlPanel().getGoalNodesField().setText(Integer.toString(model.getWorld().getCities().size()));
+					view.getControlContainer().getControlPanel().getInitPheroField().setText(Double.toString(model.getInitialPheromone()));
+					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));
+					view.getControlContainer().getControlPanel().getUphillField().setText(Integer.toString(model.getUphillPaths()));
 				}else{
 					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
 							"No file selected",	JOptionPane.ERROR_MESSAGE);
@@ -73,7 +74,8 @@ public class  MenuListener implements ActionListener {
 				JOptionPane.showMessageDialog(null, "You cannot load a problem whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
 						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
 			}
-		}
+
+		}	
 
 		else if(source.equalsIgnoreCase("Slowest - 1000ms")){
 			model.setSpeed(1000L);
@@ -88,6 +90,70 @@ public class  MenuListener implements ActionListener {
 			model.setSpeed(10L);
 		}
 
+		else if(source.equalsIgnoreCase("city detail")){
+			view.getCityDetailView().setVisible(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("equations")){
+			view.getEquationFrame().setVisible(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("uphill routes")){
+			view.getUphillFrame().setVisible(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("Disable Uphill Routes")){
+			model.uphillActive(false);
+			view.getControlContainer().getControlPanel().getUphillField().setEnabled(false);
+
+		}
+
+		else if(source.equalsIgnoreCase("enable Uphill Routes")){
+			model.uphillActive(true);
+			view.getControlContainer().getControlPanel().getUphillField().setEnabled(true);
+
+		}
+
+		else if(source.equalsIgnoreCase("basic system")){
+			if(!(model.getRunning())){
+				model.setMethod(0);
+			}else{
+				JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+			}
+		}
+
+		else if(source.equalsIgnoreCase("elitist ant system")){
+			if(!(model.getRunning())){
+				String result = JOptionPane.showInputDialog(null, "How many Elite ants do you want?");
+				try{
+					int number = Integer.parseInt(result);
+					if(number > Integer.parseInt(view.getControlContainer().getControlPanel().getAgentField().getText())){
+						JOptionPane.showMessageDialog(null, "You cannot have more elite agents than there are agents",
+								"Too many elite agents",	JOptionPane.ERROR_MESSAGE);
+					}
+
+					if(number < 0){
+						JOptionPane.showMessageDialog(null, "You cannot less than 0 elite agents",
+								"Too few elite agents",	JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					model.setMethod(1);
+					model.setEliteAnts(number);
+
+				}catch(NumberFormatException ex){
+					JOptionPane.showMessageDialog(null, "You must enter a whole number for the number of Elite Ants",
+							"Number format error",	JOptionPane.ERROR_MESSAGE);
+				}
+			}else{
+				JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+			}
+		}
+
 	}
 
 	public String chooseLoadFile(){
@@ -100,10 +166,10 @@ public class  MenuListener implements ActionListener {
 		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
 		chooser.setFileView(new FileView() {
-		    @Override
-		    public Boolean isTraversable(File file) {
-		         return lock.equals(file);
-		    }
+			@Override
+			public Boolean isTraversable(File file) {
+				return lock.equals(file);
+			}
 		});
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -123,10 +189,10 @@ public class  MenuListener implements ActionListener {
 		JFileChooser chooser = new JFileChooser(lock);
 		chooser.setFileFilter(filter);
 		chooser.setFileView(new FileView() {
-		    @Override
-		    public Boolean isTraversable(File file) {
-		         return lock.equals(file);
-		    }
+			@Override
+			public Boolean isTraversable(File file) {
+				return lock.equals(file);
+			}
 		});
 		int returnVal = chooser.showSaveDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
