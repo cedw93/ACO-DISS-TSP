@@ -100,7 +100,11 @@ public class DisplayCanvas extends JPanel{
 					}
 				}
 			}
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> origin/master
 			parent.getFrame().getUphillFrame().setUphillData();
 
 			/*

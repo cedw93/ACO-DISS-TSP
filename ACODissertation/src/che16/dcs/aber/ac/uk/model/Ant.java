@@ -169,6 +169,10 @@ public class Ant{
 			world.depositBest();
 		}
 		world.decayPhero();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	}
 
 	public int getCurrentIndex() {

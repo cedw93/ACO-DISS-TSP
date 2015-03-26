@@ -118,6 +118,7 @@ public class  MenuListener implements ActionListener {
 		}
 
 		else if(source.equalsIgnoreCase("basic system")){
+<<<<<<< HEAD
 			if(!(model.getRunning())){
 				model.setMethod(0);
 			}else{
@@ -154,6 +155,16 @@ public class  MenuListener implements ActionListener {
 			}
 		}
 
+=======
+			model.setMethod(0);
+		}
+
+		else if(source.equalsIgnoreCase("elitist ant system")){
+			model.setMethod(1);
+		}
+
+
+>>>>>>> origin/master
 	}
 
 	public String chooseLoadFile(){

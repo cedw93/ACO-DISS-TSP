@@ -13,7 +13,11 @@ import che16.dcs.aber.ac.uk.utils.MathsHelper;
 public class World {
 
 	private AntColonyOptimisation aco;
+<<<<<<< HEAD
 	private int numberOfAnts, numberOfCities, numberOfUphill, method, eliteAntsCount;
+=======
+	private int numberOfAnts, numberOfCities, numberOfUphill, method;
+>>>>>>> origin/master
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
@@ -36,6 +40,10 @@ public class World {
 		initPheromones();
 		initAnts();
 		initUphill();
+<<<<<<< HEAD
+=======
+		//this must come after everything has been initialised
+>>>>>>> origin/master
 
 
 	}
@@ -98,6 +106,7 @@ public class World {
 			}
 			cities.add(new City(x,y,i));	
 		}
+<<<<<<< HEAD
 
 	}
 
@@ -114,6 +123,9 @@ public class World {
 			ants.get(index).setElite(true);
 			eliteAnts.add(ants.get(index));
 		}
+=======
+
+>>>>>>> origin/master
 	}
 
 	public void addCity(City city){
@@ -370,6 +382,7 @@ public class World {
 		}
 
 	}
+<<<<<<< HEAD
 
 	public int getEliteCount() {
 		return eliteAnts.size();
@@ -379,5 +392,7 @@ public class World {
 		return eliteAnts;
 	}
 
+=======
+>>>>>>> origin/master
 
 }
