@@ -1,0 +1,52 @@
+\begin{thebibliography}{1}
+
+\bibitem{headfirst}
+{E}ric {F}reemnan{,} {E}lisabeth {F}reeman{,} {B}ert {B}ates{,}~{K}athy
+  {S}ierra.
+\newblock {\em {H}ead {F}irst {D}esign {P}atterns}.
+\newblock {O'}Reilly., {S}ebastopol, {CA}, first edition, sep 2004.
+ \begin{quotation}\noindent This book is used to give some background into the
+  potential use of certain design patterns in the applications code.
+  Considering the use of such patterns enabled the project to be much more
+  maintainable in the future as well as making the design and development
+  processes much simplier. \end{quotation}
+
+\bibitem{tJung11}
+Thomas Jungblut.
+\newblock "{A}nt {C}olony {O}ptimization for {TSP P}roblems" [{B}log entry].
+\newblock Avaliable:
+  http://codingwiththomas.blogspot.co.uk/2011/08/ant-colony-optimization-for-tsp.html,
+  30 Aug 2011.
+\newblock [Accessed: 26 Jan 2015].
+ \begin{quotation}\noindent This Blog posted by Thomas Jungblut covers multiple
+  topics which are of high interest to the projects research. The information
+  contained in the blog covers items like capitalising on multi-threading
+  opportunities and how to efficiently do so. The underling calculations and
+  evaluation procedures for each agent are also discussed. This is useful for
+  modelling and design of the algorithm itself. \end{quotation}
+\bibitem{aco:marco}
+{M}arco {D}origo~et al.{,}.
+\newblock {\em {A}nt {C}olony {O}ptimization and {S}warm {I}ntelligence}.
+\newblock {S}pringer., {B}erlin, {G}ermany, fifth edition, sep 2006.
+\newblock pp. 1-6.
+ \begin{quotation}\noindent This book is quite complex, possibly beyond the
+  scope of this project. However the concepts are still relevant to my project
+  research and development. The book itself is ~250 pages in length, but the
+  first few pages are sufficient for increasing background knowledge in regards
+  to the projects problem. \end{quotation}
+
+\bibitem{weka}
+{W}eka 3: {D}ata {M}ining with {O}pen {S}ource {M}achine {L}earning
+  {S}oftware~in {J}ava.
+\newblock {W}eka 3: {D}ata {M}ining {S}oftware in {J}ava, [online] {J}an 2015.
+\newblock {A}valiable: http://www.cs.waikato.ac.nz/ml/index.html.
+\newblock Accessed: 26 {J}an 2015.
+ \begin{quotation}\noindent WEKA provide an Ant Colony Optimisation library
+  thus I have researched into what they provide and the potential usage of said
+  libraries. However, any code provided by WEKA is subject to the GNU Public
+  License if the project were to use such libraries then the project's source
+  would also become subject to the GNU Public License terms. The use of these
+  resources maybe limited to studying how thier implementations work and
+  extracting concepts or ideas from those and developing a custom solution
+  based off of the extracted knowledge. \end{quotation}
+\end{thebibliography}

@@ -1,0 +1,102 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.2in]{geometry}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace{1cm}
+        
+        \Huge
+        \textbf{Visualising Ant Colonoy Optimisation}
+                
+	 \vspace{0.5cm}
+        \Large
+	 \textbf{Version:} 1.1 Release \\
+        G400  Computer Science, CS39440
+	  
+
+        \vspace{1.0cm}
+        
+	  \Large
+        \textbf{Author:} Christopher Edwards \\
+         che16@aber.ac.uk
+
+ 	  \vspace{0.8cm}
+ 	  \textbf{Supervisor:} Neil MacParthalain \\
+         ncm@aber.ac.uk
+        
+        \vspace{3.0cm}
+        
+        An outline project specification for a Computer Science Major Project
+                
+        \vspace{0.8cm}
+                
+        \Large
+        Department of Computer Science\\
+        Aberystwyth University\\
+        Wales\\
+        \today
+        
+	\end{center}
+\end{titlepage}
+
+\section{Project Description}
+
+The ultimate aim for the project is to produce an efficient and intuitive graphical user interface for Ant Colony Optimisation, which allows for visualisation and non-dynamic modification of algorithm parameters and reflecting changes in the algorithms behaviour to the user. This project will only be classified as a success if this graphical user interfaces very simple to use. The project has strong potential to be used as a teaching aid for artificial intelligence, therefore the end result must be simplistic and effective to maximise the potential user base, and cater for different levels of understanding with respect to the subject. 
+
+During my research into the background of this project I found very few resources which visually represented Ant Colony Optimisation and its behaviours as well as allowing for user interaction. This is the main focus of the project, and is essential in achieving a worthwhile and successful project. The underlying algorithm will itself have some impact on the capabilities of this interface as using an existing implementation of the algorithm will mean there is far less flexibility in terms of algorithm modification and interaction when compared to a self-implemented approach.
+
+%Ideally there will be variations of the algorithm reflecting potential enhancements or potential performance constraints, for example \textit{super ants} which \textit{random} ants leave stronger doses of pheromone. This will ultimately increase the educational potential, allowing for a wider range of material to be demonstrated through the same application. However, this is not essential in making a worthwhile project and is to be treated as a secondary goal. The ultimate factor regarding project and if it is worthwhile will be well the user can easily interact with the algorithm whilst maintaining the educational value. 
+
+At the end of the project there should be a suitable environment which allows a user of any background, with or without prior knowledge of the algorithm to modify the algorithms parameters through a graphical user interface which visually displays the algorithms execution given the user-defined values. Therefore the main substance can be deducted to the graphical user interface and the interaction between it and the underlying algorithm and architecture.
+
+
+
+\section{Proposed Tasks}
+	\subsection{Research}
+		\subsubsection{Language}
+The choice of programming language used for implementing the algorithm and graphical user interface is a very important decision. I will need to investigate which language(s) most suit the task at hand with respect to all aspects. I will also need to investigate the potential for external libraries to have a major influence in the language choice and final outcome as well as the design and implementation of the application code. 
+
+Design patterns should also be considered in conjunction with the choice of language, this regards the identification of potentially useful patterns and their implementation complexity given the merits of each language.
+
+		\subsubsection{Background}
+Given that I am no expert in the topic I will need to research in depth the exact metrics and characteristics which will need to be modelled both visually and mathematically in order to complete my project to a professional level. This will involve studying what the algorithm is designed to do and how ants \textit{pseudo-randomly} traverse the state space, as well as the influence of each of the algorithms' parameters on the execution of the optimisation task. As these parameters are key to the applications purpose, the level of understanding is fundamental to the success of the project as validation and boundaries must be correctly placed.
+
+	\subsection{User Interface}
+A large proportion of my resources needs to be correctly allocated to designing and implementing a suitable and effective user interface. In order to do this there will need to be several design iterations based upon research into existing systems of similar functionality as well as delving into research regarding user interaction methods and preferences. This will allow for the most suitable environment for the intended purpose.
+
+This interface could be subject to potential intermittent reviews which will reflect the current effectiveness of the current design or in fact they could be used as a testing mechanism for new ideas. Ultimately discussions of some form will be needed from the end users of the product, removing bias out of the equation. 
+
+
+\subsection{Algorithm}
+Another major resource consumer will be the implementation of the underlying algorithm. This will also include any considerations or design choices which will be subject to my understanding and any background research. If the algorithm is to handle large data then there must be suitable optimisation methods in place in order to maximise effciency. This could include taking advantage of multi-threading on in fact re-using existing implementations of the algorithm such as the implementation provided by WEKA (Waikato Environment for Knowledge Analysis, provides open source java solutions), such implementations would be provided under the certain thus my application could therefore become subject to any license and its terms. 
+
+There is also the consideration of starting from scratch. Creating my own implementation the way I understand this will depend on the quality or suitability of existing solutions, and how complex they are in terms of interacting with them from a graphical user interface and visualising their execution. I will need to research and experiment with different approaches on a smaller scale and decide on the most appropriate method for production.
+
+
+\section{Proposed Deliverables}
+\textbf{Fully Functional User Interface} - A fully functional graphical front end will allow for user interaction and visualisation of the Ant Colony Optimisation algorithm. This interface will be simplistic, whilst maintaining a focus on usability and will encourage the user to experiment with different parameters of the algorithm. \\
+
+\noindent 
+\textbf{Fully implemented Algorithm} - There will be an underlying implementation of an Ant Colony Optimisation algorithm. The algorithm will be efficient and allow for its parameters to be easily modified with correct boundary conditions. These modifications will come from the user interface described above.\\
+
+\noindent
+\textbf{A Comprehensive Test Suite} - There will be a set of unit tests that will sufficiently test the code logic for both the algorithm and the user interface. There will also be a series of black box tests which will be used to test the application's overall logic.\\
+
+\noindent
+\textbf{Proposed Project Specification} - There will be a document detailing the proposed project functional requirements whilst also detailing any abstractions of the implementation such as any Unified Modelling Language (UML), Pseudo code or any details about the underlying algorithm(s). \\
+
+\noindent
+\textbf{Progress Report} - Documentation detailing the current project situation given the current date. This will also state any changes that have been made to the proposed specification as well as any complications which have become apparent. Details of any proposed changes or potential complications in the future will also be flagged up in this document if they are in fact relevant at the time. \\
+
+\noindent
+\textbf{Intermittent Releases} - Several versions will be released during the development process. Each version will be used to test the current implementation of features in order to catch any bugs or complications at their earliest stage reducing the complexity and the costs of resolving them at a later date. Each release will be a significant improvement on the previous edition there will not be a new release for every single feature that is implemented. \\
+
+\noindent
+\textbf{Final Report} - A full report detailing the development process including any research as well as detailing any changes to the proposed specification, problems during development and any design or rationale will be produced. The document will collate all of the projects underlying ideas and concepts providing a detailed understanding of how the system functions and how the output is produced. The results of the projects testing phase will be present, as well as suggestions to further expansion opportunities and the potential significance of these.\\
+
+\nocite{*}
+\bibliographystyle{plain-annote}
+\bibliography{bibfile}
+
+\end{document}
