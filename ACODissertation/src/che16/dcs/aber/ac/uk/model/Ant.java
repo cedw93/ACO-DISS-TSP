@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
+import che16.dcs.aber.ac.uk.model.World.EliteAntData;
+
 public class Ant{
 
 	/*
@@ -13,7 +15,7 @@ public class Ant{
 
 	private double totalDistanceWalked;
 	private World world;
-	private boolean finished, isMoving, isElite;
+	private boolean finished, isMoving;
 	private LinkedList<Integer> route;
 	private int current, next, start;
 	//track which cities have been visited using simple true or false
@@ -38,7 +40,7 @@ public class Ant{
 		visited[startLocation] = true;
 		//we have visited one city thus set the total number of cities unvisited to (n - 1) where n is the number of cities
 		unvisited = visited.length - 1;
-		isElite = false;
+
 
 	}
 
@@ -162,6 +164,26 @@ public class Ant{
 		 * right hand condition. This calculated if this ant has travelled less distance than the current best, if it has then this is the best ant.
 		 */
 		if((world.getBestDistance() == -1.0d) || (this.totalDistanceWalked < world.getBestDistance())){
+			if(world.getMethod() == 1){
+				if(world.getEliteAnts().size() +1 < world.getEliteCount()){
+					world.getEliteAnts().add(world.new EliteAntData(this.totalDistanceWalked, route));
+				}else{
+					EliteAntData worst = null;
+					for(EliteAntData data: world.getEliteAnts()){
+						if(worst == null){
+							worst = data;
+						}else{
+							if(data.getDistance() < worst.getDistance()){
+								worst = data;
+							}
+						}
+					}
+
+					world.getEliteAnts().remove(worst);
+					world.getEliteAnts().add(world.new EliteAntData(this.totalDistanceWalked, route));
+				}
+			}
+
 			world.setBestDistance(totalDistanceWalked);
 			world.setBestRoute(route);
 		}
@@ -169,10 +191,6 @@ public class Ant{
 			world.depositBest();
 		}
 		world.decayPhero();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 	}
 
 	public int getCurrentIndex() {
@@ -214,14 +232,5 @@ public class Ant{
 		this.isMoving = status;
 
 	}
-
-	public void setElite(boolean status){
-		this.isElite = status;
-	}
-
-	public boolean getIsElite(){
-		return isElite;
-	}
-
 
 }

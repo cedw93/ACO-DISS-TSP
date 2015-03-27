@@ -13,15 +13,12 @@ import che16.dcs.aber.ac.uk.utils.MathsHelper;
 public class World {
 
 	private AntColonyOptimisation aco;
-<<<<<<< HEAD
 	private int numberOfAnts, numberOfCities, numberOfUphill, method, eliteAntsCount;
-=======
-	private int numberOfAnts, numberOfCities, numberOfUphill, method;
->>>>>>> origin/master
 	private List<City> cities;
 	private double[][] distanceMatrix, invertedMatrix;
 	private Pheromone[][] pheromone;
-	private List<Ant> ants, eliteAnts;
+	private List<Ant> ants;
+	private List<EliteAntData> eliteAnts;
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
@@ -40,10 +37,6 @@ public class World {
 		initPheromones();
 		initAnts();
 		initUphill();
-<<<<<<< HEAD
-=======
-		//this must come after everything has been initialised
->>>>>>> origin/master
 
 
 	}
@@ -106,26 +99,13 @@ public class World {
 			}
 			cities.add(new City(x,y,i));	
 		}
-<<<<<<< HEAD
 
 	}
 
 	public void initEliteAnts(int count){
+		this.eliteAntsCount= count;
+		eliteAnts = new ArrayList<EliteAntData>(count);
 
-		eliteAnts = new ArrayList<Ant>(count);
-		this.eliteAntsCount = count;
-		Random r = new Random();
-		for(int i = 0; i < eliteAntsCount; i++){
-			int index = r.nextInt(ants.size());
-			while(ants.get(index).getIsElite()){
-				index = r.nextInt(ants.size());
-			}
-			ants.get(index).setElite(true);
-			eliteAnts.add(ants.get(index));
-		}
-=======
-
->>>>>>> origin/master
 	}
 
 	public void addCity(City city){
@@ -374,25 +354,46 @@ public class World {
 
 	public void depositBest() {
 		//research suggests 1/4 * number of cities, or number of cities is the best e value
-		double e = (1/4) * numberOfCities;
-		for(int i = 0; i < bestRoute.size(); i++){
-			if(i + 1 < bestRoute.size()){
-				pheromone[i][i+1].addToNewPhero(pheromone[i][i+1].getNewPhero() + e);
+		LinkedList<Integer> best;
+		for(EliteAntData data: eliteAnts){
+			System.out.println(data.getEliteRoute());
+			best = data.getEliteRoute();
+			double e = (1/4) * numberOfCities;
+			for(int i = 0; i < best.size(); i++){
+				if(i + 1 < best.size()){
+					pheromone[best.get(i)][best.get(i+1)].addToNewPhero(pheromone[best.get(i)][best.get(i+1)].getNewPhero() + e);
+				}
 			}
 		}
-
 	}
-<<<<<<< HEAD
 
 	public int getEliteCount() {
-		return eliteAnts.size();
+		return eliteAntsCount;
 	}
 
-	public List<Ant> getEliteAnts() {
+	public List<EliteAntData> getEliteAnts() {
 		return eliteAnts;
 	}
 
-=======
->>>>>>> origin/master
+
+	class EliteAntData{
+
+		private double distance;
+		private LinkedList<Integer> eliteRoute;
+
+		public EliteAntData(double distance, LinkedList<Integer> eliteRoute ){
+			this.distance = distance;
+			this.eliteRoute = eliteRoute;
+		}
+
+		public double getDistance(){
+			return distance;
+		}
+
+		public LinkedList<Integer> getEliteRoute(){
+			return eliteRoute;
+		}
+	}
+
 
 }

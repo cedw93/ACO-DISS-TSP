@@ -76,6 +76,8 @@ public class DisplayCanvas extends JPanel{
 			}
 
 			//these markers will be present in the end just to aid understanding
+
+			/* Decided not to draw the uphill routes as it may confuse the user use the uphill viewer instead
 			City destination = null;
 			for(City c: model.getWorld().getCities()){
 				temp = c.getUphilRoutes();
@@ -100,11 +102,8 @@ public class DisplayCanvas extends JPanel{
 					}
 				}
 			}
-<<<<<<< HEAD
+			 */
 
-=======
-			
->>>>>>> origin/master
 			parent.getFrame().getUphillFrame().setUphillData();
 
 			/*
@@ -119,7 +118,7 @@ public class DisplayCanvas extends JPanel{
 			 * This could probably be improved as the complexity is quite large as it stands.
 			 */
 			City start = null;
-			destination = null;
+			City destination = null;
 			//TODO: MAYBE MAKE CITY DIAMETER CHANGE DEPENDING ON THE NUMBER OF ANTS AT THE CITY
 			try{
 				for(Ant ant: agents){

@@ -16,11 +16,7 @@ import javax.swing.JOptionPane;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-<<<<<<< HEAD
 	private int boundaryX, boundaryY, width, height, iterations, method, eliteAnts;
-=======
-	private int boundaryX, boundaryY, width, height, iterations, method;
->>>>>>> origin/master
 	private double alpha, beta, q, decayRate, initialPheromone;
 	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths;
 	private boolean finished, loaded, running, uphillActive;
@@ -83,7 +79,6 @@ public class AntColonyOptimisation extends Observable{
 				return;
 			}
 		}else{
-<<<<<<< HEAD
 			if(method == 1){
 				world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
 				if(checkEliteValueIsValid(eliteAnts)){
@@ -94,9 +89,6 @@ public class AntColonyOptimisation extends Observable{
 			}else{
 				world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
 			}
-=======
-			world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
->>>>>>> origin/master
 		}
 
 		running = true;
@@ -199,21 +191,13 @@ public class AntColonyOptimisation extends Observable{
 	public World loadWorldFromFile(String fileName) {
 		this.loaded = true;
 		double alpha, beta, decayRate, initPhero;
-<<<<<<< HEAD
 		int agents, cities, iterations, x , y, uphill;
-=======
-		int agents, cities, iterations, x , y, uphill, methodLine;
->>>>>>> origin/master
 		ArrayList<City> tempCities = new ArrayList<City>();
 		String[] coords = new String[2];
 		try {  
 
 			FileInputStream stream = new FileInputStream(System.getProperty("user.home") + "/"+fileName);
 			Scanner s = new Scanner(stream);
-<<<<<<< HEAD
-=======
-			methodLine = Integer.parseInt(s.nextLine());
->>>>>>> origin/master
 			alpha = Double.parseDouble(s.nextLine());
 			beta = Double.parseDouble(s.nextLine());
 			decayRate = Double.parseDouble(s.nextLine());
@@ -244,18 +228,12 @@ public class AntColonyOptimisation extends Observable{
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
-<<<<<<< HEAD
 				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
 				/*
 				 * I only want the user to load words from the file, thus method 0.
 				 * they can swap the method once the world has been loaded
 				 */
 				return new World(this, agents, tempCities.size(), tempCities, uphill, 0);
-=======
-				this.method = methodLine;
-				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
-				return new World(this, agents, tempCities.size(), tempCities, uphill, method);
->>>>>>> origin/master
 			}
 			s.close();
 		}catch(InputMismatchException e){
@@ -428,7 +406,6 @@ public class AntColonyOptimisation extends Observable{
 		return uphillActive;
 	}
 
-<<<<<<< HEAD
 	public void setEliteAnts(int i) {
 		this.eliteAnts = i;
 
@@ -448,6 +425,4 @@ public class AntColonyOptimisation extends Observable{
 		return true;
 	}
 
-=======
->>>>>>> origin/master
 }
