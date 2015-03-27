@@ -69,6 +69,9 @@ public class AntColonyOptimisation extends Observable{
 	public void start() {
 		//TODO: make sure this is only possible if not already running
 		this.finished = false;
+		if(running){
+			this.running = false;
+		}
 		//if the world isn't loaded from a file
 		if(loaded){
 			//reset the value if it is loaded so the next instance works fine
