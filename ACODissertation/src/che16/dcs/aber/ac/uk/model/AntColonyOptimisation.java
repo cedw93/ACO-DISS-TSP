@@ -103,12 +103,6 @@ public class AntColonyOptimisation extends Observable{
 		worker.execute();
 	}
 
-
-	public double calculatePheromones(double current, double newPheromone) {
-
-		return ((1 - decayRate) * current + newPheromone);
-	}
-
 	public double getAlpha() {
 		return alpha;
 	}
@@ -199,7 +193,7 @@ public class AntColonyOptimisation extends Observable{
 	}
 
 	public World loadWorldFromFile(String fileName) {
-		this.loaded = true;
+
 		double alpha, beta, decayRate, initPhero;
 		int agents, cities, iterations, x , y, uphill;
 		ArrayList<City> tempCities = new ArrayList<City>();
@@ -219,19 +213,21 @@ public class AntColonyOptimisation extends Observable{
 					coords = s.nextLine().split(" ");
 					x = Integer.parseInt(coords[0]);
 					y = Integer.parseInt(coords[1]);
-					if(x > boundaryX || x == 0){
+					if(x > boundaryX || x <= 0){
 						if(Globals.getMode() == 0){
 							JOptionPane.showMessageDialog(null, "Invalid X value for this city",
 									"Invalid X value",	JOptionPane.ERROR_MESSAGE);
 						}
+						loaded = false;
 						s.close();
 						return null;
 					}
-					if(y > boundaryY || y == 0){
+					if(y > boundaryY || y <= 0){
 						if(Globals.getMode() == 0){
 							JOptionPane.showMessageDialog(null, "Invalid Y value for this city",
 									"Invalid Y value",	JOptionPane.ERROR_MESSAGE);
 						}
+						loaded = false;
 						s.close();
 						return null;
 					}
@@ -247,23 +243,38 @@ public class AntColonyOptimisation extends Observable{
 				if(this.validate(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill)){
 					this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
 				}else{
+					loaded = false;
 					return null;
 				}
 				/*
 				 * I only want the user to load words from the file, thus method 0.
 				 * they can swap the method once the world has been loaded
 				 */
+				this.loaded = true;
 				return new World(this, agents, tempCities.size(), tempCities, uphill, 0);
 			}
 			s.close();
 		}catch(InputMismatchException e){
-			e.printStackTrace();
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Corrput file, please check the files format",
+						"File Corruption",	JOptionPane.ERROR_MESSAGE);
+			}
+			loaded = false;
 			return null;
 		}catch(NumberFormatException e){
-			e.printStackTrace();
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Corrput file, please check the files format",
+						"File Corruption",	JOptionPane.ERROR_MESSAGE);
+			}
+			loaded = false;
+			return null;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "The seclted file: " + fileName + " cannot be found.",
+						"File not found",	JOptionPane.ERROR_MESSAGE);
+			}
+			loaded = false;
+			return null;
 		}
 		return null;
 
@@ -290,7 +301,7 @@ public class AntColonyOptimisation extends Observable{
 			return false;
 		}
 
-		if(decayRate > 1.0d || decayRate < 0.0d){
+		if(decayRate >= 1.0d || decayRate <= 0.0d){
 			if(Globals.getMode() == 0){
 				JOptionPane.showMessageDialog(null, "Illegal decayRate value. DecayRate must be between 0 and 1\nYou entered: " + decayRate,
 						"Illegal value",	JOptionPane.ERROR_MESSAGE);
@@ -298,7 +309,7 @@ public class AntColonyOptimisation extends Observable{
 			return false;
 		}
 
-		if(initialPhero > 1.0d || initialPhero < 0.0d){
+		if(initialPhero >= 1.0d || initialPhero <= 0.0d){
 			if(Globals.getMode() == 0){
 				JOptionPane.showMessageDialog(null, "Illegal initialPheromone value. InitialPheromone must be between 0 and 1\nYou entered: " + initialPhero,
 						"Illegal value",	JOptionPane.ERROR_MESSAGE);
@@ -355,7 +366,7 @@ public class AntColonyOptimisation extends Observable{
 
 	public void save(String fileName){
 		/*
-		 * Dont really need to check the results of the parsing here, if the algorithm gets this far the values are fine
+		 * Don't really need to check the results of the parsing here, if the algorithm gets this far the values are fine
 		 */
 		try {
 			ArrayList<City> tempCities = (ArrayList<City>)this.getWorld().getCities();

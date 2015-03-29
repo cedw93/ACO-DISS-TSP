@@ -63,6 +63,10 @@ public class  MenuListener implements ActionListener {
 				String fileName = chooseLoadFile();
 				if(fileName != ""){
 					model.load(fileName);
+					if(model.getWorld() == null){
+						//load failed
+						return;
+					}
 
 					//set the text field values to the same as what was loaded in
 					view.getControlContainer().getControlPanel().getIterationField().setText(Integer.toString(model.getIterations()));
