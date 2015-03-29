@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import che16.dcs.aber.ac.uk.model.Ant;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.model.City;
-import che16.dcs.aber.ac.uk.utils.MathsHelper;
+import che16.dcs.aber.ac.uk.utils.Globals;
 
 public class DisplayCanvas extends JPanel{
 
@@ -143,8 +143,8 @@ public class DisplayCanvas extends JPanel{
 										//cast to a double to stop integer behaviours rounding down to 0
 										double result = ((double)i)/5;
 										//draw an ellipse2D every 1/5 the way along the line
-										float y = (float) (MathsHelper.linearInterpolateY(start.getY(), destination.getY(), result));
-										float x = (float) (MathsHelper.linearInterpolateY(start.getX(), destination.getX(), result));
+										float y = (float) (Globals.linearInterpolateY(start.getY(), destination.getY(), result));
+										float x = (float) (Globals.linearInterpolateY(start.getX(), destination.getX(), result));
 										Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
 										g2.fill(movement);
 										g2.draw(movement);

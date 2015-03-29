@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import che16.dcs.aber.ac.uk.utils.MathsHelper;
+import che16.dcs.aber.ac.uk.utils.Globals;
 
 public class World {
 
@@ -130,7 +130,7 @@ public class World {
 		 */
 		for(int i = 0; i < distanceMatrix.length; i++){
 			for(int j = 0; j < distanceMatrix[0].length; j++){
-				distanceMatrix[i][j] = MathsHelper.calculateEuclidianDistance(cities.get(i).getX(), cities.get(i).getY(), cities.get(j).getX(), cities.get(j).getY());
+				distanceMatrix[i][j] = Globals.calculateEuclidianDistance(cities.get(i).getX(), cities.get(i).getY(), cities.get(j).getX(), cities.get(j).getY());
 			}
 		}
 	}

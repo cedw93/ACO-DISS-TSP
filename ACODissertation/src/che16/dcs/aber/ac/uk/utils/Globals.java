@@ -1,6 +1,11 @@
 package che16.dcs.aber.ac.uk.utils;
 
-public class MathsHelper {
+public class Globals {
+	
+	public static final int REALESE = 0;
+	public static final int TESTMODE = 1;
+	public static int MODE = 0;
+	
 
 	public static double calculateEuclidianDistance(double x1, double y1, double x2, double y2) {
 		double xDiff = x2 - x1;
@@ -32,5 +37,13 @@ public class MathsHelper {
 		return(y1*(1-mu)+y2*mu);
 
 	}
-
+	
+	public static void setTestMode(){
+		MODE = TESTMODE;
+	}
+	
+	public static int getMode(){
+		return MODE;
+	}
+		
 }

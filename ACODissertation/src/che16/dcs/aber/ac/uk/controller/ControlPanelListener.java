@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
+import che16.dcs.aber.ac.uk.utils.Globals;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
 
 public class ControlPanelListener implements ActionListener {
@@ -53,9 +54,11 @@ public class ControlPanelListener implements ActionListener {
 					model.start();
 				}
 			}catch(NumberFormatException ex){
-				JOptionPane.showMessageDialog(null, "One or more value(s) you have specified are of incorrect format.\nPlease adhere to the following formats:\nuphill paths: whole number\niterations: whole number\nalpha: decimal\nbeta: decimal"
-						+ "\ndecay rate: decimal\nnumber of agents: whole number\nnumber of cities: whole number\ninitial pheromone: decimal",
-						"Unparsable Values",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "One or more value(s) you have specified are of incorrect format.\nPlease adhere to the following formats:\nuphill paths: whole number\niterations: whole number\nalpha: decimal\nbeta: decimal"
+							+ "\ndecay rate: decimal\nnumber of agents: whole number\nnumber of cities: whole number\ninitial pheromone: decimal",
+							"Unparsable Values",	JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		else if(source.equalsIgnoreCase("reset values")){

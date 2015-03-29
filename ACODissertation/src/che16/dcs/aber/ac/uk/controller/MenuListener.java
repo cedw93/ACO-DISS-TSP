@@ -10,6 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileView;
 
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
+import che16.dcs.aber.ac.uk.utils.Globals;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
 
 public class  MenuListener implements ActionListener {
@@ -32,8 +33,10 @@ public class  MenuListener implements ActionListener {
 		String source = e.getActionCommand();
 		if(source.equalsIgnoreCase("save")){
 			if(model.getWorld() == null){
-				JOptionPane.showMessageDialog(null, "There is nothing to save. Try loading a file or creating your own world!",
-						"Nothing to save!",	JOptionPane.WARNING_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "There is nothing to save. Try loading a file or creating your own world!",
+							"Nothing to save!",	JOptionPane.WARNING_MESSAGE);
+				}
 				return;
 			}
 			//don't save if the algorithm is running
@@ -42,12 +45,16 @@ public class  MenuListener implements ActionListener {
 				if(fileName != ""){
 					model.save(fileName);
 				}else{
-					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
-							"No file selected",	JOptionPane.ERROR_MESSAGE);
+					if(Globals.getMode() == 0){
+						JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
+								"No file selected",	JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}else{
-				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot save untill this is stopped or finishes naturally.",
-						"Saving error",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot save untill this is stopped or finishes naturally.",
+							"Saving error",	JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 
@@ -67,12 +74,16 @@ public class  MenuListener implements ActionListener {
 					view.getControlContainer().getControlPanel().getDecayField().setText(Double.toString(model.getDecayRate()));
 					view.getControlContainer().getControlPanel().getUphillField().setText(Integer.toString(model.getUphillPaths()));
 				}else{
-					JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
-							"No file selected",	JOptionPane.ERROR_MESSAGE);
+					if(Globals.getMode() == 0){
+						JOptionPane.showMessageDialog(null, "You did not select a file, please try again.",
+								"No file selected",	JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}else{
-				JOptionPane.showMessageDialog(null, "You cannot load a problem whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
-						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "You cannot load a problem whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+							"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				}
 			}
 
 		}	
@@ -121,14 +132,17 @@ public class  MenuListener implements ActionListener {
 			if(!(model.getRunning())){
 				model.setMethod(0);
 			}else{
-				JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
-						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+							"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 
 		else if(source.equalsIgnoreCase("elitist ant system")){
 			if(!(model.getRunning())){
 				String result = JOptionPane.showInputDialog(null, "How many Elite ants do you want?");
+
 				try{
 					int number = Integer.parseInt(result);
 					if(number > Integer.parseInt(view.getControlContainer().getControlPanel().getAgentField().getText())){
@@ -149,8 +163,10 @@ public class  MenuListener implements ActionListener {
 							"Number format error",	JOptionPane.ERROR_MESSAGE);
 				}
 			}else{
-				JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
-						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "You cannot change the method whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+							"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 

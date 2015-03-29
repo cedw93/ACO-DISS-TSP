@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import che16.dcs.aber.ac.uk.utils.Globals;
+
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
@@ -77,8 +79,10 @@ public class AntColonyOptimisation extends Observable{
 			//reset the value if it is loaded so the next instance works fine
 			loaded = false;
 			if(world == null){
-				JOptionPane.showMessageDialog(null, "There is no world, please load a file or make a new world",
-						"No world created",	JOptionPane.ERROR_MESSAGE);
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "There is no world, please load a file or make a new world",
+							"No world created",	JOptionPane.ERROR_MESSAGE);
+				}
 				return;
 			}
 		}else{
@@ -182,7 +186,10 @@ public class AntColonyOptimisation extends Observable{
 			}
 			notifyCanvas();
 		}else{
-			System.out.println("Algorithm is running, please wait to stop the execution before loading");
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot load untill this is stopped or finishes naturally.",
+						"Loading error",	JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 
@@ -213,12 +220,18 @@ public class AntColonyOptimisation extends Observable{
 					x = Integer.parseInt(coords[0]);
 					y = Integer.parseInt(coords[1]);
 					if(x > boundaryX || x == 0){
-						System.out.println("LOADING ERROR X IS TOO LARGE OR IS 0. X == " + x);
+						if(Globals.getMode() == 0){
+							JOptionPane.showMessageDialog(null, "Invalid X value for this city",
+									"Invalid X value",	JOptionPane.ERROR_MESSAGE);
+						}
 						s.close();
 						return null;
 					}
 					if(y > boundaryY || y == 0){
-						System.out.println("LOADING ERROR Y IS TOO LARGE OR IS 0. Y == " + y);
+						if(Globals.getMode() == 0){
+							JOptionPane.showMessageDialog(null, "Invalid Y value for this city",
+									"Invalid Y value",	JOptionPane.ERROR_MESSAGE);
+						}
 						s.close();
 						return null;
 					}
@@ -231,7 +244,11 @@ public class AntColonyOptimisation extends Observable{
 			//loading is only complete if it gets to here and the above checks pass
 			if(s.nextLine().contains("EOF")){
 				s.close();
-				this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
+				if(this.validate(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill)){
+					this.setValues(alpha, beta, decayRate, initPhero, agents, tempCities.size(), iterations, uphill);
+				}else{
+					return null;
+				}
 				/*
 				 * I only want the user to load words from the file, thus method 0.
 				 * they can swap the method once the world has been loaded
@@ -258,50 +275,66 @@ public class AntColonyOptimisation extends Observable{
 
 	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations, int uphill) {
 		if(alpha > 5.0d || alpha < -5.0d){
-			JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(beta > 5.0d || beta < -5.0d){
-			JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and -5.0\nYou entered: " + beta,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and -5.0\nYou entered: " + beta,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(decayRate > 1.0d || decayRate < 0.0d){
-			JOptionPane.showMessageDialog(null, "Illegal decayRate value. DecayRate must be between 0 and 1\nYou entered: " + decayRate,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal decayRate value. DecayRate must be between 0 and 1\nYou entered: " + decayRate,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(initialPhero > 1.0d || initialPhero < 0.0d){
-			JOptionPane.showMessageDialog(null, "Illegal initialPheromone value. InitialPheromone must be between 0 and 1\nYou entered: " + initialPhero,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal initialPheromone value. InitialPheromone must be between 0 and 1\nYou entered: " + initialPhero,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(agents > 50 || agents < 1){
-			JOptionPane.showMessageDialog(null, "Illegal number of agents. Number of agents must be between 1 and 50\nYou entered: " + agents,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal number of agents. Number of agents must be between 1 and 50\nYou entered: " + agents,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(cities > 25 || cities < 3){
-			JOptionPane.showMessageDialog(null, "Illegal number of cities. Number of cities must be between 3 and 25\nYou entered: " + cities,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal number of cities. Number of cities must be between 3 and 25\nYou entered: " + cities,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(iterations < 1){
-			JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal number of iterations. Number of iterations must be at least 1.\nYou entered: " + iterations,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
 		if(uphill > 15 || uphill < 0){
-			JOptionPane.showMessageDialog(null, "Illegal Uphill Paths value. Uphill Paths must be between 0 and 15\nYou entered: " + uphill,
-					"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Illegal Uphill Paths value. Uphill Paths must be between 0 and 15\nYou entered: " + uphill,
+						"Illegal value",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 
@@ -352,8 +385,10 @@ public class AntColonyOptimisation extends Observable{
 			out.write("EOF");
 			out.close();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "A error occured during file writing, please try again",
-					"File writing error",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "A error occured during file writing, please try again",
+						"File writing error",	JOptionPane.ERROR_MESSAGE);
+			}
 		}
 
 	}
@@ -416,13 +451,17 @@ public class AntColonyOptimisation extends Observable{
 
 	public boolean checkEliteValueIsValid(int value){
 		if(value > noOfAgents){
-			JOptionPane.showMessageDialog(null, "You cannot have more elite agents than there are agents",
-					"Too many elite agents",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "You cannot have more elite agents than there are agents",
+						"Too many elite agents",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 		if(value < 0){
-			JOptionPane.showMessageDialog(null, "You cannot less than 0 elite agents",
-					"Too few elite agents",	JOptionPane.ERROR_MESSAGE);
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "You cannot less than 0 elite agents",
+						"Too few elite agents",	JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 		return true;
