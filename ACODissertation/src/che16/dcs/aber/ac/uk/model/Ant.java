@@ -65,7 +65,7 @@ public class Ant{
 	 */
 
 	// TODO really needs improvement
-	private final int getNextProbableNode(int y) {
+	public final int getNextProbableNode(int y) {
 		//This is an adapted version of a similar method provided by Thomas Jungblut found here: https://code.google.com/p/antcolonyopt/
 		//create a location to store the probability for all next locations
 		//this can then be easily accessed to return the next index for the ant's move
@@ -129,10 +129,8 @@ public class Ant{
 
 	public void move(){
 
-
 		int lastNode = start;
 		int next = start;
-		//while ((next = getNextProbableNode(lastNode)) != -1) {
 		while ((next = getNextProbableNode(lastNode)) != -1){
 			//stop if the user said so!
 			if(!world.getRunning()){
@@ -163,6 +161,7 @@ public class Ant{
 		 * and is therefore the best be default, all other operations after the first to finish should be evaluated against the
 		 * right hand condition. This calculated if this ant has travelled less distance than the current best, if it has then this is the best ant.
 		 */
+
 		if((world.getBestDistance() == -1.0d) || (this.totalDistanceWalked < world.getBestDistance())){
 			if(world.getMethod() == 1){
 				if(world.getEliteAnts().size() +1 < world.getEliteCount()){
@@ -178,7 +177,6 @@ public class Ant{
 							}
 						}
 					}
-
 					world.getEliteAnts().remove(worst);
 					world.getEliteAnts().add(world.new EliteAntData(this.totalDistanceWalked, route));
 				}
@@ -231,6 +229,10 @@ public class Ant{
 	public void setMoving(boolean status) {
 		this.isMoving = status;
 
+	}
+
+	public boolean[] getVisited(){
+		return visited;
 	}
 
 }

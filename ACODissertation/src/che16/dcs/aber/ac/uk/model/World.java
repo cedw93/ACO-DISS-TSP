@@ -60,7 +60,7 @@ public class World {
 
 	}
 
-	private void initCitiesFromList(ArrayList<City> tempCities) {
+	public void initCitiesFromList(ArrayList<City> tempCities) {
 		cities = new ArrayList<City>();
 		cities.addAll(tempCities);
 
@@ -148,7 +148,7 @@ public class World {
 
 	}
 
-	private double invertValue(double value) {
+	public double invertValue(double value) {
 		// takes a double value and returns the inverse of that (1/value)
 		// however if the value is 0 then then return 0, you cannot do 1/0 
 		if(value == 0.0d){
@@ -171,15 +171,6 @@ public class World {
 				pheromone[i][j] = new Pheromone(aco.getInitialPheromone());
 			}
 		}
-		//DEBUG PRINTING
-		/*for(int i = 0; i < pheromone.length; i++){
-			for(int j = 0; j < pheromone[0].length; j++){
-				System.out.print(pheromone[i][j] + " ");
-			}
-			System.out.println();
-		}
-		 */
-
 	}
 
 	public void updatePheromone(int x, int y, double newPheromone) {
@@ -194,8 +185,7 @@ public class World {
 
 	}
 
-	//private as it should only ever be called from updatePheromone method
-	private double calculatePheromones(double current, double newPheromone) {
+	public double calculatePheromones(double current, double newPheromone) {
 		//we dont need to store the result in a temporary variable, just return the equation in place
 		return ((1 - aco.getDecayRate()) * current + newPheromone);
 
@@ -230,6 +220,7 @@ public class World {
 
 	}
 
+	//debugging print
 	public void printPheroMatrix() {
 		System.out.println("Phero Matrix is: ");
 		for(int i = 0; i < pheromone.length; i++){
@@ -323,7 +314,7 @@ public class World {
 			}
 
 			if(start && end){
-				//saves times and resources, if above results are met then exit we are done here
+				//rather than going through the whole list of cities, exit if we have found the cities of interest
 				return;
 			}
 		}
@@ -354,6 +345,7 @@ public class World {
 
 	public void depositBest() {
 		//research suggests 1/4 * number of cities, or number of cities is the best e value
+		//could also use e = number of cities
 		LinkedList<Integer> best;
 		for(EliteAntData data: eliteAnts){
 			System.out.println(data.getEliteRoute());
@@ -381,7 +373,7 @@ public class World {
 		private double distance;
 		private LinkedList<Integer> eliteRoute;
 
-		public EliteAntData(double distance, LinkedList<Integer> eliteRoute ){
+		public EliteAntData(double distance, LinkedList<Integer> eliteRoute){
 			this.distance = distance;
 			this.eliteRoute = eliteRoute;
 		}
