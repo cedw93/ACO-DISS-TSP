@@ -116,8 +116,6 @@ public class AntTest {
 		assertFalse(ant.getVisited()[index]);
 		ant.getVisited()[index] = true;
 
-		System.out.println(Arrays.toString(ant.getVisited()));
-
 		index = ant.getNextProbableNode(index);
 
 		//there should be nowhere to move so return -1
