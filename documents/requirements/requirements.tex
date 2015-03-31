@@ -69,6 +69,7 @@ interface       &A graphical user interface \\
 standalone    &Operates independently of other hardware or software\\
 agent		&The entities which will be traversing the graph \\
 \end{tabular}
+\caption{Definitions for the keys terms used throughout this document}
 \end{table}
 
 \section{Overview}
@@ -124,18 +125,166 @@ This section contains the function requirements of the software as well as givin
 
 \subsection{User Interface}
 
-There will be one main user interface for this application. This interface will containan display area which is where the algorithms current state of execution will be represented visually to the user. There will also be an area which will house the text boxes which will be used by the user to interact with the algorithm and modify the parameters.
+There will be one main user interface for this application. This interface will contain a display area which is where the algorithms current state of execution will be represented visually to the user. There will also be an area which will house the text boxes which will be used by the user to interact with the algorithm and modify the parameters.
 
-The display area will be simple and will be clearly identifable. The text boxes responsible for handling user inputs will be clearly labeled so the user knows exactly what parameter they will be modifing. The text boxes will be obviously editable and the user will assoicate the look and feel of these text boxes with the fact that thier contents can be modified.
+The display area will be simple and will be clearly identifiable. The text boxes responsible for handling user inputs will be clearly labelled so the user knows exactly what parameter they will be modifing. The text boxes will be obviously editable and the user will associate the look and feel of these text boxes with the fact that their contents can be modified.
 
-The display will represent everything about the algorithms current state. This will display all of the graphs Nodes and all of the Agents at thier current Node. The display area will also show the current pheromone levels for each connecting edge for a given node, this will be done in a way that is clear and understandable by all of the user groups mentioned in section \ref{ssec:usergroups}.
+The display will represent everything about the algorithms current state. This will display all of the graphs Nodes and all of the Agents at their current Node. The display area will also show the current pheromone levels for each connecting edge for a given node, this will be done in a way that is clear and understandable by all of the user groups mentioned in section \ref{ssec:usergroups}.
 
 There will also be a textual representation of the current best agent. This will display the best route and the distance of the best route and will update as the global best is updated. There will also be textual representations of how many agents are currently working in addition to how many agents have finished.
 
 \subsection{Hardware Interface}
 
-The application does not require any specific hardware or host envioment as it will be fully cross-platform compliant there are no direct hardware interfaces. There is no newtork use in this application thus there is no need to communicate with network adapters or anything of similar nature. The system interactions between this application and the host's Operating System file system will be delegated to the Operating System itself.
+The application does not require any specific hardware or host environment as it will be fully cross-platform compliant there are no direct hardware interfaces. There is no network use in this application thus there is no need to communicate with network adapters or anything of similar nature. The system interactions between this application and the host's Operating System file system will be delegated to the Operating System itself.
 
 \subsection{Functional Requirements}
+\label{funcreq}
+\textbf{ID: FR1}\\
+Title: Launch the Application\\
+Description: Regardless of the users host environment the application should be able to be launched by the user using an executable .jar file.\\
+Dependencies: None
+\\
+
+\noindent
+\textbf{ID: FR2}\\
+Title: Generate a World\\
+Description: The user must be able to randomly generate a world for the algorithm to be executed on.\\
+Dependencies: FR1
+\\
+
+\noindent
+\textbf{ID: FR3}\\
+Title: Visualise a World\\
+Description: The user must be able to visualise the world and its parameters including the number of agents, the agent locations and the number of Nodes.\\
+Dependencies: FR1, FR2
+\\
+
+\noindent
+\textbf{ID: FR4}\\
+Title: Provide a means to modify parameters\\
+Description: The application must provide simple ways to modify the algorithms parameters.\\
+Dependencies: FR1
+\\
+
+\noindent
+\textbf{ID: FR5}\\
+Title: Generate a World with specified values\\
+Description: The user must be able to generate a world for the algorithm to be executed on. This World with have user defined properties such as the number of Nodes and Agents.\\
+Dependencies: FR1, FR4, F10
+\\
+
+\noindent
+\textbf{ID: FR6}\\
+Title: Visualise the Pheromone\\
+Description: Every edge in the graph will have its own pheromone value. This must be visually displayed to the user and correctly model the pheromone deposit and decay operations.\\
+Dependencies: FR1, FR2, FR3, FR13
+\\
+
+\noindent
+\textbf{ID: FR7}\\
+Title: Visualise the Agents movement\\
+Description: As the algorithm is executing the Agents will move through the graph. The movement of these Agents must be displayed to the user in a logical manner.\\
+Dependencies: FR1, FR2, FR3, FR8
+\\
+
+\noindent
+\textbf{ID: FR8}\\
+Title: Start the Algorithm's execution\\
+Description: There must be a simple way for the user to start the algorithms execution. \\
+Dependencies: FR1
+\\
+
+\noindent
+\textbf{ID: FR9}\\
+Title: Stop the Algorithm's execution\\
+Description: There must be a simple way for the user to stop the algorithms execution anytime the user wishes to. \\
+Dependencies: FR1
+\\
+
+\noindent
+\textbf{ID: FR10}\\
+Title: Validate parameters\\
+Description: As the users will be able to define thier own parameter values there must be correct measures in place to ensure the values entered are legal. If they are indeed illegal then suitable error messages will be displayed. \\
+Dependencies: FR1
+\\
+
+\noindent
+\textbf{ID: FR11}\\
+Title: Display the best path\\
+Description: As the algorithm is performing its task there must be a way to display the current best result to the user. \\
+Dependencies: FR1, FR2, FR3, FR5, FR7, FR8, FR12
+\\
+
+\noindent
+\textbf{ID: FR12}\\
+Title: Agents must be able to move between Nodes\\
+Description: In order for algorithm to perform as expected there must be a way for each Agent to move between Nodes in the graph. \\
+Dependencies: FR1, FR2, FR3
+\\
+
+\noindent
+\textbf{ID: FR13}\\
+Title: Model Pheromone operations\\
+Description: There must exist a way for the algorithm to correctly deposit and decay pheromones on graph edges adhering to specific formulae. \\
+Dependencies: FR1, FR2, FR3, FR11
+\\
+
+\noindent
+\textbf{ID: FR14}\\
+Title: Load Configuration from a file\\
+Description: There must exist a way for the users to load a pre-existing configuration from a file of their choosing. This allows the algorithm to be executed on the same problem multiple times. \\
+Dependencies: FR1, FR2, FR3
+\\
+
+\noindent
+\textbf{ID: FR15}\\
+Title: Save Configuration to a file\\
+Description: There must exist a way for the users to save the current configuration to a file of their choosing. This allows the algorithm to be executed on the same problem multiple times. \\
+Dependencies: FR1, FR2, FR3
+\\
+
+\noindent
+\textbf{ID: FR16}\\
+Title: Exit the application\\
+Description: The user must be able to exit the application completely killing the process and freeing system resources. \\
+Dependencies: FR1
+\clearpage
+\subsection{Requirement Evaluation}
+
+Each of the functional requirements mentioned in section \ref{funcreq} differ in thier levels of importance. The dependencies field for each requirement donates which requirements must be completed before said requirement itself can be finished. As this is the case the following represents the order of importance for each functional requirement.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|lll}
+\textbf{Requirement} & \textbf{Dependant Requirements} \\ 
+\hline
+FR1 & , \begin{tabular}{@{}c@{}}FR2, FR3, FR4, FR5, FR6, FR7, FR8, FR9\\ FR10, FR11, FR12, FR13, FR14, FR15, FR16\end{tabular} \\ \hline
+FR2 & FR3, FR6, FR7, FR11, FR12, FR13, FR14, FR15 \\ \hline
+FR3 & FR6, FR7, FR11, FR12, FR13, FR14, FR15. \\ \hline
+FR8 &FR7, FR11, FR13 \\ \hline
+FR4 &FR5\\ \hline
+FR5 &FR11\\ \hline
+FR10 &FR5\\ \hline
+FR12 &FR11\\ \hline
+FR13 &FR6\\ \hline
+FR7 &FR11\\ \hline
+FR11 &\\ \hline
+FR6 &\\ \hline
+FR9 &\\ \hline
+FR14 &\\ \hline
+FR15 &\\ \hline
+FR16 &\\ \hline
+\end{tabular}
+\caption{Table representing the Functional Requirements and which other requirements are dependent on them.}
+\label{frtable}
+\end{table}
+
+\noindent
+As described in Table \ref{frtable} the number of dependant requirements a requirement has the more important it is to the progress of the application. FR1 is the first task that must be accomplished therefore every other requirement is dependent on this being completed. FR1 is the ability to launch the application, if the application cannot be launched then none of the other requirements can be completed, this is a critical requirement.
+
+FR2 is another critical requirement which must be completed early in development as many other requirements are dependent on its completion. FR2 is the ability to generate a World. A World contains all the data that the algorithm needs in order to both execute and visualise, therefore if there is no way to generate a World there is no way to visualise or model the algorithms execution (FR3).
+
+Apart from FR8 (start the algorithm’s execution) the remaining functional requirements are somewhat independent of each other and are less critical. However this does not mean that they can be avoided as they will be needed in the final application version.
+
 
 \end{document}
