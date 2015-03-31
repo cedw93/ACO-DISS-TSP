@@ -90,7 +90,7 @@ The users will be able to view a world which represents the Agents and the nodes
 The parameters which can be modified will be clearly labelled and will be obviously editable. As these parameters will be user defined there will be strict error checking measures in place to catch any illegal values before they can cause problems for the algorithm, and in addition each parameter will have a range of legal limits applied to them. This will prevent the users from entering values of the incorrect type (String when the systems needs a double) and will also prevent values from outside of the specified range being accepted. When a complication or error arises there will be a simple error message presented to the user informing them of both the error and why it occurred which should enable the user to resolve what they did incorrectly.
 
 \subsection{User Groups and Characteristics}
-
+\label{ssec:usergroups}
 There will be three main user groups associated with this application. Each of these user groups will interact with the application in a different manner but the main purpose and result will remain the same.
 
 \noindent \\
@@ -118,5 +118,24 @@ It will be assumed that users will meet the minimum display requirements thus no
 
 Another assumption is that every user will have some experience of using similar software and the interface will be familiar and therefore will be easy to use and navigate. The interface will use traditional methods such as simple buttons, text boxes and drop down menus to provide the user access to certain functionality.
 
+\section{Specific Requirements}
+
+This section contains the function requirements of the software as well as giving details about the different interfaces.
+
+\subsection{User Interface}
+
+There will be one main user interface for this application. This interface will containan display area which is where the algorithms current state of execution will be represented visually to the user. There will also be an area which will house the text boxes which will be used by the user to interact with the algorithm and modify the parameters.
+
+The display area will be simple and will be clearly identifable. The text boxes responsible for handling user inputs will be clearly labeled so the user knows exactly what parameter they will be modifing. The text boxes will be obviously editable and the user will assoicate the look and feel of these text boxes with the fact that thier contents can be modified.
+
+The display will represent everything about the algorithms current state. This will display all of the graphs Nodes and all of the Agents at thier current Node. The display area will also show the current pheromone levels for each connecting edge for a given node, this will be done in a way that is clear and understandable by all of the user groups mentioned in section \ref{ssec:usergroups}.
+
+There will also be a textual representation of the current best agent. This will display the best route and the distance of the best route and will update as the global best is updated. There will also be textual representations of how many agents are currently working in addition to how many agents have finished.
+
+\subsection{Hardware Interface}
+
+The application does not require any specific hardware or host envioment as it will be fully cross-platform compliant there are no direct hardware interfaces. There is no newtork use in this application thus there is no need to communicate with network adapters or anything of similar nature. The system interactions between this application and the host's Operating System file system will be delegated to the Operating System itself.
+
+\subsection{Functional Requirements}
 
 \end{document}
