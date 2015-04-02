@@ -18,7 +18,7 @@ public class UphillViewer extends JFrame{
 
 	public UphillViewer(AntColonyOptimisation model){
 
-		super("Uphill routes (green paths) and thier direction");
+		super("Uphill routes and the uphill direction");
 		setSize(new Dimension(500, 600));
 
 		content = new  UphillPanel(model);

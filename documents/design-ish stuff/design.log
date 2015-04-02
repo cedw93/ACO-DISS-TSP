@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  30 MAR 2015 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  3 APR 2015 00:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -264,23 +264,77 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 )
+(c:/texlive/2014/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(c:/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(c:/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(c:/texlive/2014/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
+)
+\XKV@depth=\count126
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(c:/texlive/2014/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(c:/texlive/2014/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(c:/texlive/2014/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box31
+)
+\tc@llx=\dimen138
+\tc@lly=\dimen139
+\tc@urx=\dimen140
+\tc@ury=\dimen141
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(c:/texlive/2014/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen142
+\adjbox@Height=\dimen143
+\adjbox@Depth=\dimen144
+\adjbox@Totalheight=\dimen145
+
+(c:/texlive/2014/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count127
+)
+(c:/texlive/2014/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box32
+\sift@deathcycles=\count128
+\@vwid@loff=\dimen146
+\@vwid@roff=\dimen147
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
- (./design.aux)
+ (./design.aux
+
+LaTeX Warning: Label `fig:interface' multiply defined.
+
+)
 \openout1 = `design.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -318,17 +372,17 @@ LaTeX Font Info:    ... okay on input line 14.
 
 (c:/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen138
-\scratchbox=\box31
-\nofMPsegments=\count127
-\nofMParguments=\count128
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen139
-\MPnumerator=\count130
-\makeMPintoPDFobject=\count131
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count129
+\scratchdimen=\dimen148
+\scratchbox=\box33
+\nofMPsegments=\count130
+\nofMParguments=\count131
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count132
+\MPscratchDim=\dimen149
+\MPnumerator=\count133
+\makeMPintoPDFobject=\count134
+\everyMPtoPDFconversion=\toks29
 ) (c:/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -390,43 +444,56 @@ Missing character: There is no ™ in font cmr10!
 <MVC.png, id=13, 154.4169pt x 80.9424pt>
 File: MVC.png Graphic file (type png)
  <use MVC.png>
-Package pdftex.def Info: MVC.png used on input line 88.
+Package pdftex.def Info: MVC.png used on input line 95.
 (pdftex.def)             Requested size: 254.43878pt x 133.37997pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 93.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
+
 
 (c:/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 93.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+ [2 <./MVC.png>]
+<observer.png, id=21, 1505.625pt x 1324.95pt>
+File: observer.png Graphic file (type png)
+ <use observer.png>
+Package pdftex.def Info: observer.png used on input line 114.
+(pdftex.def)             Requested size: 381.6517pt x 335.84618pt.
 
-<signleton.png, id=15, 526.96875pt x 190.7125pt>
+<signleton.png, id=22, 526.96875pt x 190.7125pt>
 File: signleton.png Graphic file (type png)
  <use signleton.png>
-Package pdftex.def Info: signleton.png used on input line 108.
+Package pdftex.def Info: signleton.png used on input line 131.
 (pdftex.def)             Requested size: 339.24956pt x 122.78017pt.
+ [3 <./observer.png>] [4 <./signleton.png>]
+<diss-uml.png, id=31, 2971.1pt x 2307.62125pt>
+File: diss-uml.png Graphic file (type png)
+ <use diss-uml.png>
+Package pdftex.def Info: diss-uml.png used on input line 141.
+(pdftex.def)             Requested size: 698.20862pt x 542.29108pt.
 
+Overfull \hbox (26.60931pt too wide) in paragraph at lines 141--142
+[][] 
+ []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./MVC.png>] [3 <./signleton.png>]
-<raw-class-diagram.png, id=26, 1490.56876pt x 1158.3275pt>
-File: raw-class-diagram.png Graphic file (type png)
-
-<use raw-class-diagram.png>
-Package pdftex.def Info: raw-class-diagram.png used on input line 118.
-(pdftex.def)             Requested size: 670.74976pt x 521.24257pt.
- [4 <./raw-class-diagram.png>]
-<screen.png, id=31, 839.135pt x 717.68124pt>
+[5 <./diss-uml.png>] <screen.png, id=36, 839.135pt x 717.68124pt>
 File: screen.png Graphic file (type png)
- <use screen.png>
-Package pdftex.def Info: screen.png used on input line 144.
+
+<use screen.png>
+Package pdftex.def Info: screen.png used on input line 168.
 (pdftex.def)             Requested size: 339.24956pt x 290.14462pt.
- [5
+ [6
 
 
-] [6 <./screen.png>]
-Overfull \hbox (10.91273pt too wide) in paragraph at lines 176--177
+] <error.png, id=42, 468.75125pt x 198.7425pt>
+File: error.png Graphic file (type png)
+
+<use error.png>
+Package pdftex.def Info: error.png used on input line 192.
+(pdftex.def)             Requested size: 339.24956pt x 143.83443pt.
+ [7 <./screen.png>]
+Overfull \hbox (10.91273pt too wide) in paragraph at lines 213--214
 []\OT1/cmr/bx/n/10 Pheromone ma-nip-u-la-tion met-rics \OT1/cmr/m/n/10 there mu
 st ex-ists ad-e-quate ways to ac-cess the pheromone
  []
@@ -434,7 +501,56 @@ st ex-ists ad-e-quate ways to ac-cess the pheromone
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-[7] [8] [9] (./design.bbl
+[8 <./error.png>] <flowmain.png, id=50, 1417.295pt x 1104.125pt>
+File: flowmain.png Graphic file (type png)
+
+<use flowmain.png>
+Package pdftex.def Info: flowmain.png used on input line 220.
+(pdftex.def)             Requested size: 708.64577pt x 552.06116pt.
+
+Overfull \hbox (37.04646pt too wide) in paragraph at lines 220--221
+ [][] 
+ []
+
+[9 <./flowmain.png>] [10
+
+
+] <sequenceRes.png, id=59, 1535.7375pt x 2407.99625pt>
+File: sequenceRes.png Graphic file (type png)
+
+<use sequenceRes.png>
+Package pdftex.def Info: sequenceRes.png used on input line 267.
+(pdftex.def)             Requested size: 460.72481pt x 722.40445pt.
+
+Overfull \hbox (36.66447pt too wide) in paragraph at lines 267--268
+[][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 72.80515pt on input line 270.
+
+[11 <./sequenceRes.png>] [12
+
+
+] <graph.png, id=72, 383.4325pt x 342.27875pt>
+File: graph.png Graphic file (type png)
+
+<use graph.png>
+Package pdftex.def Info: graph.png used on input line 370.
+(pdftex.def)             Requested size: 306.74641pt x 273.82335pt.
+ [13] <phero.png, id=76, 394.47375pt x 353.32pt>
+File: phero.png Graphic file (type png)
+
+<use phero.png>
+Package pdftex.def Info: phero.png used on input line 384.
+(pdftex.def)             Requested size: 315.57942pt x 282.65639pt.
+ [14 <./graph.png>]
+<pheroEX.png, id=80, 384.43625pt x 348.30125pt>
+File: pheroEX.png Graphic file (type png)
+ <use pheroEX.png>
+Package pdftex.def Info: pheroEX.png used on input line 400.
+(pdftex.def)             Requested size: 307.54941pt x 278.64137pt.
+ [15 <./phero.png>] [16 <./pheroEX.png>] (./design.bbl
 Underfull \hbox (badness 6675) in paragraph at lines 65--71
 \OT1/cmr/m/n/10 http://upload.wikimedia.org/math/6/d/b/6db065218c956a4a7af6da99
 aaeca5d1.png.  Ac-
@@ -446,33 +562,37 @@ Underfull \hbox (badness 6675) in paragraph at lines 75--81
 aaeca5d1.png.  Ac-
  []
 
-) [10
+) [17
 
-] [11] (./design.aux) ) 
+] [18] (./design.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5781 strings out of 493109
- 86531 string characters out of 6138587
- 175260 words of memory out of 5000000
- 9167 multiletter control sequences out of 15000+600000
+ 6558 strings out of 493109
+ 98640 string characters out of 6138587
+ 189384 words of memory out of 5000000
+ 9902 multiletter control sequences out of 15000+600000
  9006 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,38p,1435b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12
-.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2
-014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2014/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2014/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on design.pdf (12 pages, 284285 bytes).
+ 38i,9n,75p,1435b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2014
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2014/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2014/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2014/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi5.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/
+texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2014/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2014/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb>
+Output written on design.pdf (19 pages, 642117 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 136 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

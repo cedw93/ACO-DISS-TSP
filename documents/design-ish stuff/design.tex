@@ -8,6 +8,7 @@
 \usepackage{mathtools}
 \usepackage[noend]{algpseudocode}
 \usepackage[justification=centering]{caption}
+\usepackage[export]{adjustbox}
 \renewcommand*{\refname}{Bibliography}
 
 
@@ -52,10 +53,16 @@
         Department of Computer Science\\
         Aberystwyth University\\
         Wales\\
-        \today
+       
         
 	\end{center}
 \end{titlepage}
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+The purpose of this document is to give a detailed description for the design of the`Visualising Ant Colony Optimisation' application. This document will cover the proposed interface designs and interaction methods, choice of language and the underlying data structures and logical modules used in the application.
 
 \section{Language}
 
@@ -96,13 +103,29 @@ This project will make effective use of Model-View-Controller in order to produc
 \end{itemize}
 \noindent
 
+
+\subsection{Observer and Observable}
+
+The implementation of the Model-View-Controller design pattern is handled using the Observer and Observable interface provided as part of the default Java language specification. The general premise is that the Model will have an Observer which will have an update interface allowing it to receive signals from what it is observing (Model). The Model will implement the Observable interface which will enable it to send update signals to the Observer through the notifyObservers() method. This enables the Models dependencies to be updated as the Model itself changes ensuring the correct state of the Model is captured in the Views.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{observer}
+\caption{Proposed implementation of the Observer and Observable Design pattern}
+\label{fig:observable}
+\end{figure}
+
+\noindent
+As figure \ref{fig:observable} demonstrates the View will Observe the Model and will wait for an update signal sent by the Model's notifyObserver() method. The Model can have multiple Observers using this pattern so there is the potential for future modification or enhancement without having to rework the existing system should the needs for extra views be needed.
+
 \subsubsection{Singleton}
 \label{sssec:singleton}
 In order to maintain simplicity throughout the application the Singleton design pattern will implemented for key Objects where one and only one instance of an Object must exist. The Singleton pattern prevents multiple instantiations of specific Object(s) as the Object itself is solely responsible for tracking the currently instantiated instance of itself\cite{gof:design:singleton}. 
 
 The application will consist of a graphical user interface which in turn, will be composed of several different components. Such components must only be instantiated once in order to ensure correct interactions are performed. Without the presence of the Singleton pattern there exists the possibility of multiple instances of such components which could potentially cause unforeseen complications and undefined behaviours.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \label{fig:singleton}
 \includegraphics[width=0.8\textwidth]{signleton}
@@ -115,7 +138,7 @@ Adhering to the concepts of the patterns described in sections \ref{sssec:mvc} a
 
 \clearpage
 \begin{sidewaysfigure}
-\includegraphics[scale=0.45]{raw-class-diagram}
+\includegraphics[scale=0.235]{diss-uml}
 \caption{Initial Class Diagram representing the main modules, packages and system interactions using UML notation.}
 \label{fig:classdiagram}
 \end{sidewaysfigure}
@@ -134,7 +157,8 @@ The che16.dcs.aber.ac.uk.model package contains the necessary elements and attri
 The initial concept for the controller is basic and will grow in complexity during the development lifecycle as more and more control based mechanisms will become prevalent. This initial concept is a simple Observer which notifies the view(s) should the model change in a significant way; the inverse of this is also true.
 
 \section{Interface Design}
-
+\subsection{Main User Interface}
+\label{ssec:mainUI}
 The interface design must accommodate all the necessary elements required to allow user defined values for each of the algorithm parameters. The interface must also be able to visually represent the current algorithms state including the locations of the agents and nodes without impacting on the usability of the application (the interface must not freeze or be negatively affected by the algorithms execution).
 
 The interface will use a very neutral colour scheme which will maximise the usability and reduce the risk of complications which may arise from users being subject to difficulties understanding or identifying certain colours. Every option for the user will be textually defined and will not rely on any sound or visual prompts in order to user. As a result in addition to the above, users with visual impairments will still be able to use the application as intended.
@@ -159,12 +183,25 @@ The interface will use a very neutral colour scheme which will maximise the usab
 
 \textbf{6.}in figure~\ref{fig:interface} refers to the main canvas area which will display the algorithms current state of execution to the user. The contents of this will reflect the user defined values (elements in: \textbf{3.} in figure~\ref{fig:interface}) as well as representing each agents current location, their movements between nodes and also the modelling of pheromone deposit and decay will be present in this canvas.
 
+\subsection{Error Message Feedback}
+
+As the Algorithm parameters will be user defined using the interface proposed in section \ref{ssec:mainUI}, figure \ref{fig:interface} there must be measures in place to catch and inform the user of any illegal values. Not only must the user be told they have inputted illegal values the illegal parameter value will be identified and a range of legal values will be displayed to the user.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{error}
+\caption{Proposed design for the illegal parameter error message displayed to the user}
+\label{fig:error}
+\end{figure}
+
+\noindent
+As represented in figure \ref{fig:error} the error message will contain all the information a user needs to identify the problem with their data input. The X value in figure \ref{fig:error} represents which parameter has the illegal data input (i.e. Alpha, Beta). Range XX-YY represents the legal values for said parameter, and VALUE represents the value the user has specified for this parameter. The combination of these will provide the user with the knowledge of why this error message is being displayed and how they can resolve their issue.
+
+This kind of error message will be composed using the JOptionPane and JDialog interfaces provided as default by the Java language specification. These views are very customisable and the styling will be handled by the languages underlying protocols which will reduce the codes complexity.
 
 \section{Algorithm}
 
 There are several adaptations of the Ant Colony Optimisation algorithm. Initially the project contain an implementation of Ant Colony Optimisation in its simplest form, without the presence of any enhancements such as using \textit{Elitist Agents} or similar. Once a working implementation is in place the next step will be to adapt the algorithm in various ways to further aid the teaching potential of the project.
-
-\subsection{How does it work?}
 
 The general premise is that each Agent (Ant) embarks and a pseudo random walk through the state space. The Agents movements are influenced by pheromone deposits placed on edges between vertices. This pheromone is deposited by other Agents in accordance with the equations stated in section \ref{sssec:pherodepo}. The Agent's next move is influenced by the result of the equation stated in section \ref{sssec:probfuncsssec}. However; there is still the probability of the Agent moving to a less attractive point so the Agent does not always travel to the strongest pheromone concentration.
 
@@ -177,29 +214,44 @@ There are several algorithm requirements;
 \item \textbf{Probabilistic movement functions} there must exist functions that calculate the probability of the Agent moving to a specific vertex. This is based on the pheromone concentration and the Agent’s location (see section \ref{sssec:probfuncsssec}).
 \end{itemize}
 
-\subsection{Pseudo-code}
+\clearpage
+\begin{sidewaysfigure}
+\centering
+\includegraphics[scale= 0.5]{flowmain}
+\caption{High level flow digram representing the psudeo code for Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
+\label{fig:interface}
+\end{sidewaysfigure}
+\clearpage
 
+\subsection{Pseudo-code}
+\label{sec:pseudo}
 \begin{algorithm}
 \caption{Pseudo-code for Ant Colony Optimisation}
 \label{aco:pseudo}
 \begin{algorithmic}[1]
-\State Initiate World and algorithm parameters
+\State Initiate AntColonyOptimisation with defined parameters
+\If{$!parameters\ are\ legal$}
+\State Dispaly error message to user
+\State $return$
+\EndIf
+\State Initiate World with algorithm parameters
+\State Initiate $Nodes$ and graph
 \State Initiate \textit{pheromone} values
-\State Initiate best distance to $\infty$
-\While {!stop condition} 
+\State Initiate $Agents$
+\While {$!all\ agents\ finished$} 
 \ForAll{Agents}
-\State select a random starting vertex on the graph
-\While{!at completed solution}
+\While{!back at $nest$ with $food$}
 \State Calculate next move using probabilistic function 
 \State Add moved point to Agent's memory
 \State Calculate and deposit pheromone on the path
+\State Update the View
 \EndWhile 
 \State \textbf{end while}
 \EndFor 
 \State \textbf{end for}
 \EndWhile
 \If{$\textit{local best solution} < \textit{global best solution}$}
-\State $global best = local best$
+\State $global best = local\ best\ solution$
 \EndIf
 \State \textbf{end if}
 \State \textbf{end while}
@@ -209,6 +261,16 @@ There are several algorithm requirements;
 
 \noindent
 Above is a somewhat simplified pseudo-code representation of the proposed Ant Colony Optimisation algorithm. The mathematical formulae required to achieve steps \textit{7} and \textit{10} are shown in section \ref{ssec:metrics}. The final algorithm may differ from the above depending on any additional feature present in the final release.
+
+\clearpage
+\begin{figure}
+\includegraphics[scale = 0.3]{sequenceRes}
+\caption{Sequence diagram representing Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
+\label{fig:seq}
+\end{figure}
+\clearpage
+
+The sequence diagram shown in figure \ref{fig:seq} shows the high level interaction between the proposed main Model Classes during the algorithms execution. The Ants are in constant communication with the AntColonyOptimisation and World instances during their movement through the graph to ensure the correct pheromone values are being parsed during the movement process. The View is also updated through the updateView() method in the AntColonyOptimisation instance which requires data about the current Ants and the current best Ant. This data is stored in and returned from the World instance.
 
 \subsection{Metrics}
 \label{ssec:metrics}
@@ -297,6 +359,52 @@ figure~\ref{fig:newpheromonefunc} represents the new amount of pheromone to be a
 \EndIf \State \textbf{end if}
 \end{algorithmic}
 \end{algorithm}
+
+\section{Representation}
+\subsection{World}
+\label{sec:world}
+The World Class is used to model the graph that the Ants will traverse during the algorithms execution. The graph will be represented as a two-dimensional Array, with each element in said array representing a Node in the graph itself. The two dimensional array will be composed of integer values with each element containing an integer value representing the terrain type at this index, this will also be used to set the nest and food locations. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{graph}
+\caption{Example World representation using a two-dimensional Integer Array}
+\label{fig:graph}
+\end{figure}
+
+\noindent
+Figure \ref{fig:graph} shows how the proposed graph representation would be implement. A `0' value represents normal terrain where the Ants can move to, `1' represents the nest location where the Ants will start and `2' represents the food location which is the initial target for the Ants. This is a simplistic way to model an environment for the Ants whilst also allowing a multitude of terrain options without having to modify the way the graph is stored.
+
+\subsection{Pheromone}
+\label{pheroRepsec}
+The pheromone must be modelled in a way which is both easily accessible and modifiable. The data structure used to store the pheromone must also relate to the graph mentioned in \ref{sec:world} to allow for logical mapping between the representation of the Ants environment and the pheromone associated with each Node in the graph. The pheromone will be stored as a two-dimensional Array of Doubles. Each element in the Array will represent the pheromone concentration for the corresponding Node in the graph for example, the double value at pheromone[x][y] will represent the pheromone concentration on edge [x][y] in the graph, thus there is a logical link between the two representations.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{phero}
+\caption{Example Pheromone representation using a two-dimensional Double Array with default initial values}
+\label{fig:pheroRep}
+\end{figure}
+
+\noindent
+Figure \ref{fig:pheroRep} demonstrates how a two-dimensional Double array can be effectively used to model the pheromone values for every Node in the graph. The values in this figure are default initial values which will be user defined when the application is executed. As the Ants moves through the graph the pheromone values at each index will correctly model the pheromone operations mentioned in section \ref{sssec:pherodepo}. As the values are stored in an array accessing or modifying the values is extremely simple and involves a simple getter or setter operation.
+
+\subsection{Visualisation}
+
+The data structures described in sections \ref{sec:world} and \ref{pheroRepsec} must be visualised to the user in a manner that anybody can understand. Given that the graph will be stored as a two-dimension array it is perfectly logical to display this graph to the user in a grid format similar to that shown in figure \ref{fig:graph}. The challenge with the visualisation process is visualising the pheromone deposit and decay operations as well as displaying the Ants moving between Nodes.
+
+Given that the pheromone is stored in a two-dimensional array of doubles and the fact that accessing these values is extremely simple the value at each index can be used to directly influence how the user sees the pheromone. If each cell in the grid is coloured, and this colour's opacity is directly representational of the value at the corresponding index in the pheromone matrix then it becomes an accurate way of displaying the values of the pheromone to the user, which also allows the decay and deposit operations to be shown.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{pheroEX}
+\caption{Example Pheromone visualisation}
+\label{fig:pheroVis}
+\end{figure}
+
+\noindent
+Figure \ref{fig:pheroVis} shows how the pheromone value for a given [x,y] co-ordinate has a direct influence on the opacity of the cells colour. In said figure the pheromone value at each index is multiplied by 100 to convert it to a percentage, which then becomes the opacity value for the given Node. However, if the pheromone values for each Node become extremely small during execution there must be a measure in place to covert the small values back into percentages using a larger scaling factor than 100.
+
 
 \clearpage
 
