@@ -126,7 +126,7 @@ public class DisplayCanvas extends JPanel{
 						for(City c: cities){
 							if(ant.getCurrentIndex() == c.getIndex()){
 								g2.setColor(Color.GREEN);
-								g2.fillOval(c.getX() * 20, c.getY() * 20, 10, 10);
+								g2.fillOval((c.getX() * 20) - 5, (c.getY() * 20) - 5, 10, 10);
 
 							}
 							parent.getFrame().getCityDetailView().updateValues(model.getWorld().getCities());
