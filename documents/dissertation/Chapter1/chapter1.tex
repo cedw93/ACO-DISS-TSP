@@ -1,5 +1,5 @@
 \chapter{Background}
-
+\label{chapt:bg}
 \section{Algorithm Overview}
 \label{agloover}
 Ant Colony Optimisation is a probabilistic technique usually used on problems which can be resolved by resolving an optimal path through a graphical representation of a given problem. Ant Colony Optimisation refers to a collection of methods and techniques which represent a specific family in swarm intelligence. Swarm intelligence \enquote{...deals with natural and artificial systems composed of many individuals that coordinate using decentralized control and self-organization. In particular, the discipline focuses on the collective behaviours that result from the local interactions of the individuals with each other and with their environment} \cite{SI:def}. In simpler terms each agent is simple and each agent follows a series of fairly simple rules as it performs its operations. If you increase the population size of these simple agents and allow them to communicate with each other and the world they are in then there will be an emergence of intelligence which would otherwise be unavailable to any individual agent. Ultimately each agent collectively works towards the same goal increasing the quality and appropriateness of the result.
@@ -7,7 +7,7 @@ Ant Colony Optimisation is a probabilistic technique usually used on problems wh
 The initial proposal for Ant Colony Optimisation came from Marco Dorigo et al. through the publication of his PhD in 1992 \cite{Dor1992:thesis}.The Algorithm is based upon the real world behaviour of ant colonies. Ants in the real world will generally always find the most optimal bath between two or more points, often described the route between their nest site and the location of the food source(s). As an Ant leaves the colony in search of a food source it begins to deposit a chemical trail (pheromone) which can be analysed by other agents in the population. The pheromone however is non consistently present once deposited, as this is the real world there are several factors which impact the concentration of the pheromone at any location once it has been deposited. Once an agent has deposited the pheromone it starts to decay overtime, and in the real world this could be accelerated by outside factors; such as adverse weather conditions. As the pheromone decays, new pheromone will be deposited at the same location by other agents in the colony also looking for a food source because of this, as more and more agents continue through their tour the locations which have the highest concentration of pheromone are generally the most traversed locations. Ultimately the locations with the highest concentration of pheromone will not only be the most frequently used, but together they will form the optimal route between the start location and the destination. This is due to the fact that the longer the route, the more susceptible pheromone levels are to decay, thus the longer paths will have less pheromone present. The pheromone levels are important because these levels are the main influence in the probabilistic function for any agent choosing its next location for any given intersection. The higher the concentration of pheromone, the greater the probability that the agent will choose this location as the next stop on its tour, however as this is probabilistic the agent may not always choose the location with the highest concentration allowing for other solutions to be sought after, allowing for a shift in the current best path.
 
 \section{Double Bridge Experiment}
-
+\label{dblbridge}
 The double bridge experiment is an early experiment devised to help understand the real world behaviour of ants and their path finding capabilities. The double bridge experiment, as the name suggests involves a nest location separated from a single food source by two bridges. This experiment designed and carried out by Deneubourg and colleagues in 1989-1990 performed using real Argentine ants \cite{marcdorgio:book:doublebridges}.
 
 \begin{figure}[h!]
@@ -20,8 +20,21 @@ The double bridge experiment is an early experiment devised to help understand t
 \noindent
 Figure \ref{fig:doublebridge} represents the scenario the Argentine ant were faced with for the Double Bridge Experiment. As previously stated in section \ref{agloover} the foraging behaviour of most ant species is dependant of communication using the pheromone deposits by each colony member during its tour. Initially there will be no pheromone trails for the ants to follow, so as the first ant approaches intersection marked \enquote{1} in figure \ref{fig:doublebridge} the probability that they choose the top path, or lower path is therefore 50\%. Regardless of which path the ant chose, pheromone will now be deposited on the path it took. Now the next ant will approach the intersection marked \enquote{1} however, as there is no an existing pheromone trail this ant now no longer has an equal probability to choose either path but instead is more likely to chose the same path that the previous ant had taken. This process will continue for every ant in the nest. The pheromone will however decay. Generally speaking as the bottom path is significantly longer than the top path, the pheromone deposited on its path will more subject to this decay, and will eventually have a lower pheromone concentration than the shorter top path. Overtime this will cause more and more ants to take the top path over the bottom path due to the higher pheromone level directly impacting the probability of the ant choosing this path. The same applies to intersection marked \enquote{2}, the ants will still tend to prefer the path with the greater pheromone concentration, the fact that the ant now has food does not affect the ants choice in anyway, aside from the fact that the ants new target is the nest and no longer the food source.
 
-\section{Ant System}
+\section{Travelling Salesman Problem}
+\label{tsp}
+One of the most common applications for Ant Colony techniques is the Travelling Salesman Problem (TSP). The TSP consists of a graph of N cities, and you must find the shortest route between each of these N cities, however each city can only be visited exactly once. Generally this N value is often fairly large for example the Berlin52\cite{berlin52:source} is a variation of the TSP where this N value is 52. The number of possible routes between these 52 cities is incredibly large. The application of heuristic algorithms such at the Ant Colony methods enables solutions to be found within a reasonable time. One solution for the Berlin52.tsp problem is shown in figure \ref{fig:berlin52}.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{Images/chapter1/tsp52}
+\caption{One solution to the Berlin52.tsp problem plotted using GNU Plot. Modified version from original image source \cite{berlin52:image}}
+\label{fig:berlin52}
+\end{figure}
+
+The TSP is not the only problem which can be tackled using the Ant Colony family of methods. As these methods have metaheuristic properties the general behaviours and structure can be applied to several other problems such as image segmentation however this application will not cover such problems and will focus on the TSP style problem.
+
+\section{Ant System}
+\label{sec:AntSystem}
 The Ant System is the most basic implementation of an Ant Colony Optimisation method, because of this it provides the basis for other extensions and variations. This does not mean that the Ant System is lacklustre in performance. Due to its basic nature, the Ant System is ideal for demonstrating and teaching the behaviours of a virtual ant colony to someone, and it can be done regardless of their prior background knowledge. In this implementation there is no recollection of the best path between iterations and every agent is equal in terms of its importance in finding a solution.
 
 \subsection{Forumlae}
@@ -70,19 +83,6 @@ p_{xy}^{k} = (1 - \rho)\tau_{xy}^{k} + \Delta\tau_{xy}^{k} + e\Delta\tau_{xy}^{b
 
 The majority of the formula remains the same as defined in appendix B section \ref{sssec:pherodepo} however, there is the addition $e\Delta\tau_{xy}^{best}$. This is the part of the formula which is responsible for the pheromone deposit on the retained best (elite) paths currently found. $xy$ refers to the $x$ and $y$ coordinate for an edge in the best path this is where pheromone will be deposited. $best$ simply donates that this edge belongs to one of the currently stored best paths. The $e$ value is a constant, and varies between implementations. Research suggests that a good value for this weighted value, $e$ is $\frac{1}{4}\ .\ \#\ of \ nodes$ \cite{sjored:Thesus2012:evalue} however, there is evidence to support using $\#\ of \ nodes$ as the $e$ value\cite{marcdorgio:book:nopage}.
 
-\section{Applications}
-
-The collective group of Ant Colony Optimisation algorithms are some of the best techniques for acquiring solutions for problems defined as NP-hard problems. One of the most common applications for Ant Colony techniques is the Travelling Salesman Problem (TSP). The TSP consists of a graph of N cities, and you must find the shortest route between each of these N cities, however each city can only be visited exactly once. Generally this N value is often fairly large for example the Berlin52\cite{berlin52:source} is a variation of the TSP where this N value is 52. The number of possible routes between these 52 cities is incredibly large. The application of heuristic algorithms such at the Ant Colony methods enables solutions to be found within a reasonable time. One solution for the Berlin52.tsp problem is shown in figure \ref{fig:berlin52}.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.7]{Images/chapter1/tsp52}
-\caption{One solution to the Berlin52.tsp problem plotted using GNU Plot. Modified version from original image source \cite{berlin52:image}}
-\label{fig:berlin52}
-\end{figure}
-
-The TSP is not the only problem which can be tackled using the Ant Colony family of methods. As these methods have metaheuristic properties the general behaviours and structure can be applied to several other problems such as image segmentation however this application will not cover such problems and will focus on the TSP style problem.
-
 \section{Excisting Solutions}
 \label{existingsolutions}
 There are a number of pre-existing solutions which attempt visualise Ant Colony algorithms however, the majority of these based upon the authors experience are in fact subpar in what they visualise. Rather that visualising the algorithms execution in a logical manner, which would enable the user to understand what the algorithm is doing and how the best path converges over time, more often than not the existing solutions simply show the algorithms final state leaving the user confused.
@@ -92,7 +92,7 @@ Another problem with some of the existing solutions is that the graphical user i
 One of the major problems the author faced when assessing the competition was the fact that there was rarely any visualisation of the agents themselves, this meant that you has to effectively guess which cities the agents were currently at. In addition to this as there was no visualisation of the agents there is no visualisation of the agents moving between the cities themselves thus, it was difficult to visualise the path the agents took aside from coming to your own conclusion based on the pheromone trails which were also often poorly represented.
 
 \section{User Interaction Methods}
-
+\label{uiMethods}
 As discussed in section \ref{existingsolutions} the methods of user interaction must be superior to what is provided by the competition. This application will be authored in accordance with several preferred user interaction methods enabling a more user friednly experience for all users and not just those who are experienced with this or similar applications.
 
 \subsection{Law of Context}

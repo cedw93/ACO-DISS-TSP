@@ -25,6 +25,23 @@
  \begin{quotation}\noindent A list of laws and explanations of such laws
   regarding important user interaction styles and principles \end{quotation}
 
+\bibitem{tblanch:diss}
+T.~Blachard, ``{"Development of an Autonomous, Tethered and Submersible Data
+  Buoy},'' Master's thesis, Aberystwyth University, Wales, Computer Science
+  Department, Penglais Campus, Aberystwyth University, Aberystwyth, Ceredigion,
+  SY23 3DB., May 2011, {pp.15-16 [Online]. Available:
+  http://users.aber.ac.uk/ttb7/files/ttb7\_diss.pdf}.
+ \begin{quotation}\noindent Tom Blanchard's dissertation, referenced pages
+  contain relevant information and rationale about a suitable process which
+  suited my development needs. Permission from Tom has been granted to adapt
+  his rationale \end{quotation}
+
+\bibitem{XP:forone}
+{c2.com}, ``{eXtreme Programming for one},'' {A}valiable:
+  http://c2.com/cgi/wiki?ExtremeProgrammingForOne, accessed: 9th {A}ril 2015.
+ \begin{quotation}\noindent An informal insight into eXtreme Programming and
+  how it can be applied to solo development projects. \end{quotation}
+
 \bibitem{berlin52:image}
 {cleveralgorithms.com}, ``{Berlin52.tsp solution image},'' {A}valiable:
   http://www.cleveralgorithms.com/images/tsp2.png, accessed: 7th {A}ril 2015.
@@ -73,6 +90,16 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   against the virtual agents and algorithm interactions. Pages 2-3 contain
   information about the Double Bridges experiment. \end{quotation}
 
+\bibitem{marcdorgio:book:EAS}
+------, \emph{{Ant Colony Optimization }}, 1st~ed.\hskip 1em plus 0.5em minus
+  0.4em\relax {Bradford Books}, Jun. 2004, pp.73{[Online]. Available:
+  http://www.worldcat.org/isbn/0262042193}.
+ \begin{quotation}\noindent Publication by the creators of the Ant Colony
+  family of methods. This publication contains the majority of information
+  relevant to understanding the interactions and mappings of the real ants
+  against the virtual agents and algorithm interactions. Page 73 contains
+  information about the Elitist Ant System ants its formula. \end{quotation}
+
 \bibitem{marcdorgio:book:nopage}
 ------, \emph{{Ant Colony Optimization }}, 1st~ed.\hskip 1em plus 0.5em minus
   0.4em\relax {Bradford Books}, Jun. 2004, pp.2-3{[Online]. Available:
@@ -80,8 +107,7 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
  \begin{quotation}\noindent Publication by the creators of the Ant Colony
   family of methods. This publication contains the majority of information
   relevant to understanding the interactions and mappings of the real ants
-  against the virtual agents and algorithm interactions. Pages 2-3 contain
-  information about the Double Bridges experiment. \end{quotation}
+  against the virtual agents and algorithm interactions. \end{quotation}
 
 \bibitem{SI:def}
 {Marco Dorigo}, ``{Swarm intelligence},''
@@ -117,7 +143,10 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   Institute of Advanced Computer Science (LIACS), Leiden University, Niels
   Bohrweg 1, 2333 CA Leiden, The Netherlands, Jul 2012, {pp.11 [Online].
   Available: http://www.liacs.nl/assets/2012-08SjoerdvanEgmond.pdf}.
-
+ \begin{quotation}\noindent A Masters thesis looking into a hybrid Ant and Bee
+  Colony algorithm for dynamic TSP problems. The thesis has some good concepts
+  and background into the algorithm, however a lot of the information is highly
+  theoretical. \end{quotation}
 
 \bibitem{sjored:Thesus2012}
 ------, ``{"Dynamic ant colony optimization for the travelling salesman
@@ -125,7 +154,17 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   Institute of Advanced Computer Science (LIACS), Leiden University, Niels
   Bohrweg 1, 2333 CA Leiden, The Netherlands, Jul 2012, {pp.7 [Online].
   Available: http://www.liacs.nl/assets/2012-08SjoerdvanEgmond.pdf}.
+ \begin{quotation}\noindent {A Masters thesis looking into a hybrid Ant and Bee
+  Colony algorithm for dynamic TSP problems. The thesis has some good concepts
+  and background into the algorithm, however a lot of the information is highly
+  theoretical.} \end{quotation}
 
+\bibitem{waterfall:image}
+{technologyuk.net}, ``{Waterfall model},'' {A}valiable:
+  http://www.technologyuk.net/computing/sad/waterfall\_model.shtml, accessed:
+  9th {A}ril 2015.
+ \begin{quotation}\noindent An image depicting the structure of the waterfall
+  life cycle. \end{quotation}
 
 \bibitem{tjung:aco:blog}
 {T}homas {J}ungblut, ``{A}nt {C}olony {O}ptimization for {TSP} {P}roblems ,
