@@ -5,5 +5,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {B.1}{\ignorespaces Definitions for the keys terms used throughout this document\relax }}{28}
-\contentsline {table}{\numberline {B.2}{\ignorespaces Table representing the Functional Requirements and which other requirements are dependent on them.\relax }}{34}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Definitions for the keys terms used throughout this document\relax }}{16}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Table representing the Functional Requirements and which other requirements are dependent on them.\relax }}{22}
+\addvspace {10\p@ }

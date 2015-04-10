@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  9 APR 2015 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  10 APR 2015 02:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -388,11 +388,11 @@ Package csquotes Info: ... none found.
 (./cover.aux) (./declaration.aux) (./Acknowledgements/acknowledgements.aux)
 (./Abstract/abstract.aux) (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux)
 (./Chapter3/chapter3.aux) (./Chapter4/chapter4.aux) (./Chapter5/chapter5.aux)
-(./DesignAppendix/design.aux
+(./RequirementsAppendix/requirements.aux) (./DesignAppendix/design.aux
 
 LaTeX Warning: Label `fig:interface' multiply defined.
 
-) (./RequirementsAppendix/requirements.aux))
+))
 \openout1 = `dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -408,8 +408,7 @@ LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 44.
-
-(c:/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+ (c:/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 *geometry* driver: auto-detecting
@@ -602,23 +601,62 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
 [1
 
 
-]) [2]
+] <Images/chapter1/doublebridge.jpg, id=37, 170.88844pt x 110.66344pt>
+File: Images/chapter1/doublebridge.jpg Graphic file (type jpg)
+
+<use Images/chapter1/doublebridge.jpg>
+Package pdftex.def Info: Images/chapter1/doublebridge.jpg used on input line 15
+.
+(pdftex.def)             Requested size: 213.39566pt x 138.20059pt.
+ [2 <./Images/chapter1/doublebridge.jpg>]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
+[3]
+
+LaTeX Warning: Citation `marcdorgio:book:EAS' on page 4 undefined on input line
+ 66.
+
+
+LaTeX Warning: Citation `marcdorgio:book:EAS' on page 4 undefined on input line
+ 66.
+
+<Images/chapter1/tsp52.png, id=44, 439.6425pt x 449.68pt>
+File: Images/chapter1/tsp52.png Graphic file (type png)
+
+<use Images/chapter1/tsp52.png>
+Package pdftex.def Info: Images/chapter1/tsp52.png used on input line 79.
+(pdftex.def)             Requested size: 307.74765pt x 314.77385pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4] [5 <./Images/chapter1/tsp52.png>]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+) [6]
 \openout2 = `Chapter2/chapter2.aux'.
 
  (./Chapter2/chapter2.tex
 Chapter 2.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 20.
-) [3
+[7
 
 
 
-] [4]
+]
+Chapter 3.
+[8
+
+]
+Chapter 4.
+) [9
+
+] [10]
 \openout2 = `Chapter3/chapter3.aux'.
 
  (./Chapter3/chapter3.tex
-Chapter 3.
-) [5
+Chapter 5.
+) [11
 
 
 
@@ -626,10 +664,10 @@ Chapter 3.
 \openout2 = `Chapter4/chapter4.aux'.
 
  (./Chapter4/chapter4.tex
-Chapter 4.
+Chapter 6.
 Missing character: There is no Õ in font ptmr7t!
 Missing character: There is no Õ in font ptmr7t!
-) [6
+) [12
 
 
 
@@ -637,154 +675,25 @@ Missing character: There is no Õ in font ptmr7t!
 \openout2 = `Chapter5/chapter5.aux'.
 
  (./Chapter5/chapter5.tex
-Chapter 5.
-) [7
+Chapter 7.
+) [13
 
 
 
-] [8
+] [14
 
 
 ]
-\openout2 = `DesignAppendix/design.aux'.
+\openout2 = `RequirementsAppendix/requirements.aux'.
 
- (./DesignAppendix/design.tex
+ (./RequirementsAppendix/requirements.tex
 Appendix A.
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-[9
-
-
-] [10] <Images/mvc.png, id=65, 154.4169pt x 80.9424pt>
-File: Images/mvc.png Graphic file (type png)
- <use Images/mvc.png>
-Package pdftex.def Info: Images/mvc.png used on input line 37.
-(pdftex.def)             Requested size: 256.0774pt x 134.2396pt.
-
-<Images/observer.png, id=67, 1505.625pt x 1324.95pt>
-File: Images/observer.png Graphic file (type png)
- <use Images/observer.png>
-Package pdftex.def Info: Images/observer.png used on input line 56.
-(pdftex.def)             Requested size: 384.10959pt x 338.00941pt.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
-
-[11 <./Images/mvc.png>]
-<Images/signleton.png, id=73, 526.96875pt x 190.7125pt>
-File: Images/signleton.png Graphic file (type png)
-
-<use Images/signleton.png>
-Package pdftex.def Info: Images/signleton.png used on input line 73.
-(pdftex.def)             Requested size: 341.43436pt x 123.5717pt.
- [12 <./Images/observer.png>] [13 <./Images/signleton.png>] <Images/diss-uml.pn
-g, id=82, 2971.1pt x 2307.62125pt>
-File: Images/diss-uml.png Graphic file (type png)
-
-<use Images/diss-uml.png>
-Package pdftex.def Info: Images/diss-uml.png used on input line 83.
-(pdftex.def)             Requested size: 668.514pt x 519.2276pt.
-
-Overfull \hbox (16.9459pt too wide) in paragraph at lines 83--84
-[][] 
- []
-
-[14 <./Images/diss-uml.png>]
-<Images/screen.png, id=87, 839.135pt x 717.68124pt>
-File: Images/screen.png Graphic file (type png)
- <use Images/screen.png>
-Package pdftex.def Info: Images/screen.png used on input line 110.
-(pdftex.def)             Requested size: 341.43436pt x 292.01723pt.
 
 [15
 
 
-] [16 <./Images/screen.png>]
-<Images/error.png, id=95, 468.75125pt x 198.7425pt>
-File: Images/error.png Graphic file (type png)
- <use Images/error.png>
-Package pdftex.def Info: Images/error.png used on input line 134.
-(pdftex.def)             Requested size: 341.43436pt x 144.75935pt.
-
-[17 <./Images/error.png>]
-Overfull \hbox (2.53166pt too wide) in paragraph at lines 155--156
-[]\OT1/ptm/b/n/10.95 Pheromone ma-nip-u-la-tion met-rics \OT1/ptm/m/n/10.95 the
-re must ex-ists ad-e-quate ways to ac-cess the pheromone
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-[18] <Images/flowmain.png, id=104, 1417.295pt x 1104.125pt>
-File: Images/flowmain.png Graphic file (type png)
-
-<use Images/flowmain.png>
-Package pdftex.def Info: Images/flowmain.png used on input line 162.
-(pdftex.def)             Requested size: 637.77687pt x 496.85167pt.
- [19 <./Images/flowmain.png>] [20
-
-
-]
-<Images/sequenceRes.png, id=112, 1535.7375pt x 2407.99625pt>
-File: Images/sequenceRes.png Graphic file (type png)
-
-<use Images/sequenceRes.png>
-Package pdftex.def Info: Images/sequenceRes.png used on input line 209.
-(pdftex.def)             Requested size: 460.72481pt x 722.40445pt.
-
-Overfull \hbox (33.93347pt too wide) in paragraph at lines 209--210
-[][] 
- []
-
-
-LaTeX Warning: Float too large for page by 94.43634pt on input line 212.
-
-[21 <./Images/sequenceRes.png>] [22
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
-[]$\OML/cmm/m/it/10.95 pheromone[]$ \OT1/ptm/m/n/10.95 = (1 - $\OML/cmm/m/it/10
-.95 algorithm decay rate\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B \OML/cmm/m
-/it/10.95 currentPheromone[] \OT1/cmr/m/n/10.95 +
- []
-
-<Images/graph.png, id=125, 383.4325pt x 342.27875pt>
-File: Images/graph.png Graphic file (type png)
- <use Images/graph.png>
-Package pdftex.def Info: Images/graph.png used on input line 312.
-(pdftex.def)             Requested size: 306.74641pt x 273.82335pt.
-
-[23] <Images/phero.png, id=130, 394.47375pt x 353.32pt>
-File: Images/phero.png Graphic file (type png)
- <use Images/phero.png>
-Package pdftex.def Info: Images/phero.png used on input line 326.
-(pdftex.def)             Requested size: 315.57942pt x 282.65639pt.
-
-[24 <./Images/graph.png>]
-<Images/pheroEX.png, id=134, 384.43625pt x 348.30125pt>
-File: Images/pheroEX.png Graphic file (type png)
-
-<use Images/pheroEX.png>
-Package pdftex.def Info: Images/pheroEX.png used on input line 342.
-(pdftex.def)             Requested size: 307.54941pt x 278.64137pt.
- [25 <./Images/phero.png>] [26 <./Images/pheroEX.png>])
-\openout2 = `RequirementsAppendix/requirements.aux'.
-
-(./RequirementsAppendix/requirements.tex
-Appendix B.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[27
-
-
-
-
 ]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
@@ -792,7 +701,7 @@ Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [28]
+ [16]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
@@ -802,7 +711,7 @@ Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [29] [30]
+ [17] [18]
 Overfull \hbox (1.66643pt too wide) in paragraph at lines 103--108
 \OT1/ptm/m/n/10.95 Description: Re-gard-less of the users host en-vi-ron-ment t
 he ap-pli-ca-tion should be able to be launched
@@ -843,7 +752,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--150
 
  []
 
-[31]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 151--157
 
  []
@@ -878,51 +787,259 @@ Underfull \hbox (badness 10000) in paragraph at lines 193--199
 
  []
 
-[32]
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 200--206
 
  []
 
-[33]
+[21]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-) [34
+) [22
 
-] (./dissertation.bbl
-Underfull \hbox (badness 4205) in paragraph at lines 33--37
+]
+\openout2 = `DesignAppendix/design.aux'.
+
+ (./DesignAppendix/design.tex
+Appendix B.
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+[23
+
+
+
+] [24] <Images/design/mvc.png, id=118, 154.4169pt x 80.9424pt>
+File: Images/design/mvc.png Graphic file (type png)
+
+<use Images/design/mvc.png>
+Package pdftex.def Info: Images/design/mvc.png used on input line 37.
+(pdftex.def)             Requested size: 256.0774pt x 134.2396pt.
+
+<Images/design/observer.png, id=120, 1505.625pt x 1324.95pt>
+File: Images/design/observer.png Graphic file (type png)
+
+<use Images/design/observer.png>
+Package pdftex.def Info: Images/design/observer.png used on input line 56.
+(pdftex.def)             Requested size: 384.10959pt x 338.00941pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25 <./Images/design/mvc.png>]
+<Images/design/signleton.png, id=125, 526.96875pt x 190.7125pt>
+File: Images/design/signleton.png Graphic file (type png)
+
+<use Images/design/signleton.png>
+Package pdftex.def Info: Images/design/signleton.png used on input line 73.
+(pdftex.def)             Requested size: 341.43436pt x 123.5717pt.
+ [26 <./Images/design/observer.png>] [27 <./Images/design/signleton.png>]
+<Images/design/diss-uml.png, id=134, 2971.1pt x 2307.62125pt>
+File: Images/design/diss-uml.png Graphic file (type png)
+
+<use Images/design/diss-uml.png>
+Package pdftex.def Info: Images/design/diss-uml.png used on input line 83.
+(pdftex.def)             Requested size: 668.514pt x 519.2276pt.
+
+Overfull \hbox (16.9459pt too wide) in paragraph at lines 83--84
+[][] 
+ []
+
+[28 <./Images/design/diss-uml.png>]
+<Images/design/screen.png, id=139, 839.135pt x 717.68124pt>
+File: Images/design/screen.png Graphic file (type png)
+
+<use Images/design/screen.png>
+Package pdftex.def Info: Images/design/screen.png used on input line 110.
+(pdftex.def)             Requested size: 341.43436pt x 292.01723pt.
+ [29
+
+
+] [30 <./Images/design/screen.png>]
+<Images/design/error.png, id=147, 468.75125pt x 198.7425pt>
+File: Images/design/error.png Graphic file (type png)
+
+<use Images/design/error.png>
+Package pdftex.def Info: Images/design/error.png used on input line 134.
+(pdftex.def)             Requested size: 341.43436pt x 144.75935pt.
+ [31 <./Images/design/error.png>]
+Overfull \hbox (2.53166pt too wide) in paragraph at lines 155--156
+[]\OT1/ptm/b/n/10.95 Pheromone ma-nip-u-la-tion met-rics \OT1/ptm/m/n/10.95 the
+re must ex-ists ad-e-quate ways to ac-cess the pheromone
+ []
+
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+[32] <Images/design/flowmain.png, id=154, 1417.295pt x 1104.125pt>
+File: Images/design/flowmain.png Graphic file (type png)
+
+<use Images/design/flowmain.png>
+Package pdftex.def Info: Images/design/flowmain.png used on input line 162.
+(pdftex.def)             Requested size: 637.77687pt x 496.85167pt.
+ [33 <./Images/design/flowmain.png>] [34
+
+
+]
+<Images/design/sequenceRes.png, id=162, 1535.7375pt x 2407.99625pt>
+File: Images/design/sequenceRes.png Graphic file (type png)
+
+<use Images/design/sequenceRes.png>
+Package pdftex.def Info: Images/design/sequenceRes.png used on input line 209.
+(pdftex.def)             Requested size: 460.72481pt x 722.40445pt.
+
+Overfull \hbox (33.93347pt too wide) in paragraph at lines 209--210
+[][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 94.43634pt on input line 212.
+
+[35 <./Images/design/sequenceRes.png>] [36
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
+[]$\OML/cmm/m/it/10.95 pheromone[]$ \OT1/ptm/m/n/10.95 = (1 - $\OML/cmm/m/it/10
+.95 algorithm decay rate\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B \OML/cmm/m
+/it/10.95 currentPheromone[] \OT1/cmr/m/n/10.95 +
+ []
+
+<Images/design/graph.png, id=173, 383.4325pt x 342.27875pt>
+File: Images/design/graph.png Graphic file (type png)
+
+<use Images/design/graph.png>
+Package pdftex.def Info: Images/design/graph.png used on input line 312.
+(pdftex.def)             Requested size: 306.74641pt x 273.82335pt.
+ [37]
+<Images/design/phero.png, id=177, 394.47375pt x 353.32pt>
+File: Images/design/phero.png Graphic file (type png)
+
+<use Images/design/phero.png>
+Package pdftex.def Info: Images/design/phero.png used on input line 326.
+(pdftex.def)             Requested size: 315.57942pt x 282.65639pt.
+ [38 <./Images/design/graph.png>]
+<Images/design/pheroEX.png, id=181, 384.43625pt x 348.30125pt>
+File: Images/design/pheroEX.png Graphic file (type png)
+
+<use Images/design/pheroEX.png>
+Package pdftex.def Info: Images/design/pheroEX.png used on input line 342.
+(pdftex.def)             Requested size: 307.54941pt x 278.64137pt.
+ [39 <./Images/design/phero.png>] [40 <./Images/design/pheroEX.png>]) (./disser
+tation.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 22--25
+[]\OT1/ptm/m/n/10.95 99designs.com, ``Un-break-able laws of user in-ter-ac-tion
+,'' Avali-able:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--25
+\OT1/ptm/m/n/10.95 http://99designs.com/designer-blog/2014/01/15/7-unbreakable-
+laws-of-user-interface-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+[]\OT1/ptm/m/n/10.95 cleveralgorithms.com, ``Berlin52.tsp so-lu-tion im-age,'' 
+Avali-able:
+ []
+
+
+Underfull \hbox (badness 3158) in paragraph at lines 56--60
 []\OT1/ptm/m/n/10.95 ------, \OT1/ptm/m/it/10.95 De-sign Pat-terns: El-e-ments 
 of Reusable Object-Oriented Soft-ware\OT1/ptm/m/n/10.95 , 1st ed.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--37
+Underfull \hbox (badness 10000) in paragraph at lines 56--60
 \OT1/ptm/m/n/10.95 Addison-Wesley Pro-fes-sional, Nov 1994, pp. 127-128, [On-li
 ne]. Avail-able:
  []
 
-[35
+[41
 
 
-]) 
+
+]
+Overfull \hbox (52.60448pt too wide) in paragraph at lines 87--90
+[]\OT1/ptm/m/n/10.95 Marco Dorigo, ``Swarm in-tel-li-gence,'' Avali-able:http:/
+/www.scholarpedia.org/article/Swarm[]intelligence,
+ []
+
+
+Overfull \hbox (60.7515pt too wide) in paragraph at lines 108--111
+[]\OT1/ptm/m/n/10.95 neos, ``Berlin52 source file,'' Avali-able:http://neos.mcs
+.anl.gov/neos/solvers/co:concorde/Berlin52[]TSP.txt,
+ []
+
+
+Underfull \hbox (badness 6691) in paragraph at lines 131--135
+\OT1/ptm/m/n/10.95 Avali-able: http://codingwiththomas.blogspot.co.uk/2011/08/a
+nt-colony-optimization-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--143
+[]\OT1/ptm/m/n/10.95 vnschool.net, ``Dou-ble Bridge Ex-per-i-ment Im-age,'' Ava
+li-able:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--143
+\OT1/ptm/m/n/10.95 http://www.vnschool.net/images/082010/Thuattoan/ThuatT[]2.jp
+g, ac-cessed: 7th Aril
+ []
+
+[42]
+Underfull \hbox (badness 7133) in paragraph at lines 147--151
+\OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/6/d/b/6db065218c956a4
+a7af6da99aaeca5d1.png,
+ []
+
+
+Underfull \hbox (badness 7133) in paragraph at lines 156--160
+\OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/6/d/b/6db065218c956a4
+a7af6da99aaeca5d1.png,
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 165--169
+[]\OT1/ptm/m/n/10.95 ------, ``Ant Colony Op-ti-mi-sa-tion Pheromone Func-tion 
+, [on-line] Feb 2015,'' Avali-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--169
+\OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/e/1/3/e1320f5f72b21e5
+766dfa7e29b536883.png,
+ []
+
+) 
 AED: lastpage setting LastPage
-[36] (./dissertation.aux (./cover.aux) (./declaration.aux)
+[43] (./dissertation.aux (./cover.aux) (./declaration.aux)
 (./Acknowledgements/acknowledgements.aux) (./Abstract/abstract.aux)
 (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux)
 (./Chapter4/chapter4.aux) (./Chapter5/chapter5.aux)
-(./DesignAppendix/design.aux) (./RequirementsAppendix/requirements.aux))
+(./RequirementsAppendix/requirements.aux) (./DesignAppendix/design.aux))
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7639 strings out of 493109
- 113092 string characters out of 6138587
- 206017 words of memory out of 5000000
- 10821 multiletter control sequences out of 15000+600000
+ 7672 strings out of 493109
+ 114059 string characters out of 6138587
+ 206162 words of memory out of 5000000
+ 10850 multiletter control sequences out of 15000+600000
  32862 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,14n,77p,1473b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,14n,77p,2220b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2014/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2014/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2014/texmf-dist/fonts/type1
@@ -935,10 +1052,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2014/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/tim
 es/utmr8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/
 texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dissertation.pdf (44 pages, 657668 bytes).
+Output written on dissertation.pdf (51 pages, 686143 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 141 compressed objects within 2 object streams
+ 244 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
