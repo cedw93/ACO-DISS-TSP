@@ -11,17 +11,17 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Basic abstract overview of the Model-View-Controller pattern\relax }}{28}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Proposed implementation of the Observer and Observable Design pattern\relax }}{29}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.\relax }}{30}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Initial Class Diagram representing the main modules, packages and system interactions using UML notation.\relax }}{31}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Proposed design for the graphical user interface, showing the key elements in their planned locations.\relax }}{33}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Proposed design for the illegal parameter error message displayed to the user\relax }}{34}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces High level flow digram representing the psudeo code for Algorithm 1\hbox {}, section 2.5.1\hbox {}\relax }}{36}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Sequence diagram representing Algorithm 1\hbox {}, section 2.5.1\hbox {}\relax }}{38}
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Algebraic model of the probabilistic function used to calculate next move for any Agent \cite {probfunc:image}\relax }}{39}
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix \cite {pheromone:image}\relax }}{39}
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$ \cite {new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.\relax }}{40}
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World representation using a two-dimensional Integer Array\relax }}{41}
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone representation using a two-dimensional Double Array with default initial values\relax }}{42}
-\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone visualisation\relax }}{43}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Basic abstract overview of the Model-View-Controller pattern\relax }}{31}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Proposed implementation of the Observer and Observable Design pattern\relax }}{32}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.\relax }}{33}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Initial Class Diagram representing the main modules, packages and system interactions using UML notation.\relax }}{34}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Proposed design for the graphical user interface, showing the key elements in their planned locations.\relax }}{38}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Proposed design for the illegal parameter error message displayed to the user\relax }}{39}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces High level flow digram representing the psudeo code for Algorithm 1\hbox {}, section 2.6.1\hbox {}\relax }}{41}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Sequence diagram representing Algorithm 1\hbox {}, section 2.6.1\hbox {}\relax }}{43}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Algebraic model of the probabilistic function used to calculate next move for any Agent \cite {probfunc:image}\relax }}{44}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix \cite {pheromone:image}\relax }}{44}
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$ \cite {new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.\relax }}{45}
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World representation using a two-dimensional Integer Array\relax }}{46}
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone representation using a two-dimensional Double Array with default initial values\relax }}{47}
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone visualisation\relax }}{48}

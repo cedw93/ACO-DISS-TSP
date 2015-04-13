@@ -1,6 +1,105 @@
-\chapter{Testing}
+\chapter{Design}
+\label{DesignSec}
+Section \ref{processSec} states how the author has a somewhat flexible approach allowing for adaptations to the initial design stated in appendix B. This section explores how the process has enabled the significant change of design to be implemented easily and without severe complication. The proposed design in appendix B and the final structure of the system are very different however, at an abstract level the key components still exist they are just represented different in each system architecture. 
 
-Detailed descriptions of every test case are definitely not what is required here. What is important is to show that you adopted a sensible strategy that was, in principle, capable of testing the system adequately even if you did not have the time to test the system fully.Have you tested your system on Õreal usersÕ? For example, if your system is supposed to solve a problem for a business, then it would be appropriate to present your approach to involve the users in the testing process and to record the results that you obtained. Depending on the level of detail, it is likely that you would put any detailed results in an appendix.The following sections indicate some areas you might include. Other sections may be more appropriate to your project. 
+\section{Language}
+
+The author has identified that the choice of language is an essential decision which must be made early in the projects development cycle. Appendix B, section \ref{lang} denotes the language decision process the author went through and ultimately states the final language choice.
+
+The use of an appropriate language became even more important due to the fact that the design has undergone significant modifications since the initial proposed design. If the author had selected a language which happened to be unfamiliar but seemed good at the time, then the changes made to the initial design may have been much more complicated to implement. The author is very familiar with Java, more specifically Java 7 (Java 1.7) and above thus, implementing new features or refactoring existing systems is fairly familiar territory. The initial language choice rationale (appendix B, section \ref{lang}) did not factor in the potential for radical design change however, if it did the outcome would not change and the existing rationale would still be applicable to the project. In the authors opinion Java is the most appropriate language for this project.
+
+\section{Development Tools}
+\subsection{Development Enviroment}
+
+\subsubsection{Command Line Tools}
+\label{sseccmd}
+The author considered using the combination of a simple text editor which in this case would have been Atom\cite{atom:textEditor} to write the code, and compilation of such written code using the command line and the default complier through the use of the $javac$ command. Atom is a free, open source hackable text editor provided by GitHub and provides syntax highlighting support for numerous language, including Java which is the language of choice for this project. This syntax highlighting is especially useful and makes the writing of the source code slightly easier, as is becomes much simpler to track the start and termination points for specific code blocks. However, as Atom does not have built in Java compilation abilities, the compilation process can become somewhat complicated.
+
+Using this approach, the Java source files composed using Atom must be complied using the default Java complier, provided by the language specification. The problem with this method of compilation is that error detection and correction can become a very tedious process. If any complication errors are present after the $javac$ command has been executed, the trace presented in the terminal window can sometimes be quite difficult to parse for the error message, and tracking down the error in the source files could be a difficult task. For smaller projects, this method of complication is perfectly suitable and can be effectively managed. However, this project as discussed in section \ref{processSec} this is a rather large project for the author to undertake. As this is the case, the combination of size of the applications source code and manual complication leads the author to believe this method of writing and compiling code is not only inefficient, but also inappropriate for this project and could potentially hinder development.
+
+\subsubsection{Intergrated Development Environment}
+
+The use of an Integrated Development Environment (IDE) can help to alleviate the problems that can come from using a writing and complication process such as that defined in section \ref{sseccmd}. There are many IDE's which support Java, however the author has preference is the use of the Eclipse IDE for Java Developers \cite{eclipse:IDE}. The Eclipse IDE provides a multitude of useful features as part of their default package. 
+
+One of the main features which Eclipse provides is automatic building of the probjects source. This is a major benefit when developing as you can simply write your code and run the built project without having the unnecessary complication of switching between several applications to achieve the same task. Also, as there is automatic building, any compilation errors will be clearly highlighted using a system which is familiar to most computer users. If there are any miss-spellings of method or variables names for example, Eclipse will underline these in red to show there is a clear problem with this exact line of code. This is similar to the default scheme provided by most word processors, enabling a logical mapping between this red underlined line of code and the fact that there is an error present there.
+
+Another useful feature provided by the Eclipse IDE is the auto completion of variables and method names. This has sped up the development process for the author as there was no need to constantly look at the API's or other project source files for method names, the author could simply type the Object of interest's identifier and see a list of all methods and variables associated with such Object. This is not possible to do if the author used an approach similar to that discussed in section \ref{sseccmd}.
+
+In addition to the built in compilation feature, Eclipse also provides an integrated debugging toolkit. The Eclipse debugger enables easy creation and removal of break points, as well as all the usual features you would expect from a debugger such as, step through and step over, exploring the various contents of different variables and objects. These features are also provided by command line debugging tools, however the author is far more comfortable using a graphical interface to debug the application as it is much earlier to access the features of the debugger using this approach.
+
+Eclipse also has built in Junit support. This project will use the JUnit library as part of the testing process (more details see \ref{junitsupport}). Similar to how the IDE makes the writing of the applications code easier, the support of test suites such as JUnit makes the test process much easier. The code responsible for the tests will also have access to the features provided by the IDE as mentioned above, this includes in place builds and auto completion. In addition to this you can run the tests inside the IDE and get accurate feedback on how many test ran, how many failed and why these tests failed. The author uses this to identify failed tests to be easily identified and repaired. Eclipse also supports a variety of other languages and features but these are not relevant to this project currently.
+
+\subsection{Support Tools}
+
+\subsubsection{Maven}
+
+Maven is tool used for building and managing projects, specifically Java-based projects \cite{maven:site}. The Maven framework provides a lot of useful utilities for developing successful Java-based projects and ensuring that such projects adhere to certain standards. The Maven framework aims to provide convention, over configuration. If there are multiple projects which have many different dependencies, some of which could be external Jar files, then Maven can allow other projects to make use of these dependencies. As a result, if a new project is decided there is less time spent configuring as the dependencies are already presented using this Maven framework. However, the author is working alone, and is not expecting to have any other projects which will share dependencies with this one, thus the author has to weight up if this framework would actually help the development process.
+
+Maven provides some useful testing capabilities. When testing using the Maven framework, tests are still written using the Junit libraries (see \ref{junitsupport}). However, the Maven framework provides some additional features which the author feels could be of use. Maven, will give the author a Unit test report should one be required which will cover numerous details, most important a coverage report will be produced. This enables the author to assess how well the unit testing has been done. Although this test report is a very useful feature, the Maven is not a necessity nor is it complication free.
+
+The main complication that the author has with use the of Maven for this project is that fact that as this is generally a small project, Maven and its features would not be fully utilised but the hassle of configuring the framework would still be present. The initial project configuration would be time consuming, given that the author is inexperienced with the framework and this time could be spent on the actual project development. There are plugins which enable Maven to be used with an IDE such as Eclipse, the author feels that Maven would not be appropriate for use here, however the test reports would be extremely useful.
+
+\subsection{GitHub}
+
+The author has seen the use of GitHub as an essential part of the development process. GitHub has enabled the author have strict version control throughout the development process. As this is the case, the author has been able to store a local repository, which will exist as the working directory for the applications development whilst also allowing a working copy, with the current most up-to-date fully working project code to be stored safely online using GitHub. There has been numerous times throughout the development lifecycle where the author has had to revert back to a previous version of the applications code, GitHub has allowed this process to be more hassle free. As it is so simple to manage different versions of the application, each representing a different collection of working or non-working features the author has been able to develop in confidence as he knows that any mistakes or experiments are not very costly as there is always a backup version stored at the GitHub repository location.
+
+Without the use of GitHub (or another version control system) the author would have found it difficult to progress the application as expected. If there was no form of version control, then the mistakes the author made or external factors which then rendered the current development code unusable would be a far more disastrous. There was a time during development where the authors working directory became corrupt. This was easily resolved by simply retrieving the code stored in the projects GitHub repository, however if GitHub was not being used here, then there would have been a high possibility than the author would have lost all progress on the application.
+
+\subsubsection{JUnit}
+\label{junitsupport}
+
+JUnit is an open source framework for unit testing Java applications. The Junit libraries provide a multitude of features that allow for a more simplistic approach to testing. Numerous other test frameworks are available however, the author is very experience with JUnit and feels that the features provided by this framework are more than suitable for the unit testing of this application.
+
+The author feels that a testing framework is essential for efficient and accurate unit tests for any application. If the author had neglected to use a testing framework such as Junit and manually tested the application using a looking manually for abnormal output (LMFAO) then the quality and coverage of the unit testing would reduce significantly. If the author used a manual approach such as this which relied on outputs then the author could potentially have a situation where the code in outputting the correct result, but the inner workings are expressing incorrect behaviours which canâ€™t be manually checked. This means that you could ship a product which is assumed to be functioning as expected then suddenly, the application is significantly misbehaving. In addition to this it is difficult to automate manual testing as the author would need to check the outputs himself. A testing framework such as JUnit not only allows for the tests to be fully automated, the tests also become scalable. Every code change would need to be re-evaluated against the existing unit tests, which is easily done if you have a series of test which can be executed automatically. If a manual approach was used, then it becomes a near impossibility that every change can be tested as it would simply be too much to check as the addition of this new code has scaled the number of application inputs and outputs as well the conditions in the codes logic.
+
+\section{Overall Architecture}
+
+The process used during this applications development has enabled the author to modify the proposed overall architecture significantly. This has enabled the author to add additional features which were not additionally planned, this includes the addition of extra algorithm types and modifiers as well as enabling the potential heavy refactoring of code into more logical methods and classes. The new application architecture is much more complex that the initial proposed design, as a result each package will be represented as its own set of diagrams, and then an overall representation showing the interactions between these packages will be explained.
+
+\subsection{Controller}
+
+\subsection{View}
+
+\subsection{Model}
+
+\subsection{System Interactions}
+
+
+\section{Some detailed design}
+
+\subsection{Even more detail}
+
+\section{User Interface}
+
+\section{Other relevant sections}
+
+You should concentrate on the more important aspects of the design. It is essential that an overview is presented before going into detail. As well as describing the design adopted it must also explain what other designs were considered and why they were rejected.
+
+The design should describe what you expected to do, and might also explain areas that you had to revise after some investigation.
+
+Typically, for an object-oriented design, the discussion will focus on the choice of objects and classes and the allocation of methods to classes. The use made of reusable components should be described and their source referenced. Particularly important decisions concerning data structures usually affect the architecture of a system and so should be described here.
+
+How much material you include on detailed design and implementation will depend very much on the nature of the project. It should not be padded out. Think about the significant aspects of your system. For example, describe the design of the user interface if it is a critical aspect of your system, or provide detail about methods and data structures that are not trivial. Do not spend time on long lists of trivial items and repetitive descriptions. If in doubt about what is appropriate, speak to your supervisor.
+ 
+You should also identify any support tools that you used. You should discuss your choice of implementation tools - programming language, compilers, database management system, program development environment, etc.
+
+Some example sub-sections may be as follows, but the specific sections are for you to define. 
+
+\chapter{Implementation PUT IN OWN FILE}
+
+The implementation should look at any issues you encountered as you tried to implement your design. During the work, you might have found that elements of your design were unnecessary or overly complex; perhaps third party libraries were available that simplified some of the functions that you intended to implement. If things were easier in some areas, then how did you adapt your project to take account of your findings?
+
+It is more likely that things were more complex than you first thought. In particular, were there any problems or difficulties that you found during implementation that you had to address? Did such problems simply delay you or were they more significant? 
+
+You can conclude this section by reviewing the end of the implementation stage against the planned requirements. 
+
+\chapter{Testing PUT THIS IN OWN FILE}
+
+Detailed descriptions of every test case are definitely not what is required here. What is important is to show that you adopted a sensible strategy that was, in principle, capable of testing the system adequately even if you did not have the time to test the system fully.
+
+Have you tested your system on ï¿½real usersï¿½? For example, if your system is supposed to solve a problem for a business, then it would be appropriate to present your approach to involve the users in the testing process and to record the results that you obtained. Depending on the level of detail, it is likely that you would put any detailed results in an appendix.
+
+The following sections indicate some areas you might include. Other sections may be more appropriate to your project. 
 
 \section{Overall Approach to Testing}
 

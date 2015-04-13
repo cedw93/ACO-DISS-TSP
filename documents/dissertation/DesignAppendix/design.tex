@@ -7,7 +7,7 @@
 The purpose of this document is to give a detailed description for the design of the`Visualising Ant Colony Optimisation' application. This document will cover the proposed interface designs and interaction methods, choice of language and the underlying data structures and logical modules used in the application.
 
 \section{Language}
-
+\label{lang}
 The choice of implementation language for both the graphical user interface and the Ant Colony Optimisation algorithm is extremely important. The nature of the project suggests that an Object Orientated approach would best suit as the implementation language. One of the main reasons for this is because the manipulation and use of Objects in such languages allows for Object-based decomposition allowing for more logical modules system wide when compared to a non-Object Orientated approach. A non-Object Orientated approach may be more subject to functional decomposition (the application is split into modules grouping similar functions rather than representing separate Objects).
 
 An Object Orientated approach has been identified as most suitable. Therefore there are two main languages which are at the forefront of the selection process. These two languages are C\# (\textit{C Sharp}) and Java. Both languages have the potential to achieve a high level of success when applied to the project’s problem however; they both have different consequences depending on the environment and application in which they are used. C++ (\textit{C plus plus}) is another popular Object-Orientated language.  C++ has been discounted due to lack of language experience therefore using a more familiar language such as the two specified above (Java and C\#) is far more appropriate in this instance. 
@@ -75,7 +75,7 @@ The application will consist of a graphical user interface which in turn, will b
 \end{figure}
 
 \subsection{Structure}
-
+\ref{ssec:uml}
 Adhering to the concepts of the patterns described in sections \ref{sssec:mvc} and \ref{sssec:singleton} the following Class Diagram shows proposed application structure. This is not concrete and could potentially change throughout development, the Class Diagram in question is represented below by figure \ref{fig:classdiagram} and is represented using standard UML notation.
 
 \clearpage
@@ -97,6 +97,38 @@ The che16.dcs.aber.ac.uk.model package contains the necessary elements and attri
 
 \subsubsection{Controller Package}
 The initial concept for the controller is basic and will grow in complexity during the development lifecycle as more and more control based mechanisms will become prevalent. This initial concept is a simple Observer which notifies the view(s) should the model change in a significant way; the inverse of this is also true.
+
+\section{Class Descriptions}
+
+The Classes defined in section \ref{ssec:uml}, Figure \ref{fig:classdiagram} are described textually below.
+
+\subsection{Controller}
+
+\subsubsection{Driver}
+The Driver Class is fairly simplistic and exists as an entry point to the application. This will Class handles any necessary instantiations and correctly assigns any key associations.
+\subsubsection{UpdateListener}
+The UpdateListener Class serves as a point of control for the update operations. The main updates will be handled internally by the relevant Classes (as described by Figure \ref{fig:observable}) however, this Class will handle the updates caused when a user interacts with the application through the user interface. This includes, but is not limited to the modification of parameters or starting the algorithm's execution.
+
+\subsection{View}
+\subsubsection{DisplayFrame}
+An instance of the DisplayFrame Class will serve as the highest level container for the applications user interface elements. This Class will be responsible for controlling access to, and the instantiation of the other graphical user interface elements.
+\subsubsection{DisplayPanel}
+The DisplayPanel instance will be contained inside the DisplayFrame. The purpose of the DisplayPanel is to contain the DisplayCanvas. The reason this Class is used to contain the DisplayCanvas rather than using the top level DisplayFrame is because it gives the author much more control over dimensions and modification of layouts or contents.
+\subsubsection{DisplayCanvas}
+The DisplayCanvas will be used to display the algorithms execution. This is the user interface element which will be painted and modified during the course of the algorithms execution.
+\subsubsection{UserInputPanel}
+The UserInputPanel is used to represent the collection of text boxes and buttons which will be used by the user to directly modify the algorithm’s parameters and state of execution. This will be contained in the top level DisplayFrame.
+
+\subsection{Model}
+\subsubsection{AntColonyOptimisation}
+The AntColonyOptimisation Class is used to represent the high level behaviours of Ant Colony algorithms. This Class will contain the current instance of the World as well as housing all relevant data such as current parameter values and ways to interact with such parameters.
+\subsubsection{AntInterface}
+This interface will contain the necessary methods that every type of Ant (agent) has to have. This is by no means concrete, if there is only a need for one type of Ant then an interface is not strictly needed thus, it may be removed to reduce complexity.
+\subsubsection{Ant}
+An instance of the Ant Class will be used to represent an Ant (agent) in the world. As these are the agents which will be deployed on the world they will need to know about the World, whilst also knowing information about themselves including where they have visited so far and how far have they travelled. This Class will also contain the operations necessary in order for an Ant to be able to solve the current problem, this is main down the combination of knowing about the World and necessary details inside the move() method which will be used to select the Ants next location.
+\subsubsection{World}
+The World Class is a representation of the problem representation. This includes all information needed to model the graph as well as containing and manipulating the current pheromone matrix and pheromone concentrations on each edge. The World will be in constant communication with the Ant instances in order to communicate the current state of World to each agent.
+
 
 \section{Interface Design}
 \subsection{Main User Interface}
