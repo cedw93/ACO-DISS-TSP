@@ -277,5 +277,10 @@ public class ControlPanel extends JPanel{
 		return uphillField;
 	}
 
+	public JButton getStartButton() {
+		return startButton;
+		
+	}
+
 
 }

@@ -174,6 +174,30 @@ public class  MenuListener implements ActionListener {
 			}
 		}
 
+		else if(source.equalsIgnoreCase("enable step mode")){
+			if(model.getRunning()){
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "You cannot enable step mode whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+							"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+			view.getControlContainer().getControlPanel().getStartButton().setText("Step");
+		}
+
+		else if(source.equalsIgnoreCase("disable step mode")){
+			if(model.getRunning()){
+				if(Globals.getMode() == 0){
+					JOptionPane.showMessageDialog(null, "You cannot disable step mode whilst the algorithm is running. Stop the current algorithm or let it finish, then try again.",
+							"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+			view.getControlContainer().getControlPanel().getStartButton().setText("Start");
+			ControlPanelListener.unlockUI();
+
+		}
+
 	}
 
 	public String chooseLoadFile(){

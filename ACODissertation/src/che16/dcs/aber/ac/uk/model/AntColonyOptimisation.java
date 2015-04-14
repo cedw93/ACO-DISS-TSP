@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 import che16.dcs.aber.ac.uk.utils.Globals;
 
 public class AntColonyOptimisation extends Observable{
@@ -20,8 +21,8 @@ public class AntColonyOptimisation extends Observable{
 	private World world;
 	private int boundaryX, boundaryY, width, height, iterations, method, eliteAnts;
 	private double alpha, beta, q, decayRate, initialPheromone;
-	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths;
-	private boolean finished, loaded, running, uphillActive;
+	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths, stepIndex;
+	private boolean finished, loaded, running, uphillActive, stepInit;
 	private Worker worker;
 	private long speed;
 
@@ -35,11 +36,14 @@ public class AntColonyOptimisation extends Observable{
 		boundaryY = 29;
 		//q in constant, often 1, so use one for now
 		q = 1.0d;
+		stepIndex = 0;
 		loaded = false;
 		eliteAnts = 0;
 		finished = false;
 		running = false;
+		currentIter = 0;
 		uphillPaths = 0;
+		stepInit = false;
 		speed = 500L;
 
 	}
@@ -65,6 +69,10 @@ public class AntColonyOptimisation extends Observable{
 		this.setChanged();
 		this.notifyObservers(this);
 		this.clearChanged();
+		//this shouldnt really be here
+		ControlPanelListener.unlockUI();
+		stepInit = false;
+		stepIndex = 0;
 
 	}
 
@@ -102,6 +110,85 @@ public class AntColonyOptimisation extends Observable{
 		worker = new Worker(this, iterations);
 		worker.execute();
 	}
+
+	public void step(){
+		//TODO: make sure this is only possible if not already running
+		if(!stepInit){
+
+			currentIter = 0;
+			this.finished = false;
+
+			//if the world isn't loaded from a file
+			if(!running){
+				if(loaded){
+					//reset the value if it is loaded so the next instance works fine
+					loaded = false;
+					if(world == null){
+						if(Globals.getMode() == 0){
+							JOptionPane.showMessageDialog(null, "There is no world, please load a file or make a new world",
+									"No world created",	JOptionPane.ERROR_MESSAGE);
+						}
+						return;
+					}
+				}else{
+					if(method == 1){
+						world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
+						if(checkEliteValueIsValid(eliteAnts)){
+							world.initEliteAnts(eliteAnts);
+						}else{
+							return;
+						}
+					}else{
+						world = new World(this, noOfAgents, noOfCities, uphillPaths, method);
+					}
+				}
+			}
+			stepInit = true;
+			this.notifyCanvas();
+			return;
+
+		}
+		//when counter exceedes iterations then stop, no while loop as this is an iterative stepping process
+		if(currentIter < iterations){
+			running = true;
+			Ant ant = world.getAnts().get(stepIndex);
+			if(!ant.getFinished()){
+				ant.step();
+				this.notifyCanvas();
+				if(ant.getUnvisted() == 0){
+					ant.setFinished(true);
+				}
+
+			}else{
+				reduceWorking();
+				stepIndex++;
+			}
+
+			if(stepIndex >= world.getAnts().size()){
+				world.initAnts();
+				for(City c: world.getCities()){
+					c.resetAntCount();
+				}
+				stepIndex = 0;
+				agentsWorking = noOfAgents;
+				currentIter++;
+			}
+
+		}
+
+		if(currentIter >= iterations){
+			currentIter = iterations;
+			finished = true;
+			running = false;
+			stepInit = false;
+			this.setChanged();
+			this.notifyObservers(this);
+			this.clearChanged();
+		}
+	}
+
+
+
 
 	public double getAlpha() {
 		return alpha;

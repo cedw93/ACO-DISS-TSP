@@ -17,8 +17,8 @@ public class DisplayCanvasContainer extends JPanel{
 
 
 	public DisplayCanvasContainer() {
-		this.contentTop = "Best Route:[N/A] Best Distance: N/A";
-		this.contentBottom = "Agents Working: N/A Agents finished: N/A Status: Stopped";
+		this.contentTop = "Best Route:[N/A]                Best Distance: N/A";
+		this.contentBottom = "Iteration: N/A               Total iterations: N/A               Agents Working: N/A";
 		setBackground(new Color(0xC2C0CC));
 		setVisible(true);
 		this.setLayout(new GridBagLayout());

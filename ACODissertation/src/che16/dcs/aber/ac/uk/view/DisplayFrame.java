@@ -41,8 +41,8 @@ public class DisplayFrame extends JFrame{
 	private UphillViewer uphillViewer;
 
 	private JMenuBar menuBar;
-	private JMenu file, speed, detail, method;
-	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill, uphillDis, basic, elitist, uphillEnb;
+	private JMenu file, speed, detail, method, stepMenu;
+	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill, uphillDis, basic, elitist, uphillEnb, step, stepDis;
 
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
@@ -104,6 +104,9 @@ public class DisplayFrame extends JFrame{
 
 		method = new JMenu("Method");
 		method.setFont(MENUFONT);
+
+		stepMenu = new JMenu("Step Mode");
+		stepMenu.setFont(MENUFONT);
 
 		//ITEMS
 		save = new JMenuItem("Save");
@@ -170,11 +173,22 @@ public class DisplayFrame extends JFrame{
 		elitist.addActionListener(menuListener);
 		elitist.setFont(MENUITEMFONT);
 		method.add(elitist);
+		
+		step = new JMenuItem("Enable step mode");
+		step.addActionListener(menuListener);
+		step.setFont(MENUITEMFONT);
+		stepMenu.add(step);
+		
+		stepDis = new JMenuItem("Disable step mode");
+		stepDis.addActionListener(menuListener);
+		stepDis.setFont(MENUITEMFONT);
+		stepMenu.add(stepDis);
 
 		menuBar.add(file);
 		menuBar.add(speed);
 		menuBar.add(detail);
 		menuBar.add(method);
+		menuBar.add(stepMenu);
 
 		this.setJMenuBar(menuBar);
 	}

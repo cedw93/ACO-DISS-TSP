@@ -5,12 +5,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import che16.dcs.aber.ac.uk.model.Ant;
@@ -22,12 +25,25 @@ public class DisplayCanvas extends JPanel{
 
 	private DisplayCanvasContainer parent;
 	private AntColonyOptimisation model;
+	private Image antImage;
 
 	public DisplayCanvas(DisplayCanvasContainer parent) {
 
 		this.parent = parent;
 		setBackground(Color.WHITE);
+
+		/*
+		 * ant.png is a modified version of this image: 
+		 * http://thumbs1.picclick.com/d/w1600/pict/220695972208_/Ant-Insect-Decal-Animal-Die-Cut-Vinyl-20x20.jpg
+		 * the modifications are as follows; recoloured from green to black, resized to fit the world.
+		 */
+		try{
+			antImage = ImageIO.read(getClass().getResource("/images/ant2.png"));
+		}catch (IOException e) {
+		}
+
 		setVisible(true);
+
 
 	}
 
@@ -125,9 +141,12 @@ public class DisplayCanvas extends JPanel{
 					if(!ant.getFinished()){
 						for(City c: cities){
 							if(ant.getCurrentIndex() == c.getIndex()){
-								g2.setColor(Color.GREEN);
-								g2.fillOval((c.getX() * 20) - 5, (c.getY() * 20) - 5, 10, 10);
-
+								if(antImage != null){
+									g2.drawImage(antImage, (c.getX() * 20) - 15, (c.getY() * 20) - 9, null);
+								}else{
+									g2.setColor(Color.GREEN);
+									g2.fillOval((c.getX() * 20) - 5, (c.getY() * 20) - 5, 10, 10);
+								}
 							}
 							parent.getFrame().getCityDetailView().updateValues(model.getWorld().getCities());
 							if(ant.getMovementTracker()[0] != ant.getMovementTracker()[1]){
@@ -197,10 +216,10 @@ public class DisplayCanvas extends JPanel{
 
 			parent.setContentTop(" Best Route: " + model.getWorld().getBestRoute() + " Best Distance: " + model.getWorld().getBestDistance());
 			if(model.getMethod() == 0){
-				parent.setContentBottom("iteration: " + (model.getCurrentIteration() + 1) + " Agents finished: " + model.getAgentsFinished()+ " Running: " + model.getRunning());
+				parent.setContentBottom("iteration: " + (model.getCurrentIteration() + 1) + "               total iterations: " + model.getIterations() + "               Agents working: " + model.getAgentsWorking());
 			}else if(model.getMethod() == 1){
 				if(model.getWorld().getEliteAnts() != null){
-					parent.setContentBottom("iteration: " + (model.getCurrentIteration() + 1) + " Agents finished: " + model.getAgentsFinished()+ " Elite Agents: " + model.getWorld().getEliteCount() +  " Running: " + model.getRunning());
+					parent.setContentBottom("iteration: " + (model.getCurrentIteration() + 1) + "                Agents working: " + model.getAgentsWorking() + "                Elite Agents: " + model.getWorld().getEliteCount());
 				}
 			}
 			parent.repaint();
