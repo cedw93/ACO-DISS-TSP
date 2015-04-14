@@ -157,7 +157,7 @@ public class DisplayCanvas extends JPanel{
 									destination = c;
 								}
 								if(start != null && destination != null){
-									g2.setColor(Color.LIGHT_GRAY);
+									g2.setColor(Color.CYAN);
 									for(int i = 1; i < 5; i++){
 										//cast to a double to stop integer behaviours rounding down to 0
 										double result = ((double)i)/5;
