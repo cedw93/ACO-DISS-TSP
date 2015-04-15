@@ -47,7 +47,7 @@ This project will make effective use of Model-View-Controller in order to produc
 
 
 \subsection{Observer and Observable}
-
+\label{obby}
 The implementation of the Model-View-Controller design pattern is handled using the Observer and Observable interface provided as part of the default Java language specification. The general premise is that the Model will have an Observer which will have an update interface allowing it to receive signals from what it is observing (Model). The Model will implement the Observable interface which will enable it to send update signals to the Observer through the notifyObservers() method. This enables the Models dependencies to be updated as the Model itself changes ensuring the correct state of the Model is captured in the Views.
 
 
@@ -75,7 +75,6 @@ The application will consist of a graphical user interface which in turn, will b
 \end{figure}
 
 \subsection{Structure}
-\ref{ssec:uml}
 Adhering to the concepts of the patterns described in sections \ref{sssec:mvc} and \ref{sssec:singleton} the following Class Diagram shows proposed application structure. This is not concrete and could potentially change throughout development, the Class Diagram in question is represented below by figure \ref{fig:classdiagram} and is represented using standard UML notation.
 
 \clearpage
@@ -96,15 +95,17 @@ The $che16.dcs.aber.ac.uk.view$ package contains the graphical user interface co
 The che16.dcs.aber.ac.uk.model package contains the necessary elements and attributes required in order to accurately represent the algorithms state(s) and ensure correct algorithm execution. This package has no directl knowledge of any package members mentioned in \ref{sssec:view}. Instead the controller package members handle the communication(s) between these the model(s) and view(s), adhering to the principles discussed in section \ref{sssec:mvc}.
 
 \subsubsection{Controller Package}
+\label{sssec:cntrl}
 The initial concept for the controller is basic and will grow in complexity during the development lifecycle as more and more control based mechanisms will become prevalent. This initial concept is a simple Observer which notifies the view(s) should the model change in a significant way; the inverse of this is also true.
 
 \section{Class Descriptions}
 
-The Classes defined in section \ref{ssec:uml}, Figure \ref{fig:classdiagram} are described textually below.
+The Classes defined in Figure \ref{fig:classdiagram} are described textually below.
 
 \subsection{Controller}
 
 \subsubsection{Driver}
+\label{driver:classdef}
 The Driver Class is fairly simplistic and exists as an entry point to the application. This will Class handles any necessary instantiations and correctly assigns any key associations.
 \subsubsection{UpdateListener}
 The UpdateListener Class serves as a point of control for the update operations. The main updates will be handled internally by the relevant Classes (as described by Figure \ref{fig:observable}) however, this Class will handle the updates caused when a user interacts with the application through the user interface. This includes, but is not limited to the modification of parameters or starting the algorithm's execution.

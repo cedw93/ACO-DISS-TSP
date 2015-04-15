@@ -39,78 +39,81 @@
 \contentsline {subsubsection}{\numberline {4.2.3.1}JUnit}{16}
 \contentsline {section}{\numberline {4.3}Overall Architecture}{16}
 \contentsline {subsection}{\numberline {4.3.1}Controller}{17}
-\contentsline {subsection}{\numberline {4.3.2}View}{17}
-\contentsline {subsection}{\numberline {4.3.3}Model}{17}
-\contentsline {subsection}{\numberline {4.3.4}System Interactions}{17}
-\contentsline {section}{\numberline {4.4}Some detailed design}{17}
-\contentsline {subsection}{\numberline {4.4.1}Even more detail}{17}
-\contentsline {section}{\numberline {4.5}User Interface}{17}
-\contentsline {section}{\numberline {4.6}Other relevant sections}{17}
-\contentsline {chapter}{\numberline {5}Implementation PUT IN OWN FILE}{18}
-\contentsline {chapter}{\numberline {6}Testing PUT THIS IN OWN FILE}{19}
-\contentsline {section}{\numberline {6.1}Overall Approach to Testing}{19}
-\contentsline {section}{\numberline {6.2}Automated Testing}{19}
-\contentsline {subsection}{\numberline {6.2.1}Unit Tests}{19}
-\contentsline {subsection}{\numberline {6.2.2}User Interface Testing}{19}
-\contentsline {subsection}{\numberline {6.2.3}Stress Testing}{19}
-\contentsline {subsection}{\numberline {6.2.4}Other types of testing}{19}
-\contentsline {section}{\numberline {6.3}Integration Testing}{19}
-\contentsline {section}{\numberline {6.4}User Testing}{19}
-\contentsline {chapter}{\numberline {7}Evaluation}{20}
-\contentsline {chapter}{Appendices}{21}
-\contentsline {chapter}{\numberline {A}Requirements Specification}{22}
-\contentsline {section}{\numberline {1.1}Introduction}{22}
-\contentsline {subsection}{\numberline {1.1.1}Purpose}{22}
-\contentsline {subsection}{\numberline {1.1.2}Scope}{22}
-\contentsline {subsection}{\numberline {1.1.3}Definitions}{23}
-\contentsline {section}{\numberline {1.2}Overview}{23}
-\contentsline {subsection}{\numberline {1.2.1}Product Descriptive}{23}
-\contentsline {subsection}{\numberline {1.2.2}Product functionality}{23}
-\contentsline {subsection}{\numberline {1.2.3}User Groups and Characteristics}{24}
-\contentsline {subsection}{\numberline {1.2.4}Constraints}{24}
-\contentsline {subsection}{\numberline {1.2.5}Assumptions}{25}
-\contentsline {section}{\numberline {1.3}Specific Requirements}{25}
-\contentsline {subsection}{\numberline {1.3.1}User Interface}{25}
-\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{26}
-\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{26}
-\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{29}
-\contentsline {chapter}{\numberline {B}Initial Design Proposal}{30}
-\contentsline {section}{\numberline {2.1}Introduction}{30}
-\contentsline {subsection}{\numberline {2.1.1}Purpose}{30}
-\contentsline {section}{\numberline {2.2}Language}{30}
-\contentsline {section}{\numberline {2.3}Architecure}{31}
-\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{31}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{31}
-\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{32}
-\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{33}
-\contentsline {subsection}{\numberline {2.3.3}Structure}{34}
-\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{36}
-\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{36}
-\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{36}
-\contentsline {section}{\numberline {2.4}Class Descriptions}{36}
-\contentsline {subsection}{\numberline {2.4.1}Controller}{36}
-\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{36}
-\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{36}
-\contentsline {subsection}{\numberline {2.4.2}View}{37}
-\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{37}
-\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{37}
-\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{37}
-\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{37}
-\contentsline {subsection}{\numberline {2.4.3}Model}{37}
-\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{37}
-\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{37}
-\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{37}
-\contentsline {subsubsection}{\numberline {2.4.3.4}World}{38}
-\contentsline {section}{\numberline {2.5}Interface Design}{38}
-\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{38}
-\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{40}
-\contentsline {section}{\numberline {2.6}Algorithm}{40}
-\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{43}
-\contentsline {subsection}{\numberline {2.6.2}Metrics}{45}
-\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{45}
-\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{45}
-\contentsline {section}{\numberline {2.7}Representation}{46}
-\contentsline {subsection}{\numberline {2.7.1}World}{46}
-\contentsline {subsection}{\numberline {2.7.2}Pheromone}{47}
-\contentsline {subsection}{\numberline {2.7.3}Visualisation}{48}
-\contentsline {chapter}{Annotated Bibliography}{50}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Class Descriptions}{17}
+\contentsline {subsection}{\numberline {4.3.2}View}{18}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Class Descriptions}{20}
+\contentsline {subsection}{\numberline {4.3.3}Model}{21}
+\contentsline {subsubsection}{\numberline {4.3.3.1}Class Descriptions}{23}
+\contentsline {subsection}{\numberline {4.3.4}Utils}{23}
+\contentsline {subsection}{\numberline {4.3.5}System Interactions}{24}
+\contentsline {section}{\numberline {4.4}Design Patterns}{24}
+\contentsline {section}{\numberline {4.5}User Interface}{25}
+\contentsline {section}{\numberline {4.6}Algorithms}{26}
+\contentsline {chapter}{\numberline {5}Implementation PUT IN OWN FILE}{27}
+\contentsline {chapter}{\numberline {6}Testing PUT THIS IN OWN FILE}{28}
+\contentsline {section}{\numberline {6.1}Overall Approach to Testing}{28}
+\contentsline {section}{\numberline {6.2}Automated Testing}{28}
+\contentsline {subsection}{\numberline {6.2.1}Unit Tests}{28}
+\contentsline {subsection}{\numberline {6.2.2}User Interface Testing}{28}
+\contentsline {subsection}{\numberline {6.2.3}Stress Testing}{28}
+\contentsline {subsection}{\numberline {6.2.4}Other types of testing}{28}
+\contentsline {section}{\numberline {6.3}Integration Testing}{28}
+\contentsline {section}{\numberline {6.4}User Testing}{28}
+\contentsline {chapter}{\numberline {7}Evaluation}{29}
+\contentsline {chapter}{Appendices}{30}
+\contentsline {chapter}{\numberline {A}Requirements Specification}{31}
+\contentsline {section}{\numberline {1.1}Introduction}{31}
+\contentsline {subsection}{\numberline {1.1.1}Purpose}{31}
+\contentsline {subsection}{\numberline {1.1.2}Scope}{31}
+\contentsline {subsection}{\numberline {1.1.3}Definitions}{32}
+\contentsline {section}{\numberline {1.2}Overview}{32}
+\contentsline {subsection}{\numberline {1.2.1}Product Descriptive}{32}
+\contentsline {subsection}{\numberline {1.2.2}Product functionality}{32}
+\contentsline {subsection}{\numberline {1.2.3}User Groups and Characteristics}{33}
+\contentsline {subsection}{\numberline {1.2.4}Constraints}{33}
+\contentsline {subsection}{\numberline {1.2.5}Assumptions}{34}
+\contentsline {section}{\numberline {1.3}Specific Requirements}{34}
+\contentsline {subsection}{\numberline {1.3.1}User Interface}{34}
+\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{35}
+\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{35}
+\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{38}
+\contentsline {chapter}{\numberline {B}Initial Design Proposal}{39}
+\contentsline {section}{\numberline {2.1}Introduction}{39}
+\contentsline {subsection}{\numberline {2.1.1}Purpose}{39}
+\contentsline {section}{\numberline {2.2}Language}{39}
+\contentsline {section}{\numberline {2.3}Architecure}{40}
+\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{40}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{40}
+\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{41}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{42}
+\contentsline {subsection}{\numberline {2.3.3}Structure}{43}
+\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{45}
+\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{45}
+\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{45}
+\contentsline {section}{\numberline {2.4}Class Descriptions}{45}
+\contentsline {subsection}{\numberline {2.4.1}Controller}{45}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{45}
+\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{45}
+\contentsline {subsection}{\numberline {2.4.2}View}{46}
+\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{46}
+\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{46}
+\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{46}
+\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{46}
+\contentsline {subsection}{\numberline {2.4.3}Model}{46}
+\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{46}
+\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{46}
+\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{46}
+\contentsline {subsubsection}{\numberline {2.4.3.4}World}{47}
+\contentsline {section}{\numberline {2.5}Interface Design}{47}
+\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{47}
+\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{49}
+\contentsline {section}{\numberline {2.6}Algorithm}{49}
+\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{52}
+\contentsline {subsection}{\numberline {2.6.2}Metrics}{54}
+\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{54}
+\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{54}
+\contentsline {section}{\numberline {2.7}Representation}{55}
+\contentsline {subsection}{\numberline {2.7.1}World}{55}
+\contentsline {subsection}{\numberline {2.7.2}Pheromone}{56}
+\contentsline {subsection}{\numberline {2.7.3}Visualisation}{57}
+\contentsline {chapter}{Annotated Bibliography}{59}

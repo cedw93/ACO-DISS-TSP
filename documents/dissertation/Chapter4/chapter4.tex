@@ -54,24 +54,136 @@ The author feels that a testing framework is essential for efficient and accurat
 
 \section{Overall Architecture}
 
-The process used during this applications development has enabled the author to modify the proposed overall architecture significantly. This has enabled the author to add additional features which were not additionally planned, this includes the addition of extra algorithm types and modifiers as well as enabling the potential heavy refactoring of code into more logical methods and classes. The new application architecture is much more complex that the initial proposed design, as a result each package will be represented as its own set of diagrams, and then an overall representation showing the interactions between these packages will be explained.
+The process used during this applications development has enabled the author to modify the proposed overall architecture significantly. This has enabled the author to add additional features which were not additionally planned, this includes the addition of extra algorithm types and modifiers as well as enabling the potential heavy refactoring of code into more logical methods and classes. The new application architecture is much more complex that the initial proposed design, as a result each package will be represented as its own set of diagrams, and then an overall representation showing the interactions between these packages will be explained. In all figures below, getter and setter methods are emitted but are assumed to be present. The packages referebced in this section will take the form of $che16.dcs.aber.ac.uk.xxx$ where $xxx$ is the corresponding package name.
 
 \subsection{Controller}
 
+The Controller package has undergone several changes since the initial design of the system as defined in appendix B, section \ref{sssec:cntrl}. The general ideologies have however remained the same, the ranges of features provided by the application as a whole has increased thus, the author saw these modifications the Control package contents as a necessity in order correctly control these new features whilst also adhering to the existing Model-View-Controller framework.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.23]{Images/chapter4/controller}
+\caption{The contents of the Control package show in standard UML Class diagram notation}
+\label{fig:controllerImp}
+\end{figure}
+
+\subsubsection{Class Descriptions}
+
+The \textbf{Driver} Class remains largely unchanged from its initial proposed design (see appendix B, section \ref{driver:classdef}) however, it now interacts with the other components in a slightly different manner. The Driver Class remains as the entry point for the application, however, the Driver has the additional responsibilities of instantiating the Control instance, as well as handling the correct associations needed. The general purpose of the Driver Class is still to ensure the system components are correctly instantiated, and holds no references to any instances of any Object.
+
+The \textbf{Control} as represented in figure \ref{fig:observableImp} is designed to observe the model and notify the view should the state of the model change significantly. In addition to this, the required instanced of MenuListener and ControlPanelListener are instantiated in this Class, and a reference to this Control Object is maintained the created instances of said Objects. The Control Class is an additional feature not present in the initial design, this is because as represented in figure \ref{fig:observable} the DisplayFrame initially observed the model, this has since been modified. This Class has the potential to be extended to support several other Observable Objects should this functionality be needed by the author in the future.
+
+An instance of the \textbf{MenuListener} is used to listen the JMenuBar present in the DisplayFrame. This is designed to enable a collective way to manage all actions represented by the items contained in the JMenuBar. The alternative approach is to give each element in the JMenuBar its own Action Listener. This is far from efficient and increases both the codes complexity, and reduces overall maintainability of the application. The author decided to use a dedicate Object such as this, to listen to the menu and perform appropriate actions. This Class maintains an instance of the Control Class, this enables the instance of this Class to have access to the model and view instances stored in the Control instance enabling a simple way for the JMenuBar to have access to necessary functions.
+
+A \textbf{ControlPanelListener} instance is designed to be a dedicated ActionListener for the ControlPanel (see section \ref{model:classdef}) instance. Two separate ActionListeners are present in this application, this is because the author wanted to have dedicated listeners for each component, rather than having a combined Object representing this Class and the MenuListener Class. The author feels that this is appropriate as any behaviour modifications or changes the Object which will be listened to becomes much simpler to accomplish if relevant behaviours are extracted into logical modules such as this design exhibits.
+
+
 \subsection{View}
+
+The View package serves the same purpose as initial designed however, there has been a singnificant amount of refactoring applies to the initial design to enable a more effective graphical user interface to be created. The author has also added several new Classes into this package to represent additional views which were not initially visioned, but during development the author recognised that these new views were essential.
+
+\clearpage
+\begin{sidewaysfigure}
+\includegraphics[scale=0.225]{Images/chapter4/view}
+\caption{The contents of the View package show in standard UML Class diagram notation}
+\label{fig:classdiagramImp}
+\end{sidewaysfigure}
+\clearpage
+
+\subsubsection{Class Descriptions}
+
+Initial the \textbf{DisplayFrame} was designed to simply represent the highest level container which houses the remaining graphical user interface elements. As figure \ref{fig:classdiagram} in appendix B shows the initial design for this class happened to be very simplistic and lightweight. The author decided to include an additional user interface elements which was not originally planned. This addition happened to be JMenuBar, which was contained within this DisplayFrame instance. As this is the case, the DisplayFrame Class grew it size as it now encapsulates the JMenuBar and the menu elements of said JMenuBar as well as defining constants such as font styles. Although the size of this Class has grew, the complexity and functionality remains unchanged, it remains as the highest level container for the graphical user interface and control the instantiation of such elements.
+
+The \textbf{DisplayCanvasContainer} is the result of renaming the DisplayPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B). This Class is designed as a container to the DisplayCanvas instance, this functionality is as designed and the author has not modified its behaviour.
+
+An instance of the \textbf{DisplayCanvas} Class is used to actually visualise the algorithms state of execution to the application user. This will be the component that is painted during the algorithms execution using the $paintComponent$ method which it inherits from its JFrame super Class. As the functionality provided by this Class is very simplistic, the current implementation remains unchanged from the initial proposed design (see Figure \ref{fig:classdiagram}, appendix B).
+
+The addition of the \textbf{CityDetailView} is a simple JFrame container which is used to display a JTable with data representing the number of agents currently at each city in the current World. The JFrame displayed by this Class can be toggled between visible and invisible through user interaction with the respective JMenuBar item.
+
+The structure of the table represented visually by the CityDetailView, is modelled by the \textbf{MyTableModel} Class. Extracting the table’s structure into a separate Class enables easier modification of the structure as well as reducing the coupling between the view and the table itself.
+
+Similar to the DisplayCanvasContainer Class, the \textbf{ControlContainer} Class is used to contain the user input elements in their own separate location. This is a result of refactoring the UserInputPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B) into this container and the ControlPanel Class. The main purpose for this Class is to allow more a more diverse range of positioning utilities to become available allowing for an easily modifiable interface.
+
+The \textbf{ControlPanel} Class used to contain the interface elements which directly relate to the creation and modification of the problem and world. This includes housing the text fields and labels required to enable the user to customise the algorithm parameters, as well as providing a simple means to start and stop the execution using a simple JButton approach. This Class is essentially an extended version of the UserInputPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B), aside from the fact that more interface elements have been added, the functionality is the same.
+
+The \textbf{EquationFrame} Class an extension of the JFrame Class which is used to display an graphic explaining the workings and functions of the underlying algorithms. As this is an educational application. The Class has no other functionality aside from the providing a means of displaying such graphics which is itself, contained within the ProbabilityPanel and PheroPanel Classes.
+
+Both \textbf{ProbabilityPanel} and \textbf{PheroPanel} are nested Classes inside the EquationFrame Class. These Classes are extensions of the JPanel Class and are used to contain different graphics which will be used to represent information relevant to the underlying probability and pheromone functions respectively.
+
+the \textbf{UphillViewer} Class is another new addition which was not perceived in the initial design. This Class is a sub Class of JFrame and is used to house an UphillPanel instance. This JFrame can be togged between visible and invisible with relevant user interaction with the JMenuBar contained in the DisplayFrame.
+
+An instance of the \textbf{UphillPanel} Class is used to display information about the current status of the uphill routes for the current algorithms execution. This is an extension the JPanel Class, enabling the uphill route data to be painted to the component using the inherited $paintComponent$ method. This is a nested Class inside the UphillView Class as the author felt a this was the most appropriate way to represent such a Class  as no other Class uses or needs the knowledge of this Class.
 
 \subsection{Model}
 
+The elements contained in the initial proposed designed represented in  Figure \ref{fig:classdiagram}, appendix B have undergone significant refactoring which has produce a vastly different structure. During the development process the athour found the the intial design happened to be inaquate for representing the aglorithm in a suitable manner, as it lacked necessary components and detail.
+
+\clearpage
+\begin{sidewaysfigure}
+\includegraphics[scale=0.22]{Images/chapter4/model}
+\caption{The contents of the Model package show in standard UML Class diagram notation}
+\label{fig:classdiagramImp}
+\end{sidewaysfigure}
+\clearpage
+
+
+\subsubsection{Class Descriptions}
+\label{model:classdef}
+
+The initial concept behind the \textbf{AntColonyOptimisation} Class is that this servers as the main control point and data centre for the algorithms representation. This Class is used to store all the necessary parameter values and is also responsible for in instantiation of the Word representation and therefore, indirectly the graph. This Class also controls external package access to the Model package and its data. This largely remains the same as designed, however, there are slight modification to accommodate the extra functionality added.
+
+The \textbf{Worker} Class was something that wasn’t initially planned. As discussed in \Large REFERENCE IMPLEMENTATION OF SWING WORK \normalsize there was a necessity for a way to control the algorithms execution without interfering with the performance of the system or host machine. This Class is an extension of the SwingWorker Class and uses the inherited $doInBackground$ perform the algorithms execution in a suitable manner. 
+
+The \textbf{World} Class is used to model the problem representation and the environment which the agents will be deployed during the algorithms execution. This Class houses all the data relevant to such representations including a List of all Ant and City Object as well as having basic data structures which provide an effective representation of the pheromone concentrations for every edge within the graph. This Class also handles the manipulation of pheromones on such edges. This Class is generally the same as proposed in Figure \ref{fig:classdiagram}, appendix B excluding the additional feature support.
+
+A \textbf{City} Object is used to represent a node in the current problem representation graph. A list of these City Object is maintained in the current World instance, and iterated through during both the solving and painting processes.
+
+A \textbf{Pheromone} Object is used to model the pheromone concentrations for any given edge. A two-dimensional array of these Objects is maintained in the current World instance, and these Objects are constantly manipulated during the pheromone deposit and decay operations. 
+
+An \textbf{Ant} Object is used to represent an agent which will be deployed in the current environment in order to solve the current problem. The World instance will maintain a list of all current Ant Objects. Each Ant is able to move and deposit pheromone accordingly, this these Objects have sufficient variables and methods to enable this functionality. The initial design suggested the use of an AntInterface, however as the author has decided that there will only be one type of Ant Class, he has deemed the Interface to be unnecessary. Generally, this Class is as designed in Figure \ref{fig:classdiagram}, appendix B.
+
+The \textbf{EliteAntData} is a nested Class inside the World Class which is used to store the current elite routes. This feature is only necessary if the user has selected ElitistAnts as the current algorithm type. This is required as if there are numerous iterations, the Ant Objects get reset each iteration and this is a lightweight way to store the elite ants for the course of the algorithm execution, as storing just the distances and routes of the best ants has less overheads when compared to storing whole Ant Objects.
+
+\subsection{Utils}
+
+During development the author decided that there were methods that were being repeated implemented in numerous places, in order to prevent code duplication and promote reusability the utils package was implemented. This is a very simple package, containing one Class, however, the contents of this Class don't belong in any other package individually thus, have been implemented separately.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{Images/chapter4/gloabls}
+\caption{The contents of the Utils package show in standard UML Class diagram notation}
+\label{fig:utilsImp}
+\end{figure}
+
+Figure \ref{fig:utilsImp} represents the single Class contents of the Utils package. This Globals Class contains several publically avliable static variables and methods enabling application wide access. This enables the multiple packages which rely on the results of the features present to still have access whilst also reducing the amount of repeated code in the application. In addition to this, this Class also enables the execution mode to be switched from release, to test mode. When in test mode the error messages require no user response enabling the automated test process to complete more easily.
+
 \subsection{System Interactions}
 
+WRITE THIS SECTION
 
-\section{Some detailed design}
+\section{Design Patterns}
+The current design still maintains and adheres to the Model-View-Controller(MVC) principles discussed in Appendix B, section \ref{sssec:mvc} however, the complexity of the different packages has changed both in terms of internal package structure and features provided. As designed, the author has implements an MVC compliant architecture is through the use of the Observer and Obseravle relationship using the corresponding default Java Classes. The general conecpt is implemented as defined in appendix B, section \ref{obby} slight modification have been made to the Classes representing the different components of the Observer and Observable concept.
 
-\subsection{Even more detail}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Images/chapter4/observerImplemetation}
+\caption{Implementation of the Observer and Observable Design pattern}
+\label{fig:observableImp}
+\end{figure}
+
+Figure \ref{fig:observableImp} demonstartes how the Control Class will implement the Observer interface, which will listen to the Observable Object and determine correct actions based upon the source of update. The AntColonyOptimisation Class is as defined is \ref{model:classdes} is the Object which is in fact Observable, and extends the Observable super Class. As the AntColonyOptimisation instance is now a subclass of Observable, it now has access to key methods such as $registerObserver()$ which allows the athor to assign the Control instance as the desiginated Observer and $notifyOberservers()$ which enables the author to dictate when updates are published, this enables the Control instance to process update notifications and notify the relevant view elements that the state of the model has changed, enabling the seperation of the view and model.
+
+\Large TALK ABOUT WHY SINGLETON WAS IMMTED: ANTI PATTERN? ADDED UNCESSARY COMPLEXITY, EASY TO MANUALLY CONTROL\normalsize
 
 \section{User Interface}
 
-\section{Other relevant sections}
+\Large SHOW DESIGNS FOR EXTRA VIEWS LIKE UPHILL AND CITY VIEWS AND ALTERNATIVES TO THE CURRENT ONE, ALSO SHOW HOW THE PROPOSED DESIGN VIEW HAS BEEN MODIFIED AND IMPLEMENTED\normalsize
+
+\section{Algorithms}
+
+TALK ABOUT INITIAL PROPOSED PSEUDO CODE AS WELL AS HOW ITS CHANGED, TALK ABOUT PAINITNG PSUDEO CODE AND HOW THE ADDITION ON ELITIST ANTS HAS CHANGED THE PSEUDO CODE, OR SHOW THE ELITIST ANT PSEUDO CODE SEPERATELY 
+
+ALSO FLOWCHARTS
 
 You should concentrate on the more important aspects of the design. It is essential that an overview is presented before going into detail. As well as describing the design adopted it must also explain what other designs were considered and why they were rejected.
 
