@@ -19,7 +19,7 @@ import che16.dcs.aber.ac.uk.utils.Globals;
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
-	private int boundaryX, boundaryY, width, height, iterations, method, eliteAnts;
+	private int boundaryX, boundaryY, iterations, method, eliteAnts;
 	private double alpha, beta, q, decayRate, initialPheromone;
 	private int noOfAgents, noOfCities, agentsWorking, currentIter, uphillPaths, stepIndex;
 	private boolean finished, loaded, running, uphillActive, stepInit;
@@ -28,8 +28,7 @@ public class AntColonyOptimisation extends Observable{
 
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
-		width = 40;
-		height = 30;
+		
 		//these boundaries are used when deciding a cities random location.
 		//the canvas is 40x30 in dimension, however the boundaries are 1 less than this to stop cities being half rendered out of view
 		boundaryX = 39;
@@ -240,14 +239,6 @@ public class AntColonyOptimisation extends Observable{
 
 	public int getBoundaryY() {
 		return boundaryY;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHieght() {
-		return height;
 	}
 
 	public void setFinished(boolean b) {
