@@ -64,10 +64,10 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   merely as a reference point should a reader want further information.
   \end{quotation}
 
-\bibitem{gof:design:mvc}
+\bibitem{gof:design:singleton}
 {E. Gamma, R. Helm, R. Johnson, and J. Vlissides}, \emph{{Design Patterns:
   Elements of Reusable Object-Oriented Software}}, 1st~ed.\hskip 1em plus 0.5em
-  minus 0.4em\relax {Addison-Wesley Professional}, Nov 1994, pp. 4-6,
+  minus 0.4em\relax {Addison-Wesley Professional}, Nov 1994, pp. 127-128,
   {[Online]. Available: http://www.worldcat.org/isbn/020163361}.
  \begin{quotation}\noindent This book is a very good reference point for design
   patterns in general, providing concise descriptions, examples and use cases.
@@ -75,10 +75,10 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   project the main concepts are still relevant as the languages aren't too
   diss-similar. \end{quotation}
 
-\bibitem{gof:design:singleton}
+\bibitem{gof:design:mvc}
 ------, \emph{{Design Patterns: Elements of Reusable Object-Oriented
   Software}}, 1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax {Addison-Wesley
-  Professional}, Nov 1994, pp. 127-128, {[Online]. Available:
+  Professional}, Nov 1994, pp. 4-6, {[Online]. Available:
   http://www.worldcat.org/isbn/020163361}.
  \begin{quotation}\noindent This book is a very good reference point for design
   patterns in general, providing concise descriptions, examples and use cases.
@@ -156,6 +156,14 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   accessed: 7th {A}ril 2015.
  \begin{quotation}\noindent Contents of the Berlin52.tsp problem
   representation. \end{quotation}
+
+\bibitem{SRP:site}
+{Robert Martin}, ``{Single Responsibility Principle},'' {A}valiable:
+  http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html,
+  accessed: 15th {A}ril 2015.
+ \begin{quotation}\noindent An overview of the Single Responsibility Principle.
+  This includes the underlying concepts and why it makes is logical to adhere
+  to such concepts. \end{quotation}
 
 \bibitem{sjored:Thesus2012:evalue}
 V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
