@@ -17,7 +17,7 @@
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Abstract proposal for the equation viewer interface.\relax }}{30}
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Design of the File IO error feedback interface.\relax }}{31}
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Flow diagram representation of the algorithm described in algorithm 1\hbox {}\relax }}{33}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Sequence diagram representing Algorithm 1\hbox {}\relax }}{34}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Abstract overview of system interactions based on Algorithm 1\hbox {}\relax }}{34}
 \contentsline {figure}{\numberline {4.13}{\ignorespaces Flow diagram representation of the aglorithm described in algorithm 2\hbox {}\relax }}{37}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of the proposed user interface. The contents of the red polygon highlights the additional features not present in the initial design.\relax }}{41}

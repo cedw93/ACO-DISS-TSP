@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  18 APR 2015 02:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  18 APR 2015 03:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,12 +581,17 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 \tf@toc=\write3
 \openout3 = `dissertation.toc'.
 
- [3] (./dissertation.lof [4])
+ [3] (./dissertation.lof
+Overfull \hbox (5.0942pt too wide) in paragraph at lines 20--20
+ [][] []\OT1/ptm/m/n/10.95 Sequence di-a-gram ab-stractly rep-re-sent-ing the o
+verview of sys-tem in-ter-ac-tions based 
+ []
+
+[4])
 \tf@lof=\write4
 \openout4 = `dissertation.lof'.
 
- [5]
-(./dissertation.lot)
+ [5] (./dissertation.lot)
 \tf@lot=\write5
 \openout5 = `dissertation.lot'.
 
@@ -787,19 +792,14 @@ Package pdftex.def Info: Images/chapter4/overallflow.png used on input line 318
 .
 (pdftex.def)             Requested size: 637.77687pt x 496.85167pt.
 
-<Images/chapter4/sequence.png, id=165, 1535.7375pt x 2407.99625pt>
+<Images/chapter4/sequence.png, id=165, 1535.7375pt x 2419.0375pt>
 File: Images/chapter4/sequence.png Graphic file (type png)
 
 <use Images/chapter4/sequence.png>
 Package pdftex.def Info: Images/chapter4/sequence.png used on input line 324.
-(pdftex.def)             Requested size: 460.72481pt x 722.40445pt.
-
-Overfull \hbox (33.93347pt too wide) in paragraph at lines 324--325
-[][] 
- []
-
-[32] [33 <./Images/chapter4/overallflow.png>]
-Overfull \vbox (94.43634pt too high) has occurred while \output is active []
+(pdftex.def)             Requested size: 414.65466pt x 653.14886pt.
+ [32] [33 <./Images/chapter4/overallflow.png>]
+Overfull \vbox (25.18076pt too high) has occurred while \output is active []
 
 
 [34 <./Images/chapter4/sequence.png>]
@@ -1263,7 +1263,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2014/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/tim
 es/utmr8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/
 texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dissertation.pdf (87 pages, 1829973 bytes).
+Output written on dissertation.pdf (87 pages, 1831156 bytes).
 PDF statistics:
  384 PDF objects out of 1000 (max. 8388607)
  235 compressed objects within 3 object streams
