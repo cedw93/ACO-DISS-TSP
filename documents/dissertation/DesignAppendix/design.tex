@@ -159,7 +159,7 @@ The interface will use a very neutral colour scheme which will maximise the usab
 \textbf{6.}in figure~\ref{fig:interface} refers to the main canvas area which will display the algorithms current state of execution to the user. The contents of this will reflect the user defined values (elements in: \textbf{3.} in figure~\ref{fig:interface}) as well as representing each agents current location, their movements between nodes and also the modelling of pheromone deposit and decay will be present in this canvas.
 
 \subsection{Error Message Feedback}
-
+\label{error:proposal}
 As the Algorithm parameters will be user defined using the interface proposed in section \ref{ssec:mainUI}, figure \ref{fig:interface} there must be measures in place to catch and inform the user of any illegal values. Not only must the user be told they have inputted illegal values the illegal parameter value will be identified and a range of legal values will be displayed to the user.
 
 \begin{figure}[H]
@@ -175,7 +175,7 @@ As represented in figure \ref{fig:error} the error message will contain all the 
 This kind of error message will be composed using the JOptionPane and JDialog interfaces provided as default by the Java language specification. These views are very customisable and the styling will be handled by the languages underlying protocols which will reduce the codes complexity.
 
 \section{Algorithm}
-
+\label{algym8}
 There are several adaptations of the Ant Colony Optimisation algorithm. Initially the project contain an implementation of Ant Colony Optimisation in its simplest form, without the presence of any enhancements such as using \textit{Elitist Agents} or similar. Once a working implementation is in place the next step will be to adapt the algorithm in various ways to further aid the teaching potential of the project.
 
 The general premise is that each Agent (Ant) embarks and a pseudo random walk through the state space. The Agents movements are influenced by pheromone deposits placed on edges between vertices. This pheromone is deposited by other Agents in accordance with the equations stated in section \ref{sssec:pherodepo}. The Agent's next move is influenced by the result of the equation stated in section \ref{sssec:probfuncsssec}. However; there is still the probability of the Agent moving to a less attractive point so the Agent does not always travel to the strongest pheromone concentration.
@@ -272,7 +272,7 @@ The probability that an Agent moves to vertex $xy$ is described using the above.
 \State raise the value from 1: to the exponent $\alpha$
 \State Multiply the result of 2: by $(inverted\ distance_{xy})^{\beta}$ 
 \State initiate a temporary double $cloumnTotal$
-\ForAll{visted vertex}
+\ForAll{non-visited vertex}
 \State $columnToal$ += (read the $pheromone$ level for vertex $xy)^{\alpha} \times $
 $(inverted\ distance_{xy})^{\beta}$
 \EndFor 
@@ -282,8 +282,6 @@ $(inverted\ distance_{xy})^{\beta}$
 \end{algorithm}
 
 \subsubsection{Pheromone deposit}
-
-
 \label{sssec:pherodepo}
 \begin{figure}[H]
 \Large

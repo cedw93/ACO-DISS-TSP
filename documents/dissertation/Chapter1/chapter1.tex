@@ -54,7 +54,7 @@ The pheromone function for the Ant System algorithm is as described in appendix 
 \label{ASphero}
 
 \section{Elitist Ant System}
-
+\label{eliteymcneaty}
 The Elitist Ant System is the first adaptation to the initial Ant System algorithm. The Elitist Ant System is again, proposed by Marco Dorgio et al. in his 1992 PhD Thesis \cite{Dor1992:thesis}. The main difference between the Elitist Ant System and the Ant System is the fact that the best ants for a given iteration have pheromone deposited upon their route. This means that the best $x$ number of ants where $x$ is an integer representing the number of elite ants will have their routes remembered across iterations allowing the fact that they performed well to persist, with the intention to improve the performance of the population as a whole as the extra pheromone on these elite paths will increase the probability that any agent traverses an elite edge (an edge that is part of an elite path).
 
 \subsection{Forumlae}
