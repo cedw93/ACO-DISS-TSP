@@ -30,7 +30,7 @@ The concept of a using two-dimensional array to store the pheromone data is stil
 Initially there was no proposed design for the inclusion of data structures representing the distances between each node in the graph as the initial design for the problem representation made it simple to calculate the distance between the current node and the destination node extremely trivial. The author decided that as the problem representation has changed to the TSP there needs to be a better method of accessing the distances between two nodes (Cities).
 
 The design for the distance matrices are based on the implementation provided by Thomas Jungblut \cite{tjung:aco:blog}. The implementation of these data structures is identical to that discussed in section \ref{phero:struct} however, the data stored in each array element represents the $euclideanDistance$ between two $cities$ rather than the pheromone concentration. As defined in section \ref{phero:struct} the size of distance matrices will represent the number of cities. If there are $x$ cities in the current problem then the format for instantiation will be $double[][] distanceMatrix = new double[x][x]$. The way in which elements are accessed also remains the same as above, however once instantiated these values will remain constant as a $City$ cannot move location. These matrices are easily populated after the cities have been instantiated. The code in appendix C figure \ref{initDistanceCode} represents how this has been implemented. A correct implementation would return a distance of $0.0$ if $index[x][x]$ were to be accessed where $x$ is the same value. This is because the distance from any $City$ to itself is 0.
-As the probability is represented as $p_{xy}^{k} = \frac{(\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}{\sum (\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}$ where $\eta _{xy}$ represents $\frac{1}{distanceMatrix[x][y]}$ (inverted distance). As this function is used extremely often during the algorithms execution rather than converting the value of $distanceMatrix[x][y]$ every time an inverted version is needed it is far more efficient to store an inverted version of the $distanceMatrix$. The code snippet in appendix C, figure \ref{initInverteddistanceCode} demonstrates how this can be implemented. The $invertDouble(distanceMatrix[i][j])$ in said figure simply returns the value of $\frac{1}{distanceMatrix[x][y]}$ however if $distanceMatrix[i][j]\ ==\ 0.0$ then $0.0$ is returned as $\frac{0.0}{distanceMatrix[x][y]}$ is illegal.
+As the probability is represented as $p_{xy}^{k} = \frac{(\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}{\sum (\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}$ where $\eta _{xy}$ represents $\frac{1}{distanceMatrix[x][y]}$ (inverted distance). As this function is used extremely often during the algorithms execution rather than converting the value of $distanceMatrix[x][y]$ every time an inverted value is needed it is far more efficient to store an inverted version of the $distanceMatrix$. The code snippet in figure \ref{initInverteddistanceCode} demonstrates how this can be implemented. The $invertDouble(distanceMatrix[i][j])$ in said figure simply returns the value of $\frac{1}{distanceMatrix[i][j]}$ however if $distanceMatrix[i][j]\ ==\ 0.0$ then $0.0$ is returned as $\frac{0.0}{distanceMatrix[i][j]}$ is illegal.
   
 \subsection{Agent and City Collections}
 
@@ -76,9 +76,51 @@ The step-based iteration method of solving does not need to worry about such com
 
 \subsection{Visualising Agent Movement}
 
+One of the major problems associated with the visualisation of the algorithms execution is accurately representing the agent’s movement between two cities. Initially the agents would move between cities without any indication to the user about which path the agent took as the agents themselves would seem to teleport from one city to the next. This is not the kind of feature that should be present in an application of this kind. The author decided that there needed to be a way to visualise the Ant’s movement between cities however, the visualisation of this movement should be simple so that it doesn’t over complicate a simple action such as moving from one point to another. Given that every $Ant$ stores the indexes of the last two cities it visited in a variable $movementTracker$. This variable is an array of integer values of size 2 and it will only ever contain the last 2 cities the agent visited, thus $movementTracker[0]$ represents where the Ant started prior to moving and $movementTracker[1]$ is where the Ant finished.
+
+The author decided that as the coordinates of the two cities stored in this $movementTracker$ variable are fairly simple to obtain it would be straight forward to use linear interpolation to draw a visual aid along the Ant's movement path in order to highlight which path the Ant took. Given a start and end coordinates for a line Linear Interpolation can be used to find the coordinates for any point along that line. 
+
+\begin{figure}[H]
+\centering
+\begin{gather*}
+\Huge
+result_x\ =\ x_1\ X\ (1\ -\ \mu)\ +\ x_2\ X\ \mu \\
+result_y\ =\ y_1\ X\ (1\ -\ \mu)\ +\ y_2\ X\ \mu
+\end{gather*}
+\caption{Formula for Linear Interpolation where $x_1, x_2$ are the start coordinates, $y_1, y_2$ are the end coordinates and $\mu$ is the location to find \cite{interpolation:site}.}
+\label{fig:interPolateEqn}
+\end{figure}
+
+Once that coordinates of the two cities stored in the $movementTracker$ variable have been retrieved they can be passed to the $LinearInterpolateX(double\ x1, double\ x2, double\ mu)$ and $LinearInterpolateY(double\ y1, double\ y2, double\ mu)$ functions in order to find a point on the line between these two City locations, this line is representive of the path the Ant will take to travel between said locations. The correct $\mu$ value must be selected in order to provide the best representation. The author opted to go for drawing a series highly visible ellipsis along the line with the distance between said ellipsis to be 0.2 which is the equivalent to approximate 20\% of the lines total length. This will enable the user to clearly identify which path has been taken and also enable the user to judge the length of said path as the longer the path the greater the spacing between the ellipsis. The code implementation of the equations in figure \ref{fig:interPolateEqn} is shown in figure \ref{linearCode}
+
 \subsection{Scaling}
 
+\Large TALK ABOUT SCALING THE WORLD BY 20 AND WHY: UNIFORM FEEL\normalsize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Painting the Canvas}
+
+\Large TALK ABOUT PHEROMONE SCALING BY 2000 HERE AND WHY\normalsize
 
 \section{Elitist Ants}
 

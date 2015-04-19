@@ -157,6 +157,15 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
  \begin{quotation}\noindent Contents of the Berlin52.tsp problem
   representation. \end{quotation}
 
+\bibitem{interpolation:site}
+{Paul Bourke}, ``{Interpolation Methods},'' {A}valiable:
+  http://paulbourke.net/miscellaneous/interpolation/, accessed: 30th {M}arch
+  2015.
+ \begin{quotation}\noindent An overview and explanation of several methods of
+  interpolation. The method of interest here is Linear Interpolation which is
+  used in the representation of the Ants movement between cities.
+  \end{quotation}
+
 \bibitem{SRP:site}
 {Robert Martin}, ``{Single Responsibility Principle},'' {A}valiable:
   http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html,

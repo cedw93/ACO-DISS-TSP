@@ -36,7 +36,7 @@ invertedMatrix = new double[distanceMatrix.length][distanceMatrix[0].length];
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts.}
+\caption{Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts. $invertValue{distanceMatrix[i][j]}$ returns $\frac{1}{distanceMatrix[i][j]}$}
 \label{initInverteddistanceCode}
 \end{figure}
 
@@ -77,7 +77,7 @@ Random r = new Random();
 		ants.add(new Ant(this, index));
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the collection of $Ant$ obejcts.}
+\caption{Snippet of code used to inialise the collection of $Ant$ obejcts. $this$ refers to the current $World$ Object.}
 \label{initAnt}
 \end{figure}
 
@@ -107,7 +107,7 @@ public double calculatePheromones(double current, double newPheromone) {
 	return ((1 - aco.getDecayRate()) * current + newPheromone);
 }	
 \end{lstlisting}
-\caption{Snippet of code used to update the pheromone values for every edge.}
+\caption{Snippet of code used to update the pheromone values for every edge. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
 \label{codephero}
 \end{figure}
 
@@ -204,12 +204,13 @@ for(int i = 0; i < iterations; i++){
 	
 	
 \end{lstlisting}
-\caption{Snippet of code used to automatically execute the algorithm untill compeltion}
+\caption{Snippet of code used to automatically execute the algorithm untill compeltion. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
 \label{iterationThing}
 \end{figure}
 
 \begin{figure}[H]
 \begin{lstlisting}
+stepIndex = 0;
 if(currentIter < iterations){
 		running = true;
 		Ant ant = world.getAnts().get(stepIndex);
@@ -224,6 +225,7 @@ if(currentIter < iterations){
 			stepIndex++;
 		}
 			if(stepIndex >= world.getAnts().size()){
+			//reset the ants and index
 			world.initAnts();
 			for(City c: world.getCities()){
 				c.resetAntCount();
@@ -237,4 +239,19 @@ if(currentIter < iterations){
 \caption{Snippet of code used to execute the algorithm on a step by step basis}
 \label{stepM8}
 \end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+public static double linearInterpolateX(double x1,double x2, double mu)	{
+	return(x1*(1-mu)+x2*mu);
+}
+
+public static double linearInterpolateY(double y1,double y2, double mu)	{
+	return(y1*(1-mu)+y2*mu);
+}
+\end{lstlisting}
+\caption{Snippet of code determine the cordinate values for both $x$ and $y$ for a given $\mu$ value.}
+\label{linearCode}
+\end{figure}
+
 

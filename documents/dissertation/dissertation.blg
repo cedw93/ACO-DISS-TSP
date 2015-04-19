@@ -5,10 +5,6 @@ A level-1 auxiliary file: cover.aux
 A level-1 auxiliary file: declaration.aux
 A level-1 auxiliary file: Acknowledgements/acknowledgements.aux
 A level-1 auxiliary file: Abstract/abstract.aux
-White space in argument---line 14 of file dissertation.aux
- : \citation{\cite
- :                 {tjung:aco:blog}}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: Chapter1/chapter1.aux
 A level-1 auxiliary file: Chapter2/chapter2.aux
 A level-1 auxiliary file: Chapter3/chapter3.aux
@@ -18,14 +14,6 @@ A level-1 auxiliary file: Chapter6/chapter6.aux
 A level-1 auxiliary file: RequirementsAppendix/requirements.aux
 A level-1 auxiliary file: DesignAppendix/design.aux
 A level-1 auxiliary file: CodeAppendix/code.aux
-White space in argument---line 15 of file CodeAppendix/code.aux
- : \citation{\cite
- :                 {tjung:aco:blog}}
-I'm skipping whatever remains of this command
-White space in argument---line 16 of file CodeAppendix/code.aux
- : \citation{\cite
- :                 {tjung:aco:blog}}
-I'm skipping whatever remains of this command
 The style file: IEEEannot.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -39,45 +27,44 @@ Database file #1: References/references.bib
 ** Sorting version - not for use with work to be submitted to the IEEE.
 
 Done.
-You've used 25 entries,
+You've used 26 entries,
             4538 wiz_defined-function locations,
-            1043 strings with 16259 characters,
-and the built_in function-call counts, 12282 in all, are:
-= -- 1099
-> -- 190
+            1049 strings with 16592 characters,
+and the built_in function-call counts, 12742 in all, are:
+= -- 1141
+> -- 197
 < -- 15
-+ -- 75
-- -- 50
-* -- 537
-:= -- 2207
-add.period$ -- 50
-call.type$ -- 25
-change.case$ -- 121
++ -- 78
+- -- 52
+* -- 555
+:= -- 2288
+add.period$ -- 52
+call.type$ -- 26
+change.case$ -- 126
 chr.to.int$ -- 45
-cite$ -- 25
-duplicate$ -- 920
-empty$ -- 1098
-format.name$ -- 50
-if$ -- 2606
+cite$ -- 26
+duplicate$ -- 955
+empty$ -- 1139
+format.name$ -- 52
+if$ -- 2703
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 190
-newline$ -- 120
-num.names$ -- 50
-pop$ -- 574
+int.to.str$ -- 26
+missing$ -- 198
+newline$ -- 124
+num.names$ -- 52
+pop$ -- 600
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 78
 quote$ -- 2
-skip$ -- 889
+skip$ -- 922
 stack$ -- 0
-substring$ -- 223
-swap$ -- 497
+substring$ -- 231
+swap$ -- 515
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 179
+type$ -- 187
 warning$ -- 0
-while$ -- 55
-width$ -- 27
-write$ -- 256
-(There were 3 error messages)
+while$ -- 57
+width$ -- 28
+write$ -- 265
