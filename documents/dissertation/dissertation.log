@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  19 APR 2015 10:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  19 APR 2015 10:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1188,117 +1188,130 @@ Overfull \vbox (97.9035pt too high) has occurred while \output is active []
 
 
 [83] [84]) [85] (./dissertation.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 22--25
+Underfull \hbox (badness 2088) in paragraph at lines 22--26
 []\OT1/ptm/m/n/10.95 99designs.com, ``Un-break-able laws of user in-ter-ac-tion
-,'' Avali-able:
+, [on-line] Mar 2015,'' Avali-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--25
-\OT1/ptm/m/n/10.95 http://99designs.com/designer-blog/2014/01/15/7-unbreakable-
-laws-of-user-interface-
+Underfull \hbox (badness 2961) in paragraph at lines 30--32
+[]\OT1/ptm/m/n/10.95 Apache, ``Maven, [on-line] Feb 2015,'' Avali-able: https:/
+/maven.apache.org/what-is-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
-[]\OT1/ptm/m/n/10.95 c2.com, ``eX-treme Pro-gram-ming for one,'' Avali-able:
+Underfull \hbox (badness 10000) in paragraph at lines 47--49
+[]\OT1/ptm/m/n/10.95 c2.com, ``eX-treme Pro-gram-ming for one, [on-line] Apr 20
+15,'' Avali-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--54
-[]\OT1/ptm/m/n/10.95 cleveralgorithms.com, ``Berlin52.tsp so-lu-tion im-age,'' 
-Avali-able:
+Underfull \hbox (badness 2644) in paragraph at lines 53--56
+[]\OT1/ptm/m/n/10.95 cleveralgorithms.com, ``Berlin52.tsp so-lu-tion im-age, [o
+n-line] Apr 2015,'' Avali-able:
  []
 
 [86
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 79--83
+Underfull \hbox (badness 10000) in paragraph at lines 81--85
 []\OT1/ptm/m/n/10.95 ------, \OT1/ptm/m/it/10.95 De-sign Pat-terns: El-e-ments 
 of Reusable Object-Oriented Soft-ware\OT1/ptm/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 79--83
+Underfull \hbox (badness 2269) in paragraph at lines 81--85
 \OT1/ptm/m/n/10.95 1st ed. Addison-Wesley Pro-fes-sional, Nov 1994, pp. 4-6, [O
 n-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--93
+Underfull \hbox (badness 10000) in paragraph at lines 92--95
 []\OT1/ptm/m/n/10.95 eclipse, ``Eclipse IDE for Java De-vel-op-ers,'' Avali-abl
 e:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--93
+Underfull \hbox (badness 10000) in paragraph at lines 92--95
 \OT1/ptm/m/n/10.95 https://eclipse.org/downloads/packages/eclipse-ide-java-deve
 lopers/lunasr1a, ac-cessed:
  []
 
 
-Overfull \hbox (52.60448pt too wide) in paragraph at lines 133--136
-[]\OT1/ptm/m/n/10.95 Marco Dorigo, ``Swarm in-tel-li-gence,'' Avali-able:http:/
-/www.scholarpedia.org/article/Swarm[]intelligence,
+Underfull \hbox (badness 10000) in paragraph at lines 135--138
+[]\OT1/ptm/m/n/10.95 Marco Dorigo, ``Swarm in-tel-li-gence, [on-line] Mar 2015,
+'' Avali-
  []
 
 [87]
-Overfull \hbox (60.7515pt too wide) in paragraph at lines 154--157
-[]\OT1/ptm/m/n/10.95 neos, ``Berlin52 source file,'' Avali-able:http://neos.mcs
-.anl.gov/neos/solvers/co:concorde/Berlin52[]TSP.txt,
+Underfull \hbox (badness 10000) in paragraph at lines 156--159
+[]\OT1/ptm/m/n/10.95 neos, ``Berlin52 source file, [on-line] Apr 2015,'' Avali-
+
  []
 
 
-Overfull \hbox (35.18338pt too wide) in paragraph at lines 161--164
-[]\OT1/ptm/m/n/10.95 Paul Bourke, ``In-ter-po-la-tion Meth-ods,'' Avali-able: h
-ttp://paulbourke.net/miscellaneous/interpolation/,
+Underfull \hbox (badness 10000) in paragraph at lines 156--159
+\OT1/ptm/m/n/10.95 able:http://neos.mcs.anl.gov/neos/solvers/co:concorde/Berlin
+52[]TSP.txt, ac-cessed: 7th
  []
 
 
-Overfull \hbox (106.97107pt too wide) in paragraph at lines 200--203
-[]\OT1/ptm/m/n/10.95 technologyuk.net, ``Wa-ter-fall model,'' Avali-able: http:
-//www.technologyuk.net/computing/sad/waterfall[]model.shtml,
+Underfull \hbox (badness 10000) in paragraph at lines 163--166
+[]\OT1/ptm/m/n/10.95 Paul Bourke, ``In-ter-po-la-tion Meth-ods, [on-line] Mar 2
+015,'' Avali-able:
+ []
+
+
+Underfull \hbox (badness 5741) in paragraph at lines 172--176
+[]\OT1/ptm/m/n/10.95 Robert Mar-tin, ``Sin-gle Re-spon-si-bil-ity Prin-ci-ple, 
+[on-line] Apr 2015,'' Avali-able:
  []
 
 [88]
-Underfull \hbox (badness 6691) in paragraph at lines 207--211
+Underfull \hbox (badness 10000) in paragraph at lines 203--206
+[]\OT1/ptm/m/n/10.95 technologyuk.net, ``Wa-ter-fall model, [on-line] Feb 2015,
+'' Avali-able:
+ []
+
+
+Underfull \hbox (badness 3657) in paragraph at lines 203--206
+\OT1/ptm/m/n/10.95 http://www.technologyuk.net/computing/sad/waterfall[]model.s
+html, ac-cessed: 9th Aril
+ []
+
+
+Underfull \hbox (badness 6691) in paragraph at lines 210--214
 \OT1/ptm/m/n/10.95 Avali-able: http://codingwiththomas.blogspot.co.uk/2011/08/a
 nt-colony-optimization-for-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--219
-[]\OT1/ptm/m/n/10.95 vnschool.net, ``Dou-ble Bridge Ex-per-i-ment Im-age,'' Ava
-li-able:
+Underfull \hbox (badness 5105) in paragraph at lines 219--222
+[]\OT1/ptm/m/n/10.95 vnschool.net, ``Dou-ble Bridge Ex-per-i-ment Im-age, on-li
+ne] Apr 2015,'' Avali-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--219
-\OT1/ptm/m/n/10.95 http://www.vnschool.net/images/082010/Thuattoan/ThuatT[]2.jp
-g, ac-cessed: 7th Aril
- []
-
-
-Underfull \hbox (badness 7133) in paragraph at lines 223--227
+Underfull \hbox (badness 7133) in paragraph at lines 226--230
 \OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/6/d/b/6db065218c956a4
 a7af6da99aaeca5d1.png,
  []
 
 
-Underfull \hbox (badness 7133) in paragraph at lines 232--236
+Underfull \hbox (badness 7133) in paragraph at lines 235--239
 \OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/6/d/b/6db065218c956a4
 a7af6da99aaeca5d1.png,
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 241--245
+Underfull \hbox (badness 1365) in paragraph at lines 244--248
 []\OT1/ptm/m/n/10.95 ------, ``Ant Colony Op-ti-mi-sa-tion Pheromone Func-tion 
 , [on-line] Feb 2015,'' Avali-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--245
+Underfull \hbox (badness 10000) in paragraph at lines 244--248
 \OT1/ptm/m/n/10.95 able: http://upload.wikimedia.org/math/e/1/3/e1320f5f72b21e5
 766dfa7e29b536883.png,
  []
@@ -1337,7 +1350,7 @@ type1/urw/courier/ucrr8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/tex
 live/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2014/texmf-di
 st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dissertation.pdf (99 pages, 1890787 bytes).
+Output written on dissertation.pdf (99 pages, 1891146 bytes).
 PDF statistics:
  430 PDF objects out of 1000 (max. 8388607)
  267 compressed objects within 3 object streams

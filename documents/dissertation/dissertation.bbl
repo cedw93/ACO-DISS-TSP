@@ -19,14 +19,15 @@
 #2}}
 
 \bibitem{99designs:laws}
-{99designs.com}, ``{Unbreakable laws of user interaction},'' {A}valiable:
+{99designs.com}, ``{Unbreakable laws of user interaction, [online] {M}ar
+  2015},'' {A}valiable:
   http://99designs.com/designer-blog/2014/01/15/7-unbreakable-laws-of-user-interface-design/,
   accessed: 7th {A}ril 2015.
  \begin{quotation}\noindent A list of laws and explanations of such laws
   regarding important user interaction styles and principles \end{quotation}
 
 \bibitem{maven:site}
-{Apache}, ``{Maven},'' {A}valiable:
+{Apache}, ``{Maven, [online] {F}eb 2015},'' {A}valiable:
   https://maven.apache.org/what-is-maven.html, accessed: 11th {A}ril 2015.
  \begin{quotation}\noindent An overview of how the maven framework can be used
   and an analysis of the features provided. \end{quotation}
@@ -43,14 +44,15 @@ T.~Blachard, ``{"Development of an Autonomous, Tethered and Submersible Data
   his rationale \end{quotation}
 
 \bibitem{XP:forone}
-{c2.com}, ``{eXtreme Programming for one},'' {A}valiable:
+{c2.com}, ``{eXtreme Programming for one, [online] {A}pr 2015},'' {A}valiable:
   http://c2.com/cgi/wiki?ExtremeProgrammingForOne, accessed: 9th {A}ril 2015.
  \begin{quotation}\noindent An informal insight into eXtreme Programming and
   how it can be applied to solo development projects. \end{quotation}
 
 \bibitem{berlin52:image}
-{cleveralgorithms.com}, ``{Berlin52.tsp solution image},'' {A}valiable:
-  http://www.cleveralgorithms.com/images/tsp2.png, accessed: 7th {A}ril 2015.
+{cleveralgorithms.com}, ``{Berlin52.tsp solution image, [online] {A}pr 2015},''
+  {A}valiable: http://www.cleveralgorithms.com/images/tsp2.png, accessed: 7th
+  {A}ril 2015.
  \begin{quotation}\noindent An image mapping one solution to the Berlin52.tsp
   problem. \end{quotation}
 
@@ -130,7 +132,7 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   against the virtual agents and algorithm interactions. \end{quotation}
 
 \bibitem{SI:def}
-{Marco Dorigo}, ``{Swarm intelligence},''
+{Marco Dorigo}, ``{Swarm intelligence, [online] {M}ar 2015},''
   {A}valiable:http://www.scholarpedia.org/article/Swarm\_intelligence,
   accessed: 7th {A}prl 2015.
  \begin{quotation}\noindent Online swarm intelligence definition which is
@@ -151,14 +153,14 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   \end{quotation}
 
 \bibitem{berlin52:source}
-{neos}, ``{Berlin52 source file},''
+{neos}, ``{Berlin52 source file, [online] {A}pr 2015},''
   {A}valiable:http://neos.mcs.anl.gov/neos/solvers/co:concorde/Berlin52\_TSP.txt,
   accessed: 7th {A}ril 2015.
  \begin{quotation}\noindent Contents of the Berlin52.tsp problem
   representation. \end{quotation}
 
 \bibitem{interpolation:site}
-{Paul Bourke}, ``{Interpolation Methods},'' {A}valiable:
+{Paul Bourke}, ``{Interpolation Methods, [online] {M}ar 2015},'' {A}valiable:
   http://paulbourke.net/miscellaneous/interpolation/, accessed: 30th {M}arch
   2015.
  \begin{quotation}\noindent An overview and explanation of several methods of
@@ -167,7 +169,8 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   \end{quotation}
 
 \bibitem{SRP:site}
-{Robert Martin}, ``{Single Responsibility Principle},'' {A}valiable:
+{Robert Martin}, ``{Single Responsibility Principle, [online] {A}pr 2015},''
+  {A}valiable:
   http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html,
   accessed: 15th {A}ril 2015.
  \begin{quotation}\noindent An overview of the Single Responsibility Principle.
@@ -197,7 +200,7 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   theoretical.} \end{quotation}
 
 \bibitem{waterfall:image}
-{technologyuk.net}, ``{Waterfall model},'' {A}valiable:
+{technologyuk.net}, ``{Waterfall model, [online] {F}eb 2015},'' {A}valiable:
   http://www.technologyuk.net/computing/sad/waterfall\_model.shtml, accessed:
   9th {A}ril 2015.
  \begin{quotation}\noindent An image depicting the structure of the waterfall
@@ -213,9 +216,9 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   digestible. \end{quotation}
 
 \bibitem{doublebridges:image}
-{vnschool.net}, ``{Double Bridge Experiment Image},'' {A}valiable:
-  http://www.vnschool.net/images/082010/Thuattoan/ThuatT\_2.jpg, accessed: 7th
-  {A}ril 2015.
+{vnschool.net}, ``{Double Bridge Experiment Image, online] {A}pr 2015},''
+  {A}valiable: http://www.vnschool.net/images/082010/Thuattoan/ThuatT\_2.jpg,
+  accessed: 7th {A}ril 2015.
  \begin{quotation}\noindent Simple graphic representing the Double Bridge
   Experiment. \end{quotation}
 
