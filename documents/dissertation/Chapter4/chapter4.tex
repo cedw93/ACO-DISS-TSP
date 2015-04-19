@@ -198,7 +198,7 @@ Robert Martin created idea of the Single Responsibility Principle (SRP) in 1990 
 Overall, the author sees the implementation of the Singleton Design pattern as more of an anti-pattern. As this is the case and to enable easier modification and future extension the implementation of any Singleton Class as initially designed has been removed. Solutions the above problems could be refactored in, but this is seen as unnecessary complexity by the author and has therefore also been omitted.
 
 \section{User Interface}
-
+\label{interfacebrah}
 The user interface elements will be designed with the three law of user interaction dicussed in section \ref{uiMethods} as a top prioirty. The interfaces will be consistent in theme and styling which will provide application wide consistency for the user.
 
 \subsection{Main Display}
@@ -332,11 +332,11 @@ The sequence diagram described in figure \ref{fig:overSeq} demonstrates at a hig
 
 \subsubsection{Probability}
 
-The probability function is defined in section \ref{sssec:probfuncsssec} appendix B. The design for the probability algorithm reamins unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:pherofunc}. The result of this algorithm is in fact, the probability assoicated with the agent moving to a specific location.
+The probability function is defined in section \ref{sssec:probfuncsssec} appendix B. The design for the probability algorithm reamins unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:probfunc}. The result of this algorithm is in fact, the probability assoicated with the agent moving to a specific location.
 
 \subsubsection{Pheromone}
 
-The probability function is defined in section \ref{sssec:pherodepo} appendix B. The design for the probability algorithm remains unchanged form the pseudo code represented in algorithm \ref{pherom8}. This is the function which is constantly updated by the agent’s movements in order to correctly model the pheromone update process.
+The probability function is defined in section \ref{sssec:pherodepo} appendix B. The design for the probability algorithm remains unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:pherofunc}. This is the function which is constantly updated by the agent’s movements in order to correctly model the pheromone update process.
 
 \subsection{Elitist Ants}
 

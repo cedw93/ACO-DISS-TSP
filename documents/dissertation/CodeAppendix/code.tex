@@ -1,0 +1,240 @@
+\chapter{Implemented Code}
+\renewcommand{\thechapter}{\Alph{chapter}}
+
+\begin{figure}[H]
+\begin{lstlisting}
+pheromone = new Pheromone[cities.size()][cities.size()];
+	for(int i = 0; i < pheromone.length; i++){
+		for(int j = 0; j < pheromone[0].length; j++){
+			pheromone[i][j] = new Pheromone(aco.getInitialPheromone());
+		}
+	}
+\end{lstlisting}
+\caption{Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class}
+\label{initPheroCode}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+distanceMatrix = new double[cities.size()][cities.size()];
+	for(int i = 0; i < distanceMatrix.length; i++){
+		for(int j = 0; j < distanceMatrix[0].length; j++){
+			distanceMatrix[i][j] = Globals.calculateEuclidianDistance(cities.get(i).getX(), cities.get(i).getY(), cities.get(j).getX(), cities.get(j).getY());
+		}
+	}
+\end{lstlisting}
+\caption{Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.}
+\label{initDistanceCode}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+invertedMatrix = new double[distanceMatrix.length][distanceMatrix[0].length];	
+	for(int i = 0; i < distanceMatrix.length; i++){
+		for(int j = 0; j < distanceMatrix[0].length; j++){
+			invertedMatrix[i][j] = invertValue(distanceMatrix[i][j]);
+		}
+	}
+\end{lstlisting}
+\caption{Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts.}
+\label{initInverteddistanceCode}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+cities = new ArrayList<City>();
+	Random r = new Random();
+	for(int i = 0; i < numberOfCities; i++){
+		// the (+1) is to stop cities having the index '0' which would cause them to half render out of view
+		int x = r.nextInt(aco.getBoundaryX()) + 1;
+		int y = r.nextInt(aco.getBoundaryY()) + 1;
+		//make sure 2 cities can't spawn on top of each other
+		for(City city: cities){
+			if(x == city.getX() && y == city.getY()){
+				x = r.nextInt(aco.getBoundaryX()) + 1;
+				y = r.nextInt(aco.getBoundaryY()) + 1;
+			}
+		}
+		cities.add(new City(x,y,i));	
+	}
+\end{lstlisting}
+\caption{Snippet of code used to inialise the collection of $City$ obejcts.}
+\label{initCity}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+Random r = new Random();
+	ants = new ArrayList<Ant>(numberOfAnts);
+	for(int i = 0; i < numberOfAnts; i++){
+		int index = r.nextInt(cities.size());
+		for(City c: cities){
+			if(index == c.getIndex()){
+				c.adjustAntsHere(1);
+				break;
+			}
+		}
+		ants.add(new Ant(this, index));
+	}
+\end{lstlisting}
+\caption{Snippet of code used to inialise the collection of $Ant$ obejcts.}
+\label{initAnt}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+for(int i = 0; i < pheromone.length; i++){
+		for(int j = 0; j < pheromone[0].length; j++){
+			updatePheromone(i, j, pheromone[i][j].getNewPhero());
+			//reset the new phero values
+			pheromone[i][j].resetNewPhero();
+		}
+	}
+
+public void updatePheromone(int x, int y, double newPheromone) {
+	double phero = calculatePheromones(pheromone[x][y].getPheromoneValue(), newPheromone);
+	//if phero is not negative then update the current concentration
+	//if phero is negative then just set it as 0, you can't have negative phero on an edge
+	if (phero >= 0.0d) {
+		pheromone[x][y].setPheromoneValue(phero);
+	} else {
+		pheromone[x][y].setPheromoneValue(0.0d);
+	}
+}
+
+public double calculatePheromones(double current, double newPheromone) {
+	//we dont need to store the result in a temporary variable, just return the equation in place
+	return ((1 - aco.getDecayRate()) * current + newPheromone);
+}	
+\end{lstlisting}
+\caption{Snippet of code used to update the pheromone values for every edge.}
+\label{codephero}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+public final int getNextProbableNode(int y) {
+	//This is an adapted version of a similar method provided by Thomas Jungblut found here: https://code.google.com/p/antcolonyopt/
+	//create a location to store the probability for all next locations
+	//this can then be easily accessed to return the next index for the ant's move
+	//only do this if there is in fact locations to move to
+	if (unvisited > 0) {
+		int danglingUnvisited = -1;
+		final double[] weights = new double[visited.length];
+		double columnSum = 0.0d;
+		for (int i = 0; i < visited.length; i++) {
+			columnSum += calculateIndividualProbability(y, i);
+		}
+		//once we have the value for sum (which the sum off all solutions evaluation)
+		double sum = 0.0d;
+		for (int x = 0; x < visited.length; x++) {
+			if (!visited[x]) {
+				weights[x] = calculateTotalProbability(x, y, columnSum);
+				sum += weights[x];
+				danglingUnvisited = x;
+			}
+		}
+		//if sum is 0 then return, as this will be used in a division it cannot be zero
+		if (sum == 0.0d)
+			return danglingUnvisited;
+		/*  We need to give each index of the probability weighting based on the result of calculateToalProbability
+		 *  this result is then divided by the total sum of all probabilities (usually 1)
+		 *  The result of this division is then put in the correct index in the matrix in order to get the probability weighting
+		 *
+		 */
+		double pSum = 0.0d;
+		for (int i = 0; i < visited.length; i++) {
+			pSum += weights[i] / sum;
+			weights[i] = pSum;
+		}
+		//nextDouble returns a value between 0 and 1, so this can be used to effectively select a 'random' index based on the weighted probability
+		//provided virtually as is by Thomas Jungblut: https://code.google.com/p/antcolonyopt/
+		//this is what makes the ant walk 'randomly'
+		final double r = random.nextDouble();
+		for (int i = 0; i < visited.length; i++) {
+			if (!visited[i]) {
+				if (r <= weights[i]) {
+					return i;
+				}
+			}
+		}
+	}
+	return -1;
+}
+\end{lstlisting}
+\caption{Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite{tjung:aco:blog}}
+\label{nextNodeCode}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+boolean reset = false;
+for(int i = 0; i < iterations; i++){
+		aco.setCurrentIteration(i);
+		if(aco.getRunning()){
+			ArrayList<Ant> ants = (ArrayList<Ant>)aco.getWorld().getAnts();
+			antsWorking = aco.getNoOfAgents();
+			if(reset){
+				//for the next iteration re-init the ants and go again
+				for(City c: aco.getWorld().getCities()){
+					c.resetAntCount();
+				}
+				aco.getWorld().initAnts();
+				ants = (ArrayList<Ant>)aco.getWorld().getAnts();
+				reset = false;
+				}
+			while(antsWorking > 0){
+				for(Ant ant: ants){
+					if(!aco.getRunning()){
+						return null;
+					}
+					if(!ant.getFinished()){
+						ant.move();	
+						aco.reduceWorking();
+					}else{
+						//if an ansst is finished, decrease the counter
+						antsWorking--;
+					}
+				}
+					aco.getWorld().decayPhero();
+			}
+			reset = true;
+		}
+	}
+	
+	
+\end{lstlisting}
+\caption{Snippet of code used to automatically execute the algorithm untill compeltion}
+\label{iterationThing}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+if(currentIter < iterations){
+		running = true;
+		Ant ant = world.getAnts().get(stepIndex);
+		if(!ant.getFinished()){
+			ant.step();
+			this.notifyCanvas();
+			if(ant.getUnvisted() == 0){
+				ant.setFinished(true);
+			}
+			}else{
+			reduceWorking();
+			stepIndex++;
+		}
+			if(stepIndex >= world.getAnts().size()){
+			world.initAnts();
+			for(City c: world.getCities()){
+				c.resetAntCount();
+			}
+			stepIndex = 0;
+			agentsWorking = noOfAgents;
+			currentIter++;
+		}
+	}
+\end{lstlisting}
+\caption{Snippet of code used to execute the algorithm on a step by step basis}
+\label{stepM8}
+\end{figure}
+
