@@ -25,27 +25,27 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Basic abstract overview of the Model-View-Controller pattern\relax }}{60}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Proposed implementation of the Observer and Observable Design pattern\relax }}{61}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.\relax }}{62}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Initial Class Diagram representing the main modules, packages and system interactions using UML notation.\relax }}{63}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Proposed design for the graphical user interface, showing the key elements in their planned locations.\relax }}{67}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Proposed design for the illegal parameter error message displayed to the user\relax }}{68}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces High level flow digram representing the psudeo code for Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{70}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Sequence diagram representing Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{72}
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Algebraic model of the probabilistic function used to calculate next move for any Agent \cite {probfunc:image}\relax }}{73}
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix \cite {pheromone:image}\relax }}{73}
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$ \cite {new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.\relax }}{74}
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World representation using a two-dimensional Integer Array\relax }}{75}
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone representation using a two-dimensional Double Array with default initial values\relax }}{76}
-\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone visualisation\relax }}{77}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Basic abstract overview of the Model-View-Controller pattern\relax }}{61}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Proposed implementation of the Observer and Observable Design pattern\relax }}{62}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.\relax }}{63}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Initial Class Diagram representing the main modules, packages and system interactions using UML notation.\relax }}{64}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Proposed design for the graphical user interface, showing the key elements in their planned locations.\relax }}{68}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Proposed design for the illegal parameter error message displayed to the user\relax }}{69}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces High level flow digram representing the psudeo code for Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{71}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Sequence diagram representing Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{73}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Algebraic model of the probabilistic function used to calculate next move for any Agent \cite {probfunc:image}\relax }}{74}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix \cite {pheromone:image}\relax }}{74}
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$ \cite {new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.\relax }}{75}
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World representation using a two-dimensional Integer Array\relax }}{76}
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone representation using a two-dimensional Double Array with default initial values\relax }}{77}
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone visualisation\relax }}{78}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {C.1}{\ignorespaces Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class\relax }}{78}
-\contentsline {figure}{\numberline {C.2}{\ignorespaces Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.\relax }}{78}
-\contentsline {figure}{\numberline {C.3}{\ignorespaces Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts.\relax }}{79}
-\contentsline {figure}{\numberline {C.4}{\ignorespaces Snippet of code used to inialise the collection of $City$ obejcts.\relax }}{79}
-\contentsline {figure}{\numberline {C.5}{\ignorespaces Snippet of code used to inialise the collection of $Ant$ obejcts.\relax }}{79}
-\contentsline {figure}{\numberline {C.6}{\ignorespaces Snippet of code used to update the pheromone values for every edge.\relax }}{80}
-\contentsline {figure}{\numberline {C.7}{\ignorespaces Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite {tjung:aco:blog}\relax }}{81}
-\contentsline {figure}{\numberline {C.8}{\ignorespaces Snippet of code used to automatically execute the algorithm untill compeltion\relax }}{82}
-\contentsline {figure}{\numberline {C.9}{\ignorespaces Snippet of code used to execute the algorithm on a step by step basis\relax }}{83}
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class\relax }}{79}
+\contentsline {figure}{\numberline {C.2}{\ignorespaces Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.\relax }}{79}
+\contentsline {figure}{\numberline {C.3}{\ignorespaces Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts.\relax }}{80}
+\contentsline {figure}{\numberline {C.4}{\ignorespaces Snippet of code used to inialise the collection of $City$ obejcts.\relax }}{80}
+\contentsline {figure}{\numberline {C.5}{\ignorespaces Snippet of code used to inialise the collection of $Ant$ obejcts.\relax }}{80}
+\contentsline {figure}{\numberline {C.6}{\ignorespaces Snippet of code used to update the pheromone values for every edge.\relax }}{81}
+\contentsline {figure}{\numberline {C.7}{\ignorespaces Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite {tjung:aco:blog}\relax }}{82}
+\contentsline {figure}{\numberline {C.8}{\ignorespaces Snippet of code used to automatically execute the algorithm untill compeltion\relax }}{83}
+\contentsline {figure}{\numberline {C.9}{\ignorespaces Snippet of code used to execute the algorithm on a step by step basis\relax }}{84}
