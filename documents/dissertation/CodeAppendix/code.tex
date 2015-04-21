@@ -254,4 +254,112 @@ public static double linearInterpolateY(double y1,double y2, double mu)	{
 \label{linearCode}
 \end{figure}
 
+\begin{figure}[H]
+\begin{lstlisting}
+City start = null;
+City destination = null;
+	for(Ant ant: agents){
+		if(!ant.getFinished()){
+			for(City c: cities){
+				if(ant.getCurrentIndex() == c.getIndex()){
+					if(antImage != null){
+						g2.drawImage(antImage, (c.getX() * 20) - 15, (c.getY() * 20) - 9, null);
+					}else{
+						g2.setColor(Color.GREEN);
+						g2.fillOval((c.getX() * 20) - 5, (c.getY() * 20) - 5, 10, 10);
+					}
+				}
+				if(ant.getMovementTracker()[0] != ant.getMovementTracker()[1]){
+					if(c.getIndex() == ant.getMovementTracker()[0]){
+						start = c;
+					}
+					if(c.getIndex() == ant.getMovementTracker()[1]){
+						destination = c;
+					}
+					if(start != null && destination != null){
+						g2.setColor(Color.CYAN);
+						for(int i = 1; i < 5; i++){
+							//cast to a double to stop integer behaviours rounding down to 0
+							double result = ((double)i)/5;
+							//draw an ellipse2D every 1/5 the way along the line
+							float y = (float) (Globals.linearInterpolateY(start.getY(), destination.getY(), result));
+							float x = (float) (Globals.linearInterpolateY(start.getX(), destination.getX(), result));
+							Ellipse2D movement = new Ellipse2D.Float((x * 20.0f) - 5, (y * 20.0f) - 5, 10, 10);
+							g2.fill(movement);
+							g2.draw(movement);
+					}
+				}
+			}
+		}
+	}
+	//reset the values
+	start = null;
+	destination = null;
+\end{lstlisting}
+\caption{Snippet of code used to visualise an Ants movement. $g2$ is an instance of $Graphics2D$.}
+\label{antWalk}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+bestRoute = model.getWorld().getBestRoute();
+	if(bestRoute != null){
+		for(int i = 0; i < bestRoute.size(); i++){
+			for(City c: cities){
+				if(bestRoute.get(i) == c.getIndex()){
+					if(i + 1 < bestRoute.size()){
+						for(City c2: cities){
+							if(bestRoute.get(i + 1) == c2.getIndex()){
+								g2.setColor(Color.RED);
+								//make the best line slightly thicker than the rest so it stands out more
+								g2.setStroke(new BasicStroke(2));
+								g2.drawLine(c.getX() * 20, c.getY()*20, c2.getX() * 20, c2.getY() * 20);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+\end{lstlisting}
+\caption{Snippet of code used to display the best route to the user.}
+\label{bestCode}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+for(EliteAntData data: eliteAnts){
+	System.out.println(data.getEliteRoute());
+	best = data.getEliteRoute();
+	double e = (1/4) * numberOfCities;
+	for(int i = 0; i < best.size(); i++){
+		if(i + 1 < best.size()){
+			pheromone[best.get(i)][best.get(i+1)].addToNewPhero
+			(pheromone[best.get(i)][best.get(i+1)].getNewPhero() + e);
+		}
+	}
+}
+\end{lstlisting}
+\caption{Snippet of code used to depsoit pheromone along the elite routes. An $EliteAntData$ Object is used to represent an Elite route}
+\label{elitePhero}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+Random r = new Random();
+while(numberOfUphill > 0){
+	int index = r.nextInt(cities.size());
+	City temp = cities.get(index);
+	index = r.nextInt(cities.size());
+	if(!(temp.getUphilRoutes().contains(index)) && (index != temp.getIndex())){
+		temp.addToUphil(index);
+		numberOfUphill--;
+		distanceMatrix[temp.getIndex()][index] = (distanceMatrix[temp.getIndex()][index] * 2);
+		invertedMatrix[temp.getIndex()][index] = 1/distanceMatrix[temp.getIndex()][index];
+	}
+}
+\end{lstlisting}
+\caption{Snippet of code used to initialise uphill paths.}
+\label{suchUphill}
+\end{figure}
 
