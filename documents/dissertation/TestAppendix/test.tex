@@ -1,0 +1,94 @@
+\chapter{Test Code}
+\renewcommand{\thechapter}{\Alph{chapter}}
+
+\begin{figure}[H]
+\begin{lstlisting}
+@Test
+public void testValidationRulesAllowLegalAlphaValues(){
+	double[] values = new double[]{2.5, -2.1, 4.999999999, -4.999999999, 4, -2, -1.65, 5, -5, 3, -3.21};
+	for(int i = 0; i < values.length; i++){
+		assertTrue("validaite should return true alpha is legal", aco.validate(values[i], 2.5, 0.2, 0.2, 10, 15, 3, 3));
+	}
+}
+\end{lstlisting}
+\caption{Code representing the automated testing process for checking mutliple alpha parameter values.}
+\label{testAlpha}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+@Test
+public void testValidationRulesAllowLegalBetaValues(){
+	double[] values = new double[]{2.5, -2.1, 4.999999999, -4.999999999, 4, -2, -1.65, 5, -5, 3, -3.21};
+	for(int i = 0; i < values.length; i++){
+		assertTrue("validaite should return true Beta is legal", aco.validate(2, values[i], 0.2, 0.2, 10, 15, 3, 3));
+	}
+}
+\end{lstlisting}
+\caption{Code representing the automated testing process for checking mutliple beta parameter values.}
+\label{testBeta}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+@Test
+public void testValidationRulesAllowLegalAgentsValues(){
+	int[] values = new int[]{25, 13, 19, 48, 29, 23, 11, 8, 2, 33, 40, 39, 6};
+	for(int i = 0; i < values.length; i++){
+		assertTrue("validaite should return true number of agents is legal", aco.validate(2, 2.5, 0.2, 0.2, values[i], 15, 3, 3));
+	}
+}
+
+@Test
+public void testValidationRulesShouldNotAllowIllegalAgentsValues(){
+	int[] values = new int[]{-1, -12, 55, 100, 87, 69, 52, 99, -72, -12, -5, 58, 60};
+	for(int i = 0; i < values.length; i++){
+		assertFalse("validaite should return true number of agents is illegal", aco.validate(2, 2.5, 0.2, 0.2, values[i], 15, 3, 3));
+	}
+}
+\end{lstlisting}
+\caption{Code representing the automated testing process for checking mutliple agent parameter values.}
+\label{testAgent}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}
+@Test
+public void testTotalProbabiliyIsCalculatedToEqualOne(){
+	double value = 1.1275;
+	double result = ((Math.pow(value, world.getAlpha())) * (Math.pow(value, world.getBeta())));
+	assertEquals(1.82221,result, 0.0001);
+
+	value = 3.1275;
+
+	double result2 = ((Math.pow(value, world.getAlpha())) * (Math.pow(value, world.getBeta())));
+	assertEquals(299.2172,result2, 0.0001);
+
+	value = 2.1983;
+
+	double result3 = ((Math.pow(value, world.getAlpha())) * (Math.pow(value, world.getBeta())));
+	assertEquals(51.337509,result3, 0.0001);
+
+	value = 0.0213;
+	//test one with lower values 10^-9 is the result
+	double result4 = ((Math.pow(value, world.getAlpha())) * (Math.pow(value, world.getBeta())));
+	assertEquals(0.00000000438427,result4, 0.000000001);
+
+	double totalSum = result + result2 + result3 + result4;
+
+	assertEquals(352.376919, totalSum, 0.0001);
+
+	double p1 = result/totalSum;
+	double p2 = result2/totalSum;
+	double p3 = result3/totalSum;
+	double p4 = result4/totalSum;
+
+	//check that total probability sums up to 1.0
+	assertEquals(1.0, p1 + p2 + p3 + p4, 0.0001);
+}
+\end{lstlisting}
+\caption{Code representing the automated testing process for checking mutliple agent parameter values.}
+\label{testProb}
+\end{figure}
+
+
