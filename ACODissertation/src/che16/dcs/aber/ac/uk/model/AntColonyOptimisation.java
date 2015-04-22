@@ -28,7 +28,7 @@ public class AntColonyOptimisation extends Observable{
 
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
-		
+
 		//these boundaries are used when deciding a cities random location.
 		//the canvas is 40x30 in dimension, however the boundaries are 1 less than this to stop cities being half rendered out of view
 		boundaryX = 39;
@@ -77,10 +77,14 @@ public class AntColonyOptimisation extends Observable{
 
 	public void start() {
 		//TODO: make sure this is only possible if not already running
-		this.finished = false;
 		if(running){
-			this.running = false;
+			if(Globals.getMode() == 0){
+				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot save untill this is stopped or finishes naturally.",
+						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
+			}
+			return;
 		}
+		this.finished = false;
 		//if the world isn't loaded from a file
 		if(loaded){
 			//reset the value if it is loaded so the next instance works fine
@@ -108,6 +112,7 @@ public class AntColonyOptimisation extends Observable{
 		running = true;
 		worker = new Worker(this, iterations);
 		worker.execute();
+
 	}
 
 	public void step(){

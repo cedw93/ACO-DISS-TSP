@@ -192,6 +192,4 @@ public class WorldTest {
 		assertEquals("The the number of ants at each city is incorrect", before + 1, after);
 	}
 
-
-
 }

@@ -181,6 +181,7 @@ public class DisplayCanvas extends JPanel{
 				}
 			}catch(ConcurrentModificationException e){
 				//sometimes java complains if the thread speed is too fast
+				//supress the issue the this cannot really be helped
 			}
 
 			/*
