@@ -1,5 +1,7 @@
-\chapter{Test Code}
+\chapter{Testing}
 \renewcommand{\thechapter}{\Alph{chapter}}
+
+\section{Test Code Examples}
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -91,4 +93,117 @@ public void testTotalProbabiliyIsCalculatedToEqualOne(){
 \label{testProb}
 \end{figure}
 
+\section{Black-box Testing}
+\subsection{File Content Examples}
+\label{fileIOtest}
 
+The below figure \ref{validConfig} contains an example of a valid problem configuration. Each line of content refers to a different specific value. A correct and valid file should contain values in this order and format;
+
+\begin{itemize}
+\item double, the alpha parameter value between must be in the range of $-5.0\ to\ 5.0$
+\item double, the double parameter value between must be in the range of $-5.0\ to\ 5.0$
+\item double, the decay rate value must be in the range of $0\ to\ 1$
+\item double, the initial edge pheromone value must be in the range of $0\ to\ 1$
+\item int, the number of agents must be between $1\ and\ 50$
+\item int, the number of cities must be between $3\ and\ 25$
+\item int. int, the X and Y coordinate for a City. There should be 1 line for the corresponding number of cities defined in the previous line
+\item int, the number of uphill routes to be generated this must be between $0\ and\ 15$
+\item int, the number of iterations this must be greater than $0$
+\item EOF, signifies that this is the end of the configuration content
+\end{itemize}
+
+\begin{figure}[H]
+0.2 \\
+2.0 \\
+0.2 \\
+0.8 \\
+30 \\
+cities \\
+15 \\
+36 6 \\
+30 1 \\
+19 1 \\
+25 22 \\
+8 7 \\
+2 20 \\
+26 19 \\
+19 3 \\
+24 23 \\
+7 9 \\
+12 6 \\
+18 27 \\
+2 24 \\
+35 23 \\
+21 27 \\
+7 \\
+5 \\
+EOF
+\caption{Contents of a legal problem representation stored in a file.}
+\label{validConfig}
+\end{figure}
+
+Below is an example of one of the test files used to ensure that only legal configurations are accepted. This file is rejected because the number of agents is specified as 30sffs which is not a valid integer value. It is easier to reject this and tell the user to correct it than it is to extract the integer value from a malformed integer.
+
+\begin{figure}[H]
+0.2 \\
+2.0 \\
+0.2 \\
+0.8 \\
+30sffs \\
+cities \\
+15 \\
+36 6 \\
+30 1 \\
+19 1 \\
+25 22 \\
+8 7 \\
+2 20 \\
+26 19 \\
+19 3 \\
+24 23 \\
+7 9 \\
+12 6 \\
+18 27 \\
+2 24 \\
+35 23 \\
+21 27 \\
+7 \\
+5 \\
+EOF
+\caption{Contents of an illegal problem representation stored in a file. The number of agents in line 5 is not an integer value (30sffs)}
+\label{invalidConfigagentsNFE}
+\end{figure}
+
+Below is another example of an illegal configuration. The contents of this file contains no value representing the number of agents.
+
+\begin{figure}[H]
+0.2 \\
+2.0 \\
+0.2 \\
+0.8 \\
+cities \\
+15 \\
+36 6 \\
+30 1 \\
+19 1 \\
+25 22 \\
+8 7 \\
+2 20 \\
+26 19 \\
+19 3 \\
+24 23 \\
+7 9 \\
+12 6 \\
+18 27 \\
+2 24 \\
+35 23 \\
+21 27 \\
+7 \\
+5 \\
+EOF
+\caption{Contents of an illegal problem representation stored in a file. The number of agents has not been defined.}
+\label{invalidConfigMissing}
+\end{figure}
+
+\subsection{Tests}
+\label{BBTests}

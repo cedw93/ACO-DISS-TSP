@@ -90,67 +90,70 @@
 \contentsline {section}{\numberline {6.1}Overall Approach to Testing}{51}
 \contentsline {section}{\numberline {6.2}Unit Tests}{51}
 \contentsline {section}{\numberline {6.3}User Interface Testing}{52}
-\contentsline {section}{\numberline {6.4}Stress Testing}{52}
-\contentsline {section}{\numberline {6.5}Acceptance}{52}
-\contentsline {section}{\numberline {6.6}User Testing}{52}
-\contentsline {chapter}{\numberline {7}Future Work}{53}
-\contentsline {chapter}{\numberline {8}Evaluation}{54}
-\contentsline {chapter}{Appendices}{55}
-\contentsline {chapter}{\numberline {A}Requirements Specification}{56}
-\contentsline {section}{\numberline {1.1}Introduction}{56}
-\contentsline {subsection}{\numberline {1.1.1}Purpose}{56}
-\contentsline {subsection}{\numberline {1.1.2}Scope}{56}
-\contentsline {subsection}{\numberline {1.1.3}Definitions}{57}
-\contentsline {section}{\numberline {1.2}Overview}{57}
-\contentsline {subsection}{\numberline {1.2.1}Product Descriptive}{57}
-\contentsline {subsection}{\numberline {1.2.2}Product functionality}{57}
-\contentsline {subsection}{\numberline {1.2.3}User Groups and Characteristics}{58}
-\contentsline {subsection}{\numberline {1.2.4}Constraints}{58}
-\contentsline {subsection}{\numberline {1.2.5}Assumptions}{59}
-\contentsline {section}{\numberline {1.3}Specific Requirements}{59}
-\contentsline {subsection}{\numberline {1.3.1}User Interface}{59}
-\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{60}
-\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{60}
-\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{63}
-\contentsline {chapter}{\numberline {B}Initial Design Proposal}{64}
-\contentsline {section}{\numberline {2.1}Introduction}{64}
-\contentsline {subsection}{\numberline {2.1.1}Purpose}{64}
-\contentsline {section}{\numberline {2.2}Language}{64}
-\contentsline {section}{\numberline {2.3}Architecure}{65}
-\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{65}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{65}
-\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{66}
-\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{67}
-\contentsline {subsection}{\numberline {2.3.3}Structure}{68}
-\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{70}
-\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{70}
-\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{70}
-\contentsline {section}{\numberline {2.4}Class Descriptions}{70}
-\contentsline {subsection}{\numberline {2.4.1}Controller}{70}
-\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{70}
-\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{70}
-\contentsline {subsection}{\numberline {2.4.2}View}{71}
-\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{71}
-\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{71}
-\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{71}
-\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{71}
-\contentsline {subsection}{\numberline {2.4.3}Model}{71}
-\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{71}
-\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{71}
-\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{71}
-\contentsline {subsubsection}{\numberline {2.4.3.4}World}{72}
-\contentsline {section}{\numberline {2.5}Interface Design}{72}
-\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{72}
-\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{74}
-\contentsline {section}{\numberline {2.6}Algorithm}{74}
-\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{77}
-\contentsline {subsection}{\numberline {2.6.2}Metrics}{79}
-\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{79}
-\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{79}
-\contentsline {section}{\numberline {2.7}Representation}{80}
-\contentsline {subsection}{\numberline {2.7.1}World}{80}
-\contentsline {subsection}{\numberline {2.7.2}Pheromone}{81}
-\contentsline {subsection}{\numberline {2.7.3}Visualisation}{82}
-\contentsline {chapter}{\numberline {C}Implemented Code}{84}
-\contentsline {chapter}{\numberline {D}Test Code}{93}
-\contentsline {chapter}{Annotated Bibliography}{96}
+\contentsline {section}{\numberline {6.4}Stress Testing}{53}
+\contentsline {section}{\numberline {6.5}Acceptance}{53}
+\contentsline {chapter}{\numberline {7}Future Work}{54}
+\contentsline {chapter}{\numberline {8}Evaluation}{55}
+\contentsline {chapter}{Appendices}{56}
+\contentsline {chapter}{\numberline {A}Requirements Specification}{57}
+\contentsline {section}{\numberline {1.1}Introduction}{57}
+\contentsline {subsection}{\numberline {1.1.1}Purpose}{57}
+\contentsline {subsection}{\numberline {1.1.2}Scope}{57}
+\contentsline {subsection}{\numberline {1.1.3}Definitions}{58}
+\contentsline {section}{\numberline {1.2}Overview}{58}
+\contentsline {subsection}{\numberline {1.2.1}Product Descriptive}{58}
+\contentsline {subsection}{\numberline {1.2.2}Product functionality}{58}
+\contentsline {subsection}{\numberline {1.2.3}User Groups and Characteristics}{59}
+\contentsline {subsection}{\numberline {1.2.4}Constraints}{59}
+\contentsline {subsection}{\numberline {1.2.5}Assumptions}{60}
+\contentsline {section}{\numberline {1.3}Specific Requirements}{60}
+\contentsline {subsection}{\numberline {1.3.1}User Interface}{60}
+\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{61}
+\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{61}
+\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{64}
+\contentsline {chapter}{\numberline {B}Initial Design Proposal}{65}
+\contentsline {section}{\numberline {2.1}Introduction}{65}
+\contentsline {subsection}{\numberline {2.1.1}Purpose}{65}
+\contentsline {section}{\numberline {2.2}Language}{65}
+\contentsline {section}{\numberline {2.3}Architecure}{66}
+\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{66}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{66}
+\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{67}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{68}
+\contentsline {subsection}{\numberline {2.3.3}Structure}{69}
+\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{71}
+\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{71}
+\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{71}
+\contentsline {section}{\numberline {2.4}Class Descriptions}{71}
+\contentsline {subsection}{\numberline {2.4.1}Controller}{71}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{71}
+\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{71}
+\contentsline {subsection}{\numberline {2.4.2}View}{72}
+\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{72}
+\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{72}
+\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{72}
+\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{72}
+\contentsline {subsection}{\numberline {2.4.3}Model}{72}
+\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{72}
+\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{72}
+\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{72}
+\contentsline {subsubsection}{\numberline {2.4.3.4}World}{73}
+\contentsline {section}{\numberline {2.5}Interface Design}{73}
+\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{73}
+\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{75}
+\contentsline {section}{\numberline {2.6}Algorithm}{75}
+\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{78}
+\contentsline {subsection}{\numberline {2.6.2}Metrics}{80}
+\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{80}
+\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{80}
+\contentsline {section}{\numberline {2.7}Representation}{81}
+\contentsline {subsection}{\numberline {2.7.1}World}{81}
+\contentsline {subsection}{\numberline {2.7.2}Pheromone}{82}
+\contentsline {subsection}{\numberline {2.7.3}Visualisation}{83}
+\contentsline {chapter}{\numberline {C}Implemented Code}{85}
+\contentsline {chapter}{\numberline {D}Testing}{94}
+\contentsline {section}{\numberline {4.1}Test Code Examples}{94}
+\contentsline {section}{\numberline {4.2}Black-box Testing}{96}
+\contentsline {subsection}{\numberline {4.2.1}File Content Examples}{96}
+\contentsline {subsection}{\numberline {4.2.2}Tests}{99}
+\contentsline {chapter}{Annotated Bibliography}{100}
