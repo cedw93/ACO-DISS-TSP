@@ -156,5 +156,6 @@
 \contentsline {section}{\numberline {4.1}Test Code Examples}{94}
 \contentsline {section}{\numberline {4.2}Black-box Testing}{96}
 \contentsline {subsection}{\numberline {4.2.1}File Content Examples}{96}
-\contentsline {subsection}{\numberline {4.2.2}Tests Results}{99}
-\contentsline {chapter}{Annotated Bibliography}{100}
+\contentsline {subsection}{\numberline {4.2.2}Acceptance Tests}{99}
+\contentsline {subsection}{\numberline {4.2.3}Interface Testing}{103}
+\contentsline {chapter}{Annotated Bibliography}{104}

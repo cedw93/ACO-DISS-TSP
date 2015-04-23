@@ -205,7 +205,132 @@ EOF
 \label{invalidConfigMissing}
 \end{figure}
 
-\subsection{Tests Results}
-\label{BBTests}
+\subsection{Acceptance Tests}
+\label{AcceptanceTestz}
 
-\Large SPLIT TEST TABLES UP BY FUNCTION REQUIREMENTS\normalsize
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                          & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                                                                                                                                          \\ \hline
+          \textbf{FR1}   & \begin{tabular}[c]{@{}l@{}}Test that the application\\ can be launches from the\\ .jar file\end{tabular}    & Pass                                    & \begin{tabular}[c]{@{}l@{}}This will be the default\\ way to launch the \\ application.\end{tabular} \\ \hline
+\textbf{FR16}        & \begin{tabular}[c]{@{}l@{}}The user is able to exit\\ the application whenever the\\ wish to\end{tabular}          & Pass                                    & \begin{tabular}[c]{@{}l@{}}Click the exit on the main\\ JFrame container. This will\\ exit the application regardless\\ of what the application is \\ currently doing.\end{tabular} \\ \hline
+                                                                                                                                                    
+\end{tabular}
+\caption[FR1 and FR16  acceptance tests]{A summary of the tests used to acceptance test against FR1 and FR16}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                          & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                                                                                                                                          \\ \hline
+\textbf{FR2} & \begin{tabular}[c]{@{}l@{}}A World can be\\ randomly generated\end{tabular}                                 & Pass                                    & \begin{tabular}[c]{@{}l@{}}Clicking 'start'\\ will cause a random world\\ to be generated.\end{tabular}                                                                                                                                                       \\ \hline
+\end{tabular}
+\caption[FR2 acceptance tests]{A summary of the tests used to acceptance test against FR2}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                          & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                                                                                                                                               \\ \hline
+\textbf{FR3, FR5}         & \begin{tabular}[c]{@{}l@{}}World visualisation: Cities are\\ displayed in the correct location\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}The correct number of \\ cities is displayed to the \\ user and each city is shown\\ at its own location. \\ Occasionally two cities \\ may render close to each other.\end{tabular}                                                     \\ \hline
+\textbf{FR3, FR5}         & \begin{tabular}[c]{@{}l@{}}World visualisation: The paths\\ between city locations are shown\end{tabular}   & Pass                                    & \begin{tabular}[c]{@{}l@{}}The graph is a fully connected \\ graph so a path is drawn from a \\ city to every other city.This is not \\ always clear as some paths may \\ overlap.\end{tabular}                                                                     \\ \hline
+\textbf{FR3, FR5}         & \begin{tabular}[c]{@{}l@{}}World visualisation: The correct\\ number of agents is shown\end{tabular}        & Pass                                    & \begin{tabular}[c]{@{}l@{}}The correct number of agents\\ is displayed to the user, As \\ multiple agents can be shown \\ at the same city index, there\\ is a text based count which \\ shows that the correct number \\ of agents has been rendered.\end{tabular} \\ \hline
+\end{tabular}
+\caption[FR3 and FR5 acceptance tests]{A summary of the tests used to acceptance test against FR3 and FR5. These requirements are closely related thus they can be tested in parallel}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                                           & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                           \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure that the user\\ can define a value for \\ the 'alpha' parameter\end{tabular}               & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure that the user\\ can define a value for\\  the 'beta' parameter\end{tabular}                & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure that the user\\ can define a value for \\ the 'decay rate'\\  parameter\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure that the user\\ can define a value for \\ the 'initial pheromone'\\ parameter\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure that the user\\ can define the number\\ of 'uphill' paths\end{tabular}                     & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete \\ with error checking\end{tabular} \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ define the number of\\ agents\end{tabular}                                  & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ define the number of\\ cities\end{tabular}                                  & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ specify the number \\ of elite agents\end{tabular}                          & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\end{tabular}
+\caption[FR4 acceptance tests]{A summary of the tests used to acceptance test against FR4}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                               & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                               \\ \hline
+\textbf{FR6, FR13}         & \begin{tabular}[c]{@{}l@{}}The opacity of the\\ path is relative to the\\ pheromone on each \\ edge\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}Initially this will\\ be the value specified\\ by the 'initialPhero' \\ parameter\end{tabular}           \\ \hline
+\textbf{FR6, FR13}         & \begin{tabular}[c]{@{}l@{}}Pheromone decay is\\ correctly visualised\end{tabular}                                & Pass                                    & \begin{tabular}[c]{@{}l@{}}As the algorithm \\ executed there is a clear\\ representation of the\\ pheromone decaying.\end{tabular} \\ \hline
+\end{tabular}
+\caption[FR6 and FR13 acceptance tests]{A summary of the tests used to acceptance test against FR6 and FR13}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                      & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                \\ \hline
+\textbf{FR7, FR12}         & \begin{tabular}[c]{@{}l@{}}The agents can be displayed\\ at any city location\end{tabular}              & Pass                                    & \begin{tabular}[c]{@{}l@{}}Regardless of how many\\ agents are at a city, only 1\\ image will be shown.\end{tabular} \\ \hline
+\textbf{FR7, FR12}         & \begin{tabular}[c]{@{}l@{}}The path the agent took\\ between cities will be \\ highlighted\end{tabular} & Pass                                    &                                                                                                                      \\ \hline
+\end{tabular}
+\caption[FR7 and FR12 acceptance tests]{A summary of the tests used to acceptance test against FR7 and FR12}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                      \\ \hline
+\textbf{FR8}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ start the algorithms \\ exectution\end{tabular}  & Pass                                    & \begin{tabular}[c]{@{}l@{}}Clicking the \\ 'start' button will \\ signal the algorithms \\ execution to begin\end{tabular} \\ \hline
+\textbf{FR9}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ stop an already running\\ algorithm\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}An algorithm can \\ only be stopped if there\\ is one already running.\end{tabular}             \\ \hline
+\end{tabular}
+\caption[FR8 and FR9 acceptance tests]{A summary of the tests used to acceptance test against FR8 and FR9}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                         & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                 \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid alpha\\ value\end{tabular}            & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid beta\\ value\end{tabular}             & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid decay\\ rate\end{tabular}             & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of iterations\end{tabular}   & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of uphill paths\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of cities\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of agents\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\end{tabular}
+\caption[FR10 acceptance tests]{A summary of the tests used to acceptance test against FR10}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                                        & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                       \\ \hline
+\textbf{FR11}        & \begin{tabular}[c]{@{}l@{}}The best route is displayed\\ to the user as a sequence of \\ city indexes\end{tabular}        & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is displayed in\\ addition to the visual \\ route\end{tabular}                                              \\ \hline
+\textbf{FR11}        & \begin{tabular}[c]{@{}l@{}}The best route is shown as\\ a red line between the cities\\ along the best route\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}This line is thicker than \\ the lines used to represent\\ the regular paths so it is easy\\ to see\end{tabular} \\ \hline
+\end{tabular}
+\caption[FR11 acceptance tests]{A summary of the tests used to acceptance test against FR11}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                       & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                                                               \\ \hline
+\textbf{FR14}        & \begin{tabular}[c]{@{}l@{}}A problem configuration\\ can be loaded from an \\ external file\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}This test was performed \\ with the knowledge that \\ the files contents would enable\\ the loading to complete as all \\ values were legal\end{tabular} \\ \hline
+\textbf{FR15}        & \begin{tabular}[c]{@{}l@{}}The current problem can be\\ written to a file\end{tabular}                   & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is only possible if a problem\\ has been generated.\end{tabular}                                                                                    \\ \hline
+\end{tabular}
+\caption[FR14 and FR15 acceptance tests]{A summary of the tests used to acceptance test against FR14 and FR15}
+\end{table}
+
+\subsection{Interface Testing}
+\label{UITESTSM8}
