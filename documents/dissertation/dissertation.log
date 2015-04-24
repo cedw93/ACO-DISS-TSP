@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  23 APR 2015 23:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  24 APR 2015 02:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1255,7 +1255,21 @@ Overfull \hbox (16.09377pt too wide) in paragraph at lines 237--244
  [][] 
  []
 
-[99] [100] [101] [102]) [103] (./dissertation.bbl
+[99] [100] [101] [102] [103]
+Overfull \vbox (3.23138pt too high) has occurred while \output is active []
+
+
+[104]
+Overfull \hbox (29.63919pt too wide) in paragraph at lines 382--392
+ [][] 
+ []
+
+[105]
+Overfull \hbox (39.03374pt too wide) in paragraph at lines 399--412
+[][] 
+ []
+
+[106] [107]) [108] (./dissertation.bbl
 Underfull \hbox (badness 2088) in paragraph at lines 22--26
 []\OT1/ptm/m/n/10.95 99designs.com, ``Un-break-able laws of user in-ter-ac-tion
 , [on-line] Mar 2015,'' Avali-
@@ -1279,7 +1293,7 @@ Underfull \hbox (badness 2644) in paragraph at lines 53--56
 n-line] Apr 2015,'' Avali-able:
  []
 
-[104
+[109
 
 
 ]
@@ -1312,7 +1326,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--138
 '' Avali-
  []
 
-[105]
+[110]
 Underfull \hbox (badness 10000) in paragraph at lines 156--159
 []\OT1/ptm/m/n/10.95 neos, ``Berlin52 source file, [on-line] Apr 2015,'' Avali-
 
@@ -1336,7 +1350,7 @@ Underfull \hbox (badness 5741) in paragraph at lines 172--176
 [on-line] Apr 2015,'' Avali-able:
  []
 
-[106]
+[111]
 Underfull \hbox (badness 10000) in paragraph at lines 203--206
 []\OT1/ptm/m/n/10.95 technologyuk.net, ``Wa-ter-fall model, [on-line] Feb 2015,
 '' Avali-able:
@@ -1386,7 +1400,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 244--248
 
 ) 
 AED: lastpage setting LastPage
-[107] (./dissertation.aux (./cover.aux) (./declaration.aux)
+[112] (./dissertation.aux (./cover.aux) (./declaration.aux)
 (./Acknowledgements/acknowledgements.aux) (./Abstract/abstract.aux)
 (./Chapter1/chapter1.aux) (./Chapter2/chapter2.aux) (./Chapter3/chapter3.aux)
 (./Chapter4/chapter4.aux) (./Chapter5/chapter5.aux) (./Chapter6/chapter6.aux)
@@ -1422,10 +1436,10 @@ type1/urw/courier/ucrr8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/tex
 live/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2014/texmf-di
 st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dissertation.pdf (117 pages, 1933217 bytes).
+Output written on dissertation.pdf (122 pages, 1941241 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
+ 506 PDF objects out of 1000 (max. 8388607)
+ 318 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
