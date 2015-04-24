@@ -1,1 +1,39 @@
 \chapter{Future Work}
+
+This chapter briefly discusses the additional work the author could complete if the project had a longer development time frame. These features are not essential but the author sees them as next logical steps in producing an educational tool which visualises several different classification of algorithms in a manner understandable by the majority of users.
+
+\section{Additional Algorithm Types}
+
+The application current only supports the Basic and Elitist Ant System algorithm variations. The author would like to increase the number of algorithm variations which are available for selection. As the framework is already in place additional algorithm types would be simple to implement as the application has been designed in an abstract manner such that the model can be reused and modified without impacting the current functionality. The author would at least implement the Max-Mix algorithm and would further implement additional variations such as; Rank-based Ant System, Ant Colony System and a Recursive Any Colony algorithm. 
+
+\begin{figure}[H]
+\Large
+\begin{equation}
+pheromone_{xy} = [(1 - \rho)\ \times\ \tau_{xy}\ +\ \Delta\tau_{xy}^{best}\ ]_{pheromone_{min}}^{pheromone_{max}}
+\end{equation}
+\begin{equation}
+[x]_{pheromone_{min}}^{pheromone_{max}} = \left\{\begin{matrix}
+pheromone_{max}\ \ \ \ if\ x > pheromone_{max} \\ 
+pheromone_{min}\ \ \ \ if\ x < pheromone_{min} \\ 
+x \ \ \ \ \ \ otherwise\\ 
+\end{matrix}\right.
+\end{equation}
+
+\caption{Algebraic model of the pheromone deposit function for the Max-Min Ant System \cite{AntColontSite:slides}}
+\label{MaxMinSystemPhero}
+
+\end{figure}
+
+The Max-Min algorithm is an extension of the Elitist Ant system in some regards however in the Max-Min Ant System only the best Ant(s) update the pheromone trails and the amount of pheromone deposited has strict boundaries. Generally, this algorithm out performs the Elitist Ant System and will generally converge in less time. Figure \ref{MaxMinSystemPhero} demonstrates how the pheromone is deposited for the Max-Min algorithm variation.
+
+\section{Bee Colony Optimisation}
+
+The author would like to include a different class of swarm intelligence methods which in this case would be the introduction of the artificial Bee Colony class of algorithms. The application would not have to change much in terms of design as the view and controller could be reused however there would need to be significant modification to the current model in order to support the Bee Colony algorithms. The addition of additional swarm intelligence families would enable the user to not only switch between algorithm types they would also be able to switch between classes of algorithms and contrast both the execution and result of each algorithm. The will greatly increase the educational potential of the application. The author has not researched the Bee Colony algorithms in much detail of yet however he is aware of the general concepts. The implementation of such algorithms is likely to be a fairly complex tasks although this is made slightly easier through the reusability of the view and controller but this process may still take a considerable amount of time which the author currently does not have as his disposal.
+
+\section{Search Algorithms}
+
+As the word can be represented as a graph, the current framework can be reused and modified to show the execution of different variations search algorithms. The author would like to include algorithms from both the informed and uniformed search algorithm classifications to maximise the applications educational value. The implementation of such algorithms should not be too difficult as there is a multitude of well documented resources describing the different algorithm types and their implementations in several languages. The author would initially aim to implement the more commonly used or well-known algorithms such as; Breadth-first search, Depth-first search, A* search and Dijkstra's algorithm. As A* search and Dijkstra's algorithm are informed search algorithms they can be used in conjunction with multiple different heuristic functions which will enable the user to contrast both algorithm and heuristic performance in a variety of scenarios.
+
+\section{Graph Representation}
+
+Currently the problem is represented as a fully connected graph. The author would like to implement the ability for the user to specify that they do not want a fully connected graph to be generated. This would cause the algorithm to behave very differently as the user could see how restricting the agents movement between specific cities drastically changes the returned route. The implementation of this feature was considered for inclusion in the current system by the author however there are several complications which lead the author to leaving out such functionality. As the graph would not be fully connected there is the potential for the agent to get into a situation where it has no possible moves. If the agent has visited every city but one, and the current city has no connection to the last remaining city then the agent is in fact stuck. The potential solutions to this problem haven’t fully been explored by the author due to time constraints thus the author didn’t feel completely confident implementing a feature which may be sub optimal in performance.
