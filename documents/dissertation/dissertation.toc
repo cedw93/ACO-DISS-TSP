@@ -111,57 +111,57 @@
 \contentsline {subsection}{\numberline {1.2.1}Product Descriptive}{61}
 \contentsline {subsection}{\numberline {1.2.2}Product functionality}{61}
 \contentsline {subsection}{\numberline {1.2.3}User Groups and Characteristics}{62}
-\contentsline {subsection}{\numberline {1.2.4}Constraints}{62}
-\contentsline {subsection}{\numberline {1.2.5}Assumptions}{63}
-\contentsline {section}{\numberline {1.3}Specific Requirements}{63}
-\contentsline {subsection}{\numberline {1.3.1}User Interface}{63}
-\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{64}
-\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{64}
-\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{67}
-\contentsline {chapter}{\numberline {B}Initial Design Proposal}{68}
-\contentsline {section}{\numberline {2.1}Introduction}{68}
-\contentsline {subsection}{\numberline {2.1.1}Purpose}{68}
-\contentsline {section}{\numberline {2.2}Language}{68}
-\contentsline {section}{\numberline {2.3}Architecure}{69}
-\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{69}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{69}
-\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{70}
-\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{71}
-\contentsline {subsection}{\numberline {2.3.3}Structure}{72}
-\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{74}
-\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{74}
-\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{74}
-\contentsline {section}{\numberline {2.4}Class Descriptions}{74}
-\contentsline {subsection}{\numberline {2.4.1}Controller}{74}
-\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{74}
-\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{74}
-\contentsline {subsection}{\numberline {2.4.2}View}{75}
-\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{75}
-\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{75}
-\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{75}
-\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{75}
-\contentsline {subsection}{\numberline {2.4.3}Model}{75}
-\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{75}
-\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{75}
-\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{75}
-\contentsline {subsubsection}{\numberline {2.4.3.4}World}{76}
-\contentsline {section}{\numberline {2.5}Interface Design}{76}
-\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{76}
-\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{78}
-\contentsline {section}{\numberline {2.6}Algorithm}{78}
-\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{81}
-\contentsline {subsection}{\numberline {2.6.2}Metrics}{83}
-\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{83}
-\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{83}
-\contentsline {section}{\numberline {2.7}Representation}{84}
-\contentsline {subsection}{\numberline {2.7.1}World}{84}
-\contentsline {subsection}{\numberline {2.7.2}Pheromone}{85}
-\contentsline {subsection}{\numberline {2.7.3}Visualisation}{86}
-\contentsline {chapter}{\numberline {C}Implemented Code}{88}
-\contentsline {chapter}{\numberline {D}Testing}{97}
-\contentsline {section}{\numberline {4.1}Test Code Examples}{97}
-\contentsline {section}{\numberline {4.2}Black-box Testing}{99}
-\contentsline {subsection}{\numberline {4.2.1}File Content Examples}{99}
-\contentsline {subsection}{\numberline {4.2.2}Acceptance Tests}{102}
-\contentsline {subsection}{\numberline {4.2.3}Interface Testing}{106}
-\contentsline {chapter}{Annotated Bibliography}{112}
+\contentsline {subsection}{\numberline {1.2.4}Constraints}{63}
+\contentsline {subsection}{\numberline {1.2.5}Assumptions}{64}
+\contentsline {section}{\numberline {1.3}Specific Requirements}{64}
+\contentsline {subsection}{\numberline {1.3.1}User Interface}{64}
+\contentsline {subsection}{\numberline {1.3.2}Hardware Interface}{65}
+\contentsline {subsection}{\numberline {1.3.3}Functional Requirements}{65}
+\contentsline {subsection}{\numberline {1.3.4}Requirement Evaluation}{68}
+\contentsline {chapter}{\numberline {B}Initial Design Proposal}{69}
+\contentsline {section}{\numberline {2.1}Introduction}{69}
+\contentsline {subsection}{\numberline {2.1.1}Purpose}{69}
+\contentsline {section}{\numberline {2.2}Language}{69}
+\contentsline {section}{\numberline {2.3}Architecure}{70}
+\contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{70}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{70}
+\contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{71}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Singleton}{72}
+\contentsline {subsection}{\numberline {2.3.3}Structure}{73}
+\contentsline {subsubsection}{\numberline {2.3.3.1}View Package}{75}
+\contentsline {subsubsection}{\numberline {2.3.3.2}Model Package}{75}
+\contentsline {subsubsection}{\numberline {2.3.3.3}Controller Package}{75}
+\contentsline {section}{\numberline {2.4}Class Descriptions}{75}
+\contentsline {subsection}{\numberline {2.4.1}Controller}{75}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Driver}{75}
+\contentsline {subsubsection}{\numberline {2.4.1.2}UpdateListener}{75}
+\contentsline {subsection}{\numberline {2.4.2}View}{76}
+\contentsline {subsubsection}{\numberline {2.4.2.1}DisplayFrame}{76}
+\contentsline {subsubsection}{\numberline {2.4.2.2}DisplayPanel}{76}
+\contentsline {subsubsection}{\numberline {2.4.2.3}DisplayCanvas}{76}
+\contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{76}
+\contentsline {subsection}{\numberline {2.4.3}Model}{76}
+\contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{76}
+\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{76}
+\contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{76}
+\contentsline {subsubsection}{\numberline {2.4.3.4}World}{77}
+\contentsline {section}{\numberline {2.5}Interface Design}{77}
+\contentsline {subsection}{\numberline {2.5.1}Main User Interface}{77}
+\contentsline {subsection}{\numberline {2.5.2}Error Message Feedback}{79}
+\contentsline {section}{\numberline {2.6}Algorithm}{79}
+\contentsline {subsection}{\numberline {2.6.1}Pseudo-code}{82}
+\contentsline {subsection}{\numberline {2.6.2}Metrics}{84}
+\contentsline {subsubsection}{\numberline {2.6.2.1}Probabilistic function}{84}
+\contentsline {subsubsection}{\numberline {2.6.2.2}Pheromone deposit}{84}
+\contentsline {section}{\numberline {2.7}Representation}{85}
+\contentsline {subsection}{\numberline {2.7.1}World}{85}
+\contentsline {subsection}{\numberline {2.7.2}Pheromone}{86}
+\contentsline {subsection}{\numberline {2.7.3}Visualisation}{87}
+\contentsline {chapter}{\numberline {C}Implemented Code}{89}
+\contentsline {chapter}{\numberline {D}Testing}{98}
+\contentsline {section}{\numberline {4.1}Test Code Examples}{98}
+\contentsline {section}{\numberline {4.2}Black-box Testing}{100}
+\contentsline {subsection}{\numberline {4.2.1}File Content Examples}{100}
+\contentsline {subsection}{\numberline {4.2.2}Acceptance Tests}{103}
+\contentsline {subsection}{\numberline {4.2.3}Interface Testing}{107}
+\contentsline {chapter}{Annotated Bibliography}{113}
