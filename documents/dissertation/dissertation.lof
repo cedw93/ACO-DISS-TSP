@@ -1,7 +1,7 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Image representing the Double Bridge Experiment. Image source \cite {doublebridges:image}\relax }}{2}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces One solution to the Berlin52.tsp problem plotted using GNU Plot. Modified version from original image source \cite {berlin52:image}\relax }}{3}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Algebraic model of the pheromone deposit function for the Elitist Ant System \cite {marcdorgio:book:EAS}\relax }}{5}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Double Bridge Experiment}}{2}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Example Berlin52.tsp Solution}}{3}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Elitist Ant System Pheromone Function}}{5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces The varation of the waterfall model used for solo development in this project. Modified from source image \cite {waterfall:image} \relax }}{12}

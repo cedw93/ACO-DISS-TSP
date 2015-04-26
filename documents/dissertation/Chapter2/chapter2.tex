@@ -1,70 +1,68 @@
 %\addcontentsline{toc}{chapter}{Development Process}
 
-
 \chapter{Analysis}
 \label{chap:analysis}
 \section{Key Tasks}
 
-Based upon the research undergone in chapter \ref{chapt:bg} the problem can be decomposed into several key tasks. These tasks will directly relate the requirements described in appendix A section \ref{funcreq}.
+Based upon the undergone research in chapter \ref{chapt:bg} the problem can be decomposed into several key tasks. These tasks will directly relate to the requirements described in appendix A, section \ref{funcreq}.
 
 \subsection{Problem Representation}
 
-The problem representation is key for both creating an application which is best suited to the proposed task whilst also ensuring the underlying algorithm can correctly calculate a solution in a reasonable manner. Chapter \ref{chapt:bg} explains two stypes of problem which could be represented in this application, the Double Bridge experiment (see section \ref{dblbridge}) and the Travelling Salesman Problem (see section \ref{tsp}) each of these problems has its own merits and demerits.
+The problem representation is key for both creating an application which is best suited to the proposed task whilst also ensuring the underlying algorithm can correctly calculate a solution in a reasonable manner. Chapter \ref{chapt:bg} explains two types of problem which could be represented in this application, the Double Bridge experiment (see section \ref{dblbridge}) and the Travelling Salesman Problem (see section \ref{tsp}) each of these problems has its own merits and demerits.
 
 \subsubsection{Double Bridge Experiment}
 
-Opting to represent the problem in a similar format to the Double Bridge Expriment would enable the visualiation but more user friendly as the actual problem itself is far simpilier than the Travelling Salemen Problem. In addition to this users may relate more to this style of problem as they can map the on screen representation of the nest and food to a real world scenario, this is not easily done with the Travelling Salesman Problem. The authors feels that representing the problem in this basic form will negatively impact the applications success as having a nest location, a food source and two bridges for the agents to navigate accross can only be represented so many ways before the user becomes fully aware of the expected outcome.
+Opting to represent the problem in a similar format to the Double Bridge Experiment would enable the visualisation to be more user friendly as the actual problem itself is far simpler than the Travelling Salesmen Problem. In addition to this users may relate more to this style of problem as they can map the on screen representation of the nest and food to a real world scenario, this is not easily done with the Travelling Salesman Problem. The author feels that representing the problem in this basic form will negatively impact the applications success as having a nest location, a food source and two bridges for the agents to navigate across can only be represented so many ways before the user becomes fully aware of the expected outcome.
 
-Instead of maintaining the exact ideas behind the Double Bridge Experiment, the key concepts can be extracted and applied to a more complicated problem representation. The idea that every agent will start and the same nest location, and attempt to navigate to a food source is a fairly simple concept to understand, however as described in Appendix B section \ref{sec:world} the world can be expanded to no longer only accomodate two paths for the ants to navigate, but instead have a matrix of nodes which vastly increases the problems complexity. As the problem is no longer represented as a simple 2 path paths, it becomes exceptional more difficult to predict the agents movements which could lead to a much richer experience for the users.
+Instead of maintaining the exact ideas behind the Double Bridge Experiment, the key concepts can be extracted and applied to a more complicated problem representation. The idea that every agent will start and the same nest location and attempt to navigate to a food source is a fairly simple concept to understand however, as described in Appendix B, section \ref{sec:world} the world can be expanded to accommodate a greater number of paths which vastly increases the problems complexity.
 
 \subsubsection{Travelling Salesman Problem}
 
-Representing the problem in the form of a Travelling Salemen Problem may come across as quite daunting to new users. As discussed with the Double Bridge problem representation the idea of a nest site and a food source is easily relateable to the real world for the majoirt of people however, the Travelling Salesman problem does not boast any kind of instantly relateable real world mapping to ants and thier colonies. One of the main advantages with the use of the this representation is that the graph is a fully connected graph. As this is the case the author does not have to worry about complications such as wrapping the edges of the graph to simulate connectedness, this would be the case if the Double Bridge and the suggested modifications were to be used.
+Representing the problem in the form of a Travelling Salesmen Problem may come across as quite daunting to new users. As discussed with the Double Bridge problem representation the idea of a nest site and a food source is easily relatable to the real world for the majority of people however, the Travelling Salesman problem does not boast a similar mapping to real world ant colonies. One of the main advantages with the use of this representation is that the graph is fully connected. As a result the author does not have to worry about complications such as wrapping the edges of the graph to simulate connectedness, this would be the case if the Double Bridge and the suggested modifications were to be used.
 
-This form of representation is far more customisable thus it may be more appropriate an educational application such as this as it enables a greater degree of user customisation allowing for users to experiment with different configurations in order to understand how the algorithm operates in different scenarios.
+This form of representation is far more customisable thus, it may be more appropriate for use in an educational application such as this as it enables a greater degree of user customisation. Enabling the user to experiment with different configurations in conceptualise the algorithms behaviour in a variety of scenarios.
 
-Initially the author chose to use the suggested adaptation to the Double Bridge Experiment however, the result this produced happened to be very unsatisfactory. As this is the case the application underwent a somewhat agile re design process in order to accommodate the change in problem representation to the Travelling Salesman type of problem (more details found in \Large {REFERENCE PROCESS AND DESIGN CHAPTERS HERE TALKING ABOUT CHANGE OF REPRESENTATION.} \normalsize
+Initially the author chose to use the suggested adaptation to the Double Bridge Experiment however, the result this produced happened to be very unsatisfactory. As a result the application underwent a somewhat agile re-design process to accommodate the change in problem representation to the Travelling Salesman problem.
+
 \subsection{Algorithm implementation}
 
-The applications success will be heavily dependent on having a working, customisable implementation of at least the basic Ant System (see section \ref{sec:AntSystem}). If the algorithms implementation is flawed in anyway then is cannot be accurately visualised. As this is application has educational objectives incorrect implementation of underlying algorithm(s) would cause improper algorithm behaviours to be both taught and demonstrated thus, the quality of the implementation is paramount to the success of the application. The combination of background research and a suitable test strategy will ensure the application exhibits expected behaviours.
+The applications success will be heavily dependent on having a working, customisable implementation of at least the basic Ant System (see section \ref{sec:AntSystem}). As this application has educational objectives incorrect implementation of underlying algorithm(s) would cause improper algorithm behaviours to be both taught and demonstrated thus, the quality of the implementation is paramount to the success of the application. The combination of background research and a suitable test strategy will ensure the application exhibits expected behaviours.
 
 \subsection{User interaction}
 
-The methods of user interaction will be key in ensuring the users actually fully utilise the functionality on offer. Using the key user interaction principles identified in section \ref{uiMethods} the author will develop a simple yet effective user interface incorporating these key design concepts. The user must also be familiar with the look and feel of the interface, research will be carried out and will consist of looking at successful application of similar design then adapting any suitable design styles they provide to suit this applications needs.
+The methods of user interaction will be key in ensuring the users actually fully utilise the functionality on offer. Using the key user interaction principles identified in section \ref{uiMethods} the author will develop a simple yet effective user interface incorporating these key design concepts. The look and feel of the interface must be familiar to the user. Research will be carried out and will consist of looking at successful application of similar design then adapting any suitable design styles they provide to suit this applications needs.
 
 \subsection{Algorithm Variations}
 
-Given the time constraints of the project it is not a realistic to attempt to implement support for every variation of Ant Colony algorithms. It is far more realistic for the application to support few algorithm variations which will at a minimum include two different algorithm variations so users can have some insight into how different algorithms impact the overall result. Although it is unrealistic given the current development timeframe, this does not mean that supporting the majority of algorithm variations cannot be a high level objective for the application.
+Given the time constraints of the project it is not realistic to attempt to implement every variation of Ant Colony algorithms. It is far more realistic for the application to support few algorithm variations which will at a minimum include two different algorithm variations so users can have some insight into how different algorithms impact the overall result. This does not mean that supporting the majority of algorithm variations cannot be a high level objective for the application.
 
 \section{Objectives}
 \label{objy}
-The objectives listed below are generalised overall system goals. The author fully expects to have objectives which are not yet met, however these will be used as a reference point to further develop the application for future releases. The design decisions will be made with these high level objectives in mind and any design implementation which negatively impacts the applications ability to meet one or more of these objectives needs strong rationale for doing so.
+The objectives listed below are generalised overall system goals. The author fully expects to have objectives which aren’t achieved, however these will be used as a reference point to further develop the application. The design decisions will be made with these high level objectives in mind and any design implementation which negatively impacts the applications ability to meet one or more of these objectives needs strong rationale for doing so.
 
 \begin{itemize}
-\item Create an application which can visualise a basic Ant System algorithm execution including the problem representation, the agents solving the problem and the optimal returned path
+\item Create an application which can visualise the execution of two different Ant Colony algorithms
 \item Provide a suitable user interface which enables the user to modify the algorithms key parameters enabling the user to experiment with different parameter combinations
-\item Provide the visual representation of the algorithm’s execution in real time
-\item Allow the user to set the algorithms execution speed, enabling the user to slow the algorithm down if they want to focus on each agents movement or speed the algorithm up if they are more focused on the returned solution
+\item Provide a visual representation of the algorithm’s execution in real time
+\item Allow the user to set the algorithms execution speed enabling the user to slow the algorithm down if they want to focus on each agents movement or speed the algorithm up if they are more focused on the returned solution
 \item Support the majority of Ant Colony algorithm variations to enable the user to freely choose any algorithm they wish
-\item Support multiple problem representations, enabling the user to change the problem representation as they wish
+\item Support multiple problem representations enabling the user to change the problem representation as they wish
 \item When using the Travelling Salesman Problem representation allow for the ability for the graph to not be fully connected to see how the algorithm returns different results
-\item Support the option for some paths between nodes to be weighted, these paths will cost more to travel one way than the other
-\item Allow configurations to be loaded from and exported to external files, enables the user to consistently apply the algorithm to the same problem
+\item Support the option for paths between nodes to be weighted, these paths will cost more to travel one way than the other
+\item Allow configurations to be loaded from and exported to and from external files enabling the user to consistently apply the algorithm to the same problem
 \end{itemize}
 
 
 \section{Requirements}
 \label{funcymcdunky}
-These requirements are seen by the author as essential features that the application must provide. The requirements defined in appendix A section \ref{funcreq} describe the immediate goals for the application however, there is some overlap between the overall objectives described in section \ref{objy} and the functional requirements. In addition to this each functional requirement defined does not have equal importance, some of the requirements are indeed critical and must be completed at the earliest convenience. The evaluation of these requirements is described in appendix A table \ref{frtable} which shows a summary of all requirements and their dependencies.
+These requirements are seen by the author as essential features that the application must provide. The requirements defined in appendix A, section \ref{funcreq} describe the immediate goals for the application however, there is some overlap between the overall objectives described in section \ref{objy} and the functional requirements. In addition to this each functional requirement defined does not have equal importance, some of the requirements are indeed critical and must be completed at the earliest convenience. The evaluation of these requirements is described in table \ref{frtable} which shows a summary of all requirements and their dependencies.
 
-\section{Desireable, non-essential Features}
+\section{Desirable, non-essential Features}
 
-The features mentioned in this section are seen by the author as non-essential, however, if implemented these features would significantly improve the applications performance. The implementation of these features will only be considered, if and only if the requirements mentioned in section appendix A, section \ref{funcreq} have been met to a significant degree of accuracy. The application will however be designed in a way that will allow modification and maintenance to be less problematic, therefore the author feels there should be no reason why these features could not be implemented if there enough time during the development process to do so.
+The features mentioned in this section are seen by the author as non-essential however, if implemented these features would significantly improve the applications performance. The implementation of these features will only be considered, if and only if the requirements mentioned in section appendix A, section \ref{funcreq} have been met to a significant degree of accuracy. The application will be designed in a way that will allow modification and maintenance to be less problematic, therefore the author feels there should be no reason why these features could not be implemented if there enough time during the development process to do so. The intentions and efforts of the author will reflect the functional requirements being a top priority.
 
 \begin{itemize}
 \item Enable the user to switch between automated solving and an iterative step-by-step process, enabling a greater teaching potential.
-\item Upon completion or stoppage, a summary or report should be displayed to the user, enabling the user to perform analytics based on the contents of these reports.
+\item Upon completion or stoppage, a summary or report should be displayed to the user enabling the user to perform analytics based on the contents of these reports.
 \item Allow the ability for the application to generate graphs which are not fully connected to visualise how the algorithm deals with such complications.
 \end{itemize}
-
-The author realises that these features are outside of the projects general scope. The author also feels that although they maybe outside of the projects scope the implementation of these features is by no means out of the realms of possibility. The intentions and efforts of the author will reflect the functional requirements being a top priority.
