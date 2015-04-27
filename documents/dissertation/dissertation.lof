@@ -20,12 +20,12 @@
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Overall Sequence Diagram}}{34}
 \contentsline {figure}{\numberline {4.13}{\ignorespaces Elitist Ant System Flow Diagram}}{37}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of the proposed user interface. The contents of the red polygon highlights the additional features not present in the initial design.\relax }}{40}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Formula for Linear Interpolation where $x_1,y_1$ are the start coordinates, $x_2, y_2$ are the end coordinates and $\mu $ is the location to find \cite {interpolation:site}.\relax }}{47}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of the User Interface}}{40}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Linear Interpolation Formula}}{47}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Evidence of the completed execution of the applications unit tests. The view present is the built in Eclipse JUnit interface.\relax }}{52}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Unit Testing Summary}}{52}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Algebraic model of the pheromone deposit function for the Max-Min Ant System \cite {AntColontSite:slides}\relax }}{54}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Max-Mix Pheromone Function}}{54}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Use Case Diagram}}{63}
