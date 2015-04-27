@@ -4,21 +4,21 @@
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Elitist Ant System Pheromone Function}}{5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces The varation of the waterfall model used for solo development in this project. Modified from source image \cite {waterfall:image} \relax }}{12}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Waterfall Model Variant}}{12}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces The contents of the Control package show in standard UML Class diagram notation\relax }}{17}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces The contents of the View package show in standard UML Class diagram notation\relax }}{19}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The contents of the Model package show in standard UML Class diagram notation\relax }}{22}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces The contents of the Utils package show in standard UML Class diagram notation\relax }}{24}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces The proposed manner of package interaction expressed in standard UML Class diagram notation.\relax }}{25}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Implementation of the Observer and Observable Design pattern\relax }}{26}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Abstract proposal for the uphill viewer interface representing the different states possible at runtime.\relax }}{28}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Abstract proposal for the city detail interface.\relax }}{29}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Abstract proposal for the equation viewer interface.\relax }}{30}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Design of the File IO error feedback interface.\relax }}{31}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Flow diagram representation of the algorithm described in algorithm 1\hbox {}\relax }}{33}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Abstract overview of system interactions based on Algorithm 1\hbox {}\relax }}{34}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Flow diagram representation of the aglorithm described in algorithm 2\hbox {}\relax }}{37}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Control Package Class Diagram}}{17}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces View Package Class Diagram}}{19}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Model Package Class Diagram}}{22}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Utils Package Class Diagram}}{24}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Package Interaction Diagram}}{25}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Observer and Observable Implementation}}{26}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces UphillViewer Design}}{28}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces CityDetailViewer Design}}{29}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces EquationFrame Design}}{30}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces File IO Error Feedback Design}}{31}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Basic Ant System Flow Diagram}}{33}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Overall Sequence Diagram}}{34}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Elitist Ant System Flow Diagram}}{37}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of the proposed user interface. The contents of the red polygon highlights the additional features not present in the initial design.\relax }}{40}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Formula for Linear Interpolation where $x_1,y_1$ are the start coordinates, $x_2, y_2$ are the end coordinates and $\mu $ is the location to find \cite {interpolation:site}.\relax }}{47}

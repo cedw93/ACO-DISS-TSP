@@ -1,302 +1,296 @@
 \chapter{Design}
-
-This chapter describes the design rationale in relation the current system. This chapter will cover the overall system archtiecture, user interface designs as well psuedo code reprsentations of the main, non-trivial algorithms.
-
 \label{DesignSec}
-Section \ref{processSec} states how the author has a somewhat flexible approach allowing for adaptations to the initial design stated in appendix B. This section explores how the process has enabled the significant change of design to be implemented easily and without severe complication. The proposed design in appendix B and the final structure of the system are very different however, at an abstract level the key components still exist they are just represented differently within the current architecture. 
+This chapter describes the design rationale for the current system. This chapter will cover the overall system architecture, user interface designs as well pseudo code representations of the main, non-trivial algorithms. Chapter \ref{processSec} states how the author has a somewhat flexible approach enabling adaptations to the initial design. The proposed design in appendix B, and the final structure of the system are very different.
 
 \section{Language}
 
-The author has identified that the choice of language is an essential decision which must be made early in the projects development cycle. Appendix B, section \ref{lang} denotes the language decision process the author went through and ultimately states the final language choice.
+The author has identified that the choice of language is an essential decision which must be made early in the projects development. Appendix B, section \ref{lang} denotes the language decision process the author went through.
 
-The use of an appropriate language became even more important due to the fact that the design has undergone significant modifications since the initial proposed design. If the author had selected a language which happened to be unfamiliar but seemed good at the time, then the changes made to the initial design may have been much more complicated to implement. The author is very familiar with Java, more specifically Java 7 (Java 1.7) and above thus, implementing new features or refactoring existing systems is fairly familiar territory. The initial language choice rationale (appendix B, section \ref{lang}) did not factor in the potential for radical design change however, if it did the outcome would not change and the existing rationale would still be applicable to the project. In the authors opinion Java is the most appropriate language for this project.
+The use of an appropriate language became even more important due to the fact that the design has undergone significant modifications since the initial proposal. If the author had selected a language which he had little experience with then the changes made to the initial design may have been much more complicated to implement. The author is very familiar with Java, more specifically Java 7 (Java 1.7) and above thus, implementing new features or refactoring existing code is familiar territory. The initial language choice (appendix B, section \ref{lang}) did not factor in the potential for radical design change however, if it did the outcome would not change and the existing rationale would still be applicable to the project. In the authors opinion Java is the most appropriate language for this project.
 
 \section{Development Tools}
 \subsection{Development Enviroment}
 
-\subsubsection{Command Line Tools}
+\subsubsection{Command-line Tools}
 \label{sseccmd}
-The author considered using the combination of a simple text editor which in this case would have been Atom\cite{atom:textEditor} to write the code, and compilation of such written code using the command line and the default complier through the use of the $javac$ command. Atom is a free, open source hackable text editor provided by GitHub and provides syntax highlighting support for numerous language, including Java which is the language of choice for this project. This syntax highlighting is especially useful and makes the writing of the source code slightly easier, as is becomes much simpler to track the start and termination points for specific code blocks. However, as Atom does not have built in Java compilation abilities, the compilation process can become somewhat complicated.
+The author considered using a simple text editor such as Atom\cite{atom:textEditor} to write the code, and the command-line to compile said code using the default Java complier. Atom is a free, open source hackable text editor provided by GitHub and provides syntax highlighting support for numerous language including Java. This syntax highlighting is especially useful and makes the writing of the source code slightly easier, as is becomes much simpler to track the start and termination of specific code blocks. However, as Atom does not have built in Java compilation abilities, the compilation process can become complicated.
 
-Using this approach, the Java source files composed using Atom must be complied using the default Java complier, provided by the language specification. The problem with this method of compilation is that error detection and correction can become a very tedious process. If any complication errors are present after the $javac$ command has been executed, the trace presented in the terminal window can sometimes be quite difficult to parse for the error message, and tracking down the error in the source files could be a difficult task. For smaller projects, this method of complication is perfectly suitable and can be effectively managed. However, this project as discussed in section \ref{processSec} this is a rather large project for the author to undertake. As this is the case, the combination of size of the applications source code and manual complication leads the author to believe this method of writing and compiling code is not only inefficient, but also inappropriate for this project and could potentially hinder development.
+The problem with the above method of compilation is that error detection and correction can become a very tedious process. If any complication errors are present the trace presented in the terminal window can sometimes be quite difficult to parse resulting in increased difficulties tracking down the errors source. For smaller projects, this method of complication is perfectly suitable and can be effectively managed. This project as discussed in section \ref{processSec} is a rather large project for the author to undertake. As a result, the combination of source code size and manual compilation leads the author to believe this method of writing and compiling code is not only inefficient, but also inappropriate for this project.
 
-\subsubsection{Intergrated Development Environment}
+\subsubsection{Integrated Development Environment}
 
-The use of an Integrated Development Environment (IDE) can help to alleviate the problems that can come from using a writing and complication process such as that defined in section \ref{sseccmd}. There are many IDE's which support Java, however the author has preference is the use of the Eclipse IDE for Java Developers \cite{eclipse:IDE}. The Eclipse IDE provides a multitude of useful features as part of their default package. 
+The use of an Integrated Development Environment (IDE) can help to alleviate the problems that can come from using a writing and complication process such as that defined in section \ref{sseccmd}. There are many IDE's which support Java, however the author's preference is the use of the Eclipse IDE for Java Developers \cite{eclipse:IDE}. The Eclipse IDE provides a multitude of useful features as part of their default package. 
 
-One of the main features which Eclipse provides is automatic building of the probjects source. This is a major benefit when developing as you can simply write your code and run the built project without having the unnecessary complication of switching between several applications to achieve the same task. Also, as there is automatic building, any compilation errors will be clearly highlighted using a system which is familiar to most computer users. If there are any miss-spellings of method or variables names for example, Eclipse will underline these in red to show there is a clear problem with this exact line of code. This is similar to the default scheme provided by most word processors, enabling a logical mapping between this red underlined line of code and the fact that there is an error present there.
+One of the main features which Eclipse provides is automatic building of the projects source. This is a major benefit when developing as you can simply write your code and run the built project without having the unnecessary complication of switching between several applications to achieve the same task. Also, as there is automatic building, any compilation errors will be clearly highlighted using a system which is familiar to most computer users. If there are any miss-spellings of method or variables names for example, Eclipse will underline these in red to show there is a clear problem with this exact line of code. This is similar to the default scheme provided by most word processors, enabling a logical mapping between this red underlined line of code and an errors presence.
 
-Another useful feature provided by the Eclipse IDE is the auto completion of variables and method names. This has sped up the development process for the author as there was no need to constantly look at the API's or other project source files for method names, the author could simply type the Object of interest's identifier and see a list of all methods and variables associated with such Object. This is not possible to do if the author used an approach similar to that discussed in section \ref{sseccmd}.
+Another useful feature provided by the Eclipse IDE is the auto completion of variables and method names. This has sped up the development process for the author as there was no need to constantly look at the API's or other project source files for method names, the author could simply type the object of interests identifier and see a list of all methods and variables associated with such object. This is easily done if the author used an approach similar to that discussed in section \ref{sseccmd}.
 
-In addition to the built in compilation feature, Eclipse also provides an integrated debugging toolkit. The Eclipse debugger enables easy creation and removal of break points, as well as all the usual features you would expect from a debugger such as, step through and step over, exploring the various contents of different variables and objects. These features are also provided by command line debugging tools, however the author is far more comfortable using a graphical interface to debug the application as it is much earlier to access the features of the debugger using this approach.
+In addition to the built in compilation feature, Eclipse also provides an integrated debugging toolkit. The Eclipse debugger enables easy break point management, as well as all the usual features you would expect from a debugger such as; step through, step over and exploration of objects and variables. These features are also provided by command-line debugging tools however, the author is far more comfortable using a graphical interface to debug the application as it is easier to access the features of the debugger.
 
-Eclipse also has built in Junit support. This project will use the JUnit library as part of the testing process (more details see \ref{junitsupport}). Similar to how the IDE makes the writing of the applications code easier, the support of test suites such as JUnit makes the test process much easier. The code responsible for the tests will also have access to the features provided by the IDE as mentioned above, this includes in place builds and auto completion. In addition to this you can run the tests inside the IDE and get accurate feedback on how many test ran, how many failed and why these tests failed. The author uses this to identify failed tests to be easily identified and repaired. Eclipse also supports a variety of other languages and features but these are not relevant to this project currently.
+Eclipse also has built in Junit support. This project will use the JUnit library as part of the testing process (more details see \ref{junitsupport}). Similar to how the IDE makes the writing of the applications code easier, the support of test suites such as JUnit makes the test process much easier. The code responsible for the tests will also have access to the features provided by the IDE as mentioned above. In addition to this you can run the tests inside the IDE and get accurate feedback on how many test executed and how many failed and why these tests failed.
 
 \subsection{Support Tools}
 
 \subsubsection{Maven}
 
-Maven is tool used for building and managing projects, specifically Java-based projects \cite{maven:site}. The Maven framework provides a lot of useful utilities for developing successful Java-based projects and ensuring that such projects adhere to certain standards. The Maven framework aims to provide convention, over configuration. If there are multiple projects which have many different dependencies, some of which could be external Jar files, then Maven can allow other projects to make use of these dependencies. As a result, if a new project is decided there is less time spent configuring as the dependencies are already presented using this Maven framework. However, the author is working alone, and is not expecting to have any other projects which will share dependencies with this one, thus the author has to weight up if this framework would actually help the development process.
+Maven is tool used for building and managing projects, specifically Java-based projects \cite{maven:site}. The Maven framework provides a lot of useful utilities for developing successful projects and ensuring that such projects adhere to certain standards. The Maven framework aims to provide convention, over configuration. If there are multiple projects which have many different dependencies, for example external Jar files, then Maven can allow other projects to make use of these dependencies. As the author is working alone and is not expecting to have any other projects which will share dependencies with this one, the author has to weigh up if this framework would actually benefit the development process.
 
-Maven provides some useful testing capabilities. When testing using the Maven framework, tests are still written using the Junit libraries (see \ref{junitsupport}). However, the Maven framework provides some additional features which the author feels could be of use. Maven, will give the author a Unit test report should one be required which will cover numerous details, most important a coverage report will be produced. This enables the author to assess how well the unit testing has been done. Although this test report is a very useful feature, the Maven is not a necessity nor is it complication free.
+Maven provides some useful testing capabilities. When testing using the Maven framework, tests are still written using the Junit libraries (see \ref{junitsupport}). The Maven framework provides some additional features which the author feels could be of use. Maven, will give the author a Unit test report should one be required which will cover numerous details, most importantly a test coverage report will be produced. This enables the author to assess how well the unit testing has been done. Although this test report is a very useful feature, the Maven framework is not a necessity nor is it complication free.
 
-The main complication that the author has with use the of Maven for this project is that fact that as this is generally a small project, Maven and its features would not be fully utilised but the hassle of configuring the framework would still be present. The initial project configuration would be time consuming, given that the author is inexperienced with the framework and this time could be spent on the actual project development. There are plugins which enable Maven to be used with an IDE such as Eclipse, the author feels that Maven would not be appropriate for use here, however the test reports would be extremely useful.
+The main complication that the author has with use the of Maven for this project is that fact that as this is generally a small project, Maven and its features would not be fully utilised but the hassle of configuring the framework would still be present. The initial project configuration would be time consuming, given that the author is inexperienced with the framework and this time could be spent on the actual project development. There are plugins which enable Maven to be used with an IDE such as Eclipse, the author feels that Maven would not be appropriate for use here however, the test reports would be extremely useful.
 
 \subsection{GitHub}
 
-The author has seen the use of GitHub as an essential part of the development process. GitHub has enabled the author have strict version control throughout the development process. As this is the case, the author has been able to store a local repository, which will exist as the working directory for the applications development whilst also allowing a working copy, with the current most up-to-date fully working project code to be stored safely online using GitHub. There has been numerous times throughout the development lifecycle where the author has had to revert back to a previous version of the applications code, GitHub has allowed this process to be more hassle free. As it is so simple to manage different versions of the application, each representing a different collection of working or non-working features the author has been able to develop in confidence as he knows that any mistakes or experiments are not very costly as there is always a backup version stored at the GitHub repository location.
+The author has seen the use of GitHub as an essential part of the development process. GitHub has enabled the author have strict version control throughout the development process. As this is the case, the author has been able to store a local repository which will exist as the working directory for the applications development whilst also allowing a working copy with the most up-to-date fully working project code to be stored safely online using GitHub. At numerous times throughout the development lifecycle the author had to revert back to a previous version of the applications code GitHub has allowed this process to be almost hassle free. As it is so simple to manage different versions of the application, each representing a different collection of working or non-working features the author has been able to develop in confidence as he knows that any mistakes or experiments are not as costly as there is always a backup version stored at the GitHub repository location.
 
-Without the use of GitHub (or another version control system) the author would have found it difficult to progress the application as expected. If there was no form of version control, then the mistakes the author made or external factors which then rendered the current development code unusable would be a far more disastrous. There was a time during development where the authors working directory became corrupt. This was easily resolved by simply retrieving the code stored in the projects GitHub repository, however if GitHub was not being used here, then there would have been a high possibility than the author would have lost all progress on the application.
+Without the use of GitHub the author would have found it difficult to progress the application as expected. If there was no form of version control, then the mistakes the author made or external factors which then rendered the current development code unusable would be a far more disastrous. There was a time during development where the authors working directory became corrupt. This was easily resolved by simply retrieving the code stored in the projects GitHub repository. If GitHub was not being used here, there would the possibility that the author would have lost progress on the application.
 
 \subsubsection{JUnit}
 \label{junitsupport}
 
-JUnit is an open source framework for unit testing Java applications. The Junit libraries provide a multitude of features that allow for a more simplistic approach to testing. Numerous other test frameworks are available however, the author is very experience with JUnit and feels that the features provided by this framework are more than suitable for the unit testing of this application.
+JUnit is an open source framework for unit testing Java applications. The Junit libraries provide a multitude of features that allow for a more simplistic approach to testing. Numerous other test frameworks are available however, the author is experienced with JUnit and feels that this framework is more than suitable for the unit testing of this application.
 
-The author feels that a testing framework is essential for efficient and accurate unit tests for any application. If the author had neglected to use a testing framework such as Junit and manually tested the application using a looking manually for abnormal output (LMFAO) then the quality and coverage of the unit testing would reduce significantly. If the author used a manual approach such as this which relied on outputs then the author could potentially have a situation where the code in outputting the correct result, but the inner workings are expressing incorrect behaviours which can’t be manually checked. This means that you could ship a product which is assumed to be functioning as expected then suddenly, the application is significantly misbehaving. In addition to this it is difficult to automate manual testing as the author would need to check the outputs himself. A testing framework such as JUnit not only allows for the tests to be fully automated, the tests also become scalable. Every code change would need to be re-evaluated against the existing unit tests, which is easily done if you have a series of test which can be executed automatically. If a manual approach was used, then it becomes a near impossibility that every change can be tested as it would simply be too much to check as the addition of this new code has scaled the number of application inputs and outputs as well the conditions in the codes logic.
+The author feels that a suitable testing framework is essential for efficient and accurate unit tests for any application. If the author had neglected to use a testing framework such as Junit and manually tested the application (looking manually for abnormal output (LMFAO)) then the quality and coverage of the unit testing would reduce significantly. If the author used a manual approach which relied on outputs then the author could potentially have a situation where the code is outputting the correct result but is internally flawed this cant be manually checked. This means that you could ship a product which is assumed to be functioning as expected then suddenly the application is misbehaving. A testing framework such as JUnit not only allows for the tests to be fully automated the tests also become scalable. Every code change would need to be re-evaluated against the existing unit tests, which is easily done if you have a series of test which can be executed automatically. If a manual approach was used, then it becomes a near impossibility that every change can be tested as it would simply be too much to check as the addition of this new code has scaled the number of application inputs and outputs as well the conditions in the codes logic.
 
 \section{Overall Architecture}
 
-The process used during this applications development has enabled the author to modify the proposed overall architecture significantly. This has enabled the author to add additional features which were not additionally planned, this includes the addition of extra algorithm types and modifiers as well as enabling the potential heavy refactoring of code into more logical methods and classes. The new application architecture is much more complex that the initial proposed design, as a result each package will be represented as its own set of diagrams, and then an overall representation showing the interactions between these packages will be explained. In all figures below, getter and setter methods are emitted but are assumed to be present. The packages referebced in this section will take the form of $che16.dcs.aber.ac.uk.xxx$ where $xxx$ is the corresponding package name.
+The process used during this applications development has enabled the author to add additional features which were not additionally planned, this includes the addition of extra algorithm types and modifiers as well as refactoring of code into more logical methods and classes. The new application architecture is much more complex that the initial proposed design as a result each package will be represented as its own set of diagrams, then an overall representation showing the interactions between these packages will be explained. In all figures below, getter and setter methods are omitted but are assumed to be present. The packages referenced in this section will take the form of $che16.dcs.aber.ac.uk.xxx$ where $xxx$ is the corresponding package name.
 
 \subsection{Controller}
 
-The Controller package has undergone several changes since the initial design of the system as defined in appendix B, section \ref{sssec:cntrl}. The general ideologies have however remained the same, the ranges of features provided by the application as a whole has increased thus, the author saw these modifications the Control package contents as a necessity in order correctly control these new features whilst also adhering to the existing Model-View-Controller framework.
+The Controller package has undergone several changes since the initial design of the system as defined in appendix B, section \ref{sssec:cntrl}. The general ideologies have however remained the same the range of features provided by the application as a whole has increased thus, the author saw these modifications the Control package contents as a necessity in order correctly control these new features whilst also adhering to the existing Model-View-Controller framework.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.23]{Images/chapter4/controller}
-\caption{The contents of the Control package show in standard UML Class diagram notation}
+\caption[Control Package Class Diagram]{The contents of the Controller package in standard UML Class diagram notation}
 \label{fig:controllerImp}
 \end{figure}
 
 \subsubsection{Class Descriptions}
 
-The \textbf{Driver} Class remains largely unchanged from its initial proposed design (see appendix B, section \ref{driver:classdef}) however, it now interacts with the other components in a slightly different manner. The Driver Class remains as the entry point for the application, however, the Driver has the additional responsibilities of instantiating the Control instance, as well as handling the correct associations needed. The general purpose of the Driver Class is still to ensure the system components are correctly instantiated, and holds no references to any instances of any Object.
+The Driver class remains largely unchanged from its initial proposed design (see appendix B, section \ref{driver:classdef}) however, it now interacts with the other components in a slightly different manner. The Driver class remains the sole entry point for the application. The Driver now has the additional responsibilities of instantiating the Control instance. The general purpose of the Driver class is still to ensure the system components are correctly instantiated, and holds no references to any instances of any object.
 
-The \textbf{Control} as represented in figure \ref{fig:observableImp} is designed to observe the model and notify the view should the state of the model change significantly. In addition to this, the required instanced of MenuListener and ControlPanelListener are instantiated in this Class, and a reference to this Control Object is maintained the created instances of said Objects. The Control Class is an additional feature not present in the initial design, this is because as represented in figure \ref{fig:observable} the DisplayFrame initially observed the model, this has since been modified. This Class has the potential to be extended to support several other Observable Objects should this functionality be needed by the author in the future.
+The Control as represented in figure \ref{fig:observableImp} is designed to observe the model and notify the view should the state of the model change significantly. In addition to this, the required instanced of MenuListener and ControlPanelListener are instantiated in this class and a reference to this Control object is maintained the created instances of said objects. The Control class is an additional feature not present in the initial design and is a result of the refactoring process. This class has the potential to be extended to support several other observable objects should this functionality be needed by the author in the future.
 
-An instance of the \textbf{MenuListener} is used to listen the JMenuBar present in the DisplayFrame. This is designed to enable a collective way to manage all actions represented by the items contained in the JMenuBar. The alternative approach is to give each element in the JMenuBar its own Action Listener. This is far from efficient and increases both the codes complexity, and reduces overall maintainability of the application. The author decided to use a dedicate Object such as this, to listen to the menu and perform appropriate actions. This Class maintains an instance of the Control Class, this enables the instance of this Class to have access to the model and view instances stored in the Control instance enabling a simple way for the JMenuBar to have access to necessary functions.
+An instance of the MenuListener is used to listen the JMenuBar. This is designed collectively manage the actions represented by the elements contained in the JMenuBar. The alternative approach is to give each element in the JMenuBar its own Action Listener. This is far from efficient and increases both the codes complexity, and reduces overall maintainability of the application. The author decided to use a dedicated object such as this to listen to the menu and perform appropriate actions. This class maintains an instance of the Control class this enables the instance of this class to have access to the model and view instances stored in the Control instance enabling a simple way for the JMenuBar to have access to necessary functions.
 
-A \textbf{ControlPanelListener} instance is designed to be a dedicated ActionListener for the ControlPanel (see section \ref{model:classdef}) instance. Two separate ActionListeners are present in this application, this is because the author wanted to have dedicated listeners for each component, rather than having a combined Object representing this Class and the MenuListener Class. The author feels that this is appropriate as any behaviour modifications or changes the Object which will be listened to becomes much simpler to accomplish if relevant behaviours are extracted into logical modules such as this design exhibits.
-
+A ControlPanelListener instance is designed to be a dedicated ActionListener for the ControlPanel (see section \ref{model:classdef}). Two separate ActionListeners are present in this application, this is because the author wanted to have dedicated listeners for each component, rather than having a combined object representing this class and the MenuListener. The author feels that this is appropriate as any modifications to the object which will be listened to becomes simpler to accomplish if relevant behaviours are extracted into logical modules such as this design exhibits.
 
 \subsection{View}
 
-The View package serves the same purpose as initial designed however, there has been a singnificant amount of refactoring applies to the initial design to enable a more effective graphical user interface to be created. The author has also added several new Classes into this package to represent additional views which were not initially visioned, but during development the author recognised that these new views were essential.
+The View package serves the same purpose as initial designed however, there has been a significant amount of refactoring applied to the initial design to enable a more effective graphical user interface to be created. The author has also added several new classes into this package to represent additional views which were not initially envisioned, but during development the author recognised that these new views were essential.
 
 \clearpage
 \begin{sidewaysfigure}
 \includegraphics[scale=0.225]{Images/chapter4/view}
-\caption{The contents of the View package show in standard UML Class diagram notation}
+\caption[View Package Class Diagram]{The contents of the View package in standard UML Class diagram notation}
 \label{fig:classdiagramImp}
 \end{sidewaysfigure}
 \clearpage
 
 \subsubsection{Class Descriptions}
 \label{view:clss}
-Initial the \textbf{DisplayFrame} was designed to simply represent the highest level container which houses the remaining graphical user interface elements. As figure \ref{fig:classdiagram} in appendix B shows the initial design for this class happened to be very simplistic and lightweight. The author decided to include an additional user interface elements which was not originally planned. This addition happened to be JMenuBar, which was contained within this DisplayFrame instance. As this is the case, the DisplayFrame Class grew it size as it now encapsulates the JMenuBar and the menu elements of said JMenuBar as well as defining constants such as font styles. Although the size of this Class has grew, the complexity and functionality remains unchanged, it remains as the highest level container for the graphical user interface and control the instantiation of such elements.
+Initially the DisplayFrame was designed to simply represent the highest level container which houses the remaining graphical user interface elements. As figure \ref{fig:classdiagram} shows the initial design for this class was very simplistic and lightweight. The author's decision to include additional user interface elements which were not originally planned has resulting in modification to the designed class. A JMenuBar has been added and as a result the DisplayFrame class grew in size in order to accommodate this JMenuBar and its necessary underlying elements. Although the size of this Class has grown the complexity and functionality is largely unchanged, it remains as the highest level container for the graphical user interface and control the instantiation of such elements.
 
-The \textbf{DisplayCanvasContainer} is the result of renaming the DisplayPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B). This Class is designed as a container to the DisplayCanvas instance, this functionality is as designed and the author has not modified its behaviour.
+The DisplayCanvasContainer is the result of renaming the DisplayPanel class in the initial design (figure \ref{fig:classdiagram}). This class is designed as a container to the DisplayCanvas instance, this functionality is as designed and the author has not modified its behaviour.
 
-An instance of the \textbf{DisplayCanvas} Class is used to actually visualise the algorithms state of execution to the application user. This will be the component that is painted during the algorithms execution using the $paintComponent$ method which it inherits from its JFrame super Class. As the functionality provided by this Class is very simplistic, the current implementation remains unchanged from the initial proposed design (see Figure \ref{fig:classdiagram}, appendix B).
+An instance of the DisplayCanvas class is used to visualise the algorithms state of execution to the users. This is the component that is painted during the algorithms execution using the $paintComponent$ method which it inherits from its JFrame super class. As the functionality provided by this Class is very simplistic, the current implementation remains unchanged from the initial design proposal (figure \ref{fig:classdiagram}).
 
-The addition of the \textbf{CityDetailView} is a simple JFrame container which is used to display a JTable with data representing the number of agents currently at each city in the current World. The JFrame displayed by this Class can be toggled between visible and invisible through user interaction with the respective JMenuBar item.
+The addition of the CityDetailView is a simple JFrame container which is used to display a JTable with data representing the number of agents currently at each city location. The JFrame displayed by this Class can be toggled between visible and invisible through user interaction with the respective JMenuBar item.
 
-The structure of the table represented visually by the CityDetailView, is modelled by the \textbf{MyTableModel} Class. Extracting the table’s structure into a separate Class enables easier modification of the structure as well as reducing the coupling between the view and the table itself.
+The structure of the table represented visually by the CityDetailView, is modelled by theMyTableModel class. Extracting the table’s structure into a separate class enables easy modification of the structure as well as reducing the coupling between the view and the table itself.
 
-Similar to the DisplayCanvasContainer Class, the \textbf{ControlContainer} Class is used to contain the user input elements in their own separate location. This is a result of refactoring the UserInputPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B) into this container and the ControlPanel Class. The main purpose for this Class is to allow more a more diverse range of positioning utilities to become available allowing for an easily modifiable interface.
+Similar to the DisplayCanvasContainer class, the ControlContainer is used to encapsulate the user input elements in their own separate container. This is a result of refactoring the UserInputPanel class in the initial design (figure \ref{fig:classdiagram}) into this container and the ControlPanel class. The main purpose for this class is to allow for a more diverse range of LayoutManagers to become available allowing for an easily modifiable interface.
 
-The \textbf{ControlPanel} Class used to contain the interface elements which directly relate to the creation and modification of the problem and world. This includes housing the text fields and labels required to enable the user to customise the algorithm parameters, as well as providing a simple means to start and stop the execution using a simple JButton approach. This Class is essentially an extended version of the UserInputPanel Class in the initial design (see Figure \ref{fig:classdiagram}, appendix B), aside from the fact that more interface elements have been added, the functionality is the same.
+The ControlPanel class used to contain the interface elements which directly relate to the creation and modification of the problem and world. This includes housing the text fields and labels required to enable the user to customise the algorithm parameters, as well as providing a simple means to start and stop the execution using a simple JButton approach. This class is essentially an extended version of the UserInputPanel class in the initial design (figure \ref{fig:classdiagram}) aside from the fact that more interface elements have been added the functionality is the same.
 
-The \textbf{EquationFrame} Class an extension of the JFrame Class which is used to display an graphic explaining the workings and functions of the underlying algorithms. As this is an educational application. The Class has no other functionality aside from the providing a means of displaying such graphics which is itself, contained within the ProbabilityPanel and PheroPanel Classes.
+The EquationFrame class an extension of the JFrame Class which is used to display a graphic explaining the underlying algorithm functions. This class has no other functionality aside from the providing a means of displaying such graphics which is itself, contained within the ProbabilityPanel and PheroPanel Classes.
 
-Both \textbf{ProbabilityPanel} and \textbf{PheroPanel} are nested Classes inside the EquationFrame Class. These Classes are extensions of the JPanel Class and are used to contain different graphics which will be used to represent information relevant to the underlying probability and pheromone functions respectively.
+Both ProbabilityPanel and PheroPanel are nested classes inside the EquationFrame. These classes subclass JPanel and are used to contain different graphics which will be used to represent information relevant to the underlying probability and pheromone functions respectively.
 
-the \textbf{UphillViewer} Class is another new addition which was not perceived in the initial design. This Class is a sub Class of JFrame and is used to house an UphillPanel instance. This JFrame can be togged between visible and invisible with relevant user interaction with the JMenuBar contained in the DisplayFrame.
+The UphillViewer class is another new addition which was not perceived in the initial design. This class is a subclass of JFrame and is used to contain an UphillPanel instance. This JFrame can be togged between visible and invisible with relevant user interaction with the JMenuBar contained in the DisplayFrame.
 
-An instance of the \textbf{UphillPanel} Class is used to display information about the current status of the uphill routes for the current algorithms execution. This is an extension the JPanel Class, enabling the uphill route data to be painted to the component using the inherited $paintComponent$ method. This is a nested Class inside the UphillView Class as the author felt a this was the most appropriate way to represent such a Class  as no other Class uses or needs the knowledge of this Class.
+An instance of the UphillPanel class is used to display information about the current status of the uphill routes for the current algorithms execution. This is an extension the JPanel class, enabling the uphill route data to be painted to the component using the inherited $paintComponent$ method. This is a nested class inside UphillView as no other objects uses or needs the knowledge of this a nested class is the most suitable way to contain it.
 
 \subsection{Model}
 
-The elements contained in the initial proposed designed represented in  Figure \ref{fig:classdiagram}, appendix B have undergone significant refactoring which has produce a vastly different structure. During the development process the athour found the the intial design happened to be inaquate for representing the aglorithm in a suitable manner, as it lacked necessary components and detail.
+The elements contained in the initial proposed designed represented in figure \ref{fig:classdiagram} has undergone significant refactoring which has produced a vastly different structure. During the development process the author found the the initial design happened to be inadequate for representing the algorithm in a suitable manner as it lacked necessary components and detail.
 
 \clearpage
 \begin{sidewaysfigure}
 \includegraphics[scale=0.22]{Images/chapter4/model}
-\caption{The contents of the Model package show in standard UML Class diagram notation}
+\caption[Model Package Class Diagram]{The contents of the Model package in standard UML Class diagram notation}
 \label{fig:classdiagramImp}
 \end{sidewaysfigure}
 \clearpage
 
-
 \subsubsection{Class Descriptions}
 \label{model:classdef}
 
-The initial concept behind the \textbf{AntColonyOptimisation} Class is that this servers as the main control point and data centre for the algorithms representation. This Class is used to store all the necessary parameter values and is also responsible for in instantiation of the Word representation and therefore, indirectly the graph. This Class also controls external package access to the Model package and its data. This largely remains the same as designed, however, there are slight modification to accommodate the extra functionality added.
+The initial concept behind the AntColonyOptimisation class is that this serves as the main control point and data centre for the algorithms execution. This class is used to store all the necessary parameter values and is also responsible for the instantiation of the Word representation. This class also controls external package access to the Model package and its data. This largely remains the same as designed however, there are slight modifications to accommodate additional functionality.
 
-The \textbf{Worker} Class was something that wasn’t initially planned. As discussed in \Large REFERENCE IMPLEMENTATION OF SWING WORK \normalsize there was a necessity for a way to control the algorithms execution without interfering with the performance of the system or host machine. This Class is an extension of the SwingWorker Class and uses the inherited $doInBackground$ perform the algorithms execution in a suitable manner. 
+The Worker class was something that wasn’t initially planned. As discussed in \ref{swingmeupm8} there was a necessity for a way to control the algorithms execution without interfering with the performance of the interface. This class is an extension of the SwingWorker class and uses the inherited $doInBackground$ method to perform the algorithms execution in a suitable manner. 
 
-The \textbf{World} Class is used to model the problem representation and the environment which the agents will be deployed during the algorithms execution. This Class houses all the data relevant to such representations including a List of all Ant and City Object as well as having basic data structures which provide an effective representation of the pheromone concentrations for every edge within the graph. This Class also handles the manipulation of pheromones on such edges. This Class is generally the same as proposed in Figure \ref{fig:classdiagram}, appendix B excluding the additional feature support.
+The World class is used to model the problem representation and the environment for which the agents will be deployed during the algorithms execution. This class houses all the data relevant to such representations including a List of all Ant and City objects as well as having basic data structures which provide an effective representation of the pheromone concentrations for every edge within the graph and controls the manipulation of pheromones on such edges. This class is generally the same as proposed in figure \ref{fig:classdiagram} however slight modifications have been made to support additional features.
 
-A \textbf{City} Object is used to represent a node in the current problem representation graph. A list of these City Object is maintained in the current World instance, and iterated through during both the solving and painting processes.
+A City object is used to represent a node in the current problem representation graph. A collection of these City objects is maintained in the current World instance, and iterated through during both the solving and painting processes.
 
-A \textbf{Pheromone} Object is used to model the pheromone concentrations for any given edge. A two-dimensional array of these Objects is maintained in the current World instance, and these Objects are constantly manipulated during the pheromone deposit and decay operations. 
+A Pheromone object is used to model the pheromone concentrations for any given edge. A two-dimensional array of these Objects is maintained in the current World instance, and these Objects are constantly manipulated during the pheromone deposit and decay operations. 
 
-An \textbf{Ant} Object is used to represent an agent which will be deployed in the current environment in order to solve the current problem. The World instance will maintain a list of all current Ant Objects. Each Ant is able to move and deposit pheromone accordingly, this these Objects have sufficient variables and methods to enable this functionality. The initial design suggested the use of an AntInterface, however as the author has decided that there will only be one type of Ant Class, he has deemed the Interface to be unnecessary. Generally, this Class is as designed in Figure \ref{fig:classdiagram}, appendix B.
+An Ant object is used to represent an agent which will be deployed in the current environment in order to solve the current problem. The World instance will maintain a collection of these objects. Each Ant has sufficient variables and methods to enable them to move and deposit pheromones accordingly. The initial design suggested the use of an AntInterface, however as the author has decided that there will only be one type of Ant thus, the interface is deemed to be unnecessary. Generally, this class is as designed in Figure \ref{fig:classdiagram}.
 
-The \textbf{EliteAntData} is a nested Class inside the World Class which is used to store the current elite routes. This feature is only necessary if the user has selected ElitistAnts as the current algorithm type. This is required as if there are numerous iterations, the Ant Objects get reset each iteration and this is a lightweight way to store the elite ants for the course of the algorithm execution, as storing just the distances and routes of the best ants has less overheads when compared to storing whole Ant Objects.
+The EliteAntData is a nested class inside the World which is used to store the current elite routes. This feature is only necessary if the user has selected the Elitist Ant System as the current algorithm type. This is required to correctly preserver the best routes across iterations as the ant objects get reset each iteration. Rather than storing a whole ant object the author has opted only to store the best distances and best routes as this has less overheads when compared to storing an ant in full.
 
 \subsection{Utils}
 
-During development the author decided that there were methods that were being repeated implemented in numerous places, in order to prevent code duplication and promote reusability the utils package was implemented. This is a very simple package, containing one Class, however, the contents of this Class don't belong in any other package individually thus, have been implemented separately.
+During development the noticed that some methods were being implemented in numerous locations. To prevent code duplication and promote re-usability the Utils package was implemented. This is a very simple package, containing one class however, the contents of this class don't belong in any other package individually.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{Images/chapter4/gloabls}
-\caption{The contents of the Utils package show in standard UML Class diagram notation}
+\caption[Utils Package Class Diagram]{The contents of the Utils package in standard UML Class diagram notation}
 \label{fig:utilsImp}
 \end{figure}
 
-Figure \ref{fig:utilsImp} represents the single Class contents of the Utils package. This Globals Class contains several publically avliable static variables and methods enabling application wide access. This enables the multiple packages which rely on the results of the features present to still have access whilst also reducing the amount of repeated code in the application. In addition to this, this Class also enables the execution mode to be switched from release, to test mode. When in test mode the error messages require no user response enabling the automated test process to complete more easily.
+Figure \ref{fig:utilsImp} represents the single class contents of the Utils package. This Globals class contains several publicly available static variables and methods enabling application wide access. This enables the multiple packages which rely on the results of such methods to retain access to them whilst also reducing the amount of repeated code. In addition this class enables the execution mode to be switched from release to test mode. When in test mode the error messages require no user response enabling the automated test process to complete more easily.
 
 \subsection{System Interactions}
 
-The different packages and their contents have been described above, however the interactions between packages must be carefully designed to ensure correct implementation and of the Model-View-Controller design pattern. 
-
+The different packages and their contents have been described above however, the interactions between packages must be carefully designed to ensure correct implementation and of the Model-View-Controller design pattern. 
 
 \clearpage
 \begin{sidewaysfigure}
 \includegraphics[scale=0.22]{Images/chapter4/overallClassinteraction}
-\caption{The proposed manner of package interaction expressed in standard UML Class diagram notation.}
+\caption[Package Interaction Diagram]{The proposed manner of package interaction expressed in standard UML Class diagram notation.}
 \label{fig:interacttion}
 \end{sidewaysfigure}
 \clearpage
 
-Figure \ref{fig:interacttion} demonstrates how the entry to the view and Model packages is governed by the instances of the DisplayFrame and AntConolonyOptimisation Classes respectively. This keeps the interaction between packages simple, and enables sensitive data to be hidden, or modified easily without having to change the way the components of the system interact. This design adheres to the Model-View-Controller principles as the Controller package and its contents govern the interactions between the Model and View. The view, has no reference to the model however, at runtime an instance of the model is passed to the View in order for the painting of necessary components to take place. As there is no explicit link between the model and view, these packages can be easily modified or substituted in order to change the current representation, there is no coupling between the contents of these packages.
-
+Figure \ref{fig:interacttion} demonstrates how the access to the View and Model packages is governed by the instances of the DisplayFrame and AntConolonyOptimisation respectively. This keeps the interaction between packages simple and enables encapsulation of sensitive data. This design adheres to the Model-View-Controller principles as the Controller package and its contents govern the interactions between the Model and View. The view, has no reference to the model however, at runtime an instance of the AntConolonyOptimisation is passed to the View in order for the painting of necessary components to take place. As there is no explicit link between the model and view these packages can be easily modified or substituted in order to change the current representation there is no coupling between the contents of these packages.
 
 \section{Design Patterns}
 \subsection{Model-View-Controller}
-The current design still maintains and adheres to the Model-View-Controller(MVC) principles discussed in Appendix B, section \ref{sssec:mvc} however, the complexity of the different packages has changed both in terms of internal package structure and features provided. As designed, the author has implements an MVC compliant architecture is through the use of the Observer and Obseravle relationship using the corresponding default Java Classes. The general conecpt is implemented as defined in appendix B, section \ref{obby} slight modification have been made to the Classes representing the different components of the Observer and Observable concept.
+The current design still adheres to the Model-View-Controller(MVC) principles discussed in Appendix B, section \ref{sssec:mvc} however, the complexity of the different package elements has increased. As designed, the author has implemented an MVC compliant architecture through the use of the Observer and Observable relationship using the corresponding default Java framework. The general concept is implemented as defined in appendix B, section \ref{obby} slight modifications have been made to the classes representing the different components of the Observer and Observable concept.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{Images/chapter4/observerImplemetation}
-\caption{Implementation of the Observer and Observable Design pattern}
+\caption[Observer and Observable Implementation]{Implementation of the Observer and Observable Design pattern}
 \label{fig:observableImp}
 \end{figure}
 
-Figure \ref{fig:observableImp} demonstartes how the Control Class will implement the Observer interface, which will listen to the Observable Object and determine correct actions based upon the source of update. The AntColonyOptimisation Class is as defined in section \ref{model:classdef} is the Object which is in fact Observable, and extends the Observable super Class. As the AntColonyOptimisation instance is now a subclass of Observable, it now has access to key methods such as $registerObserver()$ which allows the athor to assign the Control instance as the desiginated Observer and $notifyOberservers()$ which enables the author to dictate when updates are published, this enables the Control instance to process update notifications and notify the relevant view elements that the state of the model has changed, enabling the seperation of the view and model.
+Figure \ref{fig:observableImp} demonstrates how the Control class will implement the Observer interface. This listens to the Observable object and determines the correct actions based upon the source of update. The AntColonyOptimisation class is as defined in section \ref{model:classdef} and acts as the observable object through its extension of the Observable super class. This inheritance grants the AntColonyOptimisation instance access to key methods such as $registerObserver()$ this allows the author to assign the Control instance as the designated observer. The $notifyOberservers()$ methods enables the author to dictate when updates are published to the Control instance which will the correctly update the View.
 
 \subsection{Singleton}
 
-Initially the author proposed that the user interface elements would implement the Singleton design pattern\cite{gof:design:singleton}, an example this proposed design can be seen in appendix B, section \ref{sssec:singleton} however, the Singleton pattern is not present in the current system architecture. The author initially implemented the main elements from the view package (see \ref{view:clss}) this caused several complications for the author. As the instance of the Singleton Object is globally accessible, difficulties arose during the application debugging. This issue happened to be more prevalent when extending the functionality provided by each of the Singleton Classes, for example the DisplayFrame Class now handles contains a wider range of functionality than initial planned. Not only did the Singleton instance make the addition of these extended features more complicated than the author intended, debugging these new features became more difficult as the global access made it harder to track the source of the bug itself. This is due the fact that it is easy to accidently interact and modify a global variable or instance, often the source of these bugs were not where the author expected and were often due to an incorrect interaction with these new extensions in a package which should not be able to access them. This was the main reason the author decided to withdraw the use of the Singleton pattern as the author felt it was much simpler to not have global access to these instances and features.
+Initially the author proposed that classes that compose the user interface would implement the Singleton design pattern\cite{gof:design:singleton}, an example this proposed design can be seen in appendix B, section \ref{sssec:singleton}. The author had initially implemented the interface witch each class implementing the Singleton pattern which caused complications. The Singleton pattern is however absent in the current architecture. As the instance of a Singleton object is globally accessible, difficulties arose during the application debugging. This issue happened to be more prevalent when extending the functionality provided by each of the Singleton classes, for example the DisplayFrame class now contains a wider range of functionality than initial planned. Not only did the Singleton instance complicate the addition of these extended features, debugging these features became more difficult as the global accessibility made it harder to track the source of the bug itself. This is due the fact that it is easy to accidently interact and modify a global variable or instance. Often the source of these bugs was not where the author expected and were often due to an incorrect interactions with these new extensions in a separate package. This was the main reason the author decided to withdraw the use of the Singleton pattern as the author felt it was much simpler to not have global access to these instances and features.
 
-Robert Martin created idea of the Single Responsibility Principle (SRP) in 1990 \cite{SRP:site}. The general concept behind the SRP is that each logical module in the software should have one reason to change or model one specific responsibility rather than a collection of unrelated features or functions. If a module has been extended to support multiple unrelated features, the SRP states that the unrelated features should be extracted into relevant modules so that each module maintains its one responsibility. The author feels that implementing the Singleton in the proposed manner (see appendix B, section \ref{sssec:singleton}) violated the underlying concepts of the SRP. As the Singleton Class is responsible for tracking and instantiation of its one allowed instance and the functionality which the module presents. This Class now has more than one responsibility and thus breaks the SRP. The author believes the SRP should be regarded highly during development in order to produce maintainable and extendable software, thus he has opted for adhering to the SRP over the Singleton implementations. The author experimented with the idea of having extracting the functionality of the singleton Classes and the tracking of the instance of such Classes into separate system modules. Once this is done each module will have one responsibility thus, adhering to the SRP. 
+Robert Martin propositioned idea of the Single Responsibility Principle (SRP) in 1990 \cite{SRP:site}. The general concept behind the SRP is that each logical module in the software should have one reason to change or model one specific responsibility rather than a collection of unrelated features or functions. If a module has been extended to support multiple unrelated features, the SRP states that the unrelated features should be extracted into relevant modules so that each module maintains its one responsibility. The author feels that implementing the Singleton in the proposed manner (see appendix B, section \ref{sssec:singleton}) violated the underlying concepts of the SRP. As the Singleton class is responsible for tracking and instantiation of its one allowed instance and the functionality which the module presents, this class now has more than one responsibility and thus violates the SRP. The author believes the SRP should be regarded highly during development in order to produce maintainable and extendable software. As a result he has opted for adhering to the SRP over the Singleton implementations. The author experimented with the idea of having extracting the functionality of the Singleton classes and the tracking of the instance of such classes into separate system modules however, this vastly overcomplicated the architecture.
 
-Overall, the author sees the implementation of the Singleton Design pattern as more of an anti-pattern. As this is the case and to enable easier modification and future extension the implementation of any Singleton Class as initially designed has been removed. Solutions the above problems could be refactored in, but this is seen as unnecessary complexity by the author and has therefore also been omitted.
+Overall, the author sees the implementation of the Singleton Design pattern as more of an anti-pattern. As this is the case and to enable easier modification the implementation of any Singleton class as initially designed has been removed. Solutions the above problems could be refactored in, but this is seen as unnecessary complexity by the author and has therefore also been omitted.
 
 \section{User Interface}
 \label{interfacebrah}
-The user interface elements will be designed with the three law of user interaction dicussed in section \ref{uiMethods} as a top prioirty. The interfaces will be consistent in theme and styling which will provide application wide consistency for the user.
+The user interface elements will be designed with the three laws of user interaction discussed in section \ref{uiMethods} as a top priority. The interfaces will be consistent in theme and styling which will provide application wide consistency for the user.
 
 \subsection{Main Display}
 
 The design for the main display, which refers the general view the user will be presented and interact with remains unchanged from the initial proposal as represented in figure \ref{fig:interface}. There has been modifications to this design during the implementation phase however, these the authors flexible process (see section \ref{processSec}) and the fact that these changes were fairly trivial allowed the author to implement them without any prior design, section \ref{mainimp} displays the implemention of this design and said changes.
 
-\subsection{Uphill Viewer}
+\subsection{UphillViewer}
 \label{uphillview}
 
-The uphill viewer was not an element of the user interface which was initially planned, however the addition to implement the ability for a path to represent uphill terrain called for a view to summarize which of these paths are in fact subject to this uphill modification during the given problem. This interface is a result of the contents of the UphillViewer Class (see section \ref{view:clss}).
+The uphill viewer was not an element of the user interface which was initially planned, however the addition to implement the ability for a path to represent uphill terrain required a view to summarize which of these paths are in fact subject to this uphill modification. This interface is a result of the contents of the UphillViewer class (see section \ref{view:clss}).
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Images/chapter4/uphilviews}
-\caption{Abstract proposal for the uphill viewer interface representing the different states possible at runtime.}
+\caption[UphillViewer Design]{Proposal for the UphillViewer interface representing the different states possible at runtime.}
 \label{fig:uphillViewImp}
 \end{figure}
 
-\textbf{1.} in figure \ref{fig:uphillViewImp} is used to demonstrate that each possible state for the uphill viewer will be represented using the same high level container. \textbf{2.} in figure \ref{fig:uphillViewImp} is used to show the default state and content for the uphill viewer interface. This state and content is shown to the user if the uphill routes is current disabled for this problem, and prompts the user to enable them. \textbf{3.} in figure \ref{fig:uphillViewImp} is shown to the user if uphill routes are enabled, but the current world is yet to be generated. \textbf{4.} in figure \ref{fig:uphillViewImp} is shown to the user when both uphill routes are enabled for the current problem and they have been generated. The $x$ and $y$ values in this figure will be replaced with indexes of valid cities to enable to the user to understand which routes are uphill.
+\textbf{1.} in figure \ref{fig:uphillViewImp} is used to demonstrate each possible state for the UphillViewer contained in the same high level container. \textbf{2.} is used to show the default state and content for the UphillViewer interface. This state is shown to the user if uphill route generation is currently disabled, and prompts the user to enable them. \textbf{3.} is shown to the user if uphill routes generation is enabled, but the current world is yet to be generated. \textbf{4.} is shown to the user when both uphill route generation is enabled and such routes have been generated. The $x$ and $y$ values in this figure will be replaced with indexes of valid cities to enable to the user to understand which routes are deemed uphill.
 
-\subsection{City Detail Viewer}
+%4943 WORDS AS OF THIS POINT
+\subsection{CityDetail View}
 \label{deetzlview}
 
-The City Detail Viewer is used to summarize how many agents are at each City for the current problem. This view was not initially designed however, the author felt that this was a necessary addition and therefore designed a rough outline to how this interface is to be presented.
+The CityDetailView is used to summarize how many agents are currently at each City. This view was not initially designed however, the author felt that this was a necessary addition and therefore designed a rough outline of such interface.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Images/chapter4/citydetails}
-\caption{Abstract proposal for the city detail interface.}
+\caption[CityDetailViewer Design]{Proposal for the CityDetailViewer interface.}
 \label{fig:deetzViewImp}
 \end{figure}
 
-\textbf{1.} in figure \ref{fig:deetzViewImp} represents how this view is contained in a separate container to the main display. This enables the user to move this view around as desired in order to customise the current view to their tastes. \textbf{2.} in figure \ref{fig:deetzViewImp} shows how the contents of the CityDetailView will be implemented (see section \ref{view:clss}). The number of rows will directly relate to the number of City Objects in the current problem. The $x$ values will be substituted for the correct number of ants at the corresponding city index.
+\textbf{1.} in figure \ref{fig:deetzViewImp} represents how this view is contained in a separate container to the main display. This enables the user to move this view around as desired in order to customise the current view to their liking. \textbf{2.} demonstrates how the contents of the CityDetailView will be displayed (see section \ref{view:clss}). The number of rows will directly relate to the number of City objects in the current collection. The $x$ values will be substituted for the correct number of ants at the corresponding city index.
 
-\subsection{Equation Viewer}
+\subsection{EquationFrame}
 \label{eqnlview}
 
-The Equation Viewer is used to explain the key, underlying functions present in the algorithms execution. This view was not initially designed however, the author felt that this was a necessary addition and therefore designed a rough outline to how this interface is to be presented.
+The Equation Viewer is used to explain the functions that the underlying algorithm uses. This view was not initially designed however, the author felt that this was a necessary addition and therefore designed a rough outline of such interface.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Images/chapter4/pheroprobpanels}
-\caption{Abstract proposal for the equation viewer interface.}
+\caption[EquationFrame Design]{Proposal for the EquationFrame interface.}
 \label{fig:eqnViewImp}
 \end{figure}
 
-\textbf{1.} in \ref{fig:eqnViewImp} represents how this view is contained in a separate container to the main display. This enables the user to move this view around as desired in order to customise the current view to their tastes. \textbf{2.} in \ref{fig:eqnViewImp} demonstrates how there will one shared panel which will be used to display the content related to both the pheromone and probability equations. The content of the container signified by \textbf{2.} will be substituted for the correct content when the user interacts with either one of the buttons signified by \textbf{3.} and \textbf{4.}. If the user interacts with the button represented by \textbf{3.} then the content of the container will switch and will now represent details about the pheromone equation. When button \textbf{4.} is pressed by the user, the content of the container will now reflect the information stored about the probability equation. The author has designed this such that any additional equations can be implemented in the same way using simple button navigation without the need of significant extensions to the existing framework.
+\textbf{1.} in figure \ref{fig:eqnViewImp} represents how this view is contained in a separate container to the main display. This enables the user to move this view around as desired in order to customise the current view to their tastes. \textbf{2.} demonstrates how there will one shared panel which will be used to display the content related to both the pheromone and probability equations. The content of the container signified by \textbf{2.} will be substituted for the correct content when the user interacts with either one of the buttons signified by \textbf{3.} and \textbf{4.}. If the user interacts with the button \textbf{3.} then the content of the container will switch and will now represent details about the pheromone equation. When button \textbf{4.} is pressed by the user, the content of the container will now reflect the information stored about the probability equation. The author has designed this such that any additional equations can be implemented in the same way using simple button navigation without the need of significant extensions to the existing framework.
 
 \subsection{Error Feedback}
-The interfaces responsible for error feedback have been carefully designed so that the author can effectively inform the user of the error, the cause of the error, and solution of such error as well as enabling the interfaces to be abstract in such a manner so the same interface can be used to represent several different related error interfaces.
+The interfaces responsible for error feedback have been carefully designed so that the author can effectively inform the user of the error, the cause of the error, and solution of such error. These interfaces are designed to be abstract in such a manner so the same interface can be used to represent several different related error responses.
 
 \subsubsection{Parameter Errors}
 \label{paramerror}
-These errors are produced when a user has defined a value for an algorithm parameter which is deemed to be illegal. This illegal value could mean that the value the user has selected is outside of the scope of accepted values, or it may mean that the user has specified an illegal type for this parameter. An illegal type refers to the user potentially specifying an incorrect type for a parameter such as entering a double value where an integer is required.
+These errors are produced when a user has defined a value for an algorithm parameter which is deemed to be illegal. This illegal value could mean that the value the user has entered is outside of the scope of accepted value or the user has specified an illegal type for this parameter. An illegal type a situation such as entering a double value where an integer is required.
 
-The design for these error messages remains as is in section \ref{error:proposal}, appendix B. This design is simple and effective and provides the user with everything they need to know about the errors source and solution. This interface can be re used for any parameter related error as the only modification would be the change of the interfaces content, there would be no need to redefine a new interface.
+The design for these error messages remains as shown in section \ref{error:proposal}, appendix B. This design is simple and effective and provides the user with everything they need to know about the errors source and solution. This interface can be re used for any parameter related error as the only modification would be the change of the interfaces content, there would be no need to implement or design a new interface.
 
 \subsubsection{File IO Errors}
 
-The ability for a use to load of save a problem configuration to a selected file is a new addition to the system. The design of these error interfaces is based off of the design for the parameter error interfaces described in \ref{paramerror}. 
+The ability for a user to load or save a problem configuration to a selected file is a new addition to the system. The design of these error interfaces is based off of the design for the parameter error interfaces described in section \ref{paramerror}. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Images/chapter4/IOError}
-\caption{Design of the File IO error feedback interface.}
+\caption[File IO Error Feedback Design]{Design of the File IO error feedback interface.}
 \label{fig:ioErrors}
 \end{figure}
 
-Similar to the parameter error interface, this interface as described in figure \ref{fig:ioErrors} will provide the user with concise feedback as to how and why the file IO process did not complete as expected. From the error message displayed the user should be able to deduce their own solution to the problem. As there are numerous problems which could arise with file IO, the author decided to omit providing a solution to the user. Instead the erroneous is flagged to the user enabling them to locate the problem and resolve it. The $x$ value in figure \ref{fig:ioErrors} will be replaced with the problematic value whereas the $y$ value will correspond the parameter that is the problem.
-
+Similar to the parameter error interface, this interface as described in figure \ref{fig:ioErrors} will provide the user with concise feedback as to how and why the file IO process did not complete as expected. From the error message displayed the user should be able to deduce their own solution to the problem. As there are numerous problems which could arise with file IO, the author decided to omit providing a solution to the user. Instead the erroneous data is flagged to the user enabling them to locate the problem and resolve it. The $x$ value in figure \ref{fig:ioErrors} will be replaced with the problematic value whereas the $y$ value will refer to the problematic parameter.
 
 \section{Algorithms}
 
-This section covers the astract implementation of the key algorithms used for both modelling the algorithms execution and the visualisation of such process.
+This section covers the abstract implementation of the key algorithms used for both modelling the algorithms execution and the visualisation of such process.
 
 \subsection{General Overview}
 
-The general algorithm remains largely unchanged from the initially proposed algorithm in section \ref{algym8}, appendix B. The author had amended this design slightly to factor in the change of problem representation. As the TSP is the default problem representation the initial ideas behind ants collecting food and returning to the nest have been replaced by conditionals reflecting if an agent has visited every City or not.
+The general algorithm remains largely unchanged from the initially proposed algorithm in section \ref{algym8}, appendix B. The author has amended this design slightly to factor in the change of problem representation. As the TSP is the default problem representation the initial ideas behind ants collecting food and returning to the nest have been replaced by conditionals reflecting if an agent has visited every City or not.
 
-\begin{algorithm}
-\caption{Pseudo-code for Ant System implementation}
+\begin{algorithm}[H]
+\caption[Ant System Pseudo-code]{Pseudo-code for Ant System implementation}
 \label{aco:pseudo2}
 \begin{algorithmic}[1]
-\State Initiate AntColonyOptimisation with defined parameters
+\State Initialise AntColonyOptimisation with defined parameters
 \If{$!parameters\ are\ legal$}
-\State Dispaly error message to user
+\State Display error message to user
 \State $return$
-\EndIf
-\State Initiate World with algorithm parameters
-\State Initiate $Nodes$ and graph
-\State Initiate \textit{pheromone} values
-\State Initiate $Agents$
+\EndIf 
+\State \textbf{end if}
+\State Initialise World with algorithm parameters
+\State Initialise $Nodes$ and graph
+\State Initialise \textit{pheromone} values
+\State Initialise $Agents$
 \While {$!all\ agents\ finished$} 
 \ForAll{Agents}
 \While{!visited\ all\ $City$\ locations}
 \State Calculate next move using probabilistic function 
-\State Add moved point to Agent's memory
-\State Calculate and deposit pheromone on the path
+\State Add location to Agent's memory
+\State update pheromone
 \State Update the View
 \EndWhile 
 \State \textbf{end while}
@@ -311,64 +305,65 @@ The general algorithm remains largely unchanged from the initially proposed algo
 \State output \textbf{global best} solution
 \end{algorithmic}
 \end{algorithm}
+%5854 words up to this point
 
-The pseudo code has however, remains largely unchanged from the initial design represented in algorithm \ref{aco:pseudo}, appendix B. There has been the modification of the conditional statement represented by line 11 in algorithm \ref{aco:pseudo2}. This change reflects the change of problem representation so that agents now visit all City locations, rather than focussing on a nest and food style situation.
+This pseudo code remains largely unchanged from the initial design represented by algorithm \ref{aco:pseudo}, appendix B. There has been the modification of the conditional statement represented by line 12 in algorithm \ref{aco:pseudo2}. This change reflects the updated problem representation so that agents now visit all City locations rather than focussing on a nest and food situation.
 
 \begin{sidewaysfigure}
 \includegraphics[scale=0.45]{Images/chapter4/overallflow}
-\caption{Flow diagram representation of the algorithm described in algorithm \ref{aco:pseudo2}}
+\caption[Basic Ant System Flow Diagram]{Flow diagram representing the algorithm described in algorithm \ref{aco:pseudo2}}
 \label{fig:overallFlow}
 \end{sidewaysfigure}
 
 \begin{figure}[H]
 \includegraphics[scale=0.27]{Images/chapter4/sequence}
-\caption{Abstract overview of system interactions based on Algorithm \ref{aco:pseudo2}}
+\caption[Overall Sequence Diagram]{Overview of system interactions based on Algorithm \ref{aco:pseudo2}}
 \label{fig:overSeq}
 \end{figure}
 
-The sequence diagram described in figure \ref{fig:overSeq} demonstrates at a high level how the algorithm will be executed. This differs slightly from the initial design (figure \ref{fig:seq}) in order to correctly model the change of problem representation.
+The sequence diagram described in figure \ref{fig:overSeq} demonstrates at a high level how the algorithm executes. This differs slightly from the initial design (figure \ref{fig:seq}) in order to correctly model the change of problem representation.
 
 \subsection{Formulae}
 
 \subsubsection{Probability}
 
-The probability function is defined in section \ref{sssec:probfuncsssec} appendix B. The design for the probability algorithm reamins unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:probfunc}. The result of this algorithm is in fact, the probability assoicated with the agent moving to a specific location.
+The probability function is defined in section \ref{sssec:probfuncsssec} appendix B. The design for this algorithm remains unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:probfunc}. The result of this algorithm is in fact, the probability associated with the agent moving to a specific location.
 
 \subsubsection{Pheromone}
 
-The probability function is defined in section \ref{sssec:pherodepo} appendix B. The design for the probability algorithm remains unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:pherofunc}. This is the function which is constantly updated by the agent’s movements in order to correctly model the pheromone update process.
+The probability function is defined in section \ref{sssec:pherodepo} appendix B. The design for the probability algorithm remains unchanged form the pseudo code represented in algorithm \ref{aco:pseudo:pherofunc}. This is the function that models the pheromone deposit and decay operations.
 
 \subsection{Elitist Ants}
 
-Elitist Ants were not initially planned as a feature provided by this application, however the author decided that sufficient time was present to produce a brief design for the elitist algorithm extension to allow for a smooth implementation of such design.
+The Elitist Ant algorithm was not initially planned as a feature provided by this application. The author decided that sufficient time was available to produce a brief design for the Elitist ant algorithm extension to allow for a smooth implementation of such design.
 
 \subsubsection{Overview}
 
-The general premise for this Elitist Ant algorithm is defined in section \ref{eliteymcneaty}. The probability function will remain the same as defined in algorithm \ref{aco:pseudo2} whereas the general behaviour of the system and the pheromone deposit function will differ slightly to that of the above proposal. The general system interactions will be the same as shown in figure \ref{fig:overSeq}
+The general premise for this Elitist Ant algorithm is defined in section \ref{eliteymcneaty}. The probability function will remain the same as defined in algorithm \ref{aco:pseudo2} whereas the general behaviour of the system and the pheromone deposit function will differ slightly to that of the Basic Ant algorithm. The general system interactions will be the same as shown in figure \ref{fig:overSeq}.
 
 
 \begin{algorithm}[H]
-\caption{Pseudo-code for Elitist Ant System implementation}
+\caption[Eltist Ant System Pseudo-code]{Pseudo-code for Elitist Ant System implementation}
 \label{aco:pseudoEAS}
 \begin{algorithmic}[1]
-\State Initiate AntColonyOptimisation with defined parameters
+\State Initialise AntColonyOptimisation with defined parameters
 \If{$!parameters\ are\ legal$}
 \State Dispaly error message to user
 \State $return$
 \EndIf
-\State Initiate World with algorithm parameters
-\State Initiate $Nodes$ and graph
-\State Initiate \textit{pheromone} values
-\State Initiate $Agents$
+\State Initialise World with algorithm parameters
+\State Initialise $Nodes$ and graph
+\State Initialise \textit{pheromone} values
+\State Initialise $Agents$
 \While {$!all\ agents\ finished$} 
 \ForAll{Agents}
 \While{!visited\ all\ $City$\ locations}
 \State Calculate next move using probabilistic function 
-\State Add moved point to Agent's memory
-\State Calculate and deposit pheromone on the path
+\State Add location to Agent's memory
+\State Update pheromone
 \State Update the View
 \EndWhile 
-\If{total\ stored $Elite Ants$ < total\ defined $Elite Ants$}
+\If{total\ stored $Elite Ants\ <$ total\ defined $Elite Ants$}
 \State add this ant to elite ants
 \Else 
 \ForAll{$Elite Ants$}
@@ -381,10 +376,8 @@ The general premise for this Elitist Ant algorithm is defined in section \ref{el
 \State \textbf{end for}
 \EndIf 
 \State \textbf{end if}
-\State 
 \State \textbf{end while}
 \EndFor 
-\State \textbf{end for}
 \State \textbf{end for}
 \EndWhile 
 \State \textbf{end while}
@@ -397,35 +390,35 @@ The general premise for this Elitist Ant algorithm is defined in section \ref{el
 \State output \textbf{global best} solution
 \end{algorithmic}
 \end{algorithm}
-
-The difference between aglorithm \ref{aco:pseudoEAS} and algorithm \ref{aco:pseudo2} is manipulation of EliteAnts which is defined abtractly in lines 16 to 23. These lines enable the algorithm to constantly ensure that only the best (Elite) $x$ number of ants are stored across iterations to ensure than these elite ants correctly have pheromone deposited on their paths. In order to do this, every time an ant has completed certain checks are made to see if this ant is eligible to become one of the $x$ elite ants. An Ant is deemed eligible if the current elite ant collection is not fully complete or if this ant has a better route than the worst performing elite Ant. If the later of these two conditions is met then the worst performing elite Ant is swapped with the current Ant. This difference can also be observed in figure \ref{fig:overallFlowEAS} which gives an even more abstract overview of the Elitist Ant System.
+%6306 to this point
+The difference between aglorithms \ref{aco:pseudoEAS} and \ref{aco:pseudo2} is the manipulation of EliteAnts which is defined in lines 16 to 25. These lines enable the algorithm to constantly ensure that only the best (Elite) $x$ number of ants are stored across iterations to ensure than these pheromone is deposited on the best paths. In order to do this, every time an ant has completed certain checks are made to see if this ant is eligible to become one of the $x$ elite ants. An ant is deemed eligible if the current elite ant collection is not fully populated or if this ant has a better route than the worst performing elite ant. If the later of these two conditions is met then the worst performing elite ant is then swapped with the current ant. This difference can also be observed in figure \ref{fig:overallFlowEAS} which gives an even more abstract overview of the Elitist Ant System.
 
 \clearpage
 \begin{sidewaysfigure}
 \includegraphics[scale=0.38]{Images/chapter4/eliteAntFlow}
-\caption{Flow diagram representation of the aglorithm described in algorithm \ref{aco:pseudoEAS}}
+\caption[Elitist Ant System Flow Diagram]{Flow diagram representing algorithm \ref{aco:pseudoEAS}}
 \label{fig:overallFlowEAS}
 \end{sidewaysfigure}
 \clearpage
 
-\subsubsection{Despositing Best Pheromone}
+\subsubsection{Depositing Best Pheromone}
 
-As described in section \ref{eliteymcneaty}, the Elitist Ant System has a slightly different pheromone function to that of the one described in the Basic Ant System in \ref{sssec:pherodepo}. This modified pheromone function is mostly the same as in the Basic Ant System however, the currently stored elite routes must be factored in.
+As described in section \ref{eliteymcneaty}, the Elitist Ant System has a slightly different pheromone function to that of the one described in section \ref{sssec:pherodepo} for the Basic Ant system. This modified pheromone function is mostly the same as in the Basic Ant System however, the elite routes must be factored in.
 
 \begin{algorithm}[H]
-\caption{Pseudo-code for the Elitist Ant System pheromone function}
+\caption[Elite Ant System Pseudo-code Pheromone Function]{Elitist Ant System pheromone function pseudo-code}
 \label{aco:pseudoEASphero}
 \begin{algorithmic}[1]
 
-\State define the $e$ value $=$ $e * $ no\ of\ $cities$
+\State define the $e$ value $=$ $e \times $ \#\ of\ $cities$
 \ForAll {stored\ $EliteAnts$}
 \State initialise index $i = 0$
 \State $currentBest = EliteAnt\ path$ 
 \ForAll {$Cities$ along $currentBest$}
 \State get the $City\ index$ at $currentBest[i]$
 \If{$i + 1 < currentBest\ size$}
-\State get the $City index$ at $currentBest[i+i]$
-\State add $e$ amount\ of $new\ pheromone$\ to\ $edge[i][i + 1]$
+\State get the $City index$ at $currentBest[i + 1]$
+\State add $e$ amount\ of $new\ pheromone$\ to\ $pheromoneEdge[i][i + 1]$
 \EndIf 
 \State \textbf{end if}
 
@@ -438,14 +431,14 @@ As described in section \ref{eliteymcneaty}, the Elitist Ant System has a slight
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{aco:pseudoEASphero} demonstrates how the current elite ants impact the pheromone concentrations across iterations. In general, this will enable the population of agents to converge towards a solution at a faster rate than the Basic Ant System as the increased amount of pheromone on edges used in the current best paths will be greater thus, ants will have a greater probability of traversing such edges.
+Algorithm \ref{aco:pseudoEASphero} demonstrates how the current elite ants are factored into the pheromone function. In general, this will enable the population of agents to converge towards a solution at a faster rate than the Basic Ant System as the increased amount of pheromone on edges used in the current best paths will be greater thus, ants will have a greater probability of traversing such edges.
 
-\subsection{Rendering the Algorithm}
+\subsection{Algorithm Rendering}
 
-Design and development of the algorithm responsible for visualising the algorithms current state to the user is one of the more important algorithm in the application as the visualisation process is key to the success of the project.
+Design and development of the algorithm responsible for visualising the Ant Colony algorithm's current state  is one of the more important algorithms in the application as the visualisation process is key to the projects success.
 
 \begin{algorithm}[H]
-\caption{Pseudo-code for rendering of the algorithms execution}
+\caption[Algorithm Visualisation Pseudo-code]{Pseudo-code for rendering of the algorithms execution}
 \label{aco:renderPesudo}
 \begin{algorithmic}[1]
 
@@ -495,8 +488,6 @@ Design and development of the algorithm responsible for visualising the algorith
 
 \end{algorithmic}
 \end{algorithm}
+%6834 untill here
 
-The pseudo code represented in algorithm \ref{aco:renderPesudo} defines the design of the general concept on displaying the algorithms details to the user. The author acknowledges that this is not the most efficient or elegant design and this is used a starting point for the implementation of such algorithm and is by no means a concrete implementation. Lines 3 to 13 are used to represent the visualising of the graph. Drawing a line from every City to every other City will simulate a fully connected graph of cities to the user, the opacity of these lines will be controlled and will be directly related to the pheromone concentration for the corresponding edge. Lines 22 to 30 is the way in which the current best path will be rendered to the user. The author has designed this so that multiple pairs of lines are drawn which will ultimately form one continuous line representing the best path. Each line will have a start and end location, the end location of each line will become the starting location of the next line. This is done by iterating through the pairs indexes of the cities in the best route untill there is no longer a valid pair of locations to draw a line between. Once this point is reached the line is complete.
-
-
-
+The pseudo code represented in algorithm \ref{acorenderPesudo} defines the design of the general concept used to visualise the underlying algorithm. The author acknowledges that this is not the most efficient or elegant design and this is used an implementation starting point and is by no means a concrete design. Lines 3 to 13 are used to represent the graph visualisation. Drawing a line from every City to every other City will simulate a fully connected graph of cities to the user. The opacity of these lines will be be directly related to the pheromone concentration for the corresponding edge. Lines 22 to 30 show way in which the current best path will be rendered to the user. The author has designed this so that multiple pairs of lines are drawn which will ultimately form one continuous line representing the best path. Each line will have a start and end location, the end location of each line will become the starting location of the next line. This is done by iterating through the pairs of the cities in the best route until there is no longer a valid pair of locations to draw a line between. Once this point is reached the line is complete.

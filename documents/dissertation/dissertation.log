@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  26 APR 2015 02:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.3.17)  27 APR 2015 05:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -718,15 +718,11 @@ File: Images/chapter3/waterfallmodel.png Graphic file (type png)
 Package pdftex.def Info: Images/chapter3/waterfallmodel.png used on input line 
 11.
 (pdftex.def)             Requested size: 310.55812pt x 252.94327pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [11
+ [11
 
 
 
-] [12 <./Images/chapter3/waterfallmodel.png>]
+]) [12 <./Images/chapter3/waterfallmodel.png>]
 \openout2 = `Chapter4/chapter4.aux'.
 
  (./Chapter4/chapter4.tex
@@ -736,25 +732,21 @@ Chapter 4.
 
 
 ] [14] [15]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
- [16]
-<Images/chapter4/controller.png, id=100, 1826.825pt x 1033.8625pt>
+<Images/chapter4/controller.png, id=97, 1826.825pt x 1033.8625pt>
 File: Images/chapter4/controller.png Graphic file (type png)
 
 <use Images/chapter4/controller.png>
-Package pdftex.def Info: Images/chapter4/controller.png used on input line 68.
+Package pdftex.def Info: Images/chapter4/controller.png used on input line 65.
 (pdftex.def)             Requested size: 420.16092pt x 237.78337pt.
- [17 <./Images/chapter4/controller.png>]
-[18] <Images/chapter4/view.png, id=109, 3021.2875pt x 2085.7925pt>
+ [16] [17 <./Images/chapter4/controller.png>] [18] <Images/chapter4/view.png, i
+d=109, 3021.2875pt x 2085.7925pt>
 File: Images/chapter4/view.png Graphic file (type png)
 
 <use Images/chapter4/view.png>
-Package pdftex.def Info: Images/chapter4/view.png used on input line 90.
+Package pdftex.def Info: Images/chapter4/view.png used on input line 86.
 (pdftex.def)             Requested size: 679.80647pt x 469.3149pt.
 
-Overfull \hbox (28.23837pt too wide) in paragraph at lines 90--91
+Overfull \hbox (28.23837pt too wide) in paragraph at lines 86--87
 [][] 
  []
 
@@ -770,29 +762,29 @@ Missing character: There is no ™ in font ptmr7t!
 File: Images/chapter4/model.png Graphic file (type png)
 
 <use Images/chapter4/model.png>
-Package pdftex.def Info: Images/chapter4/model.png used on input line 126.
+Package pdftex.def Info: Images/chapter4/model.png used on input line 122.
 (pdftex.def)             Requested size: 554.27248pt x 525.56514pt.
  [22 <./Images/chapter4/model.png>]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [23
 
-
-]
-<Images/chapter4/gloabls.png, id=129, 953.5625pt x 481.8pt>
+<Images/chapter4/gloabls.png, id=126, 953.5625pt x 481.8pt>
 File: Images/chapter4/gloabls.png Graphic file (type png)
 
 <use Images/chapter4/gloabls.png>
-Package pdftex.def Info: Images/chapter4/gloabls.png used on input line 156.
+Package pdftex.def Info: Images/chapter4/gloabls.png used on input line 151.
 (pdftex.def)             Requested size: 286.07095pt x 144.5411pt.
- [24 <./Images/chapter4/gloabls.png>]
+ [23
+
+
+] [24 <./Images/chapter4/gloabls.png>]
 <Images/chapter4/overallClassinteraction.png, id=134, 2720.1625pt x 2336.73pt>
 File: Images/chapter4/overallClassinteraction.png Graphic file (type png)
 
 <use Images/chapter4/overallClassinteraction.png>
 Package pdftex.def Info: Images/chapter4/overallClassinteraction.png used on in
-put line 170.
+put line 164.
 (pdftex.def)             Requested size: 598.4376pt x 514.0822pt.
  [25 <./Images/chapter4/overallClassinteraction.png>]
 <Images/chapter4/observerImplemetation.png, id=139, 1756.5625pt x 1324.95pt>
@@ -800,16 +792,9 @@ File: Images/chapter4/observerImplemetation.png Graphic file (type png)
 
 <use Images/chapter4/observerImplemetation.png>
 Package pdftex.def Info: Images/chapter4/observerImplemetation.png used on inpu
-t line 185.
+t line 178.
 (pdftex.def)             Requested size: 384.10959pt x 289.73102pt.
-
-Overfull \hbox (4.10095pt too wide) in paragraph at lines 190--191
-\OT1/ptm/m/n/10.95 lows the athor to as-sign the Con-trol in-stance as the de-s
-ig-i-nated Ob-server and $\OML/cmm/m/it/10.95 notifyOberservers\OT1/cmr/m/n/10.
-95 ()$
- []
-
-[26
+ [26
 
 
  <./Images/chapter4/observerImplemetation.png>] [27]
@@ -817,7 +802,7 @@ ig-i-nated Ob-server and $\OML/cmm/m/it/10.95 notifyOberservers\OT1/cmr/m/n/10.
 File: Images/chapter4/uphilviews.png Graphic file (type png)
 
 <use Images/chapter4/uphilviews.png>
-Package pdftex.def Info: Images/chapter4/uphilviews.png used on input line 215.
+Package pdftex.def Info: Images/chapter4/uphilviews.png used on input line 208.
 
 (pdftex.def)             Requested size: 347.09438pt x 229.05418pt.
  [28 <./Images/chapter4/uphilviews.png>]
@@ -825,7 +810,7 @@ Package pdftex.def Info: Images/chapter4/uphilviews.png used on input line 215.
 File: Images/chapter4/citydetails.png Graphic file (type png)
 
 <use Images/chapter4/citydetails.png>
-Package pdftex.def Info: Images/chapter4/citydetails.png used on input line 229
+Package pdftex.def Info: Images/chapter4/citydetails.png used on input line 223
 .
 (pdftex.def)             Requested size: 257.8616pt x 224.83847pt.
 
@@ -834,7 +819,7 @@ File: Images/chapter4/pheroprobpanels.png Graphic file (type png)
 
 <use Images/chapter4/pheroprobpanels.png>
 Package pdftex.def Info: Images/chapter4/pheroprobpanels.png used on input line
- 243.
+ 237.
 (pdftex.def)             Requested size: 345.68913pt x 235.37776pt.
  [29 <./Images/chapter4/citydetails.png>] [30 <./Images/chapter4/pheroprobpanel
 s.png>]
@@ -842,14 +827,14 @@ s.png>]
 File: Images/chapter4/IOError.png Graphic file (type png)
 
 <use Images/chapter4/IOError.png>
-Package pdftex.def Info: Images/chapter4/IOError.png used on input line 265.
+Package pdftex.def Info: Images/chapter4/IOError.png used on input line 259.
 (pdftex.def)             Requested size: 269.80615pt x 134.90306pt.
  [31 <./Images/chapter4/IOError.png>]
 <Images/chapter4/overallflow.png, id=164, 1417.295pt x 1104.125pt>
 File: Images/chapter4/overallflow.png Graphic file (type png)
 
 <use Images/chapter4/overallflow.png>
-Package pdftex.def Info: Images/chapter4/overallflow.png used on input line 318
+Package pdftex.def Info: Images/chapter4/overallflow.png used on input line 313
 .
 (pdftex.def)             Requested size: 637.77687pt x 496.85167pt.
 
@@ -857,33 +842,34 @@ Package pdftex.def Info: Images/chapter4/overallflow.png used on input line 318
 File: Images/chapter4/sequence.png Graphic file (type png)
 
 <use Images/chapter4/sequence.png>
-Package pdftex.def Info: Images/chapter4/sequence.png used on input line 324.
+Package pdftex.def Info: Images/chapter4/sequence.png used on input line 319.
 (pdftex.def)             Requested size: 414.65466pt x 653.14886pt.
  [32] [33 <./Images/chapter4/overallflow.png>]
 Overfull \vbox (25.18076pt too high) has occurred while \output is active []
 
 
-[34 <./Images/chapter4/sequence.png>]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
- [35] [36]
+[34 <./Images/chapter4/sequence.png>] [35] [36]
 <Images/chapter4/eliteAntFlow.png, id=184, 1794.705pt x 1244.65pt>
 File: Images/chapter4/eliteAntFlow.png Graphic file (type png)
 
 <use Images/chapter4/eliteAntFlow.png>
-Package pdftex.def Info: Images/chapter4/eliteAntFlow.png used on input line 40
-5.
+Package pdftex.def Info: Images/chapter4/eliteAntFlow.png used on input line 39
+8.
 (pdftex.def)             Requested size: 681.995pt x 472.97191pt.
 
-Overfull \hbox (30.4269pt too wide) in paragraph at lines 405--406
+Overfull \hbox (30.4269pt too wide) in paragraph at lines 398--399
 [][] 
  []
 
 [37 <./Images/chapter4/eliteAntFlow.png>] [38
 
 
-]) [39]
+]
+
+LaTeX Warning: Reference `acorenderPesudo' on page 39 undefined on input line 4
+93.
+
+) [39]
 \openout2 = `Chapter5/chapter5.aux'.
 
  (./Chapter5/chapter5.tex
@@ -1472,10 +1458,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9431 strings out of 493109
- 141211 string characters out of 6138587
- 340899 words of memory out of 5000000
- 12523 multiletter control sequences out of 15000+600000
+ 9433 strings out of 493109
+ 141241 string characters out of 6138587
+ 340912 words of memory out of 5000000
+ 12525 multiletter control sequences out of 15000+600000
  33884 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,14n,77p,2164b,1115s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1494,7 +1480,7 @@ courier/ucrr8a.pfb><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 ><c:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2014/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2014/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on dissertation.pdf (126 pages, 2003186 bytes).
+Output written on dissertation.pdf (126 pages, 1999427 bytes).
 PDF statistics:
  524 PDF objects out of 1000 (max. 8388607)
  329 compressed objects within 4 object streams
