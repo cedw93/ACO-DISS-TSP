@@ -122,7 +122,7 @@
 \contentsline {section}{\numberline {2.1}Introduction}{69}
 \contentsline {subsection}{\numberline {2.1.1}Purpose}{69}
 \contentsline {section}{\numberline {2.2}Language}{69}
-\contentsline {section}{\numberline {2.3}Architecure}{70}
+\contentsline {section}{\numberline {2.3}Architecture}{70}
 \contentsline {subsection}{\numberline {2.3.1}Design and Architectural Patterns}{70}
 \contentsline {subsubsection}{\numberline {2.3.1.1}Model-View-Controller}{70}
 \contentsline {subsection}{\numberline {2.3.2}Observer and Observable}{71}
@@ -142,7 +142,7 @@
 \contentsline {subsubsection}{\numberline {2.4.2.4}UserInputPanel}{76}
 \contentsline {subsection}{\numberline {2.4.3}Model}{76}
 \contentsline {subsubsection}{\numberline {2.4.3.1}AntColonyOptimisation}{76}
-\contentsline {subsubsection}{\numberline {2.4.3.2}AntInterface}{76}
+\contentsline {subsubsection}{\numberline {2.4.3.2}Ant Interface}{76}
 \contentsline {subsubsection}{\numberline {2.4.3.3}Ant}{76}
 \contentsline {subsubsection}{\numberline {2.4.3.4}World}{77}
 \contentsline {section}{\numberline {2.5}Interface Design}{77}
@@ -163,5 +163,5 @@
 \contentsline {section}{\numberline {4.2}Black-box Testing}{100}
 \contentsline {subsection}{\numberline {4.2.1}File Content Examples}{100}
 \contentsline {subsection}{\numberline {4.2.2}Acceptance Tests}{103}
-\contentsline {subsection}{\numberline {4.2.3}Interface Testing}{107}
-\contentsline {chapter}{Annotated Bibliography}{113}
+\contentsline {subsection}{\numberline {4.2.3}Interface Testing}{108}
+\contentsline {chapter}{Annotated Bibliography}{114}

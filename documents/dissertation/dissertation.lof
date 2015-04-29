@@ -30,40 +30,40 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Use Case Diagram}}{63}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Basic abstract overview of the Model-View-Controller pattern\relax }}{71}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Proposed implementation of the Observer and Observable Design pattern\relax }}{72}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.\relax }}{73}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Initial Class Diagram representing the main modules, packages and system interactions using UML notation.\relax }}{74}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Proposed design for the graphical user interface, showing the key elements in their planned locations.\relax }}{78}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Proposed design for the illegal parameter error message displayed to the user\relax }}{79}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces High level flow digram representing the psudeo code for Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{81}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Sequence diagram representing Algorithm 5\hbox {}, section 2.6.1\hbox {}\relax }}{83}
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Algebraic model of the probabilistic function used to calculate next move for any Agent \cite {probfunc:image}\relax }}{84}
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix \cite {pheromone:image}\relax }}{84}
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$ \cite {new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.\relax }}{85}
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World representation using a two-dimensional Integer Array\relax }}{86}
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone representation using a two-dimensional Double Array with default initial values\relax }}{87}
-\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone visualisation\relax }}{88}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Model-View-Controller Overview}}{71}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Observer Observable Implementation}}{72}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Singleton Implementation}}{73}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Class Diagram}}{74}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces User Interface Design}}{78}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Illegal Parameter Error Prompt}}{79}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces High Level Flow Diagram}}{81}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Overall Sequence Diagram}}{83}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Probabilistic Function}}{84}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Pheromone Function}}{84}
+\contentsline {figure}{\numberline {B.11}{\ignorespaces New Pheromone Function}}{85}
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Example World Representation}}{86}
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Example Pheromone Representation}}{87}
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Example Pheromone Visualisation}}{88}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {C.1}{\ignorespaces Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class\relax }}{89}
-\contentsline {figure}{\numberline {C.2}{\ignorespaces Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.\relax }}{89}
-\contentsline {figure}{\numberline {C.3}{\ignorespaces Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts. $invertValue{distanceMatrix[i][j]}$ returns $\frac {1}{distanceMatrix[i][j]}$\relax }}{90}
-\contentsline {figure}{\numberline {C.4}{\ignorespaces Snippet of code used to inialise the collection of $City$ obejcts.\relax }}{90}
-\contentsline {figure}{\numberline {C.5}{\ignorespaces Snippet of code used to inialise the collection of $Ant$ obejcts. $this$ refers to the current $World$ Object.\relax }}{90}
-\contentsline {figure}{\numberline {C.6}{\ignorespaces Snippet of code used to update the pheromone values for every edge. $aco$ is the current instance of the $AntColonyOptimisation$ Class.\relax }}{91}
-\contentsline {figure}{\numberline {C.7}{\ignorespaces Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite {tjung:aco:blog}\relax }}{92}
-\contentsline {figure}{\numberline {C.8}{\ignorespaces Snippet of code used to automatically execute the algorithm untill compeltion. $aco$ is the current instance of the $AntColonyOptimisation$ Class.\relax }}{93}
-\contentsline {figure}{\numberline {C.9}{\ignorespaces Snippet of code used to execute the algorithm on a step by step basis\relax }}{94}
-\contentsline {figure}{\numberline {C.10}{\ignorespaces Snippet of code determine the cordinate values for both $x$ and $y$ for a given $\mu $ value.\relax }}{94}
-\contentsline {figure}{\numberline {C.11}{\ignorespaces Snippet of code used to visualise an Ants movement. $g2$ is an instance of $Graphics2D$.\relax }}{95}
-\contentsline {figure}{\numberline {C.12}{\ignorespaces Snippet of code used to display the best route to the user.\relax }}{96}
-\contentsline {figure}{\numberline {C.13}{\ignorespaces Snippet of code used to depsoit pheromone along the elite routes. An $EliteAntData$ Object is used to represent an Elite route\relax }}{96}
-\contentsline {figure}{\numberline {C.14}{\ignorespaces Snippet of code used to initialise uphill paths.\relax }}{97}
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Pheromone Initialisation Code}}{89}
+\contentsline {figure}{\numberline {C.2}{\ignorespaces Distance Matrix Initialisation Code}}{89}
+\contentsline {figure}{\numberline {C.3}{\ignorespaces Inverted Distance Matrix Initialisation Code}}{90}
+\contentsline {figure}{\numberline {C.4}{\ignorespaces City Collection Initialisation Code}}{90}
+\contentsline {figure}{\numberline {C.5}{\ignorespaces Ant Collection Initialisation Code}}{90}
+\contentsline {figure}{\numberline {C.6}{\ignorespaces Pheromone Update Code}}{91}
+\contentsline {figure}{\numberline {C.7}{\ignorespaces Next Probable Node Code}}{92}
+\contentsline {figure}{\numberline {C.8}{\ignorespaces Automated Algorithm Completion Code}}{93}
+\contentsline {figure}{\numberline {C.9}{\ignorespaces Step-based Algorithm Execution Code}}{94}
+\contentsline {figure}{\numberline {C.10}{\ignorespaces Liner Interpolation Code}}{94}
+\contentsline {figure}{\numberline {C.11}{\ignorespaces Visualising Ant Movement Code}}{95}
+\contentsline {figure}{\numberline {C.12}{\ignorespaces Display Best Route Code}}{96}
+\contentsline {figure}{\numberline {C.13}{\ignorespaces Elite Route Pheromone Deposit Code}}{96}
+\contentsline {figure}{\numberline {C.14}{\ignorespaces Uphill Path Generation Code}}{97}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {D.1}{\ignorespaces Code representing the automated testing process for checking mutliple alpha parameter values.\relax }}{98}
-\contentsline {figure}{\numberline {D.2}{\ignorespaces Code representing the automated testing process for checking mutliple beta parameter values.\relax }}{98}
-\contentsline {figure}{\numberline {D.3}{\ignorespaces Code representing the automated testing process for checking mutliple agent parameter values.\relax }}{99}
-\contentsline {figure}{\numberline {D.4}{\ignorespaces Code representing the automated testing process for checking mutliple agent parameter values.\relax }}{100}
-\contentsline {figure}{\numberline {D.5}{\ignorespaces Contents of a legal problem representation stored in a file.\relax }}{101}
-\contentsline {figure}{\numberline {D.6}{\ignorespaces Contents of an illegal problem representation stored in a file. The number of agents in line 5 is not an integer value (30sffs)\relax }}{102}
-\contentsline {figure}{\numberline {D.7}{\ignorespaces Contents of an illegal problem representation stored in a file. The number of agents has not been defined.\relax }}{103}
+\contentsline {figure}{\numberline {D.1}{\ignorespaces Alpha Parameter Test Code}}{98}
+\contentsline {figure}{\numberline {D.2}{\ignorespaces Beta Parameter Test Code}}{98}
+\contentsline {figure}{\numberline {D.3}{\ignorespaces Agent Parameter Test Code}}{99}
+\contentsline {figure}{\numberline {D.4}{\ignorespaces Probability Test Code}}{100}
+\contentsline {figure}{\numberline {D.5}{\ignorespaces Legal File Contents}}{101}
+\contentsline {figure}{\numberline {D.6}{\ignorespaces Illegal File contents - Number Format execption}}{102}
+\contentsline {figure}{\numberline {D.7}{\ignorespaces Illegal File contents - Missing Data}}{103}

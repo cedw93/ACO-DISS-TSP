@@ -24,6 +24,8 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: References/references.bib
+Warning--entry type for "tblanch:diss" isn't style-file defined
+--line 229 of file References/references.bib
 -- IEEEtranS.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -32,37 +34,37 @@ Database file #1: References/references.bib
 Done.
 You've used 27 entries,
             4538 wiz_defined-function locations,
-            1058 strings with 17198 characters,
-and the built_in function-call counts, 13202 in all, are:
-= -- 1183
+            1060 strings with 17734 characters,
+and the built_in function-call counts, 13179 in all, are:
+= -- 1171
 > -- 204
 < -- 15
 + -- 81
 - -- 54
-* -- 573
-:= -- 2369
+* -- 567
+:= -- 2349
 add.period$ -- 54
 call.type$ -- 27
 change.case$ -- 131
 chr.to.int$ -- 45
 cite$ -- 27
-duplicate$ -- 990
-empty$ -- 1180
+duplicate$ -- 994
+empty$ -- 1189
 format.name$ -- 54
-if$ -- 2800
+if$ -- 2797
 int.to.chr$ -- 0
 int.to.str$ -- 27
-missing$ -- 206
+missing$ -- 207
 newline$ -- 128
 num.names$ -- 54
-pop$ -- 626
+pop$ -- 637
 preamble$ -- 1
 purify$ -- 81
 quote$ -- 2
-skip$ -- 955
+skip$ -- 952
 stack$ -- 0
 substring$ -- 239
-swap$ -- 533
+swap$ -- 531
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
@@ -70,4 +72,5 @@ type$ -- 195
 warning$ -- 0
 while$ -- 59
 width$ -- 29
-write$ -- 274
+write$ -- 272
+(There was 1 warning)

@@ -4,24 +4,23 @@
 
 \subsection{Purpose}
 
-The purpose of this document is to give a detailed description for the design of the`Visualising Ant Colony Optimisation' application. This document will cover the proposed interface designs and interaction methods, choice of language and the underlying data structures and logical modules used in the application.
+The purpose of this document is to give a detailed description for the design of the ‘Visualising Ant Colony Optimisation' application. This document will cover the proposed interface designs and interaction methods, choice of language and the underlying data structures and logical modules used in the application.
 
 \section{Language}
 \label{lang}
-The choice of implementation language for both the graphical user interface and the Ant Colony Optimisation algorithm is extremely important. The nature of the project suggests that an Object Orientated approach would best suit as the implementation language. One of the main reasons for this is because the manipulation and use of Objects in such languages allows for Object-based decomposition allowing for more logical modules system wide when compared to a non-Object Orientated approach. A non-Object Orientated approach may be more subject to functional decomposition (the application is split into modules grouping similar functions rather than representing separate Objects).
+The choice of implementation language for both the graphical user interface and the Ant Colony Optimisation algorithm is extremely important. The nature of the project suggests that an object-orientated approach would best suit as the implementation language. One of the main reasons for this is because the manipulation and use of objects in such languages allows for object-based decomposition allowing for more logical modules system wide when compared to a non-object-orientated approach. A non-object-orientated approach may be more subject to functional decomposition (the application is split into modules grouping similar functions rather than representing separate objects).
 
-An Object Orientated approach has been identified as most suitable. Therefore there are two main languages which are at the forefront of the selection process. These two languages are C\# (\textit{C Sharp}) and Java. Both languages have the potential to achieve a high level of success when applied to the project’s problem however; they both have different consequences depending on the environment and application in which they are used. C++ (\textit{C plus plus}) is another popular Object-Orientated language.  C++ has been discounted due to lack of language experience therefore using a more familiar language such as the two specified above (Java and C\#) is far more appropriate in this instance. 
+An object-orientated approach has been identified as most suitable. Therefore there are two main languages which are at the forefront of the selection process. These two languages are C\# (\textit{C Sharp}) and Java. Both languages have the potential to achieve a high level of success when applied to the project’s problem however; they both have different consequences depending on the environment and their application. C++ (\textit{C plus plus}) is another popular object-orientated language. C++ has been discounted due to lack of language experience therefore using a more familiar language such as the two specified above (Java and C\#) is far more appropriate in this instance. 
 
-One of the major factors in deciding on the implementation language is the suitability of the language’s features when applied to the projects problem including any external resources or compatible libraries. Both Java and C\# are very similar at an abstract level in terms of provided features by default. Both include everything that would be necessary to implement the proposed design for this application. Both languages provide the ability for Objective decomposition and allow for polymorphic behaviours (multiple entities of different types using the same interface) which enables effective use of inheritance to allow multiple Agent variations (Ants in this case) to be supported easily. 
+One of the major factors in deciding on the implementation language is the suitability of the language’s features when applied to the projects problem including any external resources or compatible libraries. Both Java and C\# are very similar at an abstract level in terms of provided features by default. Both include everything that would be necessary to implement the proposed design for this application. Both languages provide the ability for objective decomposition and allow for polymorphic behaviours (multiple entities of different types using the same interface) which enables effective use of inheritance to allow multiple Agent variations (Ants in this case) to be supported easily. 
 
-C\# has been created and is continually being developed by Microsoft and is focused around the .NET framework which is also a product of Microsoft. As C\# is heavily Microsoft orientated its cross-platform capabilities are significantly reduced. The .NET framework(s) have only recently been open sourced so they lack full support on all platforms reducing the applications cross-platform reliability. The project is being developed with a focus on educational value; therefore cross-platform reliability is very important as maximisation of potential consumers is important (more people using the application implies more people are learning). A standard build will not be specified or assumed so there must be necessary measures in place to accommodate as many environments as possible. C\# is heavily coupled with Windows based systems therefore; If C\# were to be used there is a risk of alienating Macintosh and UNIX users. There are attempts to port .NET to other architectures (for example, Mono\cite{mono}) but the implementations of such approaches are not exact replicas of Microsoft .NET framework(s), therefore they cannot be relied upon. The use of Java would eliminate the cross-platform support issues as Java applications execute inside the Java Runtime Environment (JRE) which is available across most platforms and behaviours can be accurately modelled and predicted in the vast majority of cases.
+C\# has been created and is continually being developed by Microsoft and is focused around the .NET framework which is also a product of Microsoft. As C\# is heavily Microsoft orientated its cross-platform capabilities are significantly reduced. The .NET framework(s) have only recently been open sourced so they lack full support on all platforms reduces the applications cross-platform reliability. This project is being developed with a focus on educational value; therefore cross-platform reliability is very important as maximisation of potential consumers is important (more people using the application implies more people are learning). A standard build will not be specified or assumed so there must be necessary measures in place to accommodate as many environments as possible. C\# is heavily coupled with Windows based systems therefore; if C\# were to be used there is a risk of alienating Macintosh and UNIX users. There are attempts to port .NET to other architectures (for example, Mono\cite{mono}) but the implementations of such approaches are not exact replicas of Microsoft .NET framework(s), therefore they cannot be relied upon. The use of Java would eliminate the cross-platform support issues as Java applications execute inside the Java Runtime Environment (JRE) which is available across most platforms and behaviours can be accurately modelled and predicted in the vast majority of cases.
 
 Little differs between Java and C\# in terms of feature presence (abstractly, how each language achieves each task is very different) thus, Java will be used for this project. The cross-platform constraints that come with the use of C\# are not balanced by any necessary exclusive key features. As a result Java is the most appropriate language for the project, this all but ensures cross-platform reliability without sacrificing any important libraries or features.
 
+\section{Architecture}
 
-\section{Architecure}
-
-There have been considerations as to what key elements will be present in the composure of a suitable underlying architecture for the application. The architecture must accommodate both major elements of the application (graphical user interface and the Ant Colony Optimisation algorithm) in a manner that enables the best possible expansion/modification opportunities to accommodate any additional features or unforeseen changes. Selecting relevant Design Patterns will enable the above goals to become reality however; design patterns should be respectfully and must represent a general solution to a problem. The Overuse or misuse of such patterns can cause significant complexity issues through the system, this needs to be avoided. 
+There have been considerations as to what key elements will be present in the composure of a suitable underlying architecture for the application. The architecture must accommodate both major elements of the application (graphical user interface and the Ant Colony Optimisation algorithm) in a manner that enables the best possible expansion/modification opportunities to accommodate any additional features or unforeseen changes. Selecting relevant Design Patterns will enable the above goals to become reality however; design patterns should be used respectfully and must present a general solution to a problem. The overuse or misuse of such patterns can cause significant complexity issues through the system, this needs to be avoided.
 
 \subsection{Design and Architectural Patterns}
 
@@ -35,7 +34,7 @@ This project will make effective use of Model-View-Controller in order to produc
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\textwidth]{Images/design/mvc}
-\caption{Basic abstract overview of the Model-View-Controller pattern}
+\caption[Model-View-Controller Overview]{Basic abstract overview of the Model-View-Controller pattern}
 \end{figure}
 
 \begin{itemize}
@@ -54,7 +53,7 @@ The implementation of the Model-View-Controller design pattern is handled using 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{Images/design/observer}
-\caption{Proposed implementation of the Observer and Observable Design pattern}
+\caption[Observer Observable Implementation]{Proposed implementation of the Observer and Observable Design pattern}
 \label{fig:observable}
 \end{figure}
 
@@ -63,7 +62,7 @@ As figure \ref{fig:observable} demonstrates the View will Observe the Model and 
 
 \subsubsection{Singleton}
 \label{sssec:singleton}
-In order to maintain simplicity throughout the application the Singleton design pattern will implemented for key Objects where one and only one instance of an Object must exist. The Singleton pattern prevents multiple instantiations of specific Object(s) as the Object itself is solely responsible for tracking the currently instantiated instance of itself\cite{gof:design:singleton}. 
+In order to maintain simplicity throughout the application the Singleton design pattern will implemented for key objects where one and only one instance of an object must exist. The Singleton pattern prevents multiple instantiations of specific object(s) as the object itself is solely responsible for tracking the currently instantiated instance of itself\cite{gof:design:singleton}. 
 
 The application will consist of a graphical user interface which in turn, will be composed of several different components. Such components must only be instantiated once in order to ensure correct interactions are performed. Without the presence of the Singleton pattern there exists the possibility of multiple instances of such components which could potentially cause unforeseen complications and undefined behaviours.
 
@@ -71,16 +70,16 @@ The application will consist of a graphical user interface which in turn, will b
 \centering
 \label{fig:singleton}
 \includegraphics[width=0.8\textwidth]{Images/design/signleton}
-\caption{Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.}
+\caption[Singleton Implementation]{Proposed high-level implementation of the Singleton pattern demonstrating how the sole instance of the graphical user interface will be tracked.}
 \end{figure}
 
 \subsection{Structure}
-Adhering to the concepts of the patterns described in sections \ref{sssec:mvc} and \ref{sssec:singleton} the following Class Diagram shows proposed application structure. This is not concrete and could potentially change throughout development, the Class Diagram in question is represented below by figure \ref{fig:classdiagram} and is represented using standard UML notation.
+Adhering to the concepts of the patterns described in sections \ref{sssec:mvc} and \ref{sssec:singleton} the following class ciagram shows proposed application structure. This is not concrete and could potentially change throughout development, the class diagram in question is represented below by figure \ref{fig:classdiagram} and is represented using standard UML notation.
 
 \clearpage
 \begin{sidewaysfigure}
 \includegraphics[scale=0.225]{Images/design/diss-uml}
-\caption{Initial Class Diagram representing the main modules, packages and system interactions using UML notation.}
+\caption[Class Diagram]{Initial Class Diagram representing the main modules, packages and system interactions using UML notation.}
 \label{fig:classdiagram}
 \end{sidewaysfigure}
 \clearpage
@@ -92,7 +91,7 @@ The $che16.dcs.aber.ac.uk.view$ package contains the graphical user interface co
 
 \subsubsection{Model Package}
 \label{sssec:model}
-The che16.dcs.aber.ac.uk.model package contains the necessary elements and attributes required in order to accurately represent the algorithms state(s) and ensure correct algorithm execution. This package has no directl knowledge of any package members mentioned in \ref{sssec:view}. Instead the controller package members handle the communication(s) between these the model(s) and view(s), adhering to the principles discussed in section \ref{sssec:mvc}.
+The che16.dcs.aber.ac.uk.model package contains the necessary elements and attributes required in order to accurately represent the algorithms state(s) and ensure correct algorithm execution. This package has no direct knowledge of any package members mentioned in \ref{sssec:view}. Instead the controller package members handle the communication(s) between these the model(s) and view(s), adhering to the principles discussed in section \ref{sssec:mvc}.
 
 \subsubsection{Controller Package}
 \label{sssec:cntrl}
@@ -106,15 +105,15 @@ The Classes defined in Figure \ref{fig:classdiagram} are described textually bel
 
 \subsubsection{Driver}
 \label{driver:classdef}
-The Driver Class is fairly simplistic and exists as an entry point to the application. This will Class handles any necessary instantiations and correctly assigns any key associations.
+The Driver class is fairly simplistic and exists as an entry point to the application. This will class handles any necessary instantiations and correctly assigns any key associations.
 \subsubsection{UpdateListener}
-The UpdateListener Class serves as a point of control for the update operations. The main updates will be handled internally by the relevant Classes (as described by Figure \ref{fig:observable}) however, this Class will handle the updates caused when a user interacts with the application through the user interface. This includes, but is not limited to the modification of parameters or starting the algorithm's execution.
+The UpdateListener class serves as a point of control for the update operations. The main updates will be handled internally by the relevant classes (as described by Figure \ref{fig:observable}) however, this class will handle the updates caused when a user interacts with the application through the user interface. This includes, but is not limited to the modification of parameters or starting the algorithm's execution.
 
 \subsection{View}
 \subsubsection{DisplayFrame}
-An instance of the DisplayFrame Class will serve as the highest level container for the applications user interface elements. This Class will be responsible for controlling access to, and the instantiation of the other graphical user interface elements.
+An instance of the DisplayFrame class will serve as the highest level container for the applications user interface elements. This class will be responsible for controlling access to, and the instantiation of the other graphical user interface elements.
 \subsubsection{DisplayPanel}
-The DisplayPanel instance will be contained inside the DisplayFrame. The purpose of the DisplayPanel is to contain the DisplayCanvas. The reason this Class is used to contain the DisplayCanvas rather than using the top level DisplayFrame is because it gives the author much more control over dimensions and modification of layouts or contents.
+The DisplayPanel instance will be contained inside the DisplayFrame. The purpose of the DisplayPanel is to contain the DisplayCanvas. The reason this class is used to contain the DisplayCanvas rather than using the top level DisplayFrame is because it gives the author much more control over dimensions and modification of layouts or contents.
 \subsubsection{DisplayCanvas}
 The DisplayCanvas will be used to display the algorithms execution. This is the user interface element which will be painted and modified during the course of the algorithms execution.
 \subsubsection{UserInputPanel}
@@ -122,50 +121,49 @@ The UserInputPanel is used to represent the collection of text boxes and buttons
 
 \subsection{Model}
 \subsubsection{AntColonyOptimisation}
-The AntColonyOptimisation Class is used to represent the high level behaviours of Ant Colony algorithms. This Class will contain the current instance of the World as well as housing all relevant data such as current parameter values and ways to interact with such parameters.
-\subsubsection{AntInterface}
+The AntColonyOptimisation class is used to represent the high level behaviours of Ant Colony algorithms. This class will contain the current instance of the World as well as housing all relevant data such as current parameter values and ways to interact with such parameters (getters).
+\subsubsection{Ant Interface}
 This interface will contain the necessary methods that every type of Ant (agent) has to have. This is by no means concrete, if there is only a need for one type of Ant then an interface is not strictly needed thus, it may be removed to reduce complexity.
 \subsubsection{Ant}
-An instance of the Ant Class will be used to represent an Ant (agent) in the world. As these are the agents which will be deployed on the world they will need to know about the World, whilst also knowing information about themselves including where they have visited so far and how far have they travelled. This Class will also contain the operations necessary in order for an Ant to be able to solve the current problem, this is main down the combination of knowing about the World and necessary details inside the move() method which will be used to select the Ants next location.
+An instance of the Ant class will be used to represent an Ant (agent) in the world. As these are the agents which will be deployed on the world they will need to know about the World, whilst also knowing information about themselves including where they have visited so far and how far have they travelled. This class will also contain the operations necessary in order for an Ant to be able to solve the current problem, this is main down the combination of knowing about the World and necessary details inside the move() method which will be used to select the Ants next location.
 \subsubsection{World}
-The World Class is a representation of the problem representation. This includes all information needed to model the graph as well as containing and manipulating the current pheromone matrix and pheromone concentrations on each edge. The World will be in constant communication with the Ant instances in order to communicate the current state of World to each agent.
-
+The World class is a representation of the current problem. This includes all information needed to model the graph and manipulating the current pheromone. The World will be in constant communication with the Ant instances in order to communicate the current state of World to each agent.
 
 \section{Interface Design}
 \subsection{Main User Interface}
 \label{ssec:mainUI}
 The interface design must accommodate all the necessary elements required to allow user defined values for each of the algorithm parameters. The interface must also be able to visually represent the current algorithms state including the locations of the agents and nodes without impacting on the usability of the application (the interface must not freeze or be negatively affected by the algorithms execution).
 
-The interface will use a very neutral colour scheme which will maximise the usability and reduce the risk of complications which may arise from users being subject to difficulties understanding or identifying certain colours. Every option for the user will be textually defined and will not rely on any sound or visual prompts in order to user. As a result in addition to the above, users with visual impairments will still be able to use the application as intended.
+The interface will use a very neutral colour scheme which will maximise the usability and reduce the risk of complications which may arise from users being subject to difficulties understanding or identifying certain colours. Every option for the user will be textually defined and will not rely on any sound or visual prompts in order to use. As a result in addition to the above, users with visual impairments will still be able to use the application as intended.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{Images/design/screen}
-\caption{Proposed design for the graphical user interface, showing the key elements in their planned locations.}
+\caption[User Interface Design]{Proposed design for the graphical user interface, showing the key elements in their planned locations.}
 \label{fig:interface}
 \end{figure}
 
 \noindent
 \textbf{1.} in figure~\ref{fig:interface} refers to the containing frame which will house the reset of the interface elements. This frame will not be resizable preventing complications such as the dynamic resizing of the interface having an impact on the observable range of the world.
 \noindent
-\textbf{2.} in figure~\ref{fig:interface} refers to a text view containing information relevant to the algorithms current state of execution. This text view will contain the current best distance as well as the order of nodes visited to traverse the current best path. This will only be populated during the algorithms execution and only if the best path has been initialised.
+\textbf{2.} refers to a text view containing information relevant to the algorithms current state of execution. This text view will contain the current best distance as well as the order of nodes visited to traverse the current best path. This will only be populated during the algorithms execution and only if the best path has been initialised.
 \noindent
-\textbf{3.} in figure~\ref{fig:interface} refers to container which houses the interactive elements relating to the modification of the algorithms parameters. This will consist of several labels and text fields which can be modified informing the user of what they will be modifying as well as providing suitable error messages if the users enters an incorrect value for any of the parameters.
+\textbf{3.} refers to container which houses the interactive elements relating to the modification of the algorithms parameters. This will consist of several labels and text fields which can be modified informing the user of what they will be modifying as well as providing suitable error messages if the users enters an incorrect value for any of the parameters.
 \noindent
-\textbf{4.} in figure~\ref{fig:interface} refers to the start and stop buttons. These are here to conform to the expectation that a user will expect some clear way to start and stop the application at their free choice, this is the simplest way to do this, and requires no hidden menus or hidden key bindings.
+\textbf{4.} refers to the start and stop buttons. These are here to conform to the expectation that a user expects a clear way to start and stop the application at their convenience, this is the simplest way to do this and requires no hidden menus or hidden key bindings.
 \noindent
-\textbf{5.} in figure~\ref{fig:interface} refers to a text view containing information relevant to the algorithms current state of execution. This text view will contain the number of agents currently working (which means the number of agents who haven't met their own stop conditions) as well as displaying the number of agents which are finished.
+\textbf{5.} refers to a text view containing information relevant to the algorithms current state of execution. This text view will contain the number of agents currently working (which means the number of agents who haven't met their own stop conditions) as well as displaying the number of agents which are finished.
 \noindent
-\textbf{6.}in figure~\ref{fig:interface} refers to the main canvas area which will display the algorithms current state of execution to the user. The contents of this will reflect the user defined values (elements in: \textbf{3.} in figure~\ref{fig:interface}) as well as representing each agents current location, their movements between nodes and also the modelling of pheromone deposit and decay will be present in this canvas.
+\textbf{6.} refers to the main canvas area which will display the algorithms current state of execution to the user. The contents of this will reflect the user defined values (elements in: \textbf{3.}) as well as representing each agents current location, their movements between nodes and also the modelling of pheromone deposit and decay will be present in this canvas.
 
 \subsection{Error Message Feedback}
 \label{error:proposal}
-As the Algorithm parameters will be user defined using the interface proposed in section \ref{ssec:mainUI}, figure \ref{fig:interface} there must be measures in place to catch and inform the user of any illegal values. Not only must the user be told they have inputted illegal values the illegal parameter value will be identified and a range of legal values will be displayed to the user.
+As the Algorithm parameters will be user defined using the interface proposed in figure \ref{fig:interface} there must be measures in place to catch and inform the user of any illegal values. Not only must the user be told they have inputted illegal values the illegal parameter value will be identified and a range of legal values will be displayed to the user.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{Images/design/error}
-\caption{Proposed design for the illegal parameter error message displayed to the user}
+\caption[Illegal Parameter Error Prompt]{Proposed design for the illegal parameter error message displayed to the user}
 \label{fig:error}
 \end{figure}
 
@@ -193,7 +191,7 @@ There are several algorithm requirements;
 \begin{sidewaysfigure}
 \centering
 \includegraphics[scale= 0.45]{Images/design/flowmain}
-\caption{High level flow digram representing the psudeo code for Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
+\caption[High Level Flow Diagram]{High level flow diagram representing the pseudo code for Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
 \label{fig:flowmain}
 \end{sidewaysfigure}
 \clearpage
@@ -201,7 +199,7 @@ There are several algorithm requirements;
 \subsection{Pseudo-code}
 \label{sec:pseudo}
 \begin{algorithm}
-\caption{Pseudo-code for Ant Colony Optimisation}
+\caption[Ant Colony Optimisation Pseudo-code]{Pseudo-code for Ant Colony Optimisation}
 \label{aco:pseudo}
 \begin{algorithmic}[1]
 \State Initiate AntColonyOptimisation with defined parameters
@@ -240,12 +238,12 @@ Above is a somewhat simplified pseudo-code representation of the proposed Ant Co
 \clearpage
 \begin{figure}
 \includegraphics[scale = 0.3]{Images/design/sequenceRes}
-\caption{Sequence diagram representing Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
+\caption[Overall Sequence Diagram]{Sequence diagram representing Algorithm \ref{aco:pseudo}, section \ref{sec:pseudo}}
 \label{fig:seq}
 \end{figure}
 \clearpage
 
-The sequence diagram shown in figure \ref{fig:seq} shows the high level interaction between the proposed main Model Classes during the algorithms execution. The Ants are in constant communication with the AntColonyOptimisation and World instances during their movement through the graph to ensure the correct pheromone values are being parsed during the movement process. The View is also updated through the updateView() method in the AntColonyOptimisation instance which requires data about the current Ants and the current best Ant. This data is stored in and returned from the World instance.
+The sequence diagram shown in figure \ref{fig:seq} shows the high level interaction between the proposed main Model classes during the algorithms execution. The Ants are in constant communication with the AntColonyOptimisation and World instances during their movement through the graph to ensure the correct pheromone values are being parsed during the movement process. The View is also updated through the updateView() method in the AntColonyOptimisation instance which requires data about the current Ants and the current best Ant. This data is stored in and returned from the World instance.
 
 \subsection{Metrics}
 \label{ssec:metrics}
@@ -257,7 +255,7 @@ The sequence diagram shown in figure \ref{fig:seq} shows the high level interact
 \begin{equation}
 p_{xy}^{k} = \frac{(\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}{\sum (\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}
 \end{equation}
-\caption{Algebraic model of the probabilistic function used to calculate next move for any Agent \cite{probfunc:image}}
+\caption[Probabilistic Function]{Algebraic model of the probabilistic function used to calculate next move for any Agent \cite{probfunc:image}}
 \label{fig:probfunc}
 \end{figure}
 
@@ -265,7 +263,7 @@ p_{xy}^{k} = \frac{(\tau_{xy}^{\alpha })(\eta _{xy}^{\beta })}{\sum (\tau_{xy}^{
 The probability that an Agent moves to vertex $xy$ is described using the above. $p$ is the probability for any Agent $k$ to move through vertex $xy$. $\tau$ is the amount of pheromone deposited on vertex $xy$, which is raised to the exponent $\alpha$. $\alpha$ is an heuristic value representing how greedy the algorithm is in its path finding \cite{tjung:aco:blog}. The result for $\tau_{xy}^{\alpha}$ is then multiplied by the edge $xy$'s evaluation($\eta$). Generally $\eta$ will be represented using $\frac{1}{Euclidean\ distance_{xy}}$\cite{tjung:aco:blog}\cite{sjored:Thesus2012}. This will then be raised to the exponent $\beta$ which like $\alpha$ is an heuristic parameter however $\beta$ describes the Agents path finding speed.$\sum (\tau_{xy}^{\alpha})(\eta_{xy}^{\beta})$ is the sum of all possible solutions.
 
 \begin{algorithm}[H]
-\caption{Pseudo-code for Probabilistic function - Each Agent - figure~\ref{fig:probfunc}}
+\caption[Probabilistic function Pseudo-code]{Pseudo-code for Probabilistic function - Each Agent - figure~\ref{fig:probfunc}}
 \label{aco:pseudo:probfunc}
 \begin{algorithmic}[1]
 \State read the $pheromone$ level for vertex $xy$
@@ -289,7 +287,7 @@ $(inverted\ distance_{xy})^{\beta}$
 p_{xy}^{k} = (1 - \rho)\tau_{xy}^{k} + \Delta\tau_{xy}^{k}
 \end{equation}
 
-\caption{Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix
+\caption[Pheromone Function]{Algebraic model of the pheromone deposit function used to calculate the correct values for the pheromone matrix
 \label{fig:pheromonefunc}
 \cite{pheromone:image}}
 \end{figure}
@@ -308,17 +306,17 @@ Q/L_k & \text{if Agent $k$ uses curve $xy$ in its tour}\\
 \end{dcases*}
 \end{equation}
 
-\caption{Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$
+\caption[New Pheromone Function]{Algebraic model of the function used to calculate the how much new pheromone is deposited at $xy$
 \label{fig:newpheromonefunc}
 \cite{new:pheromone:image}. Pheromone is only updated if the Agent $k$ has visited point $xy$.}
 
 \end{figure}
 
 \noindent
-figure~\ref{fig:newpheromonefunc} represents the new amount of pheromone to be added to the existing concentration at $edge_{xy}$. This can be read as change in $\tau\ (\Delta \tau)$. Q is simply another heuristic parameter which is divided by the distance $agent k$ travelled to get to $edge_{xy}$. If the result of this is $\leq 0$ return 0. This ensures that new $pheromone$ is only added to the existing concentration at $edge_{xy}$ is used by $agent k$ in its tour.
+figure~\ref{fig:newpheromonefunc} represents the new amount of pheromone to be added to the existing concentration at $edge_{xy}$. This can be read as change in $\tau\ (\Delta \tau)$. $Q$ is simply another heuristic parameter which is divided by the distance $agent k$ travelled to get to $edge_{xy}$. If the result of this is $\leq 0$ return 0. This ensures that new $pheromone$ is only added to the existing concentration at $edge_{xy}$ is used by $agent k$ in its tour.
 
 \begin{algorithm}[H]
-\caption{Pseudo-code for Pheromone function - figures~\ref{fig:pheromonefunc}, \ref{fig:newpheromonefunc}}
+\caption[Pheromone Function Pseudo-code]{Pseudo-code for Pheromone function - figures~\ref{fig:pheromonefunc}, \ref{fig:newpheromonefunc}}
 \label{aco:pseudo:pherofunc}
 \begin{algorithmic}[1]
 \If {$pheromoneDeposit = Q\ value / totalDistanceWalked$ < 0}
@@ -336,31 +334,31 @@ figure~\ref{fig:newpheromonefunc} represents the new amount of pheromone to be a
 \section{Representation}
 \subsection{World}
 \label{sec:world}
-The World Class is used to model the graph that the Ants will traverse during the algorithms execution. The graph will be represented as a two-dimensional Array, with each element in said array representing a Node in the graph itself. The two dimensional array will be composed of integer values with each element containing an integer value representing the terrain type at this index, this will also be used to set the nest and food locations. 
+The World class is used to model the graph that the Ants will traverse during the algorithms execution. The graph will be represented as a two-dimensional Array, with each element in said array representing a node in the graph itself. The two dimensional array will be composed of integer values with each element containing an integer value representing the terrain type at this index, this will also be used to set the nest and food locations. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{Images/design/graph}
-\caption{Example World representation using a two-dimensional Integer Array}
+\caption[Example World Representation]{Example World representation using a two-dimensional Integer Array}
 \label{fig:graph}
 \end{figure}
 
 \noindent
-Figure \ref{fig:graph} shows how the proposed graph representation would be implement. A `0' value represents normal terrain where the Ants can move to, `1' represents the nest location where the Ants will start and `2' represents the food location which is the initial target for the Ants. This is a simplistic way to model an environment for the Ants whilst also allowing a multitude of terrain options without having to modify the way the graph is stored.
+Figure \ref{fig:graph} shows how the proposed graph representation would be implemented. A `0' value represents normal terrain where the Ants can move to, `1' represents the nest location where the Ants will start and `2' represents the food location which is the initial target for the Ants. This is a simplistic way to model an environment for the Ants whilst also allowing a multitude of terrain options without having to modify the way the graph is stored.
 
 \subsection{Pheromone}
 \label{pheroRepsec}
-The pheromone must be modelled in a way which is both easily accessible and modifiable. The data structure used to store the pheromone must also relate to the graph mentioned in \ref{sec:world} to allow for logical mapping between the representation of the Ants environment and the pheromone associated with each Node in the graph. The pheromone will be stored as a two-dimensional Array of Doubles. Each element in the Array will represent the pheromone concentration for the corresponding Node in the graph for example, the double value at pheromone[x][y] will represent the pheromone concentration on edge [x][y] in the graph, thus there is a logical link between the two representations.
+The pheromone must be modelled in a way which is both easily accessible and modifiable. The data structure used to store the pheromone must also relate to the graph mentioned in \ref{sec:world} to allow for logical mapping between the representation of the Ants environment and the pheromone associated with each node in the graph. The pheromone will be stored as a two-dimensional Array of Doubles. Each element in the Array will represent the pheromone concentration for the corresponding Node in the graph for example, the double value at pheromone[x][y] will represent the pheromone concentration on edge [x][y] in the graph, thus there is a logical link between the two representations.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{Images/design/phero}
-\caption{Example Pheromone representation using a two-dimensional Double Array with default initial values}
+\caption[Example Pheromone Representation]{Example Pheromone representation using a two-dimensional Double Array with default initial values}
 \label{fig:pheroRep}
 \end{figure}
 
 \noindent
-Figure \ref{fig:pheroRep} demonstrates how a two-dimensional Double array can be effectively used to model the pheromone values for every Node in the graph. The values in this figure are default initial values which will be user defined when the application is executed. As the Ants moves through the graph the pheromone values at each index will correctly model the pheromone operations mentioned in section \ref{sssec:pherodepo}. As the values are stored in an array accessing or modifying the values is extremely simple and involves a simple getter or setter operation.
+Figure \ref{fig:pheroRep} demonstrates how a two-dimensional Double array can be effectively used to model the pheromone values for every node in the graph. The values in this figure are default initial values which will be user defined when the application is executed. As the Ants move through the graph the pheromone values at each index will correctly model the pheromone operations mentioned in section \ref{sssec:pherodepo}. As the values are stored in an array accessing or modifying the values is extremely simple and involves a simple getter or setter operation.
 
 \subsection{Visualisation}
 
@@ -371,12 +369,12 @@ Given that the pheromone is stored in a two-dimensional array of doubles and the
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.8]{Images/design/pheroEX}
-\caption{Example Pheromone visualisation}
+\caption[Example Pheromone Visualisation]{Example Pheromone visualisation using the suggested visualisation method}
 \label{fig:pheroVis}
 \end{figure}
 
 \noindent
-Figure \ref{fig:pheroVis} shows how the pheromone value for a given [x,y] co-ordinate has a direct influence on the opacity of the cells colour. In said figure the pheromone value at each index is multiplied by 100 to convert it to a percentage, which then becomes the opacity value for the given Node. However, if the pheromone values for each Node become extremely small during execution there must be a measure in place to covert the small values back into percentages using a larger scaling factor than 100.
+Figure \ref{fig:pheroVis} shows how the pheromone value for a given (x,y) co-ordinate has a direct influence on the opacity of the cells colour. In said figure the pheromone value at each index is multiplied by 100 to convert it to a percentage, which then becomes the opacity value for the given Node. However, if the pheromone values for each Node become extremely small during execution there must be a measure in place to covert the small values back into percentages using a larger scaling factor than 100.
 
 
 \clearpage

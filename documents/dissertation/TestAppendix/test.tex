@@ -3,6 +3,8 @@
 
 \section{Test Code Examples}
 
+The test cases shown in this chapter are not fully representative of every application test, only a selection of code example has been included.
+
 \begin{figure}[H]
 \begin{lstlisting}
 @Test
@@ -13,7 +15,7 @@ public void testValidationRulesAllowLegalAlphaValues(){
 	}
 }
 \end{lstlisting}
-\caption{Code representing the automated testing process for checking mutliple alpha parameter values.}
+\caption[Alpha Parameter Test Code]{Code representing the automated testing process for checking mutliple alpha parameter values.}
 \label{testAlpha}
 \end{figure}
 
@@ -27,7 +29,7 @@ public void testValidationRulesAllowLegalBetaValues(){
 	}
 }
 \end{lstlisting}
-\caption{Code representing the automated testing process for checking mutliple beta parameter values.}
+\caption[Beta Parameter Test Code]{Code representing the automated testing process for checking mutliple beta parameter values.}
 \label{testBeta}
 \end{figure}
 
@@ -49,7 +51,7 @@ public void testValidationRulesShouldNotAllowIllegalAgentsValues(){
 	}
 }
 \end{lstlisting}
-\caption{Code representing the automated testing process for checking mutliple agent parameter values.}
+\caption[Agent Parameter Test Code]{Code representing the automated testing process for checking mutliple agent parameter values.}
 \label{testAgent}
 \end{figure}
 
@@ -89,7 +91,7 @@ public void testTotalProbabiliyIsCalculatedToEqualOne(){
 	assertEquals(1.0, p1 + p2 + p3 + p4, 0.0001);
 }
 \end{lstlisting}
-\caption{Code representing the automated testing process for checking mutliple agent parameter values.}
+\caption[Probability Test Code]{Code representing the automated testing process for the probability function.}
 \label{testProb}
 \end{figure}
 
@@ -138,7 +140,7 @@ cities \\
 7 \\
 5 \\
 EOF
-\caption{Contents of a legal problem representation stored in a file.}
+\caption[Legal File Contents]{Contents of a legal problem representation stored in a file.}
 \label{validConfig}
 \end{figure}
 
@@ -170,7 +172,7 @@ cities \\
 7 \\
 5 \\
 EOF
-\caption{Contents of an illegal problem representation stored in a file. The number of agents in line 5 is not an integer value (30sffs)}
+\caption[Illegal File contents - Number Format execption]{Contents of an illegal problem representation stored in a file. The number of agents in line 5 is not an integer value (30sffs)}
 \label{invalidConfigagentsNFE}
 \end{figure}
 
@@ -201,7 +203,7 @@ cities \\
 7 \\
 5 \\
 EOF
-\caption{Contents of an illegal problem representation stored in a file. The number of agents has not been defined.}
+\caption[Illegal File contents - Missing Data]{Contents of an illegal problem representation stored in a file. The number of agents has not been defined.}
 \label{invalidConfigMissing}
 \end{figure}
 
@@ -214,7 +216,7 @@ EOF
 \hline
 \textbf{Requirement} & \multicolumn{1}{c|}{\textbf{Test}}                                                                          & \multicolumn{1}{c|}{\textbf{Pass/Fail}} & \multicolumn{1}{c|}{\textbf{Comment}}                                                                                                                                                                                                                          \\ \hline
           \textbf{FR1}   & \begin{tabular}[c]{@{}l@{}}Test that the application\\ can be launches from the\\ .jar file\end{tabular}    & Pass                                    & \begin{tabular}[c]{@{}l@{}}This will be the default\\ way to launch the \\ application.\end{tabular} \\ \hline
-\textbf{FR16}        & \begin{tabular}[c]{@{}l@{}}The user is able to exit\\ the application whenever the\\ wish to\end{tabular}          & Pass                                    & \begin{tabular}[c]{@{}l@{}}Click the exit on the main\\ JFrame container. This will\\ exit the application regardless\\ of what the application is \\ currently doing.\end{tabular} \\ \hline
+\textbf{FR16}        & \begin{tabular}[c]{@{}l@{}}The user is able to exit\\ the application whenever they\\ wish\end{tabular}          & Pass                                    & \begin{tabular}[c]{@{}l@{}}Click exit on the main\\ JFrame container. This will\\ exit the application regardless\\ of what the application is \\ currently doing.\end{tabular} \\ \hline
                                                                                                                                                     
 \end{tabular}
 \caption[FR1 and FR16  acceptance tests]{A summary of the tests used to acceptance test against FR1 and FR16}
@@ -257,6 +259,7 @@ EOF
 \textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ define the number of\\ agents\end{tabular}                                  & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
 \textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ define the number of\\ cities\end{tabular}                                  & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
 \textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ specify the number \\ of elite agents\end{tabular}                          & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
+\textbf{FR4}         & \begin{tabular}[c]{@{}l@{}}Ensure the user can\\ specify the number \\ of iterations\end{tabular}                          & Pass                                    & \begin{tabular}[c]{@{}l@{}}This is complete\\ with error checking\end{tabular}  \\ \hline
 \end{tabular}
 \caption[FR4 acceptance tests]{A summary of the tests used to acceptance test against FR4}
 \end{table}
@@ -306,6 +309,7 @@ EOF
 \textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of uphill paths\end{tabular} & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
 \textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of cities\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
 \textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of agents\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
+\textbf{FR10}        & \begin{tabular}[c]{@{}l@{}}Ensure the algorithm\\ rejects an invalid number\\ of iterations\end{tabular}       & Pass                                    & \begin{tabular}[c]{@{}l@{}}An error message\\ is displayed to the\\ user\end{tabular} \\ \hline
 \end{tabular}
 \caption[FR10 acceptance tests]{A summary of the tests used to acceptance test against FR10}
 \end{table}
@@ -335,7 +339,7 @@ EOF
 \subsection{Interface Testing}
 \label{UITESTSM8}
 
-The following tests are not directly related to the functional requirements however, they provide a huge increase in the overall qualtiy of the application as proper error feedback is essential. The parameters and file IO have both been tested for boundary conditions and the like in the unit tests for the application and as a result the author is not concerned about the values tested below. The purpose of these tests is to solely ensure the view is performiing as expected.
+The following tests are not directly related to the functional requirements however, they provide a huge increase in the overall qualtiy of the application as proper error feedback is essential. The parameters and file IO have both been tested for boundary conditions during the unit test process. As a result the author is not concerned about the values tested below. The purpose of these tests is to solely ensure the view is performiing as expected.
 
 \begin{table}[H]
 \centering
@@ -387,12 +391,12 @@ Specify too few cities                                                          
 \begin{tabular}[c]{@{}l@{}}Attempt to load \\ an invalid file\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}An error message should\\ be displayed informing\\ the user than the problem\\ configuration is invalid\end{tabular}         & Pass               & \begin{tabular}[c]{@{}l@{}}The cause of the error\\ is unimportant, checks have\\ been done already in regards\\ to catching illegal file content.\end{tabular} \\ \hline
 \begin{tabular}[c]{@{}l@{}}Attempt to save\\ whilst the algorithm\\ is running\end{tabular}                  & \begin{tabular}[c]{@{}l@{}}An error message\\ should tell the user\\ that the algorithm must\\ be stopped or complete\\ before saving\end{tabular}      & Pass               &                                                                                                                                                                 \\ \hline
 \begin{tabular}[c]{@{}l@{}}Attempt to save\\ when there is nothing \\ to save (no world exists)\end{tabular} & \begin{tabular}[c]{@{}l@{}}The user should be informed\\ that there is nothing to save\\ and should be instructed\\ how to create a world.\end{tabular} & Pass               &                                                                                                                                                                 \\ \hline
-\begin{tabular}[c]{@{}l@{}}A loaded problem should\\ be rendered\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}If the loading of a \\ configuration completes,\\ the configuration should\\ be displayed to the user\end{tabular}           & Pass               & \begin{tabular}[c]{@{}l@{}}The parameter text fields\\ are also updated to reflect the\\ values contained in such file\end{tabular}                             \\ \hline
+\begin{tabular}[c]{@{}l@{}}A loaded problem should\\ be automatically rendered\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}If the loading of a \\ configuration completes,\\ the configuration should\\ be displayed to the user\end{tabular}           & Pass               & \begin{tabular}[c]{@{}l@{}}The parameter text fields\\ are also updated to reflect the\\ values contained in such file\end{tabular}                             \\ \hline
 \end{tabular}
 \caption[FileIO Error Testing]{A summary of the tests used to see if the error feedback is as expected.}
 \end{table}
 
-The tests below are designed to see if the algorithm handled general rendering tasks as expected. This does not includes the rendering of the problem or the movement of agents or the like as this have been tested during the acceptance testing phase.
+The tests below are designed to see if the algorithm handled general rendering tasks as expected. This does not includes the rendering of the problem or the movement of agents as this have been tested during the acceptance testing phase.
 
 \begin{table}[H]
 
@@ -400,7 +404,7 @@ The tests below are designed to see if the algorithm handled general rendering t
 \hline
 \multicolumn{4}{|l|}{\textbf{General View Testing(1)}}                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ \hline
 \textbf{Test}                                                                                                            & \textbf{Expected Result}                                                                                                                                                                                                   & \textbf{Pass/fail} & \textbf{Comments}                                                                                                \\ \hline
-\begin{tabular}[c]{@{}l@{}}When step mode is\\ enabled the view\\ changes states\end{tabular}                            & \begin{tabular}[c]{@{}l@{}}When step mode is enabled\\ the 'start' button should now\\ read 'step'\end{tabular}                                                                                                            & Pass               &                                                                                                                  \\ \hline
+\begin{tabular}[c]{@{}l@{}}When step mode is\\ enabled the view\\ changes state\end{tabular}                            & \begin{tabular}[c]{@{}l@{}}When step mode is enabled\\ the 'start' button should now\\ read 'step'\end{tabular}                                                                                                            & Pass               &                                                                                                                  \\ \hline
 \begin{tabular}[c]{@{}l@{}}When step mode is\\ disabled the view \\ changes state\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}When step mode is disabled\\ the 'step' button should read\\ 'start'\end{tabular}                                                                                                               & Pass               &                                                                                                                  \\ \hline
 \begin{tabular}[c]{@{}l@{}}The text values are\\ correctly reset\end{tabular}                                            & \begin{tabular}[c]{@{}l@{}}When the user presses the\\ 'reset values' button, the text\\ fields are restored to deafult\end{tabular}                                                                                       & Fail               & \begin{tabular}[c]{@{}l@{}}The iterations field was\\ not being reset. This has\\ since been fixed.\end{tabular} \\ \hline
 \begin{tabular}[c]{@{}l@{}}When in step mode\\ the user cant modify the\\ aglorithm\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}When the user is in step\\ mode and has started the \\ iteration process the text \\ fields should become disabled\\ until the algorithm \\ completes or the user presses\\  stop.\end{tabular} & Pass               &                                                                                                                  \\ \hline

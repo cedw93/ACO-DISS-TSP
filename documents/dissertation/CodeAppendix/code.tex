@@ -10,7 +10,7 @@ pheromone = new Pheromone[cities.size()][cities.size()];
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class}
+\caption[Pheromone Initialisation Code]{Snippet of code used to inialise the pheromone Matrix. $cities$ is a list of $City$ obejcts. $aco$ is the instance of the $AntColonyOptimisation$ Class}
 \label{initPheroCode}
 \end{figure}
 
@@ -23,7 +23,7 @@ distanceMatrix = new double[cities.size()][cities.size()];
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.}
+\caption[Distance Matrix Initialisation Code]{Snippet of code used to inialise the distance Matrix. $cities$ is a list of $City$ obejcts.}
 \label{initDistanceCode}
 \end{figure}
 
@@ -36,7 +36,7 @@ invertedMatrix = new double[distanceMatrix.length][distanceMatrix[0].length];
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts. $invertValue{distanceMatrix[i][j]}$ returns $\frac{1}{distanceMatrix[i][j]}$}
+\caption[Inverted Distance Matrix Initialisation Code]{Snippet of code used to inialise the inverted distance Matrix. $cities$ is a list of $City$ obejcts. $invertValue{distanceMatrix[i][j]}$ returns $\frac{1}{distanceMatrix[i][j]}$}
 \label{initInverteddistanceCode}
 \end{figure}
 
@@ -58,7 +58,7 @@ cities = new ArrayList<City>();
 		cities.add(new City(x,y,i));	
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the collection of $City$ obejcts.}
+\caption[City Collection Initialisation Code]{Snippet of code used to inialise the collection of $City$ obejcts.}
 \label{initCity}
 \end{figure}
 
@@ -77,7 +77,7 @@ Random r = new Random();
 		ants.add(new Ant(this, index));
 	}
 \end{lstlisting}
-\caption{Snippet of code used to inialise the collection of $Ant$ obejcts. $this$ refers to the current $World$ Object.}
+\caption[Ant Collection Initialisation Code]{Snippet of code used to inialise the collection of $Ant$ obejcts. $this$ refers to the current $World$ Object.}
 \label{initAnt}
 \end{figure}
 
@@ -107,7 +107,7 @@ public double calculatePheromones(double current, double newPheromone) {
 	return ((1 - aco.getDecayRate()) * current + newPheromone);
 }	
 \end{lstlisting}
-\caption{Snippet of code used to update the pheromone values for every edge. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
+\caption[Pheromone Update Code]{Snippet of code used to update the pheromone values for every edge. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
 \label{codephero}
 \end{figure}
 
@@ -162,7 +162,7 @@ public final int getNextProbableNode(int y) {
 	return -1;
 }
 \end{lstlisting}
-\caption{Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite{tjung:aco:blog}}
+\caption[Next Probable Node Code]{Snippet of code used to select the Ants next location. This is a modifiedf version of the code provided by Thomas Jungblut \cite{tjung:aco:blog}}
 \label{nextNodeCode}
 \end{figure}
 
@@ -204,7 +204,7 @@ for(int i = 0; i < iterations; i++){
 	
 	
 \end{lstlisting}
-\caption{Snippet of code used to automatically execute the algorithm untill compeltion. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
+\caption[Automated Algorithm Completion Code]{Snippet of code used to automatically execute the algorithm untill compeltion. $aco$ is the current instance of the $AntColonyOptimisation$ Class.}
 \label{iterationThing}
 \end{figure}
 
@@ -236,7 +236,7 @@ if(currentIter < iterations){
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to execute the algorithm on a step by step basis}
+\caption[Step-based Algorithm Execution Code]{Snippet of code used to execute the algorithm on a step by step basis}
 \label{stepM8}
 \end{figure}
 
@@ -250,7 +250,7 @@ public static double linearInterpolateY(double y1,double y2, double mu)	{
 	return(y1*(1-mu)+y2*mu);
 }
 \end{lstlisting}
-\caption{Snippet of code determine the cordinate values for both $x$ and $y$ for a given $\mu$ value.}
+\caption[Liner Interpolation Code]{Snippet of code determine the cordinate values for both $x$ and $y$ for a given $\mu$ value.}
 \label{linearCode}
 \end{figure}
 
@@ -296,7 +296,7 @@ City destination = null;
 	start = null;
 	destination = null;
 \end{lstlisting}
-\caption{Snippet of code used to visualise an Ants movement. $g2$ is an instance of $Graphics2D$.}
+\caption[Visualising Ant Movement Code]{Snippet of code used to visualise an Ants movement. $g2$ is an instance of $Graphics2D$.}
 \label{antWalk}
 \end{figure}
 
@@ -322,7 +322,7 @@ bestRoute = model.getWorld().getBestRoute();
 		}
 	}
 \end{lstlisting}
-\caption{Snippet of code used to display the best route to the user.}
+\caption[Display Best Route Code]{Snippet of code used to display the best route to the user.}
 \label{bestCode}
 \end{figure}
 
@@ -340,7 +340,7 @@ for(EliteAntData data: eliteAnts){
 	}
 }
 \end{lstlisting}
-\caption{Snippet of code used to depsoit pheromone along the elite routes. An $EliteAntData$ Object is used to represent an Elite route}
+\caption[Elite Route Pheromone Deposit Code]{Snippet of code used to depsoit pheromone along the elite routes. An $EliteAntData$ Object is used to represent an Elite route}
 \label{elitePhero}
 \end{figure}
 
@@ -359,7 +359,7 @@ while(numberOfUphill > 0){
 	}
 }
 \end{lstlisting}
-\caption{Snippet of code used to initialise uphill paths.}
+\caption[Uphill Path Generation Code]{Snippet of code used to generate uphill paths.}
 \label{suchUphill}
 \end{figure}
 
