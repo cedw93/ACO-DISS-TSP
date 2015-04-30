@@ -3,7 +3,7 @@
 
 \section{Test Code Examples}
 
-The test cases shown in this chapter are not fully representative of every application test, only a selection of code example has been included.
+The test cases shown in this chapter are not fully representative of every application test, only a selection of code examples has been included.
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -108,7 +108,7 @@ The below figure \ref{validConfig} contains an example of a valid problem config
 \item double, the initial edge pheromone value must be in the range of $0\ to\ 1$
 \item int, the number of agents must be between $1\ and\ 50$
 \item int, the number of cities must be between $3\ and\ 25$
-\item int. int, the X and Y coordinate for a City. There should be 1 line for the corresponding number of cities defined in the previous line
+\item int. int, the X and Y coordinate for a City. There should be a line for the corresponding number of cities defined in the previous line
 \item int, the number of uphill routes to be generated this must be between $0\ and\ 15$
 \item int, the number of iterations this must be greater than $0$
 \item EOF, signifies that this is the end of the configuration content
@@ -144,7 +144,7 @@ EOF
 \label{validConfig}
 \end{figure}
 
-Below is an example of one of the test files used to ensure that only legal configurations are accepted. This file is rejected because the number of agents is specified as 30sffs which is not a valid integer value. It is easier to reject this and tell the user to correct it than it is to extract the integer value from a malformed integer.
+Below is an example of one of the test files used to ensure that only legal configurations are accepted. This file is rejected because the number of agents is specified as 30sffs which is not a valid integer value. It is easier to reject this and tell the user to correct it than it is to extract the integer value from malformed data.
 
 \begin{figure}[H]
 0.2 \\

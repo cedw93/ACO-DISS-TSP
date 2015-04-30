@@ -68,10 +68,9 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   this work is provided. \end{quotation}
 
 \bibitem{gof:design:singleton}
-{E. Gamma, R. Helm, R. Johnson, and J. Vlissides}, \emph{{Design Patterns:
-  Elements of Reusable Object-Oriented Software}}, 1st~ed.\hskip 1em plus 0.5em
-  minus 0.4em\relax {Addison-Wesley Professional}, Nov 1994, pp. 127-128,
-  {[Online]. Available: http://www.worldcat.org/isbn/020163361}.
+{E. Gamma, R. Helm, R. Johnson, and J. Vlissides}, ``{Design Patterns: Elements
+  of Reusable Object-Oriented Software},'' Nov 1994, pp. 127-128, {[Online].
+  Available: http://www.worldcat.org/isbn/020163361}.
  \begin{quotation}\noindent This book is a very good reference point for design
   patterns in general, providing concise descriptions, examples and use cases.
   The book examples are implemented using C++, as this will be a Java based
@@ -80,9 +79,8 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   \end{quotation}
 
 \bibitem{gof:design:mvc}
-------, \emph{{Design Patterns: Elements of Reusable Object-Oriented
-  Software}}, 1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax {Addison-Wesley
-  Professional}, Nov 1994, pp. 4-6, {[Online]. Available:
+------, ``{Design Patterns: Elements of Reusable Object-Oriented Software},''
+  Nov 1994, pp. 4-6, {[Online]. Available:
   http://www.worldcat.org/isbn/020163361}.
  \begin{quotation}\noindent This book is a very good reference point for design
   patterns in general, providing concise descriptions, examples and use cases.
@@ -106,8 +104,7 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   code development. \end{quotation}
 
 \bibitem{marcdorgio:book:EAS}
-{M. Dorigo and T. St \"{u}tzle}, \emph{{Ant Colony Optimization }},
-  1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax {Bradford Books}, Jun. 2004,
+{M. Dorigo and T. St \"{u}tzle}, ``{Ant Colony Optimization },'' Jun. 2004,
   pp.73{[Online]. Available: http://www.worldcat.org/isbn/0262042193}.
  \begin{quotation}\noindent Publication by the creators of the Ant Colony
   family of methods. This publication contains the majority of information
@@ -126,8 +123,7 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   information about the Double Bridge experiment. \end{quotation}
 
 \bibitem{marcdorgio:book:nopage}
-------, \emph{{Ant Colony Optimization }}, 1st~ed.\hskip 1em plus 0.5em minus
-  0.4em\relax {Bradford Books}, Jun. 2004, [Online]. Available:
+------, ``{Ant Colony Optimization },'' Jun. 2004, [Online]. Available:
   http://www.worldcat.org/isbn/0262042193.
 
 
@@ -186,19 +182,8 @@ M.~Dorigo, ``Optimization, learning and natural algorithms (in {I}talian),''
   This includes the underlying concepts and why it makes is logical to adhere
   to such concepts. \end{quotation}
 
-\bibitem{sjored:Thesus2012:evalue}
-V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
-  problem},'' Master's thesis, Leiden University, The Netherlands, Leiden
-  Institute of Advanced Computer Science (LIACS), Leiden University, Niels
-  Bohrweg 1, 2333 CA Leiden, The Netherlands, Jul 2012, {pp.11 [Online].
-  Available: http://www.liacs.nl/assets/2012-08SjoerdvanEgmond.pdf}.
- \begin{quotation}\noindent A Masters thesis looking into a hybrid Ant and Bee
-  Colony algorithm for dynamic TSP problems. The thesis has some good concepts
-  and background into the algorithm, however a lot of the information is highly
-  theoretical. \end{quotation}
-
 \bibitem{sjored:Thesus2012}
-------, ``{"Dynamic ant colony optimization for the travelling salesman
+V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   problem},'' Master's thesis, Leiden University, The Netherlands, Leiden
   Institute of Advanced Computer Science (LIACS), Leiden University, Niels
   Bohrweg 1, 2333 CA Leiden, The Netherlands, Jul 2012, {pp.7 [Online].
@@ -213,7 +198,8 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   http://www.technologyuk.net/computing/sad/waterfall\_model.shtml, accessed:
   9th {A}pr 2015.
  \begin{quotation}\noindent An image depicting the structure of the waterfall
-  life cycle. \end{quotation}
+  life cycle. This has been modified to properly show the process the author
+  followed for this project. \end{quotation}
 
 \bibitem{tjung:aco:blog}
 {T}homas {J}ungblut, ``{A}nt {C}olony {O}ptimization for {TSP} {P}roblems ,
@@ -224,8 +210,19 @@ V.~E. Sjoerd, ``{"Dynamic ant colony optimization for the travelling salesman
   A Break down of equations is also included in order to make them more
   digestible. \end{quotation}
 
+\bibitem{sjored:Thesus2012:evalue}
+{V. E. Sjoerd}, ``{"Dynamic ant colony optimization for the travelling salesman
+  problem},'' Master's thesis, Leiden University, The Netherlands, Leiden
+  Institute of Advanced Computer Science (LIACS), Leiden University, Niels
+  Bohrweg 1, 2333 CA Leiden, The Netherlands, Jul 2012, {pp.11 [Online].
+  Available: http://www.liacs.nl/assets/2012-08SjoerdvanEgmond.pdf}.
+ \begin{quotation}\noindent A Masters thesis looking into a hybrid Ant and Bee
+  Colony algorithm for dynamic TSP problems. The thesis has some good concepts
+  and background into the algorithm, however a lot of the information is highly
+  theoretical. \end{quotation}
+
 \bibitem{doublebridges:image}
-{vnschool.net}, ``{Double Bridge Experiment Image, online] {A}pr 2015},''
+{vnschool.net}, ``{Double Bridge Experiment Image, [online] {A}pr 2015},''
   {A}valiable: http://www.vnschool.net/images/082010/Thuattoan/ThuatT\_2.jpg,
   accessed: 7th {A}pr 2015.
  \begin{quotation}\noindent Simple graphic representing the Double Bridge

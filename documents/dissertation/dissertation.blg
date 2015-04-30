@@ -34,43 +34,43 @@ Warning--entry type for "tblanch:diss" isn't style-file defined
 Done.
 You've used 27 entries,
             4538 wiz_defined-function locations,
-            1060 strings with 17734 characters,
-and the built_in function-call counts, 13179 in all, are:
-= -- 1171
-> -- 204
-< -- 15
+            1061 strings with 17839 characters,
+and the built_in function-call counts, 12831 in all, are:
+= -- 1191
+> -- 192
+< -- 3
 + -- 81
 - -- 54
-* -- 567
-:= -- 2349
+* -- 535
+:= -- 2318
 add.period$ -- 54
 call.type$ -- 27
 change.case$ -- 131
-chr.to.int$ -- 45
+chr.to.int$ -- 9
 cite$ -- 27
-duplicate$ -- 994
-empty$ -- 1189
+duplicate$ -- 954
+empty$ -- 1113
 format.name$ -- 54
-if$ -- 2797
+if$ -- 2692
 int.to.chr$ -- 0
 int.to.str$ -- 27
-missing$ -- 207
+missing$ -- 211
 newline$ -- 128
 num.names$ -- 54
-pop$ -- 637
+pop$ -- 633
 preamble$ -- 1
 purify$ -- 81
 quote$ -- 2
-skip$ -- 952
+skip$ -- 936
 stack$ -- 0
-substring$ -- 239
-swap$ -- 531
+substring$ -- 219
+swap$ -- 527
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 195
+type$ -- 215
 warning$ -- 0
-while$ -- 59
+while$ -- 55
 width$ -- 29
 write$ -- 272
 (There was 1 warning)

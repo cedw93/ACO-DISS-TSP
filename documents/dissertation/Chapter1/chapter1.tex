@@ -4,11 +4,11 @@
 \label{agloover}
 Ant Colony Optimisation is a probabilistic technique usually used on problems which can be resolved by returning an optimal path through a graphical representation of a given problem. Ant Colony Optimisation refers to a collection of methods and techniques which represent a specific family in Swarm Intelligence. Swarm Intelligence \enquote{...deals with natural and artificial systems composed of many individuals that coordinate using decentralized control and self-organization. In particular, the discipline focuses on the collective behaviours that result from the local interactions of the individuals with each other and with their environment} \cite{SI:def}. In summary each agent is simple and follows a series of basic rules as it performs its operations. If you increase the population of these agents and allow them to communicate with each other then the world they populate will express an emergence of intelligence otherwise unavailable to any individual agent. Ultimately each agent collectively works towards the same goal increasing the quality and appropriateness of the result.
 
-Ant Colony Optimisation algorithms stemmed from the initial proposal by Marco Dorigo et al. through the publication of his PhD in 1992 \cite{Dor1992:thesis}. The Algorithms are based upon the real world behaviour of ant colonies. Ants in the real world will generally always find the most optimal bath between two or more locations, often described as the route between their nest site and the location of the food source(s). As an ant leaves the colony in search of a food source it begins to deposit a chemical trail (pheromone) which can be analysed by other ants in the population. Once an agent has deposited the pheromone it starts to decay. This decay rate could be accelerated by external factors such as adverse weather conditions or movements in the terrain. As the pheromone decays, new pheromone will be deposited by other agents in the colony. As more and more agents continue their tour the locations which have the highest concentration of pheromone are generally the most traversed locations. Ultimately the locations with the highest concentration of pheromone will not only be the most frequently used but will also form the optimal route between the start location and the destination(s). Every location is subject to such decay however the most commonly used locations will constantly be ‘topped up’ by the population whereas the locations used less frequent will ultimately decay to low pheromone levels. The pheromone levels are important because they directly influence the probabilistic function for any ant choosing its next location at any intersection. The higher the concentration of pheromone, the greater the probability that the ant will choose this location as the next stop on its tour. As this is a probabilistic decision the ant may not always choose the location with the highest concentration levels allowing for other solutions to be sought after, enabling shifts in the current best route.
+Ant Colony Optimisation algorithms stemmed from the initial proposal by Marco Dorigo et al. through the publication of his PhD in 1992 \cite{Dor1992:thesis}. The Algorithms are based upon the real world behaviour of ant colonies. Ants in the real world will generally always find the most optimal bath between two or more locations, often described as the route between their nest site and the location of the food source(s). As an ant leaves the colony in search of a food source it begins to deposit a chemical trail (pheromone) which can be analysed by other ants in the population. Once an ant has deposited the pheromone it is subject to decay. As the pheromone decays, new pheromone will be deposited by other ants in the colony. As more and more ants continue their tour the locations which have the highest concentration of pheromone are generally the most traversed locations. Ultimately the locations with the highest concentration of pheromone will not only be the most frequently used but will also form the optimal route between the start location and the destination(s). Every location is subject to such decay however the most commonly used locations will constantly be ‘topped up’ by the population whereas the locations used less frequent will eventually decay to low pheromone levels. The pheromone levels are important because they directly influence the probabilistic function for any ant choosing its next location at any intersection. The higher the concentration of pheromone, the greater the probability that the ant will choose this location as the next stop on its tour. As this is a probabilistic decision the ant may not always choose the location with the highest concentration levels allowing for other solutions to be sought after, enabling shifts in the current best route.
 
 \section{Double Bridge Experiment}
 \label{dblbridge}
-The double bridge experiment is an early experiment devised to help understand the real world behaviour of ants and their path finding capabilities. The double bridge experiment, as the name suggests involves a nest location separated from a single food source by two bridges. This experiment was designed and carried out by Deneubourg and colleagues in 1989-1990 and used real Argentine ants \cite{marcdorgio:book:doublebridges}.
+The double bridge experiment is an early experiment devised to help understand the real world behaviour of ants and their path finding capabilities. The double bridge experiment, as the name suggests, involves a nest location separated from a single food source by two bridges. This experiment was designed and carried out by Deneubourg and colleagues in 1989-1990 and used real Argentine ants \cite{marcdorgio:book:doublebridges}.
 
 \begin{figure}[h!]
 \centering
@@ -22,7 +22,7 @@ Figure \ref{fig:doublebridge} represents the scenario the Argentine ant were fac
 
 \section{Travelling Salesman Problem}
 \label{tsp}
-Ant Colony algorithms are commonly applied to the Travelling Salesman Problem (TSP). The TSP consists of a graph of $n$ cities and a path between these $n$ cities must be found however, each city must be visited exactly once. Generally this $n$ value is rather large for example the Berlin52\cite{berlin52:source} is a variation of the TSP where this $n$ value is 52. The number of possible routes between these 52 cities is incredibly large. The application of heuristic algorithms such as the Ant Colony methods enables solutions to be found within a reasonable time. One solution for the Berlin52.tsp problem is shown in figure \ref{fig:berlin52}.
+Ant Colony algorithms are commonly applied to the Travelling Salesman Problem (TSP). The TSP consists of a graph of $n$ cities and a path between these $n$ cities must be found however, each city must be visited exactly once. Generally this $n$ value is rather large for example the Berlin52\cite{berlin52:source} is a variation of the TSP where this $n$ value is 52. The number of possible routes between these 52 cities is incredibly large and exploring every combination is a near impossibility. The application of heuristic algorithms such as the Ant Colony methods enables solutions to be found within a reasonable time. One solution for the Berlin52.tsp problem is shown in figure \ref{fig:berlin52}.
 
 \begin{figure}[h!]
 \centering
@@ -31,7 +31,7 @@ Ant Colony algorithms are commonly applied to the Travelling Salesman Problem (T
 \label{fig:berlin52}
 \end{figure}
 
-The TSP is not the only problem which can be tackled using the Ant Colony family of methods. As these methods have metaheuristic properties the general behaviours and structure can be applied to several other problems such as image segmentation however, this project will not cover such problems and will focus on the TSP style of problem.
+The TSP is not the only problem which can be tackled using the Ant Colony family of methods. As these methods have metaheuristic properties the general behaviours and structure can be applied to several other problems such as image segmentation however, this project will not cover such application and will focus on the TSP style of problem.
 
 \section{Ant System}
 \label{sec:AntSystem}
@@ -39,11 +39,11 @@ The Ant System is the most basic implementation of an Ant Colony Optimisation me
 
 \subsection{Forumlae}
 
-Sections \ref{ASprob} and \ref{ASphero} refer to the underlying formulae which govern the agents pheromone deposits for a given edge and the probability for an agent to move to a specific location from its current one.
+Sections \ref{ASprob} and \ref{ASphero} refer to the underlying formulae which govern the ants probablitity of selection and pheromone deposits for a given edge.
 
 \subsubsection{Probability}
 
-The probability formula is as described in appendix B section \ref{sssec:probfuncsssec}. This is the function which drives the agents movements and enabled agents to generally pick the best looking path (path with the strongest pheromone concentration) whilst also allowing for agents to select other paths helping to prevent localised solutions forming.
+The probability formula is as described in appendix B, section \ref{sssec:probfuncsssec}. This is the function which drives the ants movement and enabled ants to generally pick the best looking path (path with the strongest pheromone concentration) whilst also allowing for ants to select other paths helping to prevent localised solutions forming.
 
 \label{ASprob}
 
@@ -55,20 +55,20 @@ The pheromone function for the Ant System algorithm is as described in appendix 
 
 \section{Elitist Ant System}
 \label{eliteymcneaty}
-The Elitist Ant System is the first adaptation to the initial Ant System algorithm. The Elitist Ant System is again, proposed by Marco Dorgio et al. in his 1992 PhD Thesis \cite{Dor1992:thesis}. The main difference between the Elitist Ant System and the Ant System is the fact that the best ants for a given iteration have pheromone deposited upon their route. This means that the best $x$ number of ants where $x$ is an integer representing the number of elite ants will have their routes remembered across iterations preserving their best routes knowledge. This generally improves performance of the population as a whole as the extra pheromone on these elite paths will increase the probability that any agent traverses an elite edge (an edge that is part of a best routes).
+The Elitist Ant System is the first adaptation to the initial Ant System algorithm. The Elitist Ant System is again, proposed by Marco Dorgio et al. in his 1992 PhD Thesis \cite{Dor1992:thesis}. The main difference between the Elitist Ant System and the Basic Ant System is the fact that the best ants for a given iteration have pheromone deposited upon their route. This means that the best $x$ number of ants where $x$ is an integer representing the number of elite ants will have their routes remembered across iterations preserving their best routes knowledge. This generally improves performance of the population as a whole as the extra pheromone on these elite paths will increase the probability that any ant traverses an elite edge (an edge that is part of a best routes).
 
 \subsection{Forumlae}
 
-Sections \ref{EASprob} and \ref{EASphero} refer to the underlying formulae which govern the agents pheromone deposits for a given edge and the probability for an agent to move to a specific location any time it reaches an intersection.
+Sections \ref{EASprob} and \ref{EASphero} refer to the underlying formulae which govern the ants probablitity of selection and pheromone deposits for a given edge.
 
 \subsubsection{Probability}
 \label{EASprob}
 
-The probability function for the Elitist Ant System remains the same as it is in the Ant System, see section \ref{ASprob} and appendix B, section \ref{sssec:pherodepo}
+The probability function for the Elitist Ant System remains the same as it is in the Basic Ant System, see section \ref{ASprob} and appendix B, section \ref{sssec:pherodepo}
 
 \subsubsection{pheromone}
 \label{EASphero}
-The pheromone function used in the Elite Ant System takes into account that there is pheromone to be deposited along the current $x$ elite routes.
+The pheromone function used in the Elite Ant System must acknowledge that there is pheromone to be deposited along the current $x$ elite routes.
 
 \begin{figure}[H]
 \Large
@@ -85,7 +85,7 @@ The majority of the formula remains the same as defined in appendix B section \r
 
 \section{Existing Solutions}
 \label{existingsolutions}
-There are a number of pre-existing solutions which attempt visualise Ant Colony algorithms however, the majority of these based upon the authors experience are in fact sub-par in performance. Rather that visualising the algorithms execution in a logical manner, more often than not the existing solutions simply show the algorithms final state l without any detailed intermittent steps. This leaves the author confused about what has just actually happened and how was such a solution obtained.
+There are a number of pre-existing solutions which attempt visualise Ant Colony algorithms however, the majority of these based upon the authors experience are in fact sub-par in performance. Rather that visualising the algorithms execution in a logical manner, more often than not the existing solutions simply shows the algorithms final state without any detailed intermittent steps. This leaves the user confused about what has just actually happened and how was such a solution obtained.
 
 Another problem associated with existing solutions is that the graphical user interface is too cluttered or complex. Many of the existing applications the author observed contained every interaction element in a tightly packed series of containers rather than splitting appropriate actions into separate views or menus. This is extremely confusing and makes it difficult to actually use the application as intended. If the user has selected that they want to use a specific variation of an Ant Colony algorithm then the user should only be able to interact with the features directly relevant to their selection.
 
@@ -101,9 +101,8 @@ The law of context refers to the users expectation that they should only see int
 
 \subsection{Law of Feedback}
 
-The law of feedback relates the ideology that every significant action has some form of informative, relative feedback associated with it\cite{99designs:laws}. This enables the users to quickly develop an understanding of what interaction control which action. This also covers any incorrect actions performed by the user. The application will be developed in such a way that any incorrect actions will be displayed to the user in a manner that anyone can understand and provide the user with the required knowledge to resolve said issue.
+The law of feedback relates the ideology that every significant action has some form of informative, relative feedback associated with it\cite{99designs:laws}. This enables the users to quickly develop an understanding of which interaction controls which action. The application will be developed in such a way that any incorrect actions will be displayed to the user in a manner that anyone can understand and provide the user with the required knowledge to resolve said issue.
 
 \subsection{Law of Easing}
 
 The law of easing is very important, especially for this application. This law suggests that complex actions should be segmented into simpler steps to allow the user to comprehend what they are actually doing \cite{99designs:laws}. The way this application will adopt this is that rather than specifying all of the algorithm’s parameters at once, each parameter will have its own method of interaction and its own series of user feedback prompts enabling any user to simply modify select parameters however they see fit, assuming the value is legal.
-
