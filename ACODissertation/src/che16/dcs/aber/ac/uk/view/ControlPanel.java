@@ -17,6 +17,14 @@ import javax.swing.text.MaskFormatter;
 
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 
+/**
+ * This Class is used to contain the individual user interface elements which enable the
+ * modification of algorithm parameters. Any additions to this section of the user interface
+ * must be implemented in this Class.
+ * @author Christopher Edwards
+ *
+ */
+
 public class ControlPanel extends JPanel{
 
 
@@ -61,6 +69,9 @@ public class ControlPanel extends JPanel{
 		controlInit();
 	}
 
+	/**
+	 * Create and add the necessary user interface elements to this container using a GridbagLayout.
+	 */
 	private void controlInit() {
 
 		//buttons
@@ -232,6 +243,10 @@ public class ControlPanel extends JPanel{
 
 	}
 
+	/**
+	 * Assign the Buttons with the correct ActionListener
+	 * @param listener the current ActionListener
+	 */
 	public void setButtonListener(ControlPanelListener listener){
 
 		this.listener = listener;
@@ -243,43 +258,73 @@ public class ControlPanel extends JPanel{
 
 	}
 
-
+	/**
+	 * 
+	 * @return the iteration text field
+	 */
 	public JTextField getIterationField() {
 		return iterationField;
 
 	}
 
+	/**
+	 * 
+	 * @return the beta text field
+	 */
 	public JTextField getBetaField() {
 		return betaField;
 	}
-
+	/**
+	 * 
+	 * @return the alpha text field
+	 */
 	public JTextField getAlphaField() {
 		return alphaField;
 	}
-
+	/**
+	 * 
+	 * @return the agents text field
+	 */
 	public JTextField getAgentField() {
 		return agentField;
 	}
-
+	/**
+	 * 
+	 * @return the decayRate text field
+	 */
 	public JTextField getDecayField() {
 		return decayField;
 	}
-
+	/**
+	 * 
+	 * @return the cities text field
+	 */
 	public JTextField getGoalNodesField() {
 		return goalNodesField;
 	}
 
+	/**
+	 * 
+	 * @return the intial edge pheromone text textfield
+	 */
 	public JTextField getInitPheroField() {
 		return initPheroField;
 	}
-
+	/**
+	 * 
+	 * @return the uphill paths text field
+	 */
 	public JTextField getUphillField() {
 		return uphillField;
 	}
 
+	/**
+	 * 
+	 * @return the start button
+	 */
 	public JButton getStartButton() {
 		return startButton;
-		
+
 	}
 
 

@@ -6,6 +6,14 @@ import java.util.Random;
 
 import che16.dcs.aber.ac.uk.model.World.EliteAntData;
 
+/**
+ * This Class is used to represent and contain the behaviours required by an ant which will
+ * deployed in the current {@link World} instance in order to solve the current problem.
+ * 
+ * @author Christopher Edwards
+ *
+ */
+
 public class Ant{
 
 	/*
@@ -26,6 +34,12 @@ public class Ant{
 
 	private final Random random = new Random(System.nanoTime());
 
+	/**
+	 * Ant Constructor.
+	 * 
+	 * @param world current {@link World} instance
+	 * @param startLocation the starting location for this ant in terms of {@link City} index
+	 */
 	public Ant(World world, int startLocation){
 		this.world = world;
 		this.start = startLocation;
@@ -44,6 +58,14 @@ public class Ant{
 
 	}
 
+	/**
+	 * This method returns the probability for this Ant to traverse edge x,y.
+	 * 
+	 * @param x the x coordinate for a given edge
+	 * @param y the y coordinate for a given edge
+	 * @param totalSum the current sum of every solutions probability
+	 * @return the probability of edge x,y being traversed
+	 */
 	//probability function
 	private double calculateTotalProbability(int x, int y, double totalSum){
 
@@ -51,17 +73,36 @@ public class Ant{
 		return result / totalSum;
 	}
 
+	/**
+	 * This method returns the individual probability for a given edge x,y. The sum of the returned value
+	 * for every solution can then be used in the {@link #calculateTotalProbability(int, int, double)} method
+	 * 
+	 * @param x the x coordinate for a given edge
+	 * @param y the y coordinate for a given edge
+	 * @return the result of the probability function
+	 */
+
 	private double calculateIndividualProbability(int x, int y){
 		//could just return the equation rather than having the placeholder variable 'result'
 		double result = ((Math.pow(world.getPheromone()[x][y].getPheromoneValue(), world.getAlpha())) * (Math.pow(world.getInvertedMatrix()[x][y], world.getBeta()))) ;
 		return result;
 	}
 
+
+
 	/*
 	 * Below is a movement function provided by Thomas Junglbut as part of his TSP ACO implementation
 	 * Blog dicussing the code can be found here: http://codingwiththomas.blogspot.co.uk/2011/08/ant-colony-optimization-for-tsp.html
 	 * and a github repository can be found here: http://code.google.com/p/antcolonyopt/
 	 * code is used with rights and ownership with respect to the original owner
+	 */
+
+	/**
+	 * This method is used to return this Ants next movement based on the probability of each edge 
+	 * and this Ants current location.
+	 * 
+	 * @param y the Ants current location in terms of {@link City} index
+	 * @return the {@link City} index of the Ants next movement
 	 */
 
 	// TODO really needs improvement
@@ -126,6 +167,15 @@ public class Ant{
 		return -1;
 	}
 
+	/**
+	 * This method is used to move the Ant until it has no further {@link City} locations to visit.
+	 * This method also tracks the Ants current location, last movements and modified the pheromone
+	 * concentration for the edges this Ant traverses.
+	 * 
+	 * If the ElitistAnt algorithm is being used, this method with also control and maintain the 
+	 * current collection of elite agents to ensure correct behaviours are being modelled.
+	 * 
+	 */
 
 	public void move(){
 
@@ -191,32 +241,60 @@ public class Ant{
 		world.decayPhero();
 	}
 
+	/**
+	 * 
+	 * @return the Ants current {@link City} index
+	 */
 	public int getCurrentIndex() {
 		return current;
 	}
 
+	/**
+	 * 
+	 * @return the Ants finished status
+	 */
 	public boolean getFinished() {
 		return finished;
 	}
 
+	/**
+	 * Adds a {@link City} index to the current route
+	 * @param index the {@link City} index to add
+	 */
 	public void addToRoute(int index){
 		route.add(index);
 		//System.out.println("Current route: " + route);
 
 	}
 
+	/**
+	 * 
+	 * @return the totalDistance walked
+	 */
 	public double getTotalDistance() {
 		return totalDistanceWalked;
 	}
 
+	/**
+	 * 
+	 * @return the route taken
+	 */
 	public LinkedList<Integer> getRoute() {
 		return route;
 	}
 
+	/**
+	 * 
+	 * @return the last 2 {@link City} which the Ant visited
+	 */
 	public int[] getMovementTracker(){
 		return movementTracker;
 	}
 
+	/**
+	 * 
+	 * @return the status of the isMoving variable
+	 */
 	public boolean isMoving(){
 		return isMoving;
 	}
@@ -226,15 +304,36 @@ public class Ant{
 		return "Ant: \n start: " + start + "\ncurrent: " + current + "\nfinished: " + finished + "\nroute: " + route + "\nvisited: " + Arrays.toString(visited) + "\nunvisited: " + unvisited;
 	}
 
+	/**
+	 * 
+	 * @param status the isMoving status
+	 */
 	public void setMoving(boolean status) {
 		this.isMoving = status;
 
 	}
 
+	/**
+	 * 
+	 * @return the summary of visited and unvisited {@link City} indexes
+	 */
 	public boolean[] getVisited(){
 		return visited;
 	}
 
+	/**
+	 * This method is used to move the Ant on a step-by-step basis.
+	 * This method also tracks the Ants current location, last movements and modified the pheromone
+	 * concentration for the edges this Ant traverses.
+	 * 
+	 * This method is only used when the application is in step-mode, otherwise the {@link #move()} method is used.
+	 * 
+	 * If the ElitistAnt algorithm is being used, this method with also control and maintain the 
+	 * current collection of elite agents to ensure correct behaviours are being modelled.
+	 * 
+	 */
+
+	
 	public void step() {
 
 		int lastNode = current;
@@ -265,7 +364,7 @@ public class Ant{
 			world.adjustAntsAtCity(lastNode, -1);
 			current = lastNode;
 			addToRoute(lastNode);
-			
+
 
 			/*
 			 * See if the ant is the current best, if world.getBestDistance() == -1 then this ant is the first to finish
@@ -303,10 +402,19 @@ public class Ant{
 		}
 	}
 
+	/**
+	 * 
+	 * @return the number of unvisited {@link City} locations
+	 */
 	public int getUnvisted() {
 		return unvisited;
 	}
 
+	/**
+	 * 
+	 * @param b the finished status
+	 */
+	
 	public void setFinished(boolean b) {
 		this.finished = b;
 

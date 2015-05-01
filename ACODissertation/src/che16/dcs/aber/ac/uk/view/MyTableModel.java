@@ -3,6 +3,14 @@ package che16.dcs.aber.ac.uk.view;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * This Class is used to model the underlying table model represented in the instance of
+ * {@link CityDetailView}. This has been abstracted into its own Class to reduce the coupling
+ * between the view and data.
+ * @author Christopher Edwards
+ *
+ */
+
 public class MyTableModel extends AbstractTableModel{
 
 	private final String[] COLUMNNAMES = {"City Index", "No. of Agents"}; 
@@ -28,18 +36,36 @@ public class MyTableModel extends AbstractTableModel{
 		data[ROWS-1][1] = "N/A";
 	}
 
+	/**
+	 * @return the nuber of columns
+	 */
 	public int getColumnCount() {
 		return COLUMNNAMES.length;
 	}
 
+	/**
+	 * @return the number of rows
+	 */
 	public int getRowCount() {
 		return data.length;
 	}
 
+	/**
+	 * @param col the colum index
+	 * @return the name of the specified column index
+	 */
+	
 	public String getColumnName(int col) {
 		return COLUMNNAMES[col];
 	}
 
+	/**
+	 * Returns the value at the specified table location.
+	 * 
+	 * @param row the row index
+	 * @param col the column index
+	 * @return the value at said indexes
+	 */
 	public Object getValueAt(int row, int col) {
 		return data[row][col];
 	}

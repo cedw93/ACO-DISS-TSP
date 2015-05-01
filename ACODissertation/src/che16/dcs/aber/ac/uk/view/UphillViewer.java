@@ -11,6 +11,13 @@ import javax.swing.JPanel;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.model.City;
 
+/**
+ * This Class is used to provide a visual representation in regards to the current
+ * state of the generated uphill paths.
+ * @author Christopher Edwards
+ *
+ */
+
 public class UphillViewer extends JFrame{
 
 	private UphillPanel content;
@@ -33,6 +40,12 @@ public class UphillViewer extends JFrame{
 		content.repaint();
 	}
 
+	/**
+	 * This is the content area which will be painted in order to show the details about the
+	 * generated uphill paths and will be contained within the {@link UphillViewer} instance.
+	 * @author Christopher Edwards
+	 *
+	 */
 	private class UphillPanel extends JPanel{
 
 		private AntColonyOptimisation model;

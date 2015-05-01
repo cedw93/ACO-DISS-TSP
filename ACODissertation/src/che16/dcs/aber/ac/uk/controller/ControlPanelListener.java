@@ -9,25 +9,48 @@ import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.utils.Globals;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
 
+/**
+ * This Class is a dedicated ActionListener for the {@link che16.dcs.aber.ac.uk.view.ControlPanel} instance.
+ *  
+ * @author Christopher Edwards
+ *
+ */
 public class ControlPanelListener implements ActionListener {
-
 
 	private AntColonyOptimisation model;
 	private static DisplayFrame view;
 	private static boolean lockedUI;
 
+	/**
+	 * The ControlPanelListener constructor.
+	 * 
+	 * @param model the current instance of the {@link che16.dcs.aber.ac.uk.model.AntColonyOptimisation} Class
+	 * @param view the current instance of the {@link che16.dcs.aber.ac.uk.view.DisplayFrame} Class
+	 */
+		
 	public ControlPanelListener(AntColonyOptimisation model, DisplayFrame view){
 		this.model = model;
 		this.view = view;
 		lockedUI = false;
 	}
 
+	/**
+	 * Inherited method as a result of the implementing {@link java.awt.event.ActionListener} interface.
+	 * 
+	 * This method converts the source of the interaction into a String which is then compared
+	 * to the element identifiers present in the user interface, if there is a match then the
+	 * correct action is performed. 
+	 * 
+	 * Any additional ControlPanel elements that need ActionLisetner functionality 
+	 * must be also be implemented in this method.
+	 * 
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String source = e.getActionCommand();
 		if(source.equalsIgnoreCase("start")){
 			//nice a messy method. Get the values from the test fields, we need to check if they are valid!
-			//TODO: CHECK THE CONTENTS OF THIS FOR VALIDITY
 			try{
 				double alpha = Double.parseDouble(view.getControlContainer().getControlPanel().getAlphaField().getText());
 				double decayRate= Double.parseDouble(view.getControlContainer().getControlPanel().getDecayField().getText());
@@ -128,7 +151,13 @@ public class ControlPanelListener implements ActionListener {
 		}
 	}
 
+	/**
+	 * This method is used to lock the current user interface elements such that they can no
+	 * longer be modified. This should only be used when the user in is step-based iteration.
+	 */
+	
 	public void lockUI(){
+		//iterate through each element and disable it
 		view.getControlContainer().getControlPanel().getAlphaField().setEnabled(false);
 		view.getControlContainer().getControlPanel().getBetaField().setEnabled(false);
 		view.getControlContainer().getControlPanel().getIterationField().setEnabled(false);
@@ -140,6 +169,12 @@ public class ControlPanelListener implements ActionListener {
 		lockedUI = true;
 	}
 
+	/**
+	 * This method is used to unlock the current user interface. Once the interface has been
+	 * locked using the {@link #lockUI()} method. This method ensures that every user interface
+	 * element is in fact in and editable state.
+	 */
+	
 	public static void unlockUI(){
 		view.getControlContainer().getControlPanel().getAlphaField().setEnabled(true);
 		view.getControlContainer().getControlPanel().getBetaField().setEnabled(true);

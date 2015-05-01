@@ -10,6 +10,13 @@ import javax.swing.JOptionPane;
 
 import che16.dcs.aber.ac.uk.utils.Globals;
 
+/**
+ * This Class represents the necessary components of a Travelling Salesman Problem representation. 
+ * This Class also maintains and manipulates the collection of {@link Ant ants} and {@link City cities} as well as
+ * Control the access to the pheromonne matrix.
+ * @author Christopher Edwards
+ *
+ */
 public class World {
 
 	private AntColonyOptimisation aco;
@@ -22,6 +29,15 @@ public class World {
 	private double bestDistance;
 	private LinkedList<Integer> bestRoute;
 
+
+	/**
+	 * Constructor with specified parameter values
+	 * @param aco the current {@link AntColonyOptimisation} instance
+	 * @param numberOfAnts the number of {@link Ant ants}
+	 * @param noOfCities the number of {@link City cities}
+	 * @param numberOfUphill the number of uphil paths to be generated
+	 * @param method the method used for this algorithms execution
+	 */
 	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, int numberOfUphill, int method){
 		this.aco = aco;
 		this.numberOfAnts = numberOfAnts;
@@ -40,6 +56,16 @@ public class World {
 
 
 	}
+
+	/**
+	 * Constructor with specified parameter values and predefined {@link City} locations
+	 * @param aco the current {@link AntColonyOptimisation} instance
+	 * @param numberOfAnts the number of {@link Ant ants}
+	 * @param noOfCities the number of {@link City cities}
+	 * @param tempCities the collection of predefined {@link City} locations
+	 * @param numberOfUphill the number of uphill paths to be generated
+	 * @param method the method used for this algorithms execution
+	 */
 
 	public World(AntColonyOptimisation aco, int numberOfAnts, int noOfCities, ArrayList<City> tempCities, int numberOfUphill, int method) {
 		this.aco = aco;
@@ -60,12 +86,20 @@ public class World {
 
 	}
 
+	/**
+	 * Instantiated the collection of {@link City cities} with predefined locations
+	 * @param tempCities the predefined collection of {@link City cities}
+	 */
 	public void initCitiesFromList(ArrayList<City> tempCities) {
 		cities = new ArrayList<City>();
 		cities.addAll(tempCities);
 
 	}
 
+	/**
+	 * Instantiate the collection of {@link Ant ants}. The starting location of suchs ants
+	 * will be randomised to any valid {@link City} index.
+	 */
 	public void initAnts(){
 		Random r = new Random();
 		ants = new ArrayList<Ant>(numberOfAnts);
@@ -82,6 +116,10 @@ public class World {
 
 	}
 
+	/**
+	 * Instantiate the collection of {@link City cities} with randomised {@link City} coordinates.
+	 */
+	
 	private void initCities(){
 		//we do not set the number of cities as the max for the cities list as clicking will allow the addition of new cities
 		cities = new ArrayList<City>();
@@ -102,26 +140,47 @@ public class World {
 
 	}
 
+	/**
+	 * Initialise the data structures responsible for storing elite ant data.
+	 * @param count the number of elite ants
+	 */
 	public void initEliteAnts(int count){
 		this.eliteAntsCount= count;
 		eliteAnts = new ArrayList<EliteAntData>(count);
 
 	}
 
+	/**
+	 * Add a {@link City} to the current {@link City cities} collection
+	 * @param city the City to add to the collection
+	 */
 	public void addCity(City city){
 		cities.add(city);
 	}
 
+	/**
+	 * 
+	 * @return the {@link City cities} collection
+	 */
 	public List<City> getCities(){
 		return cities;
 	}
 
+	/**
+	 * 
+	 * @return the pheromone matrix
+	 */
 	public Pheromone[][] getPheromone(){
 
 		return pheromone;
 
 	}
 
+	/**
+	 * Initialise the distanceMatrix based upon the size of the {@link City cities} collection. This distance metric used
+	 * is the Euclidean distance.
+	 */
+	
 	public void initDistanceMatrix(){
 		distanceMatrix = new double[cities.size()][cities.size()];
 		/*
@@ -134,7 +193,11 @@ public class World {
 			}
 		}
 	}
-
+	
+	/**
+	 * Initialise the InvertedDistanceMatrix based upon the size of the {@link City cities} collection.
+	 */
+		
 	public void initInvertedMatrix(){
 		invertedMatrix = new double[distanceMatrix.length][distanceMatrix[0].length];
 		//this function literally takes the distanceMatrix and inverts the values (1/distanceMatrix[i][j]
@@ -148,6 +211,11 @@ public class World {
 
 	}
 
+	/**
+	 * Inverted a specified double value. 
+	 * @param value the double value to invert
+	 * @return 1.0 / the specified value
+	 */
 	public double invertValue(double value) {
 		// takes a double value and returns the inverse of that (1/value)
 		// however if the value is 0 then then return 0, you cannot do 1/0 
@@ -163,6 +231,9 @@ public class World {
 		return distanceMatrix.length;
 	}
 
+	/**
+	 * Instantiate the pheromone matrix based on the size of the {@link City cities} collection.
+	 */
 	public void initPheromones(){
 		//same dimensions as the distance matrix as we want to model the paths between each city.
 		pheromone = new Pheromone[distanceMatrix.length][distanceMatrix[0].length];
@@ -173,6 +244,12 @@ public class World {
 		}
 	}
 
+	/**
+	 * Update the pheromone for edge x,y given the specified value
+	 * @param x the x coordinate for the edge
+	 * @param y the y coordinate for the edge
+	 * @param newPheromone the amount of pheromone to add to the edge
+	 */
 	public void updatePheromone(int x, int y, double newPheromone) {
 		double phero = calculatePheromones(pheromone[x][y].getPheromoneValue(), newPheromone);
 		//if phero is not negative then update the current concentration
@@ -185,32 +262,64 @@ public class World {
 
 	}
 
+	/**
+	 * Calculate the pheromone value given the specified value. This factors in the current pheromone levels
+	 * and decayRate.
+	 * @param current the current pheromone concentration
+	 * @param newPheromone the amount of new pheromone to add
+	 * @return the update pheromone concentration after deposit and decay operations
+	 */
 	public double calculatePheromones(double current, double newPheromone) {
 		//we dont need to store the result in a temporary variable, just return the equation in place
 		return ((1 - aco.getDecayRate()) * current + newPheromone);
 
 	}
 
+	/**
+	 * 
+	 * @return the alpha parameter value
+	 */
 	public double getAlpha() {
 		return aco.getAlpha();
 	}
+	
+	/**
+	 * 
+	 * @return the beta parameter value
+	 */
 
 	public double getBeta() {
 		return aco.getBeta();
 	}
 
+	/**
+	 * 
+	 * @return the inverted distance matrix
+	 */
 	public double[][] getInvertedMatrix() {
 		return invertedMatrix;
 	}
 
+	/**
+	 * 
+	 * @return the distance matrix
+	 */
 	public double[][] getDistanceMatrix() {
 		return distanceMatrix;
 	}
 
+	/**
+	 * 
+	 * @return the collection of {@link Ant ants}
+	 */
 	public List<Ant> getAnts() {
 		return ants;
 	}
 
+	/**
+	 * 
+	 * @return the Q parameter value
+	 */
 	public double getQ() {
 		return aco.getQ();
 	}
@@ -241,22 +350,43 @@ public class World {
 		}
 	}
 
+	/**
+	 * 
+	 * @param best the best distance
+	 */
 	public void setBestDistance(double best){
 		this.bestDistance = best;
 	}
 
+	/**
+	 * 
+	 * @return the best distance
+	 */
 	public double getBestDistance(){
 		return bestDistance;
 	}
 
+	/**
+	 * 
+	 * @return the current best route
+	 */
 	public LinkedList<Integer> getBestRoute() {
 		return bestRoute;
 	}
 
+	/**
+	 * 
+	 * @param best the best route
+	 */
 	public void setBestRoute(LinkedList<Integer> best) {
 		this.bestRoute = best;
 	}
 
+	/**
+	 * This method enables modification to the size of the {@link City cities} collection
+	 * after instantiation. This method enables a specified number of additional {@link City} locations.
+	 * @param diff the number of City locations to add
+	 */
 	public void addToCities(int diff) {
 		Random r = new Random();
 		for(int i = 0; i < diff; i++){
@@ -275,6 +405,12 @@ public class World {
 
 	}
 
+	/**
+	 * This method enables modification to the size of the {@link City cities} collection
+	 * after instantiation. This methods enables a specified number of {@link City} locations to be removed.
+	 * @param diff the number of City locations to add
+	 */
+	
 	public void removeCities(int diff) {
 		for(int i = 0; i < diff; i++){
 			//to ensure indexes is correct, it will current number of cities + new index (e.g. 5 + i)
@@ -290,16 +426,29 @@ public class World {
 
 	}
 
+	/**
+	 * 
+	 * @param ants the number of {@link Ant ants}
+	 */
 	public void updateAnts(int ants) {
 		this.numberOfAnts = ants;
 		initAnts();
 
 	}
 
+	/**
+	 * 
+	 * @return the running status
+	 */
 	public boolean getRunning() {
 		return aco.getRunning();
 	}
 
+	/**
+	 * Used to adjust the number of {@link Ant ants} at a {@link City} index
+	 * @param startIndex the starting City index of the Ant
+	 * @param finishedIndex the finishing City index of the Ant
+	 */
 	public void adjustAntsAtCity(int startIndex, int finishedIndex){
 		boolean start = false;
 		boolean end = false;
@@ -320,6 +469,10 @@ public class World {
 		}
 	}
 
+	/**
+	 * This method generates the correct number of uphill paths. These paths are randomly generated 
+	 * and cost twice the initial path cost.
+	 */
 	private void initUphill(){
 		if(!(aco.getUphillAtive())){
 			return;
@@ -343,6 +496,10 @@ public class World {
 		return method;
 	}
 
+	/**
+	 * This method is used to deposit pheromone on all the edges used the the current collection
+	 * of elite routes.
+	 */
 	public void depositBest() {
 		//research suggests 1/4 * number of cities, or number of cities is the best e value
 		//could also use e = number of cities
@@ -359,14 +516,28 @@ public class World {
 		}
 	}
 
+	/**
+	 * 
+	 * @return the number of elite ants
+	 */
 	public int getEliteCount() {
 		return eliteAntsCount;
 	}
 
+	/**
+	 * 
+	 * @return the elite ants
+	 */
 	public List<EliteAntData> getEliteAnts() {
 		return eliteAnts;
 	}
 
+	/**
+	 * This Class is used to store the data relevant to an elite ant. Rather than storing 
+	 * an {@link Ant} object in full only the key values are stored using an Object of this type.
+	 * @author Christopher Edwards
+	 *
+	 */
 
 	class EliteAntData{
 

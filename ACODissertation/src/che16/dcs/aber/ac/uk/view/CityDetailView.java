@@ -14,6 +14,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.model.City;
 
+/**
+ * This Class is used to visualise the number of {@link che16.dcs.aber.ac.uk.model.Ant ants} at any 
+ * {@link che16.dcs.aber.ac.uk.model.City} location
+ * @author Christopher Edwards
+ *
+ */
+
 public class CityDetailView extends JFrame{
 
 	private final Font TABLEFONT = new Font("serif", Font.BOLD, 16);
@@ -33,6 +40,11 @@ public class CityDetailView extends JFrame{
 
 	}
 
+	/**
+	 * Populate the view with the underlying table model which is used to visualise the
+	 * data for each City index.
+	 */
+	
 	public void addTable(){
 
 
@@ -58,6 +70,10 @@ public class CityDetailView extends JFrame{
 		this.add(scrollPane);
 	}
 
+	/**
+	 * Update the table contents to reflect the current state of the {@link City cities} collection.
+	 * @param cities the current {@link che16.dcs.aber.ac.uk.model.City cities} collection
+	 */
 	public void updateValues(List<City> cities){
 		int total = 0;
 		for(City c: cities){

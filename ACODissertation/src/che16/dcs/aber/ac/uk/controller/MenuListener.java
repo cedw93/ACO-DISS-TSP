@@ -13,21 +13,49 @@ import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.utils.Globals;
 import che16.dcs.aber.ac.uk.view.DisplayFrame;
 
+/**
+ * This Class is a dedicated ActionListener for {@link javax.swing.JMenuBar} contained in the
+ * {@link che16.dcs.aber.ac.uk.view.DisplayFrame} instance.
+ * @author Christopher Edwards
+ *
+ */
+
 public class  MenuListener implements ActionListener {
 
 
 	private AntColonyOptimisation model;
 	private DisplayFrame view;
 
+	/**
+	 * Constructor for the MenuListener
+	 * 
+	 * @param model the current instance of the {@link che16.dcs.aber.ac.uk.model.AntColonyOptimisation} Class
+	 */
 	public MenuListener(AntColonyOptimisation model){
 		this.model = model;
 
 	}
 
+	/**
+	 * Sets the current instance of the 
+	 * @param view the current instance of the {@link che16.dcs.aber.ac.uk.view.DisplayFrame} Class
+	 */
+	
 	public void setView(DisplayFrame view){
 		this.view = view;
 	}
 
+	/**
+	 * Inherited method as a result of the implementing {@link java.awt.event.ActionListener} interface.
+	 * 
+	 * This method converts the source of the interaction into a String which is then compared
+	 * to the element identifiers present in the user interface, if there is a match then the
+	 * correct action is performed. 
+	 * 
+	 * Any additional JMenuBar items must be also be implemented in this method.
+	 * 
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String source = e.getActionCommand();
@@ -199,6 +227,17 @@ public class  MenuListener implements ActionListener {
 		}
 
 	}
+	
+	/**
+	 * This method opens a {@link javax.swing.JFileChooser} which enables the destination file
+	 * where a configuration can be loaded from. This {@link javax.swing.JFileChooser} is limited
+	 * to the users home directory and .tsp or .txt file formats.
+	 * 
+	 * This method also checks to ensure that the a correct file is returned and correctly
+	 * handles incorrect interactions with suitable error prompts.
+	 * 
+	 * @return String the file name of the selected input file
+	 */
 
 	public String chooseLoadFile(){
 		/*
@@ -223,6 +262,17 @@ public class  MenuListener implements ActionListener {
 		return result;
 	}
 
+	/**
+	 * This method opens a {@link javax.swing.JFileChooser} which enables the destination file
+	 * where a configuration can be saved. This {@link javax.swing.JFileChooser} is limited
+	 * to the users home directory and .tsp or .txt file formats.
+	 * 
+	 * This method also checks to ensure that the a correct file is returned and correctly
+	 * handles incorrect interactions with suitable error prompts.
+	 * 
+	 * @return String the file name of the selected output file
+	 */
+	
 	public String chooseSaveFile(){
 		/*
 		 * Locking method adapted from: http://stackoverflow.com/a/8926260/4142444 user 'dogbane'

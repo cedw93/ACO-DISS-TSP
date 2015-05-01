@@ -16,6 +16,17 @@ import javax.swing.JOptionPane;
 import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 import che16.dcs.aber.ac.uk.utils.Globals;
 
+/**
+ * This Class is the main data centre for the underlying Ant Colony algorithms
+ * present in this application. This Class is also the entry point for the che16.dcs.aber.ac.uk.model 
+ * package. This Class contains the relevant parameter values and {@link World} instance required for algorithm
+ * execution.
+ * 
+ * @author Christopher Edwards
+ *
+ */
+
+
 public class AntColonyOptimisation extends Observable{
 
 	private World world;
@@ -26,6 +37,9 @@ public class AntColonyOptimisation extends Observable{
 	private Worker worker;
 	private long speed;
 
+	/**
+	 * Default constructor which sets all parameters to defaults.
+	 */
 	//default constructor this will load first - when the user hasn't specified any values yet
 	public AntColonyOptimisation() {
 
@@ -47,6 +61,19 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	/**
+	 * This method is used to set the algorithms parameter values.
+	 * 
+	 * @param alpha the alpha parameter value
+	 * @param beta the beta parameter value
+	 * @param decayRate the decaryRate parameter value
+	 * @param initalPhero the initial edge pheromone
+	 * @param agents the number of {@link Ant ants}
+	 * @param cities the number of {@link City cities}
+	 * @param iterations the number of iterations
+	 * @param uphillPaths the number of uphill paths to be generated
+	 */
+
 	//algorithm with user defined values
 	public void setValues(double alpha, double beta, double decayRate, double initalPhero, int agents, int cities, int iterations, int uphillPaths) {
 		this.alpha = alpha;
@@ -62,6 +89,9 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	/**
+	 * Signals the algorithm to stop its current execution.}
+	 */
 	public void stop(){
 
 		running = false;
@@ -75,6 +105,10 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	/**
+	 * Signals the algorithm to start its current execution. If the current {@link World} is null, a random
+	 * {@link World} will be generated.
+	 */
 	public void start() {
 		//TODO: make sure this is only possible if not already running
 		if(running){
@@ -114,6 +148,11 @@ public class AntColonyOptimisation extends Observable{
 		worker.execute();
 
 	}
+
+	/**
+	 * Used to progress the algorithms step based execution by one step. This is only used if the
+	 * application is in step-based iteration mode otherwise {@link #start()} is used. 
+	 */
 
 	public void step(){
 		//TODO: make sure this is only possible if not already running
@@ -191,41 +230,76 @@ public class AntColonyOptimisation extends Observable{
 		}
 	}
 
-
-
-
+	/**
+	 * 
+	 * @return the alpha parameter value
+	 */
 	public double getAlpha() {
 		return alpha;
 	}
 
+	/**
+	 * 
+	 * @return the beta parameter value
+	 */
 	public double getBeta() {
 		return beta;
 	}
 
+	/**
+	 * 
+	 * @return the Q parameter value
+	 */
 	public double getQ() {
 		return q;
 	}
 
+	/**
+	 * 
+	 * @return the initial edge pheromone
+	 */
 	public double getInitialPheromone() {
 		return initialPheromone;
 	}
+
+	/**
+	 * 
+	 * @return the decayRate parameter value
+	 */
 
 	public double getDecayRate() {
 		return decayRate;
 	}
 
+	/**
+	 * 
+	 * @return the number of {@link Ant ants}
+	 */
 	public int getNoOfAgents() {
 		return noOfAgents;
 	}
+
+	/**
+	 * 
+	 * @return the current {@link World} instance
+	 */
 
 	public World getWorld() {
 		return world;
 	}
 
+	/**
+	 * 
+	 * @return the finished status
+	 */
+
 	public boolean getFinished(){
 		return finished;
 	}
 
+	/**
+	 * Notifies the Observer that an update to the view is required.
+	 */
 
 	public void notifyCanvas() {
 		setChanged();
@@ -238,18 +312,37 @@ public class AntColonyOptimisation extends Observable{
 		}
 	}
 
+	/**
+	 * 
+	 * @return the maximum x coordinate for a {@link City}
+	 */
+
 	public int getBoundaryX() {
 		return boundaryX;
 	}
+
+	/**
+	 * 
+	 * @return the maximum y coordinate for a {@link City}
+	 */
 
 	public int getBoundaryY() {
 		return boundaryY;
 	}
 
+	/**
+	 * 
+	 * @param b the finished status
+	 */
 	public void setFinished(boolean b) {
 		this.finished = b;
 
 	}
+
+	/**
+	 * This method is used to initiate a {@link World} with specified values. 
+	 * @param fileName the name of the file where the specified values are located
+	 */
 
 	public void load(String fileName){
 		if(!running){
@@ -270,10 +363,21 @@ public class AntColonyOptimisation extends Observable{
 		}
 	}
 
+	/**
+	 * 
+	 * @param b the loaded status
+	 */
 	public void setLoaded(boolean b) {
 		this.loaded = b;
 
 	}
+
+	/**
+	 * This method is used to initiate a {@link World} with specified values. 
+	 * @param fileName the name of the file where the specified values are located
+	 * @return the created {@link World} instance
+	 */
+
 
 	public World loadWorldFromFile(String fileName) {
 
@@ -363,10 +467,28 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	/**
+	 * 
+	 * @return the number of iterations
+	 */
 	public int getIterations() {
 		return iterations;
 	}
 
+	/**
+	 * This method ensures that the specified algorithm parameters are in legal. If any parameter value
+	 * is deemed to be illegal then a correct error prompt will be displayed to the user.
+	 * 
+	 * @param alpha the alpha parameter value
+	 * @param beta the beta parameter value
+	 * @param decayRate the decayRate parameter value
+	 * @param initialPhero the initial edge pheromone
+	 * @param agents the number of {@link Ant ants}
+	 * @param cities the number of {@link City cities}
+	 * @param iterations the number of iterations
+	 * @param uphill the number of uphill paths to be generated
+	 * @return the validity status of the algorithms parameters
+	 */
 	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations, int uphill) {
 		if(alpha > 5.0d || alpha < -5.0d){
 			if(Globals.getMode() == 0){
@@ -435,18 +557,35 @@ public class AntColonyOptimisation extends Observable{
 		return true;
 	}
 
+	/**
+	 * 
+	 * @return the loaded status
+	 */
 	public boolean getLoaded(){
 		return loaded;
 	}
 
+	/**
+	 * 
+	 * @return the running status
+	 */
 	public boolean getRunning(){
 		return running;
 	}
+
+	/**
+	 * 
+	 * @param running the running status
+	 */
 
 	public void setRunning(boolean running){
 		this.running = running;
 	}
 
+	/**
+	 * This methods outputs the current configuration to a specified file location
+	 * @param fileName the location of the output file
+	 */
 	public void save(String fileName){
 		/*
 		 * Don't really need to check the results of the parsing here, if the algorithm gets this far the values are fine
@@ -487,14 +626,26 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	/**
+	 * 
+	 * @return the number of {@link Ant ants} working
+	 */
 	public int getAgentsWorking(){
 		return agentsWorking;
 	}
 
+	/**
+	 * 
+	 * @return the number of {@link Ant ants} finished
+	 */
 	public int getAgentsFinished(){
 		return (this.noOfAgents - agentsWorking);
 	}
 
+	/**
+	 * Reduce the number of {@link Ant ants} working by 1.
+	 *
+	 */
 	public void reduceWorking() {
 		if(agentsWorking == 0){
 			agentsWorking = noOfAgents;
@@ -503,34 +654,59 @@ public class AntColonyOptimisation extends Observable{
 
 	}
 
+	
+	/**
+	 * 
+	 * @param i the current iteration number
+	 */
 	public void setCurrentIteration(int i) {
 		this.currentIter = i;
 
 	}
 
+	/**
+	 * 
+	 * @return the current iteration number
+	 */
 	public int getCurrentIteration(){
 		return currentIter;
 	}
 
+	/**
+	 * 
+	 * @param speed the Thread speed in milliseconds
+	 */
 	public void setSpeed(long speed) {
 		this.speed = speed;
 
 	}
 
+	/**
+	 * 
+	 * @return the number of uphill paths
+	 */
 	public int getUphillPaths() {
 		return uphillPaths;
 	}
 
+	/**
+	 * 
+	 * @param i the method used for this algorithms execution
+	 */
 	public void setMethod(int i) {
 		this.method = i;
 
 	}
 
+	/**
+	 * 
+	 * @return the method used for this algorithms iteration
+	 */
 	public int getMethod(){
 		return method;
 	}
 
-	public void uphillActive(boolean status) {
+		public void uphillActive(boolean status) {
 		this.uphillActive = status;
 	}
 
@@ -538,11 +714,21 @@ public class AntColonyOptimisation extends Observable{
 		return uphillActive;
 	}
 
+	/**
+	 * 
+	 * @param i the number of elite ants
+	 */
+	
 	public void setEliteAnts(int i) {
 		this.eliteAnts = i;
 
 	}
 
+	/**
+	 * This methods checks to see if the specified number of elite ants is valid
+	 * @param value the number of elite ants
+	 * @return the validity of the specified number
+	 */
 	public boolean checkEliteValueIsValid(int value){
 		if(value > noOfAgents){
 			if(Globals.getMode() == 0){

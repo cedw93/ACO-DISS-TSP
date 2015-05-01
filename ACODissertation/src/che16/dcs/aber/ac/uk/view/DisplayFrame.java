@@ -19,10 +19,16 @@ import che16.dcs.aber.ac.uk.controller.ControlPanelListener;
 import che16.dcs.aber.ac.uk.controller.MenuListener;
 import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 
+/**
+ * This Class is used to repesent the highest level container which will house all the other user interface elements.
+ * @author Christopher Edwards
+ *
+ */
+
 public class DisplayFrame extends JFrame{
 
 	//easier to modify later, 1 access and point
-	private final static String title = "Chris Edwards | Ant Colony Optimisation | Major Project";
+	private final static String title = "Chris Edwards | Ant Colony Optimisation | Major Project | Release";
 	private final static int WIDTH = 1300;
 	private final static int HEIGHT = 700;
 
@@ -44,6 +50,11 @@ public class DisplayFrame extends JFrame{
 	private JMenu file, speed, detail, method, stepMenu;
 	private JMenuItem save, load, slowest, medium, fast, fastest, cityDetail, equationDetail, uphill, uphillDis, basic, elitist, uphillEnb, step, stepDis;
 
+	/**
+	 * Constructor with specified parameters. This is to ensure the correct visual elements are instantiated with the correct values
+	 * @param model the current {@link che16.dcs.aber.ac.uk.model.AntColonyOptimisation} instance
+	 * @param menuListener the current {@link che16.dcs.aber.ac.uk.controller.MenuListener} instance
+	 */
 	public DisplayFrame(AntColonyOptimisation model, MenuListener menuListener) {
 
 		super(title);
@@ -67,10 +78,17 @@ public class DisplayFrame extends JFrame{
 
 	} 
 
+	/**
+	 * Create the instance of the {@link UphillViewer}
+	 * @param model the current {@link che16.dcs.aber.ac.uk.model.AntColonyOptimisation} instance
+	 */
 	public void initUphillFrame(AntColonyOptimisation model){
 		uphillViewer = new UphillViewer(model);
 	}
 
+	/**
+	 * Create the contained user interface elements and add them to this container using a GridBagLayout.
+	 */
 	public void addComponents(){
 
 		this.setLayout(new GridBagLayout());
@@ -90,6 +108,11 @@ public class DisplayFrame extends JFrame{
 		canvasContainer.getCanvas().render();
 	}
 
+
+	/**
+	 * Create and populate the JMenuBar and add it to this container.
+	 * @param menuListener the current {@link che16.dcs.aber.ac.uk.controller.MenuListener} instance
+	 */
 	public void addMenu(MenuListener menuListener){
 		menuBar = new JMenuBar();
 
@@ -173,12 +196,12 @@ public class DisplayFrame extends JFrame{
 		elitist.addActionListener(menuListener);
 		elitist.setFont(MENUITEMFONT);
 		method.add(elitist);
-		
+
 		step = new JMenuItem("Enable step mode");
 		step.addActionListener(menuListener);
 		step.setFont(MENUITEMFONT);
 		stepMenu.add(step);
-		
+
 		stepDis = new JMenuItem("Disable step mode");
 		stepDis.addActionListener(menuListener);
 		stepDis.setFont(MENUITEMFONT);
@@ -226,22 +249,42 @@ public class DisplayFrame extends JFrame{
 
 	}
 
+	/**
+	 * 
+	 * @return the current {@link DisplayCanvasContainer} instance
+	 */
 	public DisplayCanvasContainer getCanvasContainer() {
 		return canvasContainer;
 	}
 
+	/**
+	 * 
+	 * @return the current {@link ControlContainer} instance
+	 */
 	public ControlContainer getControlContainer(){
 		return controlContainer;
 	}
+
+	/**
+	 * 
+	 * @return the current {@link CityDetailView} instance
+	 */
 
 	public CityDetailView getCityDetailView(){
 		return cityDetailView;
 	}
 
+	/**
+	 * 
+	 * @return the current {@link EquationFrame} instance
+	 */
 	public JFrame getEquationFrame(){
 		return equationFrame;
 	}
-
+	/**
+	 * 
+	 * @return the current {@link UphillViewer} instance
+	 */
 	public UphillViewer getUphillFrame(){
 		return uphillViewer;
 	}

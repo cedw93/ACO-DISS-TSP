@@ -8,13 +8,19 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+/**
+ * This Class is used to contain the {@link DisplayCanvas} instance and provide some additional visual aids to the
+ * user
+ * @author Christopher Edwards
+ *
+ */
+
 public class DisplayCanvasContainer extends JPanel{
 
 	private DisplayCanvas canvas;
 	private GridBagConstraints gbc;
 	private String contentTop, contentBottom;
 	private DisplayFrame frame;
-
 
 	public DisplayCanvasContainer() {
 		this.contentTop = "Best Route:[N/A]                Best Distance: N/A";
@@ -35,7 +41,9 @@ public class DisplayCanvasContainer extends JPanel{
 	}
 
 
-
+	/**
+	 * Create the instance of the {@link DisplayCanvas} and add it to this container.
+	 */
 	public void addCanvas(){
 
 		canvas = new DisplayCanvas(this);
@@ -48,7 +56,10 @@ public class DisplayCanvasContainer extends JPanel{
 		return new Dimension(900, 700);
 	}
 
-
+	/**
+	 * 
+	 * @return the current {@link DisplayCanvas} instance
+	 */
 	public DisplayCanvas getCanvas(){
 		return canvas;
 	}
@@ -88,12 +99,19 @@ public class DisplayCanvasContainer extends JPanel{
 		this.contentBottom = content;
 	}
 
-
-
+	/**
+	 * 
+	 * @param frame the {@link DisplayFrame} instance
+	 */
 	public void setDisplayFrame(DisplayFrame frame) {
 		this.frame = frame;
 
 	}
+
+	/**
+	 * 
+	 * @return the current {@link DisplayFrame} instance
+	 */
 	
 	public DisplayFrame getFrame(){
 		return frame;

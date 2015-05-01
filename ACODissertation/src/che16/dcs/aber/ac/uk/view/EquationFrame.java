@@ -15,6 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * This Class is used to contain graphical representations of the underlying algorithm
+ * functions.
+ * @author Christopher Edwards
+ *
+ */
+
 public class EquationFrame extends JFrame{
 
 
@@ -38,6 +45,9 @@ public class EquationFrame extends JFrame{
 
 	}
 
+	/**
+	 * Create and add the contained panels which will be used to display the individual graphics.
+	 */
 	public void initPanels(){
 
 		probabilityPanel = new ProbabilityPanel(this);
@@ -52,6 +62,13 @@ public class EquationFrame extends JFrame{
 
 	}
 
+	/**
+	 * This Class is used to display a dedicated graphic containing information related to
+	 * the algorithms underlying probability functions. This will be contained in the
+	 * {@link EquationFrame} instance.
+	 * @author Christopher Edwards
+	 *
+	 */
 	private class ProbabilityPanel extends JPanel{
 
 		private Image probabilityImage;
@@ -90,6 +107,14 @@ public class EquationFrame extends JFrame{
 
 	}
 
+	/**
+	 * This Class is used to display a dedicated graphic containing information related to
+	 * the algorithms underlying pheromone functions. This will be contained in the
+	 * {@link EquationFrame} instance.
+	 * @author Christopher Edwards
+	 *
+	 */
+	
 	private class PheroPanel extends JPanel{
 
 		private Image pheroImage;

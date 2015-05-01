@@ -8,6 +8,13 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+/**
+ * This Class is used to contain the elements in the user interface which enable the modification
+ * of parameter values.
+ * @author Christopher Edwards
+ *
+ */
+
 public class ControlContainer extends JPanel{
 
 	private ControlPanel controlPanel;
@@ -35,6 +42,9 @@ public class ControlContainer extends JPanel{
 
 	}
 
+	/**
+	 * Create and add the instance of the {@link ControlPanel} to this container.
+	 */
 
 	public void addControlElements(){
 
@@ -49,7 +59,10 @@ public class ControlContainer extends JPanel{
 		return new Dimension(400, 700);
 	}
 
-
+	/**
+	 * 
+	 * @return the current ControlPanel instance
+	 */
 	public  ControlPanel getControlPanel() {
 		return controlPanel;
 	}

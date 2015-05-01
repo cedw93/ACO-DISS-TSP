@@ -6,6 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import che16.dcs.aber.ac.uk.model.City;
+/*
+ * 
+ * *****************************NOTE****************************************
+ * THE TEST CASES IN THIS CLASS ARE FAIRLY TRIVIAL AND THE NAME ARE DESCRIPTIVE 
+ * OF THE CONTAINED TESTS. NO INDIVIDUAL JAVADOC IS NEEDED
+ * 
+ * 
+ */
 
 public class CityTest {
 

@@ -21,6 +21,12 @@ import che16.dcs.aber.ac.uk.model.AntColonyOptimisation;
 import che16.dcs.aber.ac.uk.model.City;
 import che16.dcs.aber.ac.uk.utils.Globals;
 
+/**
+ * This Class as a content area for rendering the algorithms execution.
+ * @author Christopher Edwards
+ *
+ */
+
 public class DisplayCanvas extends JPanel{
 
 	private DisplayCanvasContainer parent;
@@ -236,11 +242,19 @@ public class DisplayCanvas extends JPanel{
 		return new Dimension((parent.getPreferredSize().width) - 100, (parent.getPreferredSize().height - 100));
 	}
 
+	/**
+	 * Set the current model enabling the current algorithms state to be correctly painted.
+	 * @param model the current {@link che16.dcs.aber.ac.uk.model.AntColonyOptimisation} instance
+	 */
 	public void setModel(AntColonyOptimisation model) {
 		this.model = model;
 
 	}
 
+	/**
+	 * Signal this component to be queued for painting
+	 */
+	
 	public void render() {
 
 		this.repaint();
