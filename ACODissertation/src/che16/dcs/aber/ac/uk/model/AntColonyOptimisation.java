@@ -492,7 +492,7 @@ public class AntColonyOptimisation extends Observable{
 	public boolean validate(double alpha, double beta, double decayRate, double initialPhero, int agents, int cities, int iterations, int uphill) {
 		if(alpha > 5.0d || alpha < -5.0d){
 			if(Globals.getMode() == 0){
-				JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and -5.0\nYou entered: " + alpha,
+				JOptionPane.showMessageDialog(null, "Illegal alpha value. Alpha must be between -5.0 and 5.0\nYou entered: " + alpha,
 						"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			}
 			return false;
@@ -500,7 +500,7 @@ public class AntColonyOptimisation extends Observable{
 
 		if(beta > 5.0d || beta < -5.0d){
 			if(Globals.getMode() == 0){
-				JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and -5.0\nYou entered: " + beta,
+				JOptionPane.showMessageDialog(null, "Illegal beta value. Beta must be between -5.0 and 5.0\nYou entered: " + beta,
 						"Illegal value",	JOptionPane.ERROR_MESSAGE);
 			}
 			return false;
