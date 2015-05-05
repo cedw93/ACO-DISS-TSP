@@ -113,7 +113,7 @@ public class AntColonyOptimisation extends Observable{
 		//TODO: make sure this is only possible if not already running
 		if(running){
 			if(Globals.getMode() == 0){
-				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot save untill this is stopped or finishes naturally.",
+				JOptionPane.showMessageDialog(null, "Algorithm is running, you cannot generate a new problem untill this is stopped or finishes naturally.",
 						"Algorithm is running",	JOptionPane.ERROR_MESSAGE);
 			}
 			return;
